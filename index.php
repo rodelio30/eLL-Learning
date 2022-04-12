@@ -1,19 +1,20 @@
 <?php 
+include 'admin_checker.php';
 
-date_default_timezone_set("Asia/Manila");
-session_start();
-if(!isset($_SESSION['logged'])){
-  header("location: public.php");
-}
-include ('include/connect.php');
-$id=$_SESSION['id'];
+// date_default_timezone_set("Asia/Manila");
+// session_start();
+// if(!isset($_SESSION['logged'])){
+//   header("location: public.php");
+// }
+// include ('include/connect.php');
+// $id=$_SESSION['id'];
 
-$query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-list($id,$type)=mysqli_fetch_array($query);
+// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
+// list($id,$type)=mysqli_fetch_array($query);
 
-if($type=='student'){
-  header("location: student.php");
-}
+// if($type=='student'){
+//   header("location: student.php");
+// }
 
 ?>
 <!DOCTYPE html>
@@ -313,7 +314,7 @@ if($type=='student'){
 										<h5 class="card-title mb-0">Latest Users</h5>
 									</div>
 									<div class="col-md-8">
-										<a href="add-user.php" style="float: right" class="btn btn-success">Add New User</a>
+										<a href="user_add.php" style="float: right" class="btn btn-success">Add New User</a>
 									</div>
 								</div>
 								</div>
@@ -347,31 +348,28 @@ if($type=='student'){
 											<th class="d-none d-xl-table-cell">Firstname</th>
 											<th class="d-none d-xl-table-cell">Lastname</th>
 											<th class="d-none d-md-table-cell">Email</th>
+											<th class="d-none d-md-table-cell">Password</th>
 											<th class="d-none d-md-table-cell">Type</th>
 											<th class="d-none d-md-table-cell">Action</th>
 										</tr>
 									</thead>
 									<tbody>
 											<?php 
-												include_once('include/connect.php');
-												$sql = "SELECT * FROM users";
-
-												//use for MYSQLi-OOP
-												$query = $conn->query($sql);
-												while($row = $query->fetch_assoc()){
-													echo
-													"<tr>
-														<td class='d-none d-xl-table-cell'>".$row['id']."</td>
-														<td class='d-none d-xl-table-cell'>".$row['firstname']."</td>
-														<td class='d-none d-xl-table-cell'>".$row['lastname']."</td>
-														<td class='d-none d-xl-table-cell'>".$row['email']."</td>
-														<td class='d-none d-xl-table-cell'>".$row['type']."</td>
-														<td class='d-none d-xl-table-cell'>
-															<a href='#edit_".$row['id']."' class='btn btn-success btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> Edit</a>
-															<a href='#delete_".$row['id']."' class='btn btn-danger btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-trash'></span> Delete</a>
-														</td>
-														</tr>";
-														// include('edit_delete_modal.php');
+												$result = mysqli_query($conn, "select id, firstname, lastname, email, type, password from users ORDER BY id") or die ("Query 1 is incorrect....");
+												while(list($id, $firstname, $lastname, $email, $password, $type)=mysqli_fetch_array($result)){
+													echo "
+														<tr>	
+															<td class='d-none d-xl-table-cell'>$id</td>
+															<td class='d-none d-xl-table-cell'>$firstname</td>
+															<td class='d-none d-xl-table-cell'>$lastname</td>
+															<td class='d-none d-xl-table-cell'>$email</td>
+															<td class='d-none d-xl-table-cell'>$password</td>
+															<td class='d-none d-xl-table-cell'>$type</td>
+															<td class='d-none d-xl-table-cell'><a href=\"user_edit.php?ID=$id\" class='btn btn-outline-success btn-sm'><span class = 'glyphicon glyphicon-edit'></span> Edit</a>
+															<a href=\"user_delete.php?ID=$id\" onClick=\"return confirm('Are you sure about that?')\" class='btn btn-outline-danger btn-sm'> Delete</a>
+															</td>
+														</tr>	
+													";
 												}
 											?>
 									</tbody>
