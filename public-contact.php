@@ -101,7 +101,7 @@
  </div>
  </ul>
  </nav>
- <h1>High Public Page!</h1>
+ <h1>High Public Contact!</h1>
 </body>
 
 </html>

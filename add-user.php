@@ -1,20 +1,23 @@
 <?php 
-
-date_default_timezone_set("Asia/Manila");
 session_start();
-if(!isset($_SESSION['logged'])){
-  header("location: public.php");
-}
 include ('include/connect.php');
-$id=$_SESSION['id'];
 
-$query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-list($id,$type)=mysqli_fetch_array($query);
+if(isset($_POST['submit'])){
+    $firstname = $_POST['firstname'];
+    $lastname  = $_POST['lastname'];
+    $email     = $_POST['email'];
+    $password  = $_POST['password'];
+    $type      = $_POST['type'];
 
-if($type=='student'){
-  header("location: student.php");
+    $sql       = "INSERT into `users` (firstname, lastname, email, password, type)
+    values('$firstname','$lastname','$email','$password','$type'))";
+    $result=mysqli_query($conn,$sql);
+    if($result){
+        echo "Data inserted successfully";
+    }else{
+        die(mysqli_error($con));
+    }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -308,74 +311,40 @@ if($type=='student'){
 						<div class="col-12 col-lg-8 col-xxl-12 d-flex">
 							<div class="card flex-fill">
 								<div class="card-header">
-								<div class="row">
-									<div class="col-md-4">
-										<h5 class="card-title mb-0">Latest Users</h5>
-									</div>
-									<div class="col-md-8">
-										<a href="add-user.php" style="float: right" class="btn btn-success">Add New User</a>
-									</div>
+									<h5 class="card-title mb-0">Create a New User</h5>
 								</div>
-								</div>
-								<div class="row">
-									<?php 
-										if(isset($_SESSION['error'])){
-											echo"
-												<div class='alert alert-danger text-center'>
-													<button class='close'>&times;</button>
-											".$_SESSION['error']."
-											</div>
-											";
-											unset($_SESSION['error']);
-										}
-										if(isset($_SESSION['success'])){
-											echo
-											"
-											<div class='alert alert-success text-center'>
-												<button class='close'>&times;</button>
-											".$_SESSION['success']."
-											</div>
-											";
-											unset($_SESSION['success']);
-										}
-									?>
-								</div>
-								<table class="table table-hover my-0">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th class="d-none d-xl-table-cell">Firstname</th>
-											<th class="d-none d-xl-table-cell">Lastname</th>
-											<th class="d-none d-md-table-cell">Email</th>
-											<th class="d-none d-md-table-cell">Type</th>
-											<th class="d-none d-md-table-cell">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-											<?php 
-												include_once('include/connect.php');
-												$sql = "SELECT * FROM users";
-
-												//use for MYSQLi-OOP
-												$query = $conn->query($sql);
-												while($row = $query->fetch_assoc()){
-													echo
-													"<tr>
-														<td class='d-none d-xl-table-cell'>".$row['id']."</td>
-														<td class='d-none d-xl-table-cell'>".$row['firstname']."</td>
-														<td class='d-none d-xl-table-cell'>".$row['lastname']."</td>
-														<td class='d-none d-xl-table-cell'>".$row['email']."</td>
-														<td class='d-none d-xl-table-cell'>".$row['type']."</td>
-														<td class='d-none d-xl-table-cell'>
-															<a href='#edit_".$row['id']."' class='btn btn-success btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> Edit</a>
-															<a href='#delete_".$row['id']."' class='btn btn-danger btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-trash'></span> Delete</a>
-														</td>
-														</tr>";
-														// include('edit_delete_modal.php');
-												}
-											?>
-									</tbody>
-								</table>
+                <div class="card-body">
+                  <form method="post">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Firstname</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter email">
+                  </div>
+                    <br>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Lastname</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter email">
+                  </div>
+                    <br>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                  </div>
+                    <br>
+                  <div class="form-group">
+                    <select class="form-group custom-select" id="type"name="type">
+                      <option value="admin" selected>Admin</option>
+                      <option value="student">Student</option>
+                    </select>
+                  </div>
+                    <br>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                </form>
+                </div>
 							</div>
 						</div>
 					</div>
@@ -414,92 +383,5 @@ if($type=='student'){
 	</div>
 
 	<script src="js/app.js"></script>
-
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-			gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-			// Line chart
-			new Chart(document.getElementById("chartjs-dashboard-line"), {
-				type: "line",
-				data: {
-					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-					datasets: [{
-						label: "Sales ($)",
-						fill: true,
-						backgroundColor: gradient,
-						borderColor: window.theme.primary,
-						data: [
-							2115,
-							1562,
-							1584,
-							1892,
-							1587,
-							1923,
-							2566,
-							2448,
-							2805,
-							3438,
-							2917,
-							3327
-						]
-					}]
-				},
-				options: {
-					maintainAspectRatio: false,
-					legend: {
-						display: false
-					},
-					tooltips: {
-						intersect: false
-					},
-					hover: {
-						intersect: true
-					},
-					plugins: {
-						filler: {
-							propagate: false
-						}
-					},
-					scales: {
-						xAxes: [{
-							reverse: true,
-							gridLines: {
-								color: "rgba(0,0,0,0.0)"
-							}
-						}],
-						yAxes: [{
-							ticks: {
-								stepSize: 1000
-							},
-							display: true,
-							borderDash: [3, 3],
-							gridLines: {
-								color: "rgba(0,0,0,0.0)"
-							}
-						}]
-					}
-				}
-			});
-		});
-	</script>
-	<script src="jquery/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="datatable/jquery.dataTables.min.js"></script>
-<script src="datatable/dataTable.bootstrap.min.js"></script>
-<!-- generate datatable on our table -->
-<script>
-$(document).ready(function(){
-	//inialize datatable
-    $('#myTable').DataTable();
-
-    //hide alert
-    $(document).on('click', '.close', function(){
-    	$('.alert').hide();
-    })
-});
-</script>
 </body>
 </html>

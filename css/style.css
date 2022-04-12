@@ -19,7 +19,7 @@ li {
  display: flex;
  align-items: center;
  justify-content: space-between;
- padding: 20px;
+ padding: 10px 50px;
  background-color: rgb(0, 128, 58);
  color: #fff;
 }
@@ -31,14 +31,16 @@ li {
   justify-content: between;
 }
 .img-logo {
-  height: 40%;
-  width:  40%;
+  height: 90px;
+  width:  90px;
 }
 /* LOGO */
 .logo {
  font-size: 32px;
  padding: 1.5rem;
-
+}
+.logo a {
+ color: white;
 }
 /* NAVBAR MENU */
 .menu {
@@ -47,7 +49,7 @@ li {
  font-size: 18px;
 }
 .menu li:hover {
- background-color: #4c9e9e;
+ background-color: #4c9e50;
  border-radius: 5px;
  transition: 0.3s ease;
 }
@@ -59,7 +61,7 @@ li {
  position: relative; 
 }
 .dropdown {
- background-color: rgb(1, 139, 139);
+ background-color: rgb(8, 129, 28);
  padding: 1em 0;
  position: absolute; /*WITH RESPECT TO PARENT*/
  display: none;
@@ -75,7 +77,7 @@ li {
  text-align: center;
 }
 .dropdown li:hover {
- background-color: #4c9e9e;
+ background-color: #4c9e50;
 }
 .services:hover .dropdown {
  display: block;
@@ -97,7 +99,7 @@ input[type=checkbox]{
 .menu { 
  display:none;
  position: absolute;
- background-color:teal;
+ background-color:rgb(0, 128, 21);
  right: 0;
  left: 0;
  text-align: center;
@@ -105,7 +107,7 @@ input[type=checkbox]{
 }
 .menu li:hover {
  display: inline-block;
- background-color:#4c9e9e;
+ background-color:#4c9e50;
  transition: 0.3s ease;
 }
 .menu li + li {
@@ -123,7 +125,7 @@ input[type=checkbox]:checked ~ .menu{
  transform: translateX(35%);
 }
 .dropdown li:hover {
- background-color: #4c9e9e;
+ background-color: #4c9e50;
 }
 }/*RESPONSIVE NAVBAR MENU STARTS*/
 /* CHECKBOX HACK */
@@ -141,7 +143,7 @@ input[type=checkbox]{
 .menu { 
  display:none;
  position: absolute;
- background-color:teal;
+ background-color:rgb(0, 128, 21);
  right: 0;
  left: 0;
  text-align: center;
@@ -149,7 +151,7 @@ input[type=checkbox]{
 }
 .menu li:hover {
  display: inline-block;
- background-color:#4c9e9e;
+ background-color:#4c9e50;
  transition: 0.3s ease;
 }
 .menu li + li {
@@ -167,6 +169,6 @@ input[type=checkbox]:checked ~ .menu{
  transform: translateX(35%);
 }
 .dropdown li:hover {
- background-color: #4c9e9e;
+ background-color: #4c9e50;
 }
 }
