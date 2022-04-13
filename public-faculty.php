@@ -1,5 +1,39 @@
-<?php 
-	include 'public_checker.php';
+<?php
+    //   include ('include/connect.php');
+
+    //   session_start();
+    //   if(isset($_SESSION['logged'])){
+    //     header("location: index.php");
+    //   }
+    //   include 'include/user.php';
+      
+    //   if(isset($_POST['submit_admin'])){
+    //   $email = $conn->real_escape_string($_POST['email']);
+    //   $password = $conn->real_escape_string($_POST['password']);
+    //   $res=json_decode(login($conn,$email,$password));
+    //     if(sizeof($res) > 0){
+          
+
+    //       $_SESSION['logged']=true;
+    //       $_SESSION['id'] = $res[0] -> id;
+
+    //       if($res[0] -> type === 'admin' ) {
+    //         echo "<script type='text/javascript'>alert('Hello Admin');
+    //         document.location='index.php' </script>";
+
+    //       }
+    //       if($res[0] -> type === 'student' ) {
+    //         echo "<script type='text/javascript'>alert('Hello Student');
+    //         document.location='student.php' </script>";
+
+    //       }
+    //     }else{
+    //         echo "<script type='text/javascript'>alert('Username or Password was incorrect.');
+    //         document.location='pages-sign-in.php' </script>";
+    //         // header("location: login.php");
+
+    //       }
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +101,7 @@
  </div>
  </ul>
  </nav>
- <h1>High Public Page!</h1>
+ <h1>High Public Faculty!</h1>
 </body>
 
 </html>
