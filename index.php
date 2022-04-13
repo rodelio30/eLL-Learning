@@ -61,22 +61,30 @@ include 'admin_checker.php';
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-profile.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-					</li>
-
-					<!-- <li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-in.php">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+						<a class="sidebar-link" href="admin_faculty.php">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-sign-up.html">
-              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
             </a>
-					</li> -->
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="pages-profile.php">
+            <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="pages-profile.php">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+            </a>
+					</li>
+
+
 <!-- 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-blank.html">
@@ -306,78 +314,94 @@ include 'admin_checker.php';
 
 					<h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
 					<div class="row">
-						<div class="col-12 col-lg-8 col-xxl-12 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
+							<div class="w-100">
 								<div class="row">
-									<div class="col-md-4">
-										<h5 class="card-title mb-0">Latest Users</h5>
-									</div>
-									<div class="col-md-8">
-										<a href="user_add.php" style="float: right" class="btn btn-success">Add New User</a>
-									</div>
-								</div>
-								</div>
-								<div class="row">
-									<?php 
-										if(isset($_SESSION['error'])){
-											echo"
-												<div class='alert alert-danger text-center'>
-													<button class='close'>&times;</button>
-											".$_SESSION['error']."
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Sales</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="truck"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">2.382</h1>
+												<div class="mb-0">
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
+													<span class="text-muted">Since last week</span>
+												</div>
 											</div>
-											";
-											unset($_SESSION['error']);
-										}
-										if(isset($_SESSION['success'])){
-											echo
-											"
-											<div class='alert alert-success text-center'>
-												<button class='close'>&times;</button>
-											".$_SESSION['success']."
+										</div>
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Visitors</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="users"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">14.212</h1>
+												<div class="mb-0">
+													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
+													<span class="text-muted">Since last week</span>
+												</div>
 											</div>
-											";
-											unset($_SESSION['success']);
-										}
-									?>
-								</div>
-								<table class="table table-hover my-0">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th class="d-none d-xl-table-cell">Firstname</th>
-											<th class="d-none d-xl-table-cell">Lastname</th>
-											<th class="d-none d-md-table-cell">Email</th>
-											<th class="d-none d-md-table-cell">Password</th>
-											<th class="d-none d-md-table-cell">Type</th>
-											<th class="d-none d-md-table-cell">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-											<?php 
-												$result = mysqli_query($conn, "select id, firstname, lastname, email, type, password from users ORDER BY id") or die ("Query 1 is incorrect....");
-												while(list($id, $firstname, $lastname, $email, $password, $type)=mysqli_fetch_array($result)){
-													echo "
-														<tr>	
-															<td class='d-none d-xl-table-cell'>$id</td>
-															<td class='d-none d-xl-table-cell'>$firstname</td>
-															<td class='d-none d-xl-table-cell'>$lastname</td>
-															<td class='d-none d-xl-table-cell'>$email</td>
-															<td class='d-none d-xl-table-cell'>$password</td>
-															<td class='d-none d-xl-table-cell'>$type</td>
-															<td class='d-none d-xl-table-cell'><a href=\"user_edit.php?ID=$id\" class='btn btn-outline-success btn-sm'><span class = 'glyphicon glyphicon-edit'></span> Edit</a>
-															<a href=\"user_delete.php?ID=$id\" onClick=\"return confirm('Are you sure about that?')\" class='btn btn-outline-danger btn-sm'> Delete</a>
-															</td>
-														</tr>	
-													";
-												}
-											?>
-									</tbody>
-								</table>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Earnings</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="dollar-sign"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">$21.300</h1>
+												<div class="mb-0">
+													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
+													<span class="text-muted">Since last week</span>
+												</div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Orders</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="shopping-cart"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">64</h1>
+												<div class="mb-0">
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
+													<span class="text-muted">Since last week</span>
+												</div>
+											</div>
+										</div>
+									</div>
 							</div>
 						</div>
-					</div>
-
 				</div>
 			</main>
 
