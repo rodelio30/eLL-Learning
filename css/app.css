@@ -12331,25 +12331,33 @@ span.flatpickr-weekday {
 .dashboard:hover {
   color: green;
 }
+.right-color {
+  /* background-color: #DEF8D6; */
+  background-color: #F6EDD9;
+}
 .right-side-content {
   margin-top: 4rem;
 }
 .right-side-content h1 {
   font-weight: 900; 
   font-size: 5rem;
-  color: white; 
-  float: right;
+  color: rgb(58, 107, 78); 
+  float: left;
 }
 .right-side-content h2 {
   font-weight: 1000; 
-  font-size: 4rem;
+  font-size: 5rem;
   text-transform: uppercase; 
-  float: right;
-  color: #BF9270; 
+  float: left;
+  /* color: #BF9270;  */
+  color: rgb(58, 107, 78); 
 }
 .clsu {
-  float: right;
+  float: left;
   font-weight: 900;
   font-size: 1.5rem;
-  color: #ebebeb;
+  color: green;
+}
+.clsu span {
+  float: left;
 }
