@@ -51,77 +51,75 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.php" />
 
-	<!-- <title>Sign In | AdminKit Demo</title> -->
 	<title>Language and Literature</title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-	<style>
-		.error {
-   background: #F2DEDE;
-   color: #A94442;
-   padding: 10px;
-   width: 95%;
-   border-radius: 5px;
-   margin: 20px auto;
-}
-	</style>
 </head>
 
 <body>
 	<main class="d-flex w-100">
-		<div class="container d-flex flex-column">
-			<div class="row vh-100 mt-6 ">
-				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
-					<div class="d-table-cell align-top">
-
-						<div class="text-center mt-1">
-							<h1 class="h1" style="font-weight: bold; color: white">Welcome back!</h1>
-							<p class="lead" style="color: white">
-								Sign in to your account to continue
-							</p>
-						</div>
-
-						<div class="card">
-							<div class="card-body">
-								<div class="m-sm-2">
-									<div class="text-center">
-										<img src="img/icons/clsu-logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
+			<div class="row">
+				<div class="col-12 col-md-6 vh-100 pt-6">
+					<div class="container d-flex flex-column">
+									<div class="text-center mt-6">
+										<h1 class="h1" style="font-weight: bold; color: white">Welcome back!</h1>
+										<p class="lead" style="color: white">
+											Sign in to your account to continue
+										</p>
 									</div>
-									<form method="POST">
-										<div class="my-4 mb-3">
-											<label class="form-label">Email</label>
-											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" autofocus/>
-										</div>
-										<div class="mb-3">
-											<label class="form-label">Password</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
-											<small>
-												<!-- <a href="index.php">Forgot password?</a> -->
-											</small>
-										</div>
-										<!-- <div>
-											<label class="form-check">
-												<input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
-												<span class="form-check-label">
-													Remember me next time
-												</span>
-											</label>
-										</div> -->
-										<div class="text-center mt-5">
-											<!-- <a href="index.php" class="btn btn-lg btn-success">Sign in</a> -->
-											<!-- <input type="submit" class="btn btn-lg btn-success" name="submit" value="Sign in"> -->
-											<button type="submit" name="submit_admin" class="btn btn-lg btn-success">Sign in</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
 
+									<div class="card m-6 mt-3">
+										<div class="card-body">
+											<div class="m-sm-2">
+												<div class="text-center">
+													<h1 class="h2" style="font-weight: bold; color: rgb(58, 107, 78)">Excellent Service to Humanity is our Commitment! </h1>
+												</div>
+												<br>
+												<form method="POST">
+													<div class="my-4 mb-3">
+														<label class="form-label">Email</label>
+														<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" autofocus/>
+													</div>
+													<div class="mb-3">
+														<label class="form-label">Password</label>
+														<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
+														<small>
+														</small>
+													</div>
+													<div class="text-center mt-5">
+														<button type="submit" name="submit_admin" class="btn btn-lg btn-success">Sign in</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
 					</div>
+				</div> <!-- End of first col -->
+				<div class="col-12 col-md-6 right-color">
+					<div class="container d-flex flex-column" >
+									<div class="right-side-content">
+												<div class="text-center">
+													<img src="img/icons/clsu-logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
+													<img src="img/icons/CAS logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" style="margin-left: 10%;" />
+												</div>
+										<h2 class="h1 pt-4">Language and</h2>
+										<h2 class="h1">Literature</h2>
+										<h1 class="h1 pt-3">e-Learning!</h1>
+										<p class="clsu pt-3">
+											Department of English and Humanities	
+											<br>
+											<span>
+												Central Luzon State University	
+											</span>
+										</p>
+										<!-- <p class="clsu text-right">
+										</p> -->
+									</div>
 				</div>
-			</div>
-		</div>
+				</div>
+			</div> <!-- end of Row -->
+		<!-- </div> -->
 	</main>
 
 	<script src="js/app.js"></script>
