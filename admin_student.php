@@ -1,31 +1,22 @@
 <?php 
 include 'admin_checker.php';
 
-if(isset($_POST['update'])){
-  $id        = $_POST['id'];
-	$firstname = $_POST['firstname'];
-	$lastname  = $_POST['lastname'];
-	$email     = $_POST['email'];
-	$password  = $_POST['password'];
-	$type      = $_POST['type'];
+// date_default_timezone_set("Asia/Manila");
+// session_start();
+// if(!isset($_SESSION['logged'])){
+//   header("location: public.php");
+// }
+// include ('include/connect.php');
+// $id=$_SESSION['id'];
 
-	mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', type = '$type' where id = '$id'") or die ("Query 4 is incorrect....");
-	echo '<script type="text/javascript"> alert("User '.$firstname.' updated!.")</script>';
-	header('Refresh: 0; url=index.php');
-}
+// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
+// list($id,$type)=mysqli_fetch_array($query);
 
-$id = $_GET['ID'];
+// if($type=='student'){
+//   header("location: student.php");
+// }
 
-$result = mysqli_query($conn, "SELECT * FROM users WHERE id='$id'");
-while($res   = mysqli_fetch_array($result)){
-  $firstname = $res['firstname'];
-  $lastname  = $res['lastname'];
-  $email     = $res['email'];
-  $password  = $res['password'];
-  $type      = $res['type'];
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,30 +39,34 @@ while($res   = mysqli_fetch_array($result)){
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="index.php">
           <span class="align-middle">Language and Literature e-Learning</span>
+
         </a>
+
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
 						Pages
 					</li>
+
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
 
-					<li class="sidebar-item active">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="admin_faculty.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
             </a>
 					</li>
 
-					<li class="sidebar-item">
+					<li class="sidebar-item active">
 						<a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
             </a>
@@ -125,52 +120,53 @@ while($res   = mysqli_fetch_array($result)){
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Edit User Account</strong></h1>
+					<h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
 					<div class="row">
 						<div class="col-12 col-lg-8 col-xxl-12 d-flex">
 							<div class="card flex-fill">
 								<div class="card-header">
-									<h5 class="card-title mb-0">User Form</h5>
+								<div class="row">
+									<div class="col-md-4">
+										<h5 class="card-title mb-0">Latest Users</h5>
+									</div>
+									<div class="col-md-8">
+										<a href="user_add.php" style="float: right" class="btn btn-success"><span data-feather="user-plus"></span>  Add New User</a>
+									</div>
 								</div>
-                <div class="card-body">
-                  <form method="post">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Firstname</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname ?>" placeholder="Enter email">
-                  </div>
-                    <br>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Lastname</label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname ?>" placeholder="Enter email">
-                  </div>
-                    <br>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" placeholder="Enter email">
-                  </div>
-                    <br>
-                  <div class="form-group">
-										<label>User Type</label>
-                    <select class="form-control" id="type" value="<?php echo $type?>" name="type">
-                      <option value="admin" selected>Admin</option>
-                      <option value="student">Student</option>
-                    </select>
-                  </div>
-                    <br>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" value="<?php echo $password ?>" placeholder="Password">
-                  </div>
-                  <br>
-                  <input type="checkbox" onclick="myFunction()"> Show the Password
-                  <br>
-                  <br>
-                  <div class="form-group">
-                    <input type="hidden" name="id" value="<?php echo $_GET['ID']; ?>">
-                  <button type="submit" class="btn btn-success" name="update">Update</button>
-                  </div>
-                </form>
-                </div>
+								</div>
+								<table class="table table-hover my-0">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th class="d-none d-xl-table-cell">Firstname</th>
+											<th class="d-none d-xl-table-cell">Lastname</th>
+											<th class="d-none d-md-table-cell">Email</th>
+											<th class="d-none d-md-table-cell">Password</th>
+											<th class="d-none d-md-table-cell">Type</th>
+											<th class="d-none d-md-table-cell">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+											<?php 
+												$result = mysqli_query($conn, "select id, firstname, lastname, email, type, password from users ORDER BY id") or die ("Query 1 is incorrect....");
+												while(list($id, $firstname, $lastname, $email, $password, $type)=mysqli_fetch_array($result)){
+													echo "
+														<tr>	
+															<td class='d-none d-xl-table-cell'>$id</td>
+															<td class='d-none d-xl-table-cell'>$firstname</td>
+															<td class='d-none d-xl-table-cell'>$lastname</td>
+															<td class='d-none d-xl-table-cell'>$email</td>
+															<td class='d-none d-xl-table-cell'>$password</td>
+															<td class='d-none d-xl-table-cell'>$type</td>
+															<td class='d-none d-xl-table-cell'><a href=\"user_edit.php?ID=$id\" class='btn btn-outline-success btn-sm'><span data-feather='edit'></span> Edit</a>
+															<a href=\"user_delete.php?ID=$id\" onClick=\"return confirm('Are you sure about that?')\" class='btn btn-outline-danger btn-sm'><span data-feather='delete'></span> Delete</a>
+															</td>
+														</tr>	
+													";
+												}
+											?>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -209,15 +205,92 @@ while($res   = mysqli_fetch_array($result)){
 	</div>
 
 	<script src="js/app.js"></script>
-  <script>
-    function myFunction() {
-      var pw_ele = document.getElementById("password");
-      if (pw_ele.type === "password") {
-        pw_ele.type = "text";
-      } else {
-        pw_ele.type = "password";
-      }
-    }
-  </script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
+			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
+			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
+			gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
+			// Line chart
+			new Chart(document.getElementById("chartjs-dashboard-line"), {
+				type: "line",
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "Sales ($)",
+						fill: true,
+						backgroundColor: gradient,
+						borderColor: window.theme.primary,
+						data: [
+							2115,
+							1562,
+							1584,
+							1892,
+							1587,
+							1923,
+							2566,
+							2448,
+							2805,
+							3438,
+							2917,
+							3327
+						]
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					tooltips: {
+						intersect: false
+					},
+					hover: {
+						intersect: true
+					},
+					plugins: {
+						filler: {
+							propagate: false
+						}
+					},
+					scales: {
+						xAxes: [{
+							reverse: true,
+							gridLines: {
+								color: "rgba(0,0,0,0.0)"
+							}
+						}],
+						yAxes: [{
+							ticks: {
+								stepSize: 1000
+							},
+							display: true,
+							borderDash: [3, 3],
+							gridLines: {
+								color: "rgba(0,0,0,0.0)"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+	<script src="jquery/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="datatable/jquery.dataTables.min.js"></script>
+<script src="datatable/dataTable.bootstrap.min.js"></script>
+<!-- generate datatable on our table -->
+<script>
+$(document).ready(function(){
+	//inialize datatable
+    $('#myTable').DataTable();
+
+    //hide alert
+    $(document).on('click', '.close', function(){
+    	$('.alert').hide();
+    })
+});
+</script>
 </body>
 </html>
