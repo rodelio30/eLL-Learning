@@ -69,7 +69,7 @@
 										</p>
 									</div>
 
-									<div class="card m-6 mt-3">
+									<div class="card m-4 mt-3">
 										<div class="card-body">
 											<div class="m-sm-2">
 												<div class="text-center">
@@ -99,10 +99,8 @@
 				<div class="col-12 col-md-6 right-color">
 					<div class="container d-flex flex-column" >
 									<div class="right-side-content">
-												<div class="text-center">
 													<img src="img/icons/clsu-logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
-													<img src="img/icons/CAS logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" style="margin-left: 10%;" />
-												</div>
+													<img src="img/icons/CAS logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="133" height="132" style="margin-left: 4%;" />
 										<h2 class="h1 pt-4">Language and</h2>
 										<h2 class="h1">Literature</h2>
 										<h1 class="h1 pt-3">e-Learning!</h1>
