@@ -67,19 +67,19 @@ include 'admin_checker.php';
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-up.html">
+						<a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-profile.php">
+						<a class="sidebar-link" href="#">
             <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-profile.php">
+						<a class="sidebar-link" href="#">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
             </a>
 					</li>
