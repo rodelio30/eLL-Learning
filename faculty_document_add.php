@@ -2,53 +2,66 @@
 include 'admin_checker.php';
 date_default_timezone_set("Asia/Manila");
 
-$user = $_GET['user'];
-
 if (isset($_POST['submit'])) {
-  $id_no         = $_POST['id-no'];
-  $firstname     = $_POST['firstname'];
-  $lastname      = $_POST['lastname'];
-  $email         = $_POST['email'];
-  $password      = $_POST['password'];
-  $type          = $_POST['type'];
-  $status        = 'active';
-  $date_created  = date("Y-m-d h:i:s");
-  $date_modified = date("Y-m-d h:i:s");
+  $title        = $_POST['title'];
+  $title = $_FILES['title']['name'];
+  $pdf_type = $_FILES['title']['type'];
+  $pdf_size = $_FILES['title']['size'];
+  $pdf_tem_loc = $_FILES['title']['tmp_name'];
+  $pdf_store = "pdf/" . $title;
+
+  move_uploaded_file($pdf_tem_loc, $pdf_store);
+  $date_created = date("Y-m-d h:i:s");
 
   if ($type == 'faculty') {
-    mysqli_query($conn, "insert into faculty(faculty_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
-  } elseif ($type == 'student') {
-    mysqli_query($conn, "insert into student(student_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
+    mysqli_query($conn, "insert into document(title, date_created) values('$title','$date_created')")  or die("Query 2 is incorrect.....");
   }
-  echo '<script type="text/javascript"> alert("User ' . $firstname . ' Added!.")</script>';
-  if ($user == "admin") {
-    header('Refresh: 0; url=index.php');
-  } else if ($user == "faculty") {
-    header('Refresh: 0; url=admin_faculty.php');
-  } else if ($user == "student") {
-    header('Refresh: 0; url=admin_student.php');
-  }
+  echo '<script type="text/javascript"> alert("User ' . $title . ' Added!.")</script>';
 }
 
-$sel_faculty = "";
-$sel_student = "";
-$sel_admin   = "";
+if (isset($_POST['submit']) && isset($_FILES['title'])) {
+  include 'admin_checker.php';
+  echo "<pre>";
+  print_r($_FILES['title']);
+  echo "</pre>";
 
+  $file_name = $_FILES['my_image']['name'];
+  $file_size = $_FILES['my_image']['size'];
+  $tmp_name = $_FILES['my_image']['tmp_name'];
+  $error = $_FILES['my_image']['error'];
 
-// active navigation
-$activeFaculty = "";
-$activeStudent = "";
-$activeAdmin   = "";
-if ($user == "faculty") {
-  $sel_faculty   = "selected";
-  $activeFaculty = "active";
-} else if ($user == "student") {
-  $sel_student   = "selected";
-  $activeStudent = "active";
-} else if ($user == "admin") {
-  $sel_admin     = "selected";
-  $activeAdmin   = "active";
+  if ($error === 0) {
+    if ($file_size > 1250000) {
+      $em = "Sorry, your file is too large.";
+      header("Location: index.php?error=$em");
+    } else {
+      echo "You are passed!";
+      $file_ex = pathinfo($file_name, PATHINFO_EXTENSION);
+      $file_ex_lc = strtolower($file_ex);
+
+      $allowed_exs = array("pdf", "docs", "xlc");
+
+      if (in_array($file_ex_lc, $allowed_exs)) {
+        $file_upload_path = 'uploads/' . $file_name;
+        move_uploaded_file($tmp_name, $file_upload_path);
+
+        // Insert into Database
+        $sql = "INSERT INTO files(file_url)VALUES('$file_name')";
+        mysqli_query($conn, $sql);
+        header("Location: view.php");
+      } else {
+        $em = "You can't upload files of this type";
+        header("Location: index.php?error=$em");
+      }
+    }
+  } else {
+    $em = "unknown error occured!";
+    header("Location: index.php?error=$em");
+  }
+} else {
+  header("Location: index.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -86,19 +99,19 @@ if ($user == "faculty") {
           <li class="sidebar-header">
             Pages
           </li>
-          <li class="sidebar-item <?php echo $activeAdmin ?>">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
 
-          <li class="sidebar-item <?php echo $activeFaculty ?>">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
             </a>
           </li>
 
-          <li class="sidebar-item <?php echo $activeStudent ?>">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
             </a>
@@ -168,44 +181,13 @@ if ($user == "faculty") {
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">User Form</h5>
+                  <h5 class="card-title mb-0">Document Form</h5>
                 </div>
                 <div class="card-body">
-                  <form method="post">
+                  <form method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                      <label>ID Number</label>
-                      <input type="text" class="form-control" id="id-no" name="id-no" placeholder="Enter ID number">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label>Firstname</label>
-                      <input type="text" class="form-control" id="firstname" name="firstname"
-                        placeholder="Enter First name">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label>Lastname</label>
-                      <input type="text" class="form-control" id="lastname" name="lastname"
-                        placeholder="Enter Last name">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label>Email address</label>
-                      <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label>User Type</label>
-                      <select class="form-control" id="type" name="type">
-                        <option value="faculty" <?php echo $sel_faculty ?>>Faculty</option>
-                        <option value="admin" <?php echo $sel_admin ?>>Admin</option>
-                        <option value="student" <?php echo $sel_student ?>>Student</option>
-                      </select>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label>Password</label>
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                      <label>Choose a file</label>
+                      <input type="file" id="title" name="title" value="" required><br><br>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-success" name="submit">Submit</button>

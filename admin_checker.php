@@ -13,5 +13,3 @@ list($type)=mysqli_fetch_array($query);
 if($type=='student'){
   header("location: student.php");
 }
-
-?>
