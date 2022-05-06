@@ -1,5 +1,6 @@
 <?php
 include 'admin_checker.php';
+$user = "faculty"
 
 // date_default_timezone_set("Asia/Manila");
 // session_start();
@@ -74,7 +75,7 @@ include 'admin_checker.php';
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
+            <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
@@ -82,6 +83,12 @@ include 'admin_checker.php';
           <li class="sidebar-item">
             <a class="sidebar-link" href="#">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_archive_view.php">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Archive User</span>
             </a>
           </li>
       </div>
@@ -102,7 +109,7 @@ include 'admin_checker.php';
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                 <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
-                <span class="text-dark">Your Email!</span>
+                <?php include 'greet.php' ?>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
@@ -125,7 +132,7 @@ include 'admin_checker.php';
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong>Faculty</strong> Dashboard</h1>
+          <h1 class="h3 mb-3"><strong>Faculty</strong> List</h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
@@ -135,42 +142,37 @@ include 'admin_checker.php';
                       <h5 class="card-title mb-0">Latest Users</h5>
                     </div>
                     <div class="col-md-8">
-                      <a href="user_add.php" style="float: right" class="btn btn-success"><span
-                          data-feather="user-plus"></span> Add New User</a>
+
+                      <a <?php echo "href=\"user_add.php?user=$user\" " ?> style="float: right"
+                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Faculty User</a>
                     </div>
                   </div>
                 </div>
                 <table class="table table-hover my-0">
                   <thead>
                     <tr>
-                      <th>ID</th>
                       <th class="d-none d-xl-table-cell">Firstname</th>
                       <th class="d-none d-xl-table-cell">Lastname</th>
-                      <th class="d-none d-md-table-cell">Email</th>
-                      <th class="d-none d-md-table-cell">Password</th>
-                      <th class="d-none d-md-table-cell">Type</th>
-                      <th class="d-none d-md-table-cell">Action</th>
+                      <th class="d-none d-xl-table-cell">Status</th>
+                      <th class="d-none d-md-table-cell float-end me-3">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-										$result = mysqli_query($conn, "select id, firstname, lastname, email, type, password from users ORDER BY id") or die("Query 1 is incorrect....");
-										while (list($id, $firstname, $lastname, $email, $password, $type) = mysqli_fetch_array($result)) {
-											echo "
+                    $result = mysqli_query($conn, "select faculty_id, firstname, lastname, status from faculty WHERE status='active' ORDER BY faculty_id") or die("Query 1 is incorrect....");
+                    while (list($faculty_id, $firstname, $lastname, $status) = mysqli_fetch_array($result)) {
+                      echo "
 														<tr>	
-															<td class='d-none d-xl-table-cell'>$id</td>
-															<td class='d-none d-xl-table-cell'><a href=\"user_view.php?ID=$id\" class='user-clicker'>$firstname</a></td>
-															<td class='d-none d-xl-table-cell'>$lastname</td>
-															<td class='d-none d-xl-table-cell'>$email</td>
-															<td class='d-none d-xl-table-cell'>$password</td>
-															<td class='d-none d-xl-table-cell'>$type</td>
-															<td class='d-none d-xl-table-cell'><a href=\"user_edit.php?ID=$id\" class='btn btn-outline-success btn-sm'><span data-feather='edit'></span> Edit</a>
-															<a href=\"user_delete.php?ID=$id\" onClick=\"return confirm('Are you sure about that?')\" class='btn btn-outline-danger btn-sm'><span data-feather='delete'></span> Delete</a>
+															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$firstname</a></td>
+															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$lastname</a></td>
+															<td class='d-none d-xl-table-cell'>$status</td>
+															<td class='d-none d-xl-table-cell'>
+															<a href=\"admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user go to archive?')\" class='btn btn-warning btn-sm float-end'><span data-feather='archive'></span>&nbsp Archive</a>
 															</td>
 														</tr>	
 													";
-										}
-										?>
+                    }
+                    ?>
                   </tbody>
                 </table>
               </div>
@@ -185,7 +187,9 @@ include 'admin_checker.php';
           <div class="row text-muted">
             <div class="col-6 text-start">
               <p class="mb-0">
-                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>CLSU</strong></a> &copy;
+                <a class="text-muted" href="https://clsu.edu.ph/" target="_blank"><strong>CLSU</strong></a>
+                powered by
+                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
             </div>
             <div class="col-6 text-end">

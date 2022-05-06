@@ -2,53 +2,47 @@
 include 'admin_checker.php';
 date_default_timezone_set("Asia/Manila");
 
-$user = $_GET['user'];
-
-if (isset($_POST['submit'])) {
-  $id_no         = $_POST['id-no'];
-  $firstname     = $_POST['firstname'];
-  $lastname      = $_POST['lastname'];
-  $email         = $_POST['email'];
-  $password      = $_POST['password'];
-  $type          = $_POST['type'];
-  $status        = 'active';
-  $date_created  = date("Y-m-d h:i:s");
+if (isset($_POST['update'])) {
+  $faculty_id  = $_POST['faculty_id'];
+  $firstname   = $_POST['firstname'];
+  $lastname    = $_POST['lastname'];
+  $course      = $_POST['course'];
+  $description = $_POST['description'];
+  $email       = $_POST['email'];
+  $status      = $_POST['status'];
+  $password    = $_POST['password'];
   $date_modified = date("Y-m-d h:i:s");
 
-  if ($type == 'faculty') {
-    mysqli_query($conn, "insert into faculty(faculty_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
-  } elseif ($type == 'student') {
-    mysqli_query($conn, "insert into student(student_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
-  }
-  echo '<script type="text/javascript"> alert("User ' . $firstname . ' Added!.")</script>';
-  if ($user == "admin") {
-    header('Refresh: 0; url=index.php');
-  } else if ($user == "faculty") {
-    header('Refresh: 0; url=admin_faculty.php');
-  } else if ($user == "student") {
-    header('Refresh: 0; url=admin_student.php');
-  }
+  echo "<script>console.log('" . $email . "');</script>";
+  mysqli_query($conn, "update faculty set firstname = '$firstname', lastname = '$lastname', course = '$course', description = '$description', email = '$email', status = '$status', password = '$password', date_modified = '$date_modified' where faculty_id = '$faculty_id'") or die("Query 4 is incorrect....");
+  echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
+  header('Refresh: 0; url=admin_faculty.php');
 }
 
-$sel_faculty = "";
-$sel_student = "";
-$sel_admin   = "";
+$faculty_id = $_GET['ID'];
 
-
-// active navigation
-$activeFaculty = "";
-$activeStudent = "";
-$activeAdmin   = "";
-if ($user == "faculty") {
-  $sel_faculty   = "selected";
-  $activeFaculty = "active";
-} else if ($user == "student") {
-  $sel_student   = "selected";
-  $activeStudent = "active";
-} else if ($user == "admin") {
-  $sel_admin     = "selected";
-  $activeAdmin   = "active";
+$result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$faculty_id'");
+while ($res   = mysqli_fetch_array($result)) {
+  $firstname   = $res['firstname'];
+  $lastname    = $res['lastname'];
+  $course      = $res['course'];
+  $description = $res['description'];
+  $email       = $res['email'];
+  $password    = $res['password'];
+  $status      = $res['status'];
 }
+
+$sel_active  = "";
+$sel_archive = "";
+
+if ($status == "active") {
+  $sel_active  = "selected";
+} else if ($status == "archive") {
+  $sel_archive = "selected";
+}
+
+// $message = "Today is " . date("Y-m-d h:i:s");
+// echo "<script>console.log('" . $message . "');</script>";
 ?>
 
 <!DOCTYPE html>
@@ -86,19 +80,19 @@ if ($user == "faculty") {
           <li class="sidebar-header">
             Pages
           </li>
-          <li class="sidebar-item <?php echo $activeAdmin ?>">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
 
-          <li class="sidebar-item <?php echo $activeFaculty ?>">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_faculty.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
             </a>
           </li>
 
-          <li class="sidebar-item <?php echo $activeStudent ?>">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
             </a>
@@ -162,8 +156,7 @@ if ($user == "faculty") {
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong><a href="index.php" class="dashboard">Dashboard</a> / New User Account</strong>
-          </h1>
+          <h1 class="h3 mb-3"><strong>Edit User Account</strong></h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
@@ -173,42 +166,56 @@ if ($user == "faculty") {
                 <div class="card-body">
                   <form method="post">
                     <div class="form-group">
-                      <label>ID Number</label>
-                      <input type="text" class="form-control" id="id-no" name="id-no" placeholder="Enter ID number">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label>Firstname</label>
+                      <label for="exampleInputEmail1">Firstname</label>
                       <input type="text" class="form-control" id="firstname" name="firstname"
-                        placeholder="Enter First name">
+                        value="<?php echo $firstname ?>" placeholder="Enter email">
                     </div>
                     <br>
                     <div class="form-group">
-                      <label>Lastname</label>
+                      <label for="exampleInputEmail1">Lastname</label>
                       <input type="text" class="form-control" id="lastname" name="lastname"
-                        placeholder="Enter Last name">
+                        value="<?php echo $lastname ?>" placeholder="Enter email">
                     </div>
                     <br>
                     <div class="form-group">
-                      <label>Email address</label>
-                      <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                      <label for="exampleInputEmail1">Course</label>
+                      <input type="text" class="form-control" id="course" name="course" value="<?php echo $course ?>"
+                        placeholder="Course">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Description</label>
+                      <input type="text" class="form-control" id="description" name="description"
+                        value="<?php echo $description ?>" placeholder="Description">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>"
+                        placeholder="Enter Email Address">
                     </div>
                     <br>
                     <div class="form-group">
                       <label>User Type</label>
-                      <select class="form-control" id="type" name="type">
-                        <option value="faculty" <?php echo $sel_faculty ?>>Faculty</option>
-                        <option value="admin" <?php echo $sel_admin ?>>Admin</option>
-                        <option value="student" <?php echo $sel_student ?>>Student</option>
+                      <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
+                        <option value="active" <?php echo $sel_active ?>>Active</option>
+                        <option value="archive" <?php echo $sel_archive ?>>Inactive</option>
                       </select>
                     </div>
                     <br>
                     <div class="form-group">
-                      <label>Password</label>
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="password" name="password"
+                        value="<?php echo $password ?>" placeholder="Password">
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                    <input type="checkbox" onclick="myFunction()"> Show the Password
+                    <br>
+                    <br>
+                    <div class="form-group">
+                      <input type="hidden" name="faculty_id" value="<?php echo $_GET['ID']; ?>">
+                      <button type="submit" class="btn btn-success" name="update">Update</button>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -251,6 +258,16 @@ if ($user == "faculty") {
   </div>
 
   <script src="js/app.js"></script>
+  <script>
+  function myFunction() {
+    var pw_ele = document.getElementById("password");
+    if (pw_ele.type === "password") {
+      pw_ele.type = "text";
+    } else {
+      pw_ele.type = "password";
+    }
+  }
+  </script>
 </body>
 
 </html>

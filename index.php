@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'admin_checker.php';
 
 // date_default_timezone_set("Asia/Manila");
@@ -7,92 +7,150 @@ include 'admin_checker.php';
 //   header("location: public.php");
 // }
 // include ('include/connect.php');
-// $id=$_SESSION['id'];
+// $id = $_SESSION['id'];
 
-// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-// list($id,$type)=mysqli_fetch_array($query);
+// $query = mysqli_query($conn, "select firstname from users where id='$id'") or die("query 1 incorrect.......");
+// list($firstname) = mysqli_fetch_array($query);
 
 // if($type=='student'){
-//   header("location: student.php");
+// 	header("location: student.php");
 // }
 
+$faculty_counter = 0;
+$student_counter = 0;
+$archive_faculty = 0;
+$archive_student = 0;
+$archive_counter = 0;
+
+$sql = "SELECT faculty_id FROM faculty WHERE status = 'active' ";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $faculty_counter++;
+  }
+} else {
+  $faculty_counter = 'Empty Faculty';
+}
+
+$sql_student = "SELECT student_id FROM student WHERE status = 'active' ";
+$result_student = $conn->query($sql_student);
+
+if ($result_student->num_rows > 0) {
+  while ($row = $result_student->fetch_assoc()) {
+    $student_counter++;
+  }
+} else {
+  $student_counter = 'Empty Student';
+}
+
+$sql_archive = "SELECT faculty_id FROM faculty WHERE status = 'archive'";
+$result_archive = $conn->query($sql_archive);
+
+if ($result_archive->num_rows > 0) {
+  while ($row = $result_archive->fetch_assoc()) {
+    $archive_faculty++;
+  }
+} else {
+  $archive_faculty = 0;
+}
+
+$sql_archive_student = "SELECT student_id FROM student WHERE status = 'archive'";
+$result_archive_student = $conn->query($sql_archive_student);
+
+if ($result_archive_student->num_rows > 0) {
+  while ($row = $result_archive_student->fetch_assoc()) {
+    $archive_student++;
+  }
+} else {
+  $archive_student = 0;
+}
+
+$archive_counter = $archive_faculty + $archive_student;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+  <meta name="author" content="AdminKit">
+  <meta name="keywords"
+    content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="img/icons/clsu-logo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="shortcut icon" href="img/icons/clsu-logo.png" />
 
-	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
-	<link rel="icon" href="img/icons/clsu-logo.png">
+  <link rel="canonical" href="https://demo-basic.adminkit.io/" />
+  <link rel="icon" href="img/icons/clsu-logo.png">
 
-	<title>Language and Literature</title>
+  <title>Language and Literature</title>
 
-	<link href="css/app.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="css/app.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
-			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.php">
+  <div class="wrapper">
+    <nav id="sidebar" class="sidebar js-sidebar">
+      <div class="sidebar-content js-simplebar">
+        <a class="sidebar-brand" href="index.php">
           <span class="align-middle">Language and Literature e-Learning</span>
 
         </a>
 
-				<ul class="sidebar-nav">
-					<li class="sidebar-header">
-						Pages
-					</li>
+        <ul class="sidebar-nav">
+          <li class="sidebar-header">
+            Pages
+          </li>
 
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="index.php">
+          <li class="sidebar-item active">
+            <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
-					</li>
+          </li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="admin_faculty.php">
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_faculty.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
             </a>
-					</li>
+          </li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="admin_student.php">
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
             </a>
-					</li>
+          </li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="#">
-            <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_document.php">
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
-					</li>
+          </li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="#">
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="#">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
             </a>
-					</li>
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_archive_view.php">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Archive User</span>
+            </a>
+          </li>
 
 
-<!-- 
+          <!-- 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-blank.html">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
             </a>
 					</li> -->
 
-					<!-- <li class="sidebar-header">
+          <!-- <li class="sidebar-header">
 						Tools & Components
 					</li>
 
@@ -143,18 +201,18 @@ include 'admin_checker.php';
 					</li>
 				</ul> -->
 
-			</div>
-		</nav>
+      </div>
+    </nav>
 
-		<div class="main">
-			<nav class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle js-sidebar-toggle">
+    <div class="main">
+      <nav class="navbar navbar-expand navbar-light navbar-bg">
+        <a class="sidebar-toggle js-sidebar-toggle">
           <i class="hamburger align-self-center"></i>
         </a>
 
-				<div class="navbar-collapse collapse">
-					<ul class="navbar-nav navbar-align">
-						<!-- <li class="nav-item dropdown">
+        <div class="navbar-collapse collapse">
+          <ul class="navbar-nav navbar-align">
+            <!-- <li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
 								<div class="position-relative">
 									<i class="align-middle" data-feather="bell"></i>
@@ -219,7 +277,7 @@ include 'admin_checker.php';
 								</div>
 							</div>
 						</li> -->
-						<!-- <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
 								<div class="position-relative">
 									<i class="align-middle" data-feather="message-square"></i>
@@ -286,242 +344,241 @@ include 'admin_checker.php';
 								</div>
 							</div>
 						</li> -->
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+            <li class="nav-item dropdown">
+              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                 <i class="align-middle" data-feather="settings"></i>
               </a>
 
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                 <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
-								 <span class="text-dark">Your Email!</span>
+                <?php include 'greet.php' ?>
               </a>
-							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="include/sign-out.php">Log out</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</nav>
+              <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
+                  Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
+                  Settings</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="include/sign-out.php">Log out</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-			<main class="content">
-				<div class="container-fluid p-0">
+      <main class="content">
+        <div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
-					<div class="row">
-							<div class="w-100">
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Sales</h5>
-													</div>
+          <h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
+          <div class="row">
+            <div class="w-100">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="card">
+                    <a href="admin_faculty.php">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col mt-0">
+                            <h5 class="card-title">Faculty</h5>
+                          </div>
+                          <div class="col-auto">
+                            <div class="stat text-primary">
+                              <i class="align-middle" data-feather="users"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <p class="mt-4 float-end" style="color: gray">view</p>
+                        <h1 class="mt-1 mb-3 ms-3"><?php echo $faculty_counter ?></h1>
+                      </div>
+                  </div></a>
+                </div>
+                <div class="col-sm-3">
+                  <div class="card">
+                    <a href="admin_student.php">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col mt-0">
+                            <h5 class="card-title">Students</h5>
+                          </div>
+                          <div class="col-auto">
+                            <div class="stat text-primary">
+                              <i class="align-middle" data-feather="users"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <p class="mt-4 float-end" style="color: gray">view</p>
+                        <h1 class="mt-1 mb-3 ms-3"><?php echo $student_counter ?></h1>
+                      </div>
+                  </div></a>
+                </div>
+                <div class="col-sm-3">
+                  <div class="card">
+                    <a href="admin_faculty.php">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col mt-0">
+                            <h5 class="card-title">Documents</h5>
+                          </div>
 
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="truck"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">2.382</h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Visitors</h5>
-													</div>
+                          <div class="col-auto">
+                            <div class="stat text-primary">
+                              <i class="align-middle" data-feather="dollar-sign"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <p class="mt-4 float-end" style="color: gray">view</p>
+                        <h1 class="mt-1 mb-3 ms-3">21.300</h1>
+                      </div>
+                  </div>
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <div class="card">
+                    <a href="admin_archive_view.php">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col mt-0">
+                            <h5 class="card-title">Archive User</h5>
+                          </div>
 
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="users"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">14.212</h1>
-												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Earnings</h5>
-													</div>
+                          <div class="col-auto">
+                            <div class="stat text-primary">
+                              <i class="align-middle" data-feather="shopping-cart"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <p class="mt-4 float-end" style="color: gray">view</p>
+                        <h1 class="mt-1 mb-3 ms-3"><?php echo $archive_counter ?></h1>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </main>
 
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="dollar-sign"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">$21.300</h1>
-												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Orders</h5>
-													</div>
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row text-muted">
+            <div class="col-6 text-start">
+              <p class="mb-0">
+                <a class="text-muted" href="https://clsu.edu.ph/" target="_blank"><strong>CLSU</strong></a>
+                powered by
+                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
+              </p>
+            </div>
+            <div class="col-6 text-end">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+                </li>
+                >
+            </div </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
 
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="shopping-cart"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">64</h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-									</div>
-							</div>
-						</div>
-				</div>
-			</main>
+  <script src="js/app.js"></script>
 
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>CLSU</strong></a> &copy;
-							</p>
-						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-	</div>
-
-	<script src="js/app.js"></script>
-
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-			gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-			// Line chart
-			new Chart(document.getElementById("chartjs-dashboard-line"), {
-				type: "line",
-				data: {
-					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-					datasets: [{
-						label: "Sales ($)",
-						fill: true,
-						backgroundColor: gradient,
-						borderColor: window.theme.primary,
-						data: [
-							2115,
-							1562,
-							1584,
-							1892,
-							1587,
-							1923,
-							2566,
-							2448,
-							2805,
-							3438,
-							2917,
-							3327
-						]
-					}]
-				},
-				options: {
-					maintainAspectRatio: false,
-					legend: {
-						display: false
-					},
-					tooltips: {
-						intersect: false
-					},
-					hover: {
-						intersect: true
-					},
-					plugins: {
-						filler: {
-							propagate: false
-						}
-					},
-					scales: {
-						xAxes: [{
-							reverse: true,
-							gridLines: {
-								color: "rgba(0,0,0,0.0)"
-							}
-						}],
-						yAxes: [{
-							ticks: {
-								stepSize: 1000
-							},
-							display: true,
-							borderDash: [3, 3],
-							gridLines: {
-								color: "rgba(0,0,0,0.0)"
-							}
-						}]
-					}
-				}
-			});
-		});
-	</script>
-	<script src="jquery/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="datatable/jquery.dataTables.min.js"></script>
-<script src="datatable/dataTable.bootstrap.min.js"></script>
-<!-- generate datatable on our table -->
-<script>
-$(document).ready(function(){
-	//inialize datatable
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
+    var gradient = ctx.createLinearGradient(0, 0, 0, 225);
+    gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
+    gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
+    // Line chart
+    new Chart(document.getElementById("chartjs-dashboard-line"), {
+      type: "line",
+      data: {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Sales ($)",
+          fill: true,
+          backgroundColor: gradient,
+          borderColor: window.theme.primary,
+          data: [
+            2115,
+            1562,
+            1584,
+            1892,
+            1587,
+            1923,
+            2566,
+            2448,
+            2805,
+            3438,
+            2917,
+            3327
+          ]
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          intersect: false
+        },
+        hover: {
+          intersect: true
+        },
+        plugins: {
+          filler: {
+            propagate: false
+          }
+        },
+        scales: {
+          xAxes: [{
+            reverse: true,
+            gridLines: {
+              color: "rgba(0,0,0,0.0)"
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              stepSize: 1000
+            },
+            display: true,
+            borderDash: [3, 3],
+            gridLines: {
+              color: "rgba(0,0,0,0.0)"
+            }
+          }]
+        }
+      }
+    });
+  });
+  </script>
+  <script src="jquery/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="datatable/jquery.dataTables.min.js"></script>
+  <script src="datatable/dataTable.bootstrap.min.js"></script>
+  <!-- generate datatable on our table -->
+  <script>
+  $(document).ready(function() {
+    //inialize datatable
     $('#myTable').DataTable();
 
     //hide alert
-    $(document).on('click', '.close', function(){
-    	$('.alert').hide();
+    $(document).on('click', '.close', function() {
+      $('.alert').hide();
     })
-});
-</script>
+  });
+  </script>
 </body>
+
 </html>

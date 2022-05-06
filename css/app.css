@@ -13328,6 +13328,10 @@ fieldset:disabled .btn {
   margin-bottom: 24px;
 }
 
+.card a {
+  text-decoration: none;
+}
+
 .card-header {
   border-bottom-width: 1px;
 }
@@ -15256,7 +15260,7 @@ span.flatpickr-weekday {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  width: 260px;
+  width: 261px;
 }
 
 /*# sourceMappingURL=app.css.map*/
@@ -15269,7 +15273,6 @@ span.flatpickr-weekday {
 .dashboard:hover {
   color: green;
 }
-<<<<<<< HEAD
 
 .right-color {
   /* background-color: #DEF8D6; */
@@ -15306,8 +15309,6 @@ span.flatpickr-weekday {
 .clsu span {
   float: left;
 }
-=======
->>>>>>> 12dafe7f4fbe83236610ebae2c6601d52e021f59
 
 .card-view {
   margin-right: auto;
@@ -15341,37 +15342,70 @@ span.flatpickr-weekday {
 
 .user-fleft {
   float: left
-<<<<<<< HEAD
-=======
+}
 
 .right-color {
   /* background-color: #DEF8D6; */
   background-color: #F6EDD9;
 }
+
 .right-side-content {
   margin-top: 4rem;
 }
+
 .right-side-content h1 {
-  font-weight: 900; 
+  font-weight: 900;
   font-size: 5rem;
-  color: rgb(58, 107, 78); 
+  color: rgb(58, 107, 78);
   float: left;
 }
+
 .right-side-content h2 {
-  font-weight: 1000; 
+  font-weight: 1000;
   font-size: 5rem;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   float: left;
   /* color: #BF9270;  */
-  color: rgb(58, 107, 78); 
+  color: rgb(58, 107, 78);
 }
+
 .clsu {
   float: left;
   font-weight: 900;
   font-size: 1.5rem;
   color: green;
 }
+
 .clsu span {
   float: left;
->>>>>>> 12dafe7f4fbe83236610ebae2c6601d52e021f59
+}
+
+.page-content {
+  background-color: #f9f9fa;
+}
+
+.black-color {
+  color: black;
+}
+
+.archive-faculty {
+  background-color: green;
+  margin: 5px;
+  padding: 3px;
+  width: 4rem;
+  text-align: center;
+  color: white;
+  /* border-radius: 10px; */
+  border-radius: 25px;
+}
+
+.archive-student {
+  background-color: #565837;
+  margin: 5px;
+  padding: 3px;
+  width: 4rem;
+  text-align: center;
+  color: white;
+  /* border-radius: 10px; */
+  border-radius: 25px;
 }

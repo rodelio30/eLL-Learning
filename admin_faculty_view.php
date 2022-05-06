@@ -1,31 +1,19 @@
 <?php
 include 'admin_checker.php';
 
-if (isset($_POST['update'])) {
-  $id        = $_POST['id'];
-  $firstname = $_POST['firstname'];
-  $lastname  = $_POST['lastname'];
-  $email     = $_POST['email'];
-  $password  = $_POST['password'];
-  $type      = $_POST['type'];
+$id_faculty = $_GET['ID'];
 
-  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', type = '$type' where id = '$id'") or die("Query 4 is incorrect....");
-  echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
-  header('Refresh: 0; url=index.php');
-}
-
-$id = $_GET['ID'];
-
-$result = mysqli_query($conn, "SELECT * FROM users WHERE id='$id'");
+$result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$id_faculty'");
 while ($res   = mysqli_fetch_array($result)) {
-  $id        = $res['id'];
-  $firstname = $res['firstname'];
-  $lastname  = $res['lastname'];
-  $email     = $res['email'];
-  $contact   = $res['contact'];
-  $address   = $res['address'];
-  $password  = $res['password'];
-  $type      = $res['type'];
+  $faculty_id    = $res['faculty_id'];
+  $firstname     = $res['firstname'];
+  $lastname      = $res['lastname'];
+  $course        = $res['course'];
+  $description   = $res['description'];
+  $email         = $res['email'];
+  $date_created  = $res['date_created'];
+  $date_modified = $res['date_modified'];
+  $status        = $res['status'];
 }
 ?>
 
@@ -117,7 +105,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                 <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
-                <span class="text-dark">Your Email!</span>
+                <?php include 'greet.php' ?>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
@@ -136,121 +124,149 @@ while ($res   = mysqli_fetch_array($result)) {
           </ul>
         </div>
       </nav>
-
       <main class="content">
         <div class="container-fluid p-0">
           <h1 class="h3 mb-3"><strong><a href="admin_faculty.php" class="dash-item"> Faculty </a> /
               <?php echo $firstname ?>'s
               Account</strong>
           </h1>
-          <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-              <div class="card-view flex-fill">
-                <!-- <div class="card-body"> -->
-                <!-- <div class="container"> -->
-                <div class="main-body">
-                  <div class="row gutters-sm">
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="d-flex flex-column align-items-center text-center">
-                            <img src="img/icons/user.png" alt="Admin" class="rounded-circle" width="150">
-                            <div class="mt-3">
-                              <h4><?php echo $firstname . " " . $lastname ?></h4>
-                              <p class="text-secondary mb-1"><?php echo $type ?></p>
-                              <p class="text-muted font-size-sm">course</p>
-                              <!-- <button class="btn btn-primary">Follow</button>
-                        <button class="btn btn-outline-primary">Message</button> -->
-                            </div>
+          <div class="page-content">
+
+            <div class="row">
+              <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+                <div class="card-view flex-fill">
+                  <div class="main-body">
+                    <div class="row gutters-sm">
+                      <div class="col-md-3 mb-3 mt-4 border-end">
+                        <div class="d-flex flex-column align-items-center text-center">
+                          <img src="img/icons/user.png" alt="Admin" class="rounded-circle" width="150">
+                          <div class="mt-3">
+                            <h4><?php echo $firstname . " " . $lastname ?></h4>
+                            <p class="text-secondary mb-1"><?php echo $status ?></p>
+                            <p class="text-muted font-size-sm">course</p>
                           </div>
                         </div>
                       </div>
+                      <div class="col-md-9">
+                        <div class="card me-4 mt-4">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Full Name</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $firstname . " " . $lastname ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $course ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Description</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $description ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Email</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $email ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $status ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                          </div>
+                        </div>
 
+                        <div class="row gutters-sm">
+                          <div class="col-sm-12 mb-2">
+                            <div class="card h-100 mb-2 me-4">
+                              <div class="card-body">
+                                <h5 class="d-flex align-items-center mb-3"><b>Faculty Accomplishment</b></h5>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="flatpickr-weekwrapper">Uploaded Documents</p>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <p class="flatpickr-weekwrapper">10</p>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="flatpickr-weekwrapper">Date Created</p>
+                                  </div>
+                                  <div class="col-sm-7">
+                                    <p class="flatpickr-weekwrapper"><?php echo $date_created ?></p>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="flatpickr-weekwrapper">Date Modified</p>
+                                  </div>
+                                  <div class="col-sm-7">
+                                    <p class="flatpickr-weekwrapper"><?php echo $date_modified ?></p>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="flatpickr-weekwrapper">Signed in</p>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <p class="flatpickr-weekwrapper">2022-05-04 12:20</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <a class="btn btn-info mb-2" <?php echo "href=\"admin_faculty_edit.php?ID=$id_faculty\" " ?>
+                              style="float: left;">Edit</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-md-8">
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-sm-3" style="float: left;">
-                              <h6 class="mb-0"><strong>Full Name</strong></h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                              <?php echo $firstname . " " . $lastname ?>
-                            </div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <h6 class="mb-0"><strong>Email</strong></h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                              <?php echo $email ?>
-                            </div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <h6 class="mb-0"><strong>Contact Number</strong></h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                              <?php echo $contact ?>
-                            </div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <h6 class="mb-0"><strong>Address</strong></h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                              <?php echo $address ?>
-                            </div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <a class="btn btn-info" <?php echo "href=\"user_edit.php?ID=$id\" " ?>
-                                style="float: right;">Edit</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
-                      <div class="row gutters-sm">
-                        <div class="col-sm-6 mb-3">
-                          <div class="card h-100">
-                            <div class="card-body">
-                              <h6 class="d-flex align-items-center mb-3">Student Status</h6>
-                              <small>Download Document</small>
-                              <div class="progress mb-3" style="height: 5px">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%"
-                                  aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <small>Viewing Document</small>
-                              <div class="progress mb-3" style="height: 5px">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 72%"
-                                  aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <small>Signed in</small>
-                              <div class="progress mb-3" style="height: 5px">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 89%"
-                                  aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
                   </div>
-
+                  <!-- </div> -->
+                  <!-- </div> -->
                 </div>
-                <!-- </div> -->
-                <!-- </div> -->
               </div>
             </div>
+            <!-- end of row -->
           </div>
-
-
         </div>
       </main>
 
