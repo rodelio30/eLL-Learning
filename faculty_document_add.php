@@ -38,8 +38,7 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
     <nav id="sidebar" class="sidebar js-sidebar">
       <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="index.php">
-          <span class="align-middle">Language and Literature e-Learning</span>
-
+          <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
 
         <ul class="sidebar-nav">
@@ -47,11 +46,15 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
             Pages
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -65,17 +68,15 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-          </li>
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_archive_view.php">
@@ -99,6 +100,7 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
         </a>
 
         <div class="navbar-collapse collapse">
+          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
           <ul class="navbar-nav navbar-align">
             <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">

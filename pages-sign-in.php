@@ -3,34 +3,34 @@ include('include/connect.php');
 
 session_start();
 if (isset($_SESSION['logged'])) {
-	header("location: index.php");
+  header("location: index.php");
 }
 include 'include/user.php';
 
 if (isset($_POST['submit_admin'])) {
-	$email = $conn->real_escape_string($_POST['email']);
-	$password = $conn->real_escape_string($_POST['password']);
-	$res = json_decode(login($conn, $email, $password));
-	if (sizeof($res) > 0) {
+  $email = $conn->real_escape_string($_POST['email']);
+  $password = $conn->real_escape_string($_POST['password']);
+  $res = json_decode(login($conn, $email, $password));
+  if (sizeof($res) > 0) {
 
 
-		$_SESSION['logged'] = true;
-		$_SESSION['id'] = $res[0]->id;
+    $_SESSION['logged'] = true;
+    $_SESSION['id'] = $res[0]->id;
 
-		if ($res[0]->type === 'admin') {
-			echo "<script type='text/javascript'>alert('Hello Admin');
+    if ($res[0]->type === 'admin') {
+      echo "<script type='text/javascript'>alert('Hello Admin');
             document.location='index.php' </script>";
-		}
-		if ($res[0]->type === 'student') {
-			echo "<script type='text/javascript'>alert('Hello Student');
+    }
+    if ($res[0]->type === 'student') {
+      echo "<script type='text/javascript'>alert('Hello Student');
             document.location='student.php' </script>";
-		}
-	} else {
-		echo "<script type='text/javascript'>alert('Username or Password was incorrect.');
+    }
+  } else {
+    echo "<script type='text/javascript'>alert('Username or Password was incorrect.');
             document.location='pages-sign-in.php' </script>";
-		// header("location: login.php");
+    // header("location: login.php");
 
-	}
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -59,8 +59,10 @@ if (isset($_POST['submit_admin'])) {
 <body>
   <main class="d-flex w-100">
     <div class="row">
-      <div class="col-12 col-md-6 vh-100 pt-6">
-        <div class="container d-flex flex-column">
+      <div class="col-12 col-md-6 vh-100">
+        <button onclick="location.href='public.php'" class="btn btn-md btn-warning btn-back">Back to
+          home</button>
+        <div class="container d-flex flex-column pt-3">
           <div class="text-center mt-6">
             <h1 class="h1" style="font-weight: bold; color: white">Welcome back!</h1>
             <p class="lead" style="color: white">
@@ -68,11 +70,12 @@ if (isset($_POST['submit_admin'])) {
             </p>
           </div>
 
-          <div class="card m-4 mt-3">
+          <div class="card m-3 mt-3">
             <div class="card-body card-left">
               <div class="m-sm-2">
                 <div class="text-center">
-                  <h1 class="h2" style="font-weight: bold; color: rgb(58, 107, 78)">Excellent Service to Humanity is our
+                  <h1 class="h2" style="font-weight: bold; color: rgb(58, 107, 78)">Excellent Service to Humanity is
+                    our
                     Commitment! </h1>
                 </div>
                 <br>
@@ -90,7 +93,7 @@ if (isset($_POST['submit_admin'])) {
                     </small>
                   </div>
                   <div class="text-center mt-5">
-                    <button type="submit" name="submit_admin" class="btn btn-lg btn-success">Sign in</button>
+                    <button type="submit" name="submit_admin" class="btn btn-md btn-success">Sign in</button>
                   </div>
                 </form>
               </div>
@@ -99,7 +102,7 @@ if (isset($_POST['submit_admin'])) {
         </div>
       </div> <!-- End of first col -->
       <div class="col-12 col-md-6 right-color">
-        <div class="container d-flex flex-column">
+        <div class="container d-flex flex-column m-6 ms-3">
           <div class="right-side-content">
             <img src="img/icons/clsu-logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132"
               height="132" />
