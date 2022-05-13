@@ -16,12 +16,15 @@ include 'admin_checker.php';
 // 	header("location: student.php");
 // }
 
-$faculty_counter = 0;
-$student_counter = 0;
-$archive_faculty = 0;
-$archive_student = 0;
-$archive_counter = 0;
+$faculty_counter  = 0;
+$student_counter  = 0;
+$document_counter = 0;
+$archive_faculty  = 0;
+$archive_student  = 0;
+$archive_document = 0;
+$archive_counter  = 0;
 
+// This line is Counting for the number of Faculty User 
 $sql = "SELECT faculty_id FROM faculty WHERE status = 'active' ";
 $result = $conn->query($sql);
 
@@ -33,6 +36,7 @@ if ($result->num_rows > 0) {
   $faculty_counter = 'Empty Faculty';
 }
 
+// This line is Counting for the number of Student User 
 $sql_student = "SELECT student_id FROM student WHERE status = 'active' ";
 $result_student = $conn->query($sql_student);
 
@@ -44,6 +48,20 @@ if ($result_student->num_rows > 0) {
   $student_counter = 'Empty Student';
 }
 
+// This line is counting for the number of Documents
+$sql_document = "SELECT doc_id FROM document";
+$result_document = $conn->query($sql_document);
+
+if ($result_document->num_rows > 0) {
+  while ($row = $result_document->fetch_assoc()) {
+    $document_counter++;
+  }
+} else {
+  $document_counter = 'Empty Document';
+}
+
+
+// This line is Counting for the number of Archive User it's either Faculty or Student
 $sql_archive = "SELECT faculty_id FROM faculty WHERE status = 'archive'";
 $result_archive = $conn->query($sql_archive);
 
@@ -66,7 +84,18 @@ if ($result_archive_student->num_rows > 0) {
   $archive_student = 0;
 }
 
-$archive_counter = $archive_faculty + $archive_student;
+$sql_archive_document = "SELECT doc_id FROM document WHERE status = 'archive'";
+$result_archive_document = $conn->query($sql_archive_document);
+
+if ($result_archive_document->num_rows > 0) {
+  while ($row = $result_archive_document->fetch_assoc()) {
+    $archive_document++;
+  }
+} else {
+  $archive_document = 0;
+}
+
+$archive_counter = $archive_faculty + $archive_student + $archive_document;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,11 +135,15 @@ $archive_counter = $archive_faculty + $archive_student;
             Pages
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item active">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -124,23 +157,29 @@ $archive_counter = $archive_faculty + $archive_student;
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-          </li>
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Archive User</span>
+              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+
+          <div id="oras" class="clock-position ms-4 mb-2">
+            <div id="clock">
+              <div id="dates"></div>
+              <div id="current-time"></div>
+            </div>
+          </div>
+          <script src="js/time_script.js"></script>
 
 
           <!-- 
@@ -350,7 +389,6 @@ $archive_counter = $archive_faculty + $archive_student;
               </a>
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
                 <?php include 'greet.php' ?>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
@@ -359,6 +397,9 @@ $archive_counter = $archive_faculty + $archive_student;
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
                   Settings</a>
+                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
+                    data-feather="archive"></i>
+                  Archive</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="include/sign-out.php">Log out</a>
               </div>
@@ -414,7 +455,7 @@ $archive_counter = $archive_faculty + $archive_student;
                 </div>
                 <div class="col-sm-3">
                   <div class="card">
-                    <a href="admin_faculty.php">
+                    <a href="admin_document.php">
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
@@ -423,12 +464,12 @@ $archive_counter = $archive_faculty + $archive_student;
 
                           <div class="col-auto">
                             <div class="stat text-primary">
-                              <i class="align-middle" data-feather="dollar-sign"></i>
+                              <i class="align-middle" data-feather="file"></i>
                             </div>
                           </div>
                         </div>
                         <p class="mt-4 float-end" style="color: gray">view</p>
-                        <h1 class="mt-1 mb-3 ms-3">21.300</h1>
+                        <h1 class="mt-1 mb-3 ms-3"><?php echo $document_counter ?></h1>
                       </div>
                   </div>
                   </a>
@@ -439,12 +480,12 @@ $archive_counter = $archive_faculty + $archive_student;
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Archive User</h5>
+                            <h5 class="card-title">Archive</h5>
                           </div>
 
                           <div class="col-auto">
                             <div class="stat text-primary">
-                              <i class="align-middle" data-feather="shopping-cart"></i>
+                              <i class="align-middle" data-feather="archive"></i>
                             </div>
                           </div>
                         </div>
@@ -469,22 +510,6 @@ $archive_counter = $archive_faculty + $archive_student;
                 <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
             </div>
-            <div class="col-6 text-end">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                </li>
-                >
-            </div </ul>
           </div>
         </div>
       </footer>
@@ -492,93 +517,6 @@ $archive_counter = $archive_faculty + $archive_student;
   </div>
 
   <script src="js/app.js"></script>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-    var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-    gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-    gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-    // Line chart
-    new Chart(document.getElementById("chartjs-dashboard-line"), {
-      type: "line",
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Sales ($)",
-          fill: true,
-          backgroundColor: gradient,
-          borderColor: window.theme.primary,
-          data: [
-            2115,
-            1562,
-            1584,
-            1892,
-            1587,
-            1923,
-            2566,
-            2448,
-            2805,
-            3438,
-            2917,
-            3327
-          ]
-        }]
-      },
-      options: {
-        maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
-        tooltips: {
-          intersect: false
-        },
-        hover: {
-          intersect: true
-        },
-        plugins: {
-          filler: {
-            propagate: false
-          }
-        },
-        scales: {
-          xAxes: [{
-            reverse: true,
-            gridLines: {
-              color: "rgba(0,0,0,0.0)"
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              stepSize: 1000
-            },
-            display: true,
-            borderDash: [3, 3],
-            gridLines: {
-              color: "rgba(0,0,0,0.0)"
-            }
-          }]
-        }
-      }
-    });
-  });
-  </script>
-  <script src="jquery/jquery.min.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
-  <script src="datatable/jquery.dataTables.min.js"></script>
-  <script src="datatable/dataTable.bootstrap.min.js"></script>
-  <!-- generate datatable on our table -->
-  <script>
-  $(document).ready(function() {
-    //inialize datatable
-    $('#myTable').DataTable();
-
-    //hide alert
-    $(document).on('click', '.close', function() {
-      $('.alert').hide();
-    })
-  });
-  </script>
 </body>
 
 </html>

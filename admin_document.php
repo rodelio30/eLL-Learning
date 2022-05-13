@@ -1,7 +1,5 @@
 <?php
 include 'admin_checker.php';
-$user = "faculty"
-
 // date_default_timezone_set("Asia/Manila");
 // session_start();
 // if(!isset($_SESSION['logged'])){
@@ -40,6 +38,9 @@ $user = "faculty"
 
   <link href="css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -56,11 +57,15 @@ $user = "faculty"
             Pages
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -74,23 +79,28 @@ $user = "faculty"
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-          </li>
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Archive User</span>
+              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+          <div id="oras" class="clock-position ms-4 mb-2">
+            <div id="clock">
+              <div id="dates"></div>
+              <div id="current-time"></div>
+            </div>
+          </div>
+          <script src="js/time_script.js"></script>
       </div>
     </nav>
 
@@ -114,13 +124,12 @@ $user = "faculty"
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
                   Profile</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i>
-                  Analytics</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings & Privacy</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
-                  Center</a>
+                  Settings</a>
+                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
+                    data-feather="archive"></i>
+                  Archive</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="include/sign-out.php">Log out</a>
               </div>
@@ -131,50 +140,97 @@ $user = "faculty"
 
       <main class="content">
         <div class="container-fluid p-0">
-
-          <h1 class="h3 mb-3"><strong>Faculty</strong> List</h1>
+          <h1 class="h3 mb-3"><strong>Document</strong> List</h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <div class="row">
                     <div class="col-md-4">
-                      <h5 class="card-title mb-0">Latest Users</h5>
+                      <h5 class="card-title mb-0">Latest Document</h5>
                     </div>
                     <div class="col-md-8">
-
-                      <a <?php echo "href=\"faculty_document_add.php\" " ?> style="float: right"
+                      <a <?php echo "href=\"faculty_document_add.php\"" ?> style="float: right"
                         class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add New Document</a>
                     </div>
                   </div>
                 </div>
-                <table class="table table-hover my-0">
-                  <thead>
-                    <tr>
-                      <th class="d-none d-xl-table-cell">Firstname</th>
-                      <th class="d-none d-xl-table-cell">Lastname</th>
-                      <th class="d-none d-xl-table-cell">Status</th>
-                      <th class="d-none d-md-table-cell float-end me-3">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $result = mysqli_query($conn, "select faculty_id, firstname, lastname, status from faculty WHERE status='active' ORDER BY faculty_id") or die("Query 1 is incorrect....");
-                    while (list($faculty_id, $firstname, $lastname, $status) = mysqli_fetch_array($result)) {
-                      echo "
-														<tr>	
-															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$firstname</a></td>
-															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$lastname</a></td>
-															<td class='d-none d-xl-table-cell'>$status</td>
-															<td class='d-none d-xl-table-cell'>
-															<a href=\"admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user go to archive?')\" class='btn btn-warning btn-sm float-end'><span data-feather='archive'></span>&nbsp Archive</a>
-															</td>
-														</tr>	
-													";
-                    }
-                    ?>
-                  </tbody>
-                </table>
+                <div class="row m-1">
+                  <div class="col-12">
+                    <div class="card-box">
+                      <div class="row">
+                        <div class="col-lg-6 col-xl-6">
+                          <h1 class="header-title m-b-30">Language and Literature Files</h1>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <?php $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, description, file_uploader_id, file_uploader, date, date_created from document WHERE status!='archive' ORDER BY doc_id") or die("Query for document is incorrect....");
+                        while (list($doc_id, $title, $file_size, $file_type, $description, $file_uploader_id, $file_uploader, $date, $date_created) = mysqli_fetch_array($result)) {
+                          $size       = formatSizeUnits2($file_size);
+                          $icon_img   = '';
+
+                          if ($file_type === "pdf") {
+                            $icon_img   = 'pdf';
+                          } else if ($file_type === "doc" || $file_type === "docs") {
+                            $icon_img   = 'doc';
+                          } else if ($file_type === "xls" || $file_type === "xlsx" || $file_type === "xlc") {
+                            $icon_img   = 'xls';
+                          } else if ($file_type === "txt") {
+                            $icon_img   = 'txt';
+                          }
+                          echo "
+                            <div class='col-lg-3 col-md-4 col-sm-12'>
+                              <div class='file-man-box'><a href=\"archive/admin_document_archive.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this Document go to archive?')\" class='file-close'><i
+                                    class='fa fa-times-circle'></i></a>
+                                <div class='file-img-box'><img
+                                    src='img/photos/$icon_img.svg'
+                                    alt='icon'></div><a href=\"uploads/$title.$file_type\" target='_blank' class='file-download'><i
+                                    class='fa fa-download'></i></a>
+                                <div class='file-man-title'>
+                                  <h5 class='mb-1'><a href=\"admin_document_view.php?ID=$doc_id\" class='document-clicker'>$title</a></h5>
+                                  <p class='mb-0'><small>$size</small></p>
+                                  <small>Added: <span class='date text-muted'>$date</span></small>
+                                </div>
+                                <hr>
+                                <div class='mt-1'>
+                                  <p class='mb-0'><small>Description</small></p>
+                                  <small><span class='date text-muted'>$description</span></small>
+                                </div>
+                              </div>
+                            </div>
+                       ";
+                        }
+                        function formatSizeUnits2($file_size)
+                        {
+                          if ($file_size >= 1073741824) {
+                            $file_size = number_format($file_size / 1073741824, 2) . ' GB';
+                          } elseif ($file_size >= 1048576) {
+                            $file_size = number_format($file_size / 1048576, 2) . ' MB';
+                          } elseif ($file_size >= 1024) {
+                            $file_size = number_format($file_size / 1024, 2) . ' KB';
+                          } elseif ($file_size > 1) {
+                            $file_size = $file_size . ' bytes';
+                          } elseif ($file_size == 1) {
+                            $file_size = $file_size . ' byte';
+                          } else {
+                            $file_size = '0 bytes';
+                          }
+
+                          return $file_size;
+                        }
+                        ?>
+                      </div>
+                      <!-- <div class="text-center mt-3">
+                            <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light"><i
+                                class="mdi mdi-refresh"></i> Load More Files</button>
+                          </div> -->
+                    </div>
+                  </div>
+                  <!-- end col -->
+                </div>
+                <!-- end row -->
+                <!-- container -->
               </div>
             </div>
           </div>

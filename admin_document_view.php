@@ -1,12 +1,41 @@
 <?php
 include 'admin_checker.php';
-date_default_timezone_set("Asia/Manila");
 
-$id = $_SESSION['id'];
+$doc_id = $_GET['ID'];
 
-$query = mysqli_query($conn, "select id, firstname from users where id='$id'") or die("query 1 incorrect.......");
-list($uploader_id, $uploader) = mysqli_fetch_array($query);
+$result     = mysqli_query($conn, "SELECT * FROM document WHERE doc_id='$doc_id'");
+while ($res = mysqli_fetch_array($result)) {
+  $doc_id           = $res['doc_id'];
+  $title            = $res['title'];
+  $file_size        = $res['file_size'];
+  $file_type        = $res['file_type'];
+  $description      = $res['description'];
+  $file_uploader_id = $res['file_uploader_id'];
+  $file_uploader    = $res['file_uploader'];
+  $date_created     = $res['date_created'];
+  $date_modified    = $res['date_modified'];
+  $status           = $res['status'];
+}
+
+$uploader   = mysqli_query($conn, "SELECT firstname, lastname FROM faculty WHERE faculty_id='$file_uploader_id'");
+while ($res = mysqli_fetch_array($uploader)) {
+  $firstname = $res['firstname'];
+  $lastname   = $res['lastname'];
+}
+
+$icon_img   = '';
+
+if ($file_type === "pdf") {
+  $icon_img   = 'pdf';
+} else if ($file_type === "doc" || $file_type === "docs") {
+  $icon_img   = 'doc';
+} else if ($file_type === "xls" || $file_type === "xlsx" || $file_type === "xlc") {
+  $icon_img   = 'xls';
+} else if ($file_type === "txt") {
+  $icon_img   = 'txt';
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,8 +58,6 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
 
   <link href="css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -39,19 +66,21 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
       <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="index.php">
           <span class="align-middle">Language and Literature e-Learning</span>
-
         </a>
-
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Pages
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -65,24 +94,22 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-          </li>
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_archive_view.php">
               <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
-          <div id="oras" class="clock-position ms-3 mb-2">
+          <div id="oras" class="clock-position ms-4 mb-2">
             <div id="clock">
               <div id="dates"></div>
               <div id="current-time"></div>
@@ -112,13 +139,12 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
                   Profile</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i>
-                  Analytics</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings & Privacy</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
-                  Center</a>
+                  Settings</a>
+                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
+                    data-feather="archive"></i>
+                  Archive</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="include/sign-out.php">Log out</a>
               </div>
@@ -129,48 +155,97 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
 
       <main class="content">
         <div class="container-fluid p-0">
-
-          <h1 class="h3 mb-3"><strong><a href="index.php" class="dashboard">Dashboard</a> / New User Account</strong>
+          <h1 class="h3 mb-3"><a href="admin_document.php" class="user-clicker"><strong>Document </strong> </a> \
+            <?php echo $title ?>
           </h1>
+
           <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <h5 class="card-title mb-0">Document Form</h5>
-                  <div id="oras" class="mt 0" style="float: right">
-                    <div id="clock">
-                      <div id="dates"></div>
-                      <div id="current-time"></div>
+            <div class="col-12">
+              <div class="card">
+                <div class="emp-profile">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="profile-img">
+                        <img src='img/photos/<?php echo $icon_img ?>.svg' alt='icon'>
+                      </div>
+                    </div>
+                    <div class="col-md-6 m-2">
+                      <div class="profile-head">
+                        <h5>
+                          <span>Description: </span>
+                          <?php echo $description ?>
+                        </h5>
+                        <hr>
+                        <h5>About</h5>
+                        <hr>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="row">
+                              <div class="col-md-5">
+                                <label>Document Id</label>
+                              </div>
+                              <div class="col-md-7">
+                                <p class="text-black"><?php echo $doc_id ?></p>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-5">
+                                <label>Uploader</label>
+                              </div>
+                              <div class="col-md-7">
+                                <p><a href="admin_faculty_view.php?ID=<?php echo $file_uploader_id ?>"
+                                    class="user-clicker">
+                                    <?php echo $firstname . " " . $lastname ?></a></p>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-5">
+                                <label>Date Created</label>
+                              </div>
+                              <div class="col-md-7">
+                                <p class="text-black"><?php echo $date_created ?></p>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-5">
+                                <label>Date Modified</label>
+                              </div>
+                              <div class="col-md-7">
+                                <p class="text-black"><?php echo $date_modified ?></p>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-5">
+                                <label>Status</label>
+                              </div>
+                              <div class="col-md-7">
+                                <p class="text-black"><?php echo $status ?></p>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-5">
+                                <label>Total Downloads</label>
+                              </div>
+                              <div class="col-md-7">
+                                <p class="text-black">230</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <a <?php echo "href=\"admin_document_edit.php?ID=$doc_id\"" ?> style="float: right"
+                        class="btn btn-info"><span data-feather="file"></span>&nbsp Edit Document</a>
                     </div>
                   </div>
-                </div>
-                <div class="card-body">
-                  <form action="upload_document.php" method="post" enctype="multipart/form-data">
-                    <?php if (isset($_GET['error'])) : ?>
-                    <p class="color: black"></p>
-                    <div class="alert alert-danger">
-                      <strong><?php echo $_GET['error']; ?>!</strong>
-                    </div>
-                    <?php endif ?>
-                    <div class="mb-4 me-auto">
-                      <label for="formFile" class="form-label">Browse your file</label>
-                      <input class="form-control mt-2" type="file" name="my_image" id="file-upload">
-                    </div>
-                    <div class="form-group mb-4 ">
-                      <label>Description of the file</label>
-                      <textarea id="description" name="description" class="form-control"
-                        placeholder="Describe this file here..."></textarea>
-                    </div>
-                    <input type="hidden" id="uploader_id" name="uploader_id" value="<?php echo $uploader_id ?>">
-                    <input type="hidden" id="uploader" name="uploader" value="<?php echo $uploader ?>">
-                    <input type="submit" class="btn btn-success" name="submit" value="Upload">
-                  </form>
+                  <!-- End of content -->
                 </div>
               </div>
             </div>
           </div>
-
-        </div>
       </main>
 
       <footer class="footer">
@@ -206,7 +281,6 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
   </div>
 
   <script src="js/app.js"></script>
-  <script src="js/time_script.js"></script>
 </body>
 
 </html>

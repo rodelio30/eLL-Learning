@@ -52,11 +52,16 @@ while ($res   = mysqli_fetch_array($result)) {
           <li class="sidebar-header">
             Pages
           </li>
+
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -70,23 +75,28 @@ while ($res   = mysqli_fetch_array($result)) {
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-          </li>
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Archive User</span>
+              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+          <div id="oras" class="clock-position ms-4 mb-2">
+            <div id="clock">
+              <div id="dates"></div>
+              <div id="current-time"></div>
+            </div>
+          </div>
+          <script src="js/time_script.js"></script>
       </div>
     </nav>
 
@@ -104,19 +114,17 @@ while ($res   = mysqli_fetch_array($result)) {
               </a>
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
                 <?php include 'greet.php' ?>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
                   Profile</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i>
-                  Analytics</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings & Privacy</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
-                  Center</a>
+                  Settings</a>
+                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
+                    data-feather="archive"></i>
+                  Archive</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="include/sign-out.php">Log out</a>
               </div>
@@ -126,7 +134,8 @@ while ($res   = mysqli_fetch_array($result)) {
       </nav>
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong><a href="admin_faculty.php" class="dash-item"> Faculty </a> /
+          <h1 class="h3 mb-3"><strong><a href="admin_faculty.php" class="dash-item"> Faculty
+              </a> /
               <?php echo $firstname ?>'s
               Account</strong>
           </h1>
@@ -212,7 +221,7 @@ while ($res   = mysqli_fetch_array($result)) {
                           <div class="col-sm-12 mb-2">
                             <div class="card h-100 mb-2 me-4">
                               <div class="card-body">
-                                <h5 class="d-flex align-items-center mb-3"><b>Faculty Accomplishment</b></h5>
+                                <h5 class="d-flex align-items-center mb-3"><b>About Faculty</b></h5>
                                 <div class="row">
                                   <div class="col-sm-3">
                                     <p class="flatpickr-weekwrapper">Uploaded Documents</p>
@@ -280,22 +289,6 @@ while ($res   = mysqli_fetch_array($result)) {
                 <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
             </div>
-            <div class="col-6 text-end">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </footer>
@@ -303,16 +296,6 @@ while ($res   = mysqli_fetch_array($result)) {
   </div>
 
   <script src="js/app.js"></script>
-  <script>
-  function myFunction() {
-    var pw_ele = document.getElementById("password");
-    if (pw_ele.type === "password") {
-      pw_ele.type = "text";
-    } else {
-      pw_ele.type = "password";
-    }
-  }
-  </script>
 </body>
 
 </html>
