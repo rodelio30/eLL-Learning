@@ -13,7 +13,7 @@ if (isset($_POST['update'])) {
   $password    = $_POST['password'];
   $date_modified = date("Y-m-d h:i:s");
 
-  echo "<script>console.log('" . $email . "');</script>";
+  // echo "<script>console.log('" . $email . "');</script>";
   mysqli_query($conn, "update faculty set firstname = '$firstname', lastname = '$lastname', course = '$course', description = '$description', email = '$email', status = '$status', password = '$password', date_modified = '$date_modified' where faculty_id = '$faculty_id'") or die("Query 4 is incorrect....");
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
   header('Refresh: 0; url=admin_faculty.php');
@@ -80,11 +80,16 @@ if ($status == "active") {
           <li class="sidebar-header">
             Pages
           </li>
+
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -98,23 +103,28 @@ if ($status == "active") {
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-          </li>
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Archive User</span>
+              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+          <div id="oras" class="clock-position ms-4 mb-2">
+            <div id="clock">
+              <div id="dates"></div>
+              <div id="current-time"></div>
+            </div>
+          </div>
+          <script src="js/time_script.js"></script>
       </div>
     </nav>
 
@@ -132,19 +142,17 @@ if ($status == "active") {
               </a>
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
                 <?php include 'greet.php' ?>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
                   Profile</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i>
-                  Analytics</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings & Privacy</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
-                  Center</a>
+                  Settings</a>
+                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
+                    data-feather="archive"></i>
+                  Archive</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="include/sign-out.php">Log out</a>
               </div>
@@ -234,22 +242,6 @@ if ($status == "active") {
                 powered by
                 <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
-            </div>
-            <div class="col-6 text-end">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

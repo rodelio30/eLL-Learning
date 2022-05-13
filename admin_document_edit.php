@@ -1,21 +1,32 @@
 <?php
 include 'admin_checker.php';
-$user = "faculty"
+date_default_timezone_set("Asia/Manila");
 
-// date_default_timezone_set("Asia/Manila");
-// session_start();
-// if(!isset($_SESSION['logged'])){
-//   header("location: public.php");
-// }
-// include ('include/connect.php');
-// $id=$_SESSION['id'];
+if (isset($_POST['update'])) {
+  $docu_id          = $_POST['doc_id'];
+  $description      = $_POST['description'];
+  $file_uploader_id = $_POST['file_uploader_id'];
 
-// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-// list($id,$type)=mysqli_fetch_array($query);
+  $result = mysqli_query($conn, "SELECT faculty_id, firstname FROM faculty WHERE faculty_id='$file_uploader_id'");
+  while ($res   = mysqli_fetch_array($result)) {
+    $faculty_id = $res['faculty_id'];
+    $firstname  = $res['firstname'];
+  }
 
-// if($type=='student'){
-//   header("location: student.php");
-// }
+  mysqli_query($conn, "UPDATE document SET description = '$description', file_uploader_id = '$file_uploader_id', file_uploader = '$firstname' WHERE doc_id = '$docu_id'") or die("Query 4 is incorrect....");
+  echo '<script type="text/javascript"> alert("Document ' . $docu_id . ' updated!.")</script>';
+  header('Refresh: 0; url=admin_document.php');
+}
+
+$doc_id = $_GET['ID'];
+
+$result = mysqli_query($conn, "SELECT * FROM document WHERE doc_id='$doc_id'");
+while ($res   = mysqli_fetch_array($result)) {
+  $title       = $res['title'];
+  $file_type   = $res['file_type'];
+  $description = $res['description'];
+  $file_uploader = $res['file_uploader'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -40,6 +51,8 @@ $user = "faculty"
 
   <link href="css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -66,7 +79,7 @@ $user = "faculty"
 
           <hr class="hr-size">
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
             </a>
@@ -80,7 +93,7 @@ $user = "faculty"
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
@@ -99,7 +112,6 @@ $user = "faculty"
               <div id="current-time"></div>
             </div>
           </div>
-          <script src="js/time_script.js"></script>
       </div>
     </nav>
 
@@ -117,6 +129,7 @@ $user = "faculty"
               </a>
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
                 <?php include 'greet.php' ?>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
@@ -139,49 +152,56 @@ $user = "faculty"
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong>Faculty</strong> List</h1>
+          <h1 class="h3 mb-3"><strong><a href="admin_document.php" class="dashboard">Document</a></strong> \
+            <strong><a href="admin_document_view.php?ID=<?php echo $doc_id ?>" class="dashboard"><?php echo $title ?>
+              </a></strong>\
+            Edit
+          </h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <h5 class="card-title mb-0">Latest Users</h5>
-                    </div>
-                    <div class="col-md-8">
-
-                      <a <?php echo "href=\"user_add.php?user=$user\" " ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Faculty User</a>
-                    </div>
-                  </div>
+                  <h5 class="card-title mb-0">Document Edit Form</h5>
                 </div>
-                <table class="table table-hover my-0">
-                  <thead>
-                    <tr>
-                      <th class="d-none d-xl-table-cell">Firstname</th>
-                      <th class="d-none d-xl-table-cell">Lastname</th>
-                      <th class="d-none d-xl-table-cell">Status</th>
-                      <th class="d-none d-md-table-cell float-end me-3">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $result = mysqli_query($conn, "select faculty_id, firstname, lastname, status from faculty WHERE status='active' ORDER BY faculty_id") or die("Query 1 is incorrect....");
-                    while (list($faculty_id, $firstname, $lastname, $status) = mysqli_fetch_array($result)) {
-                      echo "
-														<tr>	
-															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$firstname</a></td>
-															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$lastname</a></td>
-															<td class='d-none d-xl-table-cell'>$status</td>
-															<td class='d-none d-xl-table-cell'>
-															<a href=\"archive/admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user go to archive?')\" class='btn btn-warning btn-sm float-end'><span data-feather='archive'></span>&nbsp Archive</a>
-															</td>
-														</tr>	
-													";
-                    }
-                    ?>
-                  </tbody>
-                </table>
+                <div class="card-body">
+                  <form method="post">
+                    <?php if (isset($_GET['error'])) : ?>
+                    <p class="color: black"></p>
+                    <div class="alert alert-danger">
+                      <strong><?php echo $_GET['error']; ?>!</strong>
+                    </div>
+                    <?php endif ?>
+                    <div class="mb-4 me-auto">
+                      <label for="formFile" class="form-label">Title</label>
+                      <input class="form-control mt-2" type="text" id="file_name" name="file_name"
+                        value="<?php echo $title . '.' . $file_type ?>" disabled>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Description</label>
+                      <input type="textarea" class="form-control" id="description" name="description"
+                        value="<?php echo $description ?>" placeholder="Description">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>File Uploader</label>
+                      <select name="file_uploader_id" class="form-control">
+                        <?php
+                        $result = mysqli_query($conn, "select faculty_id, firstname from faculty where status='active'") or die("Query Faculty is inncorrect........");
+                        while (list($faculty_id, $firstname) = mysqli_fetch_array($result)) {
+                          if ($firstname == $file_uploader) {
+                            echo "<option value='$faculty_id' selected>$firstname</option>";
+                          } else {
+                            echo "<option value='$faculty_id'>$firstname</option>";
+                          }
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <input type="hidden" name="doc_id" value="<?php echo $_GET['ID']; ?>">
+                      <button type="submit" class="btn btn-success" name="update">Update</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -199,6 +219,22 @@ $user = "faculty"
                 <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
             </div>
+            <div class="col-6 text-end">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </footer>
@@ -206,6 +242,7 @@ $user = "faculty"
   </div>
 
   <script src="js/app.js"></script>
+  <script src="js/time_script.js"></script>
 </body>
 
 </html>

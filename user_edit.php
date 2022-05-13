@@ -76,11 +76,16 @@ $sel_faculty = "selected";
           <li class="sidebar-header">
             Pages
           </li>
+
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -94,23 +99,28 @@ $sel_faculty = "selected";
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-          </li>
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Archive User</span>
+              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+          <div id="oras" class="clock-position ms-3 mb-2">
+            <div id="clock">
+              <div id="dates"></div>
+              <div id="current-time"></div>
+            </div>
+          </div>
+          <script src="js/time_script.js"></script>
       </div>
     </nav>
 
@@ -231,22 +241,6 @@ $sel_faculty = "selected";
                 powered by
                 <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
-            </div>
-            <div class="col-6 text-end">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

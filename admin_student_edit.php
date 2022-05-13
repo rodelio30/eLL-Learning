@@ -79,11 +79,16 @@ if ($status == "active") {
           <li class="sidebar-header">
             Pages
           </li>
+
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -97,23 +102,28 @@ if ($status == "active") {
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
+            <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-          </li>
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Archive User</span>
+              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+          <div id="oras" class="clock-position ms-4 mb-2">
+            <div id="clock">
+              <div id="dates"></div>
+              <div id="current-time"></div>
+            </div>
+          </div>
+          <script src="js/time_script.js"></script>
       </div>
     </nav>
 
@@ -137,13 +147,12 @@ if ($status == "active") {
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
                   Profile</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i>
-                  Analytics</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings & Privacy</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
-                  Center</a>
+                  Settings</a>
+                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
+                    data-feather="archive"></i>
+                  Archive</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="include/sign-out.php">Log out</a>
               </div>
@@ -154,8 +163,11 @@ if ($status == "active") {
 
       <main class="content">
         <div class="container-fluid p-0">
-
-          <h1 class="h3 mb-3"><strong>Edit User Account</strong></h1>
+          <h1 class="h3 mb-3"><strong><a href="admin_student.php" class="dash-item"> Student List</a> \
+              <a href="admin_student_view.php?ID=<?php echo $student_id ?>" class="dash-item">
+                <?php echo $firstname ?>'s Account
+              </a></strong> \ Edit
+          </h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
@@ -239,22 +251,6 @@ if ($status == "active") {
                 powered by
                 <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
-            </div>
-            <div class="col-6 text-end">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 include 'admin_checker.php';
-$user = "faculty"
+$user = "faculty";
 
 // date_default_timezone_set("Asia/Manila");
 // session_start();
@@ -16,6 +16,37 @@ $user = "faculty"
 // if($type=='student'){
 //   header("location: student.php");
 // }
+
+$faculty_counter = 0;
+$student_counter = 0;
+$sql_faculty     = "SELECT faculty_id FROM faculty WHERE status = 'archive' ";
+$result_faculty  = $conn->query($sql_faculty);
+
+$sql_student     = "SELECT student_id FROM student WHERE status = 'archive' ";
+$result_student  = $conn->query($sql_student);
+
+if ($result_faculty->num_rows > 0) {
+  while ($row = $result_faculty->fetch_assoc()) {
+    $faculty_counter++;
+  }
+}
+if ($result_student->num_rows > 0) {
+  while ($row = $result_student->fetch_assoc()) {
+    $student_counter++;
+  }
+}
+
+$document_counter = 0;
+
+$sql_document = "SELECT doc_id FROM document WHERE status = 'archive' ";
+$result_document = $conn->query($sql_document);
+
+if ($result_document->num_rows > 0) {
+  while ($row = $result_document->fetch_assoc()) {
+    $document_counter++;
+  }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -56,11 +87,15 @@ $user = "faculty"
             Pages
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -74,23 +109,28 @@ $user = "faculty"
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-          </li>
+          <hr class="hr-size">
 
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Archive User</span>
+              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+          <div id="oras" class="clock-position ms-4 mb-2">
+            <div id="clock">
+              <div id="dates"></div>
+              <div id="current-time"></div>
+            </div>
+          </div>
+          <script src="js/time_script.js"></script>
       </div>
     </nav>
 
@@ -114,13 +154,12 @@ $user = "faculty"
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
                   Profile</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i>
-                  Analytics</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings & Privacy</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
-                  Center</a>
+                  Settings</a>
+                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
+                    data-feather="archive"></i>
+                  Archive</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="include/sign-out.php">Log out</a>
               </div>
@@ -131,56 +170,43 @@ $user = "faculty"
 
       <main class="content">
         <div class="container-fluid p-0">
-
-          <h1 class="h3 mb-3"><strong>User Archive </strong> List</h1>
+          <h1 class="h3 mb-3"><strong>Archive List :</strong> User and Document</h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <div class="row">
-                    <div class="col-md-4">
-                      <h5 class="card-title mb-0">Archive Users</h5>
-                    </div>
-                    <div class="col-md-8">
+                    <?php
+                    if ($faculty_counter || $student_counter > 0) {
+                      echo "
+                    <div class='col-md-4'>
+                      <h5 class='card-title mb-0'>Archive Users</h5>
+                  </div>
+                      ";
+                    } else {
+                      echo "";
+                    }
 
-                    </div>
+                    ?>
                   </div>
                 </div>
                 <table class="table table-hover my-0">
                   <thead>
                     <?php
-                    $faculty_counter = 0;
-                    $student_counter = 0;
-                    $sql_faculty     = "SELECT faculty_id FROM faculty WHERE status = 'archive' ";
-                    $result_faculty  = $conn->query($sql_faculty);
-
-                    $sql_student     = "SELECT student_id FROM student WHERE status = 'archive' ";
-                    $result_student  = $conn->query($sql_student);
-
-                    if ($result_faculty->num_rows > 0) {
-                      while ($row = $result_faculty->fetch_assoc()) {
-                        $faculty_counter++;
-                      }
-                    }
-                    if ($result_student->num_rows > 0) {
-                      while ($row = $result_student->fetch_assoc()) {
-                        $student_counter++;
-                      }
-                    }
-
                     if ($faculty_counter || $student_counter > 0) {
                       echo "
                         <tr>
-                          <th class='d-none d-xl-table-cell'>Firstname</th>
-                          <th class='d-none d-xl-table-cell'>Lastname</th>
-                          <th class='d-none d-xl-table-cell'>Status</th>
-                          <th class='d-none d-xl-table-cell'>Date Modified</th>
-                          <th class='d-none d-xl-table-cell'>Type</th>
+                          <th class='d-none d-xl-table-cell' style='width: 18%'>Firstname</th>
+                          <th class='d-none d-xl-table-cell' style='width: 18%'>Lastname</th>
+                          <th class='d-none d-xl-table-cell' style='width: 15%'>Status</th>
+                          <th class='d-none d-xl-table-cell' style='width: 15%'>Date Modified</th>
+                          <th class='d-none d-xl-table-cell' style='width: 10%'>Type</th>
                           <th class='d-none d-md-table-cell float-end me-3'>Action</th>
                         </tr>
                       ";
                     } else {
                       echo "<h1 class='m-4'><b><center>There is no Archive User</center></b></h1>";
+                      echo "<img src='img/photos/empty.png' alt='icon' class='mb-4 archive_photo_size'>";
                     }
 
                     ?>
@@ -197,7 +223,8 @@ $user = "faculty"
 															<td class='d-none d-xl-table-cell'>$date_modified</td>
 															<td class='d-none d-xl-table-cell'><p class='archive-faculty'>Faculty</p></td>
 															<td class='d-none d-xl-table-cell'>
-															<a href=\"admin_faculty_active.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-sm float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
+															<a href=\"archive/admin_faculty_delete.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-sm float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
+															<a href=\"archive/admin_faculty_active.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-sm float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
@@ -214,7 +241,8 @@ $user = "faculty"
 															<td class='d-none d-xl-table-cell'>$date_modified</td>
 															<td class='d-none d-xl-table-cell'><p class='archive-student'>Student</p></td>
 															<td class='d-none d-xl-table-cell'>
-															<a href=\"admin_student_active.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-sm float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
+															<a href=\"archive/admin_student_delete.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-sm float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
+															<a href=\"archive/admin_student_active.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-sm float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
@@ -224,7 +252,69 @@ $user = "faculty"
                 </table>
               </div>
             </div>
-          </div>
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <div class="row">
+                    <?php
+                    if ($document_counter > 0) {
+                      echo "
+                    <div class='col-md-4'>
+                      <h5 class='card-title mb-0'>Archive Documents</h5>
+                  </div>
+                      ";
+                    } else {
+                      echo "";
+                    }
+
+                    ?>
+                  </div>
+                </div>
+                <table class="table table-hover my-0">
+                  <thead>
+                    <?php
+                    if ($document_counter > 0) {
+                      echo "
+                        <tr>
+                          <th class='d-none d-xl-table-cell' style='width: 32%'>Title</th>
+                          <th class='d-none d-xl-table-cell' style='width: 10%'>File Type</th>
+                          <th class='d-none d-xl-table-cell' style='width: 12%'>Status</th>
+                          <th class='d-none d-xl-table-cell' style='width: 14%'>Date Modified</th>
+                          <th class='d-none d-xl-table-cell' style='width: 10%'>Type</th>
+                          <th class='d-none d-md-table-cell float-end me-3'>Action</th>
+                        </tr>
+                      ";
+                    } else {
+                      echo "<h1 class='m-4'><b><center>There is no Archive Document</center></b></h1>";
+                      echo "<img src='img/icons/empty-docu.png' alt='icon' class='mb-4 archive_photo_size'>";
+                    }
+
+                    ?>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $result = mysqli_query($conn, "select doc_id, title, file_type, status, date_modified from document WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                    while (list($doc_id, $title, $file_type, $status, $date_modified) = mysqli_fetch_array($result)) {
+                      echo "
+														<tr>	
+															<td class='d-none d-xl-table-cell'>$title</td>
+															<td class='d-none d-xl-table-cell'>$file_type</td>
+															<td class='d-none d-xl-table-cell'>$status</td>
+															<td class='d-none d-xl-table-cell'>$date_modified</td>
+															<td class='d-none d-xl-table-cell'><p class='archive-document'>Document</p></td>
+															<td class='d-none d-xl-table-cell'>
+															<a href=\"archive/admin_document_delete.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want to Delete this Document permanent?')\" class='btn btn-danger btn-sm float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
+															<a href=\"archive/admin_document_active.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-sm float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
+															</td>
+														</tr>	
+													";
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div> <!-- End of Row -->
 
         </div>
       </main>
@@ -239,22 +329,6 @@ $user = "faculty"
                 <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
             </div>
-            <div class="col-6 text-end">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </footer>
@@ -263,76 +337,6 @@ $user = "faculty"
 
   <script src="js/app.js"></script>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-    var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-    gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-    gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-    // Line chart
-    new Chart(document.getElementById("chartjs-dashboard-line"), {
-      type: "line",
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Sales ($)",
-          fill: true,
-          backgroundColor: gradient,
-          borderColor: window.theme.primary,
-          data: [
-            2115,
-            1562,
-            1584,
-            1892,
-            1587,
-            1923,
-            2566,
-            2448,
-            2805,
-            3438,
-            2917,
-            3327
-          ]
-        }]
-      },
-      options: {
-        maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
-        tooltips: {
-          intersect: false
-        },
-        hover: {
-          intersect: true
-        },
-        plugins: {
-          filler: {
-            propagate: false
-          }
-        },
-        scales: {
-          xAxes: [{
-            reverse: true,
-            gridLines: {
-              color: "rgba(0,0,0,0.0)"
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              stepSize: 1000
-            },
-            display: true,
-            borderDash: [3, 3],
-            gridLines: {
-              color: "rgba(0,0,0,0.0)"
-            }
-          }]
-        }
-      }
-    });
-  });
-  </script>
   <script src="jquery/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <script src="datatable/jquery.dataTables.min.js"></script>
