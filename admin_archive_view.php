@@ -78,8 +78,7 @@ if ($result_document->num_rows > 0) {
     <nav id="sidebar" class="sidebar js-sidebar">
       <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="index.php">
-          <span class="align-middle">Language and Literature e-Learning</span>
-
+          <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
 
         <ul class="sidebar-nav">
@@ -141,6 +140,7 @@ if ($result_document->num_rows > 0) {
         </a>
 
         <div class="navbar-collapse collapse">
+          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
           <ul class="navbar-nav navbar-align">
             <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
@@ -223,8 +223,8 @@ if ($result_document->num_rows > 0) {
 															<td class='d-none d-xl-table-cell'>$date_modified</td>
 															<td class='d-none d-xl-table-cell'><p class='archive-faculty'>Faculty</p></td>
 															<td class='d-none d-xl-table-cell'>
-															<a href=\"archive/admin_faculty_delete.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-sm float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
-															<a href=\"archive/admin_faculty_active.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-sm float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
+															<a href=\"archive/admin_faculty_delete.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
+															<a href=\"archive/admin_faculty_active.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
@@ -241,8 +241,8 @@ if ($result_document->num_rows > 0) {
 															<td class='d-none d-xl-table-cell'>$date_modified</td>
 															<td class='d-none d-xl-table-cell'><p class='archive-student'>Student</p></td>
 															<td class='d-none d-xl-table-cell'>
-															<a href=\"archive/admin_student_delete.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-sm float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
-															<a href=\"archive/admin_student_active.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-sm float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
+															<a href=\"archive/admin_student_delete.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
+															<a href=\"archive/admin_student_active.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
@@ -276,7 +276,7 @@ if ($result_document->num_rows > 0) {
                     if ($document_counter > 0) {
                       echo "
                         <tr>
-                          <th class='d-none d-xl-table-cell' style='width: 32%'>Title</th>
+                          <th class='d-none d-xl-table-cell' style='width: 30%'>Title</th>
                           <th class='d-none d-xl-table-cell' style='width: 10%'>File Type</th>
                           <th class='d-none d-xl-table-cell' style='width: 12%'>Status</th>
                           <th class='d-none d-xl-table-cell' style='width: 14%'>Date Modified</th>
@@ -303,8 +303,8 @@ if ($result_document->num_rows > 0) {
 															<td class='d-none d-xl-table-cell'>$date_modified</td>
 															<td class='d-none d-xl-table-cell'><p class='archive-document'>Document</p></td>
 															<td class='d-none d-xl-table-cell'>
-															<a href=\"archive/admin_document_delete.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want to Delete this Document permanent?')\" class='btn btn-danger btn-sm float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
-															<a href=\"archive/admin_document_active.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-sm float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
+															<a href=\"archive/admin_document_delete.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want to Delete this Document permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
+															<a href=\"archive/admin_document_active.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";

@@ -47,8 +47,7 @@ $user = "faculty"
     <nav id="sidebar" class="sidebar js-sidebar">
       <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="index.php">
-          <span class="align-middle">Language and Literature e-Learning</span>
-
+          <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
 
         <ul class="sidebar-nav">
@@ -110,6 +109,7 @@ $user = "faculty"
         </a>
 
         <div class="navbar-collapse collapse">
+          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
           <ul class="navbar-nav navbar-align">
             <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
@@ -174,7 +174,7 @@ $user = "faculty"
 															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$lastname</a></td>
 															<td class='d-none d-xl-table-cell'>$status</td>
 															<td class='d-none d-xl-table-cell'>
-															<a href=\"archive/admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user go to archive?')\" class='btn btn-warning btn-sm float-end'><span data-feather='archive'></span>&nbsp Archive</a>
+															<a href=\"archive/admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user go to archive?')\" class='btn btn-warning btn-md float-end'><span data-feather='archive'></span>&nbsp Archive</a>
 															</td>
 														</tr>	
 													";
