@@ -15,10 +15,17 @@ if (isset($_POST['submit'])) {
   $date_created  = date("Y-m-d h:i:s");
   $date_modified = date("Y-m-d h:i:s");
 
+  mysqli_query($conn, "insert into users(firstname, lastname, email, password, type, status) values('$firstname','$lastname','$email','$password','$type','$status')")  or die("Query 3 is incorrect.....");
+
+  $upload_user = mysqli_query($conn, "SELECT id FROM users WHERE email='$email'");
+  while ($res = mysqli_fetch_array($upload_user)) {
+    $user_id = $res['id'];
+  }
+
   if ($type == 'faculty') {
-    mysqli_query($conn, "insert into faculty(faculty_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
+    mysqli_query($conn, "insert into faculty(user_id, faculty_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified', '$status')")  or die("Query 2 is incorrect.....");
   } elseif ($type == 'student') {
-    mysqli_query($conn, "insert into student(student_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
+    mysqli_query($conn, "insert into student(student_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
   }
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' Added!.")</script>';
   if ($user == "admin") {

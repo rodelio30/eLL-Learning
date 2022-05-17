@@ -13,7 +13,6 @@ if (isset($_POST['submit_admin'])) {
   $res = json_decode(login($conn, $email, $password));
   if (sizeof($res) > 0) {
 
-
     $_SESSION['logged'] = true;
     $_SESSION['id'] = $res[0]->id;
 
@@ -21,9 +20,13 @@ if (isset($_POST['submit_admin'])) {
       echo "<script type='text/javascript'>alert('Hello Admin');
             document.location='index.php' </script>";
     }
+    if ($res[0]->type === 'faculty') {
+      echo "<script type='text/javascript'>alert('Hello Faculty');
+            document.location='faculty/faculty.php' </script>";
+    }
     if ($res[0]->type === 'student') {
       echo "<script type='text/javascript'>alert('Hello Student');
-            document.location='student.php' </script>";
+            document.location='index.php' </script>";
     }
   } else {
     echo "<script type='text/javascript'>alert('Username or Password was incorrect.');
