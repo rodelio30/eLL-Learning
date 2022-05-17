@@ -23,6 +23,7 @@ $faculty_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$faculty_id'");
 while ($res   = mysqli_fetch_array($result)) {
+  $id_no       = $res['faculty_id_no'];
   $firstname   = $res['firstname'];
   $lastname    = $res['lastname'];
   $course      = $res['course'];
@@ -174,6 +175,12 @@ if ($status == "active") {
                 </div>
                 <div class="card-body">
                   <form method="post">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">ID No</label>
+                      <input type="text" class="form-control" id="firstname" name="firstname"
+                        value="<?php echo $id_no ?>" placeholder="Enter email">
+                    </div>
+                    <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Firstname</label>
                       <input type="text" class="form-control" id="firstname" name="firstname"
