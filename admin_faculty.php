@@ -40,6 +40,8 @@ $user = "faculty"
 
   <link href="css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -185,10 +187,45 @@ $user = "faculty"
               </div>
             </div>
           </div>
+          <!-- End of Faculty List -->
 
         </div>
       </main>
 
+      <main class="content">
+        <div class="container-fluid p-0">
+          <h1 class="h3 mb-3"><strong>Faculty</strong> List with quick Search</h1>
+          <div class="row">
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <h5 class="card-title mb-0">Latest Users</h5>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <div class="input-group ms-2">
+                          <input type="text" name="search_text" id="search_text" placeholder="Search by Faculty Details"
+                            class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <a <?php echo "href=\"user_add.php?user=$user\" " ?> style="float: right"
+                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Faculty User</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-header">
+                  <br />
+                  <div id="result"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
       <footer class="footer">
         <div class="container-fluid">
           <div class="row text-muted">
@@ -206,6 +243,34 @@ $user = "faculty"
   </div>
 
   <script src="js/app.js"></script>
+
 </body>
 
 </html>
+<script>
+$(document).ready(function() {
+
+  load_data();
+
+  function load_data(query) {
+    $.ajax({
+      url: "fetch.php",
+      method: "POST",
+      data: {
+        query: query
+      },
+      success: function(data) {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search_text').keyup(function() {
+    var search = $(this).val();
+    if (search != '') {
+      load_data(search);
+    } else {
+      load_data();
+    }
+  });
+});
+</script>
