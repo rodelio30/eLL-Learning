@@ -39,6 +39,7 @@ $student = "student";
 
   <link href="css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -66,13 +67,13 @@ $student = "student";
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
             </a>
           </li>
 
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_student.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
           </li>
 
@@ -137,58 +138,36 @@ $student = "student";
 
       <main class="content">
         <div class="container-fluid p-0">
-
-          <h1 class="h3 mb-3"><strong>Student List</strong> </h1>
+          <h1 class="h3 mb-3"><strong>Student</strong> List</h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <div class="row">
                     <div class="col-md-4">
-                      <h5 class="card-title mb-0">Latest Users</h5>
+                      <div class="form-group">
+                        <div class="input-group ms-2">
+                          <input type="text" name="search_text" id="search_text" placeholder="Search by Student Details"
+                            class="form-control" />
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-md-8">
-                      <a <?php echo "href=\"user_add.php?user=$student \" " ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span> Add Student User</a>
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                      <a <?php echo "href=\"user_add.php?user=$student\" " ?> style="float: right"
+                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Student User</a>
                     </div>
                   </div>
                 </div>
-                <table class="table table-hover my-0">
-                  <thead>
-                    <tr>
-                      <th class="d-none d-xl-table-cell">ID No.</th>
-                      <th class="d-none d-xl-table-cell">Firstname</th>
-                      <th class="d-none d-xl-table-cell">Lastname</th>
-                      <th class="d-none d-md-table-cell">Status</th>
-                      <th class="d-none d-md-table-cell float-end me-3">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $result = mysqli_query($conn, "select student_id, student_id_no, firstname, lastname, email, status from student WHERE status='active' ORDER BY student_id") or die("Query 1 is incorrect....");
-                    while (list($student_id, $student_id_no, $firstname, $lastname, $email, $status) = mysqli_fetch_array($result)) {
-                      echo "
-														<tr>	
-															<td class='d-none d-xl-table-cell'><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$student_id_no</a></td>
-															<td class='d-none d-xl-table-cell'><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$firstname</a></td>
-															<td class='d-none d-xl-table-cell'><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$lastname</a></td>
-															<td class='d-none d-xl-table-cell'>$status</td>
-															<td class='d-none d-xl-table-cell'>
-															<a href=\"archive/admin_student_archive.php?ID=$student_id\" onClick=\"return confirm('Are you sure about that?')\" class='btn btn-warning btn-md float-end'><span data-feather='archive'></span> Archive</a>
-															</td>
-														</tr>	
-													";
-                    }
-                    ?>
-                  </tbody>
-                </table>
+                <div class="card-header">
+                  <div id="result"></div>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </main>
-
       <footer class="footer">
         <div class="container-fluid">
           <div class="row text-muted">
@@ -209,3 +188,30 @@ $student = "student";
 </body>
 
 </html>
+<script>
+$(document).ready(function() {
+
+  load_data();
+
+  function load_data(query) {
+    $.ajax({
+      url: "fetch_student.php",
+      method: "POST",
+      data: {
+        query: query
+      },
+      success: function(data) {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search_text').keyup(function() {
+    var search = $(this).val();
+    if (search != '') {
+      load_data(search);
+    } else {
+      load_data();
+    }
+  });
+});
+</script>

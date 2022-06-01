@@ -41,6 +41,7 @@ include 'admin_checker.php';
 
   <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -68,13 +69,13 @@ include 'admin_checker.php';
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
             </a>
           </li>
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
           </li>
 
@@ -238,6 +239,51 @@ include 'admin_checker.php';
         </div>
       </main>
 
+      <main class="content">
+        <div class="container-fluid p-0">
+          <h1 class="h3 mb-3"><strong>Document</strong> List</h1>
+          <div class="row">
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <div class="input-group ms-2">
+                          <input type="text" name="search_text" id="search_text"
+                            placeholder="Search by Document Details" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                      <a <?php echo "href=\"faculty_document_add.php\"" ?> style="float: right"
+                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add New Document</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="row m-1">
+                  <div class="col-12">
+                    <div class="card-box">
+                      <div class="row">
+                        <div class="col-lg-6 col-xl-6">
+                          <h1 class="header-title m-b-30">Language and Literature Files</h1>
+                        </div>
+                      </div>
+                      <div class="row" style="background-color: pink">
+                        <div id="result"></div>
+                      </div>
+                    </div>
+                  </div> <!-- end col -->
+                </div> <!-- end row -->
+                <!-- container -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
       <footer class="footer">
         <div class="container-fluid">
           <div class="row text-muted">
@@ -272,92 +318,51 @@ include 'admin_checker.php';
 
   <script src="js/app.js"></script>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-    var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-    gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-    gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-    // Line chart
-    new Chart(document.getElementById("chartjs-dashboard-line"), {
-      type: "line",
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Sales ($)",
-          fill: true,
-          backgroundColor: gradient,
-          borderColor: window.theme.primary,
-          data: [
-            2115,
-            1562,
-            1584,
-            1892,
-            1587,
-            1923,
-            2566,
-            2448,
-            2805,
-            3438,
-            2917,
-            3327
-          ]
-        }]
-      },
-      options: {
-        maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
-        tooltips: {
-          intersect: false
-        },
-        hover: {
-          intersect: true
-        },
-        plugins: {
-          filler: {
-            propagate: false
-          }
-        },
-        scales: {
-          xAxes: [{
-            reverse: true,
-            gridLines: {
-              color: "rgba(0,0,0,0.0)"
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              stepSize: 1000
-            },
-            display: true,
-            borderDash: [3, 3],
-            gridLines: {
-              color: "rgba(0,0,0,0.0)"
-            }
-          }]
-        }
-      }
-    });
-  });
-  </script>
   <script src="jquery/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
-  <script src="datatable/jquery.dataTables.min.js"></script>
-  <script src="datatable/dataTable.bootstrap.min.js"></script>
-  <!-- generate datatable on our table -->
-  <script>
-  $(document).ready(function() {
-    //inialize datatable
-    $('#myTable').DataTable();
-
-    //hide alert
-    $(document).on('click', '.close', function() {
-      $('.alert').hide();
-    })
-  });
-  </script>
 </body>
 
 </html>
+<script>
+$(document).ready(function() {
+
+  load_data();
+
+  function load_data(query) {
+    $.ajax({
+      url: "fetch_document.php",
+      method: "POST",
+      data: {
+        query: query
+      },
+      success: function(data) {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search_text').keyup(function() {
+    var search = $(this).val();
+    if (search != '') {
+      load_data(search);
+    } else {
+      load_data();
+    }
+  });
+});
+</script>
+<!-- This is for fetch document  -->
+
+<!-- <div class="file-man-box"><a href="archive/admin_document_archive.php?ID=' . $row["doc_id"] . '" onclick="return confirm(\'are you sure you want this user go to archive?\');" class="file-close"><i class="fa fa-times-circle"></i></a>
+<div class="file-img-box"><img src="img/photos/' . $icon_img  . '.svg" alt="icon"></div><a href="uploads/' . $row["title"] . '.' . $row["file_type"] . '" target="_blank" class="file-download"><i class="fa fa-download"></i></a>
+  <div class="file-man-title">
+    <h5 class="mb-1"><a href="admin_document_view.php?ID= ' . $row["doc_id"] . ' " class="document-clicker">' . $row["title"] . '</a></h5>
+    <p class="mb-0"><small>' . $size . ' </small></p>
+    <small>Added: <span class="date text-muted">$date</span></small>
+  </div>
+  <hr>
+  <div class="mt-1">
+    <p class="mb-0"><small>Description</small></p>
+    <small><span class="date text-muted">' . $row["description"] . '</span></small>
+  </div>
+</div>
+</div> -->
