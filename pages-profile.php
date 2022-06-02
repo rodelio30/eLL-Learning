@@ -64,13 +64,13 @@ if ($type == 'student') {
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
             </a>
           </li>
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
           </li>
 

@@ -69,13 +69,13 @@ $user = "faculty"
 
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
             </a>
           </li>
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
           </li>
 
@@ -140,69 +140,12 @@ $user = "faculty"
 
       <main class="content">
         <div class="container-fluid p-0">
-
           <h1 class="h3 mb-3"><strong>Faculty</strong> List</h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <div class="row">
-                    <div class="col-md-4">
-                      <h5 class="card-title mb-0">Latest Users</h5>
-                    </div>
-                    <div class="col-md-8">
-
-                      <a <?php echo "href=\"user_add.php?user=$user\" " ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Faculty User</a>
-                    </div>
-                  </div>
-                </div>
-                <table class="table table-hover my-0">
-                  <thead>
-                    <tr>
-                      <th class="d-none d-xl-table-cell">Firstname</th>
-                      <th class="d-none d-xl-table-cell">Lastname</th>
-                      <th class="d-none d-xl-table-cell">Status</th>
-                      <th class="d-none d-md-table-cell float-end me-3">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $result = mysqli_query($conn, "select faculty_id, firstname, lastname, status from faculty WHERE status='active' ORDER BY faculty_id") or die("Query 1 is incorrect....");
-                    while (list($faculty_id, $firstname, $lastname, $status) = mysqli_fetch_array($result)) {
-                      echo "
-														<tr>	
-															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$firstname</a></td>
-															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$lastname</a></td>
-															<td class='d-none d-xl-table-cell'>$status</td>
-															<td class='d-none d-xl-table-cell'>
-															<a href=\"archive/admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user go to archive?')\" class='btn btn-warning btn-md float-end'><span data-feather='archive'></span>&nbsp Archive</a>
-															</td>
-														</tr>	
-													";
-                    }
-                    ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <!-- End of Faculty List -->
-
-        </div>
-      </main>
-
-      <main class="content">
-        <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Faculty</strong> List with quick Search</h1>
-          <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <h5 class="card-title mb-0">Latest Users</h5>
-                    </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <div class="input-group ms-2">
@@ -212,13 +155,14 @@ $user = "faculty"
                       </div>
                     </div>
                     <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
                       <a <?php echo "href=\"user_add.php?user=$user\" " ?> style="float: right"
                         class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Faculty User</a>
                     </div>
                   </div>
                 </div>
                 <div class="card-header">
-                  <br />
                   <div id="result"></div>
                 </div>
               </div>
@@ -254,7 +198,7 @@ $(document).ready(function() {
 
   function load_data(query) {
     $.ajax({
-      url: "fetch.php",
+      url: "fetch_faculty.php",
       method: "POST",
       data: {
         query: query

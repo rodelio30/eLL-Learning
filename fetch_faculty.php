@@ -2,8 +2,6 @@
 //fetch.php
 include 'admin_checker.php';
 $output = '';
-$active = 'active';
-
 $faculty_counter = 0;
 
 $sql_faculty = "SELECT faculty_id FROM faculty WHERE status = 'active' ";
@@ -45,21 +43,21 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result)) {
       $output .= '
    <tr>
-    <td class="d-none d-xl-table-cell">' . $row["firstname"] . '</td>
-    <td class="d-none d-xl-table-cell">' . $row["lastname"] . '</td>
+    <td class="d-none d-xl-table-cell"><a href="admin_faculty_view.php?ID= ' . $row["faculty_id"] . ' " class="user-clicker">' . $row["firstname"] . '</a></td>
+    <td class="d-none d-xl-table-cell"><a href="admin_faculty_view.php?ID= ' . $row["faculty_id"] . ' " class="user-clicker">' . $row["lastname"] . '</a></td>
     <td class="d-none d-xl-table-cell">' . $row["status"] . '</td>
     <td class="d-none d-xl-table-cell">
-    <a href=archive/admin_faculty_archive.php?ID=' . $row["faculty_id"] . ' onClick=\"return confirm("Are you sure you want this user go to archive?")\" class="btn btn-warning btn-md float-end"><span data-feather="archive"></span>&nbsp Archive</a>
+    <a href=archive/admin_faculty_archive.php?ID=' . $row["faculty_id"] . ' onclick="return confirm(\'are you sure you want this user go to archive?\');" class="btn btn-warning btn-md float-end"><span><img src="img/icons/archive.png" style="width:15px"></span>&nbsp Archive</a>
     </td>
    </tr>
   ';
     }
   } else {
     echo "<h1 class='m-4'><b><center>Faculty Data not Found</center></b></h1>";
-    echo "<img src='img/icons/empty-docu.png' alt='icon' class='mb-4 archive_photo_size'>";
+    echo "<img src='img/photos/empty.png' alt='icon' class='mb-4 archive_photo_size'>";
   }
   echo $output;
 } else {
   echo "<h1 class='m-4'><b><center>Data Not Found</center></b></h1>";
-  echo "<img src='img/icons/empty-docu.png' alt='icon' class='mb-4 archive_photo_size'>";
+  echo "<img src='img/photos/empty.png' alt='icon' class='mb-4 archive_photo_size'>";
 }

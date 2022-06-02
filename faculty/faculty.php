@@ -145,12 +145,6 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
             </a>
           </li>
@@ -223,26 +217,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
           <div class="row">
             <div class="w-100">
               <div class="row">
-                <div class="col-sm-3">
-                  <div class="card">
-                    <a href="#">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col mt-0">
-                            <h5 class="card-title">Faculty</h5>
-                          </div>
-                          <div class="col-auto">
-                            <div class="stat text-primary">
-                              <i class="align-middle" data-feather="users"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="mt-4 float-end" style="color: gray">view</p>
-                        <h1 class="mt-1 mb-3 ms-3"><?php echo $faculty_counter ?></h1>
-                      </div>
-                  </div></a>
-                </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="card">
                     <a href="#">
                       <div class="card-body">
@@ -261,7 +236,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                       </div>
                   </div></a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="card">
                     <a href="#">
                       <div class="card-body">
@@ -282,7 +257,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                   </div>
                   </a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="card">
                     <a href="#">
                       <div class="card-body">
