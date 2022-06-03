@@ -1,8 +1,8 @@
 <?php
-include 'admin_checker.php';
 date_default_timezone_set("Asia/Manila");
 
-$id = $_SESSION['id'];
+include 'admin_checker.php';
+// $id = $_SESSION['id'];
 
 $query = mysqli_query($conn, "select id, firstname from users where id='$id'") or die("query 1 incorrect.......");
 list($uploader_id, $uploader) = mysqli_fetch_array($query);

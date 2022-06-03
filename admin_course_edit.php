@@ -1,22 +1,42 @@
 <?php
 include 'admin_checker.php';
-$student = "student";
-// date_default_timezone_set("Asia/Manila");
-// session_start();
-// if(!isset($_SESSION['logged'])){
-//   header("location: public.php");
-// }
-// include ('include/connect.php');
-// $id=$_SESSION['id'];
+date_default_timezone_set("Asia/Manila");
 
-// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-// list($id,$type)=mysqli_fetch_array($query);
+if (isset($_POST['update'])) {
+  $course_id   = $_POST['course_id'];
+  $name        = $_POST['name'];
+  $description = $_POST['description'];
+  $status      = $_POST['status'];
+  $date_modified = date("Y-m-d h:i:s");
 
-// if($type=='student'){
-//   header("location: student.php");
-// }
+  // echo "<script>console.log('" . $email . "');</script>";
+  mysqli_query($conn, "update courses set name = '$name', description = '$description', date_modified = '$date_modified' where course_id = '$course_id'") or die("Query 4 is incorrect....");
+  echo '<script type="text/javascript"> alert("' . $name . ' Course updated!.")</script>';
+  header('Refresh: 0; url=admin_course_view.php?ID=' . $_GET['ID'] . '');
+}
 
+$course_id = $_GET['ID'];
+
+$result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
+while ($res   = mysqli_fetch_array($result)) {
+  $name        = $res['name'];
+  $description = $res['description'];
+  $status      = $res['status'];
+}
+
+$sel_active  = "";
+$sel_archive = "";
+
+if ($status == "active") {
+  $sel_active  = "selected";
+} else if ($status == "archive") {
+  $sel_archive = "selected";
+}
+
+// $message = "Today is " . date("Y-m-d h:i:s");
+// echo "<script>console.log('" . $message . "');</script>";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +59,6 @@ $student = "student";
 
   <link href="css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -49,7 +68,6 @@ $student = "student";
         <a class="sidebar-brand" href="index.php">
           <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
-
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Pages
@@ -67,11 +85,11 @@ $student = "student";
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">course</span>
             </a>
           </li>
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
@@ -79,7 +97,7 @@ $student = "student";
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -152,36 +170,55 @@ $student = "student";
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Student</strong> List</h1>
-          <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <div class="input-group ms-2">
-                          <input type="text" name="search_text" id="search_text" placeholder="Search by Student Details"
-                            class="form-control" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
-                      <a <?php echo "href=\"user_add.php?user=$student\" " ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Student User</a>
-                    </div>
+
+          <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course
+              </a> /
+              <?php echo $name ?>
+              /
+              Edit Course Info</strong></h1>
+          </h1>
+          <h1 class="h3 mb-3">
+            <div class="row">
+              <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+                <div class="card flex-fill">
+                  <div class="card-header">
+                    <h5 class="card-title mb-0">User Form</h5>
                   </div>
-                </div>
-                <div class="card-header">
-                  <div id="result"></div>
+                  <div class="card-body">
+                    <form method="post">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Firstname</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>"
+                          placeholder="Enter Name">
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Description</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                          value="<?php echo $description ?>" placeholder="Description">
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label>User Type</label>
+                        <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
+                          <option value="active" <?php echo $sel_active ?>>Active</option>
+                          <option value="archive" <?php echo $sel_archive ?>>Inactive</option>
+                        </select>
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <input type="hidden" name="course_id" value="<?php echo $_GET['ID']; ?>">
+                        <button type="submit" class="btn btn-success" name="update">Update</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
         </div>
       </main>
+
       <footer class="footer">
         <div class="container-fluid">
           <div class="row text-muted">
@@ -202,30 +239,3 @@ $student = "student";
 </body>
 
 </html>
-<script>
-$(document).ready(function() {
-
-  load_data();
-
-  function load_data(query) {
-    $.ajax({
-      url: "fetch_student.php",
-      method: "POST",
-      data: {
-        query: query
-      },
-      success: function(data) {
-        $('#result').html(data);
-      }
-    });
-  }
-  $('#search_text').keyup(function() {
-    var search = $(this).val();
-    if (search != '') {
-      load_data(search);
-    } else {
-      load_data();
-    }
-  });
-});
-</script>

@@ -47,6 +47,17 @@ if ($result_document->num_rows > 0) {
   }
 }
 
+$courses_counter = 0;
+
+$sql_course = "SELECT course_id FROM courses WHERE status = 'archive' ";
+$result_course = $conn->query($sql_course);
+
+if ($result_course->num_rows > 0) {
+  while ($row = $result_course->fetch_assoc()) {
+    $courses_counter++;
+  }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -109,6 +120,20 @@ if ($result_document->num_rows > 0) {
           </li>
 
           <hr class="hr-size">
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_courses.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
+            </a>
+          </li>
+
+          <hr class="hr-size">
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_document.php">
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
+            </a>
+          </li>
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_document.php">
@@ -305,6 +330,66 @@ if ($result_document->num_rows > 0) {
 															<td class='d-none d-xl-table-cell'>
 															<a href=\"archive/admin_document_delete.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want to Delete this Document permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_document_active.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
+															</td>
+														</tr>	
+													";
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <div class="row">
+                    <?php
+                    if ($document_counter > 0) {
+                      echo "
+                    <div class='col-md-4'>
+                      <h5 class='card-title mb-0'>Archive Documents</h5>
+                  </div>
+                      ";
+                    } else {
+                      echo "";
+                    }
+
+                    ?>
+                  </div>
+                </div>
+                <table class="table table-hover my-0">
+                  <thead>
+                    <?php
+                    if ($courses_counter > 0) {
+                      echo "
+                        <tr>
+                          <th class='d-none d-xl-table-cell' style='width: 20%'>Name</th>
+                          <th class='d-none d-xl-table-cell' style='width: 20%'>Description</th>
+                          <th class='d-none d-xl-table-cell' style='width: 12%'>Status</th>
+                          <th class='d-none d-xl-table-cell' style='width: 24%'>Date Modified</th>
+                          <th class='d-none d-md-table-cell float-end me-3'>Action</th>
+                        </tr>
+                      ";
+                    } else {
+                      echo "<h1 class='m-4'><b><center>There is no Archive Course</center></b></h1>";
+                      echo "<img src='img/icons/empty-course.png' alt='icon' class='mb-4 archive_photo_size'>";
+                    }
+
+                    ?>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $result = mysqli_query($conn, "select course_id, name, description, status, date_modified from courses WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                    while (list($course_id, $name, $description, $status, $date_modified) = mysqli_fetch_array($result)) {
+                      echo "
+														<tr>	
+															<td class='d-none d-xl-table-cell'>$name</td>
+															<td class='d-none d-xl-table-cell'>$description</td>
+															<td class='d-none d-xl-table-cell'>$status</td>
+															<td class='d-none d-xl-table-cell'>$date_modified</td>
+															<td class='d-none d-xl-table-cell'>
+															<a href=\"archive/admin_course_delete.php?ID=$course_id\" onClick=\"return confirm('Are you sure you want to Delete this Course permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
+															<a href=\"archive/admin_course_active.php?ID=$course_id\" onClick=\"return confirm('Are you sure you want this Course be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";

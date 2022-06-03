@@ -81,7 +81,21 @@ include 'admin_checker.php';
 
           <hr class="hr-size">
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_courses.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
+            </a>
+          </li>
+
+          <hr class="hr-size">
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_document.php">
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>

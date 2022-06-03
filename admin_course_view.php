@@ -1,22 +1,19 @@
 <?php
 include 'admin_checker.php';
-$student = "student";
-// date_default_timezone_set("Asia/Manila");
-// session_start();
-// if(!isset($_SESSION['logged'])){
-//   header("location: public.php");
-// }
-// include ('include/connect.php');
-// $id=$_SESSION['id'];
 
-// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-// list($id,$type)=mysqli_fetch_array($query);
+$course_id = $_GET['ID'];
 
-// if($type=='student'){
-//   header("location: student.php");
-// }
-
+$result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
+while ($res   = mysqli_fetch_array($result)) {
+  $course_id     = $res['course_id'];
+  $name          = $res['name'];
+  $description   = $res['description'];
+  $date_created  = $res['date_created'];
+  $date_modified = $res['date_modified'];
+  $status        = $res['status'];
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +36,6 @@ $student = "student";
 
   <link href="css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -49,7 +45,6 @@ $student = "student";
         <a class="sidebar-brand" href="index.php">
           <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
-
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Pages
@@ -71,7 +66,7 @@ $student = "student";
             </a>
           </li>
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
@@ -79,7 +74,7 @@ $student = "student";
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -149,39 +144,106 @@ $student = "student";
           </ul>
         </div>
       </nav>
-
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Student</strong> List</h1>
-          <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <div class="input-group ms-2">
-                          <input type="text" name="search_text" id="search_text" placeholder="Search by Student Details"
-                            class="form-control" />
+          <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course
+              </a> /
+              <?php echo $name ?>
+            </strong>
+          </h1>
+          <div class="page-content">
+
+            <div class="row">
+              <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+                <div class="card-view flex-fill">
+                  <div class="main-body">
+                    <div class="row gutters-sm">
+                      <div class="col-md-12">
+                        <div class="card m-4 mt-2">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Full Name</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $name ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Description</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $description ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $status ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                          </div>
+                        </div>
+
+                        <div class="row gutters-sm">
+                          <div class="col-sm-12">
+                            <div class="card h-100 mt-0 mb-0 m-4">
+                              <div class="card-body">
+                                <h5 class="d-flex align-items-center mb-3"><b>About Course</b></h5>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="flatpickr-weekwrapper">Date Created</p>
+                                  </div>
+                                  <div class="col-sm-7">
+                                    <p class="flatpickr-weekwrapper"><?php echo $date_created ?></p>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="flatpickr-weekwrapper">Date Modified</p>
+                                  </div>
+                                  <div class="col-sm-7">
+                                    <p class="flatpickr-weekwrapper"><?php echo $date_modified ?></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <a class="btn btn-info ms-4 mb-2"
+                              <?php echo "href=\"admin_course_edit.php?ID=$course_id\" " ?>
+                              style="float: left;">Edit</a>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
-                      <a <?php echo "href=\"user_add.php?user=$student\" " ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Student User</a>
-                    </div>
+
                   </div>
-                </div>
-                <div class="card-header">
-                  <div id="result"></div>
+                  <!-- </div> -->
+                  <!-- </div> -->
                 </div>
               </div>
             </div>
+            <!-- end of row -->
           </div>
         </div>
       </main>
+
       <footer class="footer">
         <div class="container-fluid">
           <div class="row text-muted">
@@ -202,30 +264,3 @@ $student = "student";
 </body>
 
 </html>
-<script>
-$(document).ready(function() {
-
-  load_data();
-
-  function load_data(query) {
-    $.ajax({
-      url: "fetch_student.php",
-      method: "POST",
-      data: {
-        query: query
-      },
-      success: function(data) {
-        $('#result').html(data);
-      }
-    });
-  }
-  $('#search_text').keyup(function() {
-    var search = $(this).val();
-    if (search != '') {
-      load_data(search);
-    } else {
-      load_data();
-    }
-  });
-});
-</script>
