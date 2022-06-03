@@ -57,7 +57,7 @@ if (mysqli_num_rows($result) > 0) {
       }
       $output .= '
    <tr>
-    <td class="d-none d-xl-table-cell"><a href="admin_document_view.php?ID=26 " class="user-clicker">' . $row["title"] . '.' . $row["file_type"] . ' </a></td>
+    <td class="d-none d-xl-table-cell"><a href="admin_document_view.php?ID=' . $row["doc_id"] . ' " class="user-clicker">' . $row["title"] . '.' . $row["file_type"] . ' </a></td>
     <td class="d-none d-xl-table-cell">' . $size . '</td>
     <td class="d-none d-xl-table-cell">' . $row["date_modified"] . '</td>
     <td class="d-none d-xl-table-cell">' . $row["status"] . '</td>

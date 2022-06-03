@@ -19,6 +19,8 @@ include 'admin_checker.php';
 $faculty_counter  = 0;
 $student_counter  = 0;
 $document_counter = 0;
+$course_counter   = 0;
+
 $archive_faculty  = 0;
 $archive_student  = 0;
 $archive_document = 0;
@@ -60,6 +62,18 @@ if ($result_document->num_rows > 0) {
   $document_counter = 'Empty Document';
 }
 
+
+// This line is counting for the number of Courses 
+$sql_course    = "SELECT course_id FROM courses";
+$result_course = $conn->query($sql_course);
+
+if ($result_course->num_rows > 0) {
+  while ($row = $result_course->fetch_assoc()) {
+    $course_counter++;
+  }
+} else {
+  $course_counter = 'Empty Courses';
+}
 
 // This line is Counting for the number of Archive User it's either Faculty or Student
 $sql_archive = "SELECT faculty_id FROM faculty WHERE status = 'archive'";
@@ -156,6 +170,20 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
           </li>
 
           <hr class="hr-size">
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_courses.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
+            </a>
+          </li>
+
+          <hr class="hr-size">
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_document.php">
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
+            </a>
+          </li>
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_document.php">
@@ -263,11 +291,11 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                 </div>
                 <div class="col-sm-3">
                   <div class="card">
-                    <a href="admin_document.php">
+                    <a href="admin_courses.php">
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Documents</h5>
+                            <h5 class="card-title">Course</h5>
                           </div>
 
                           <div class="col-auto">
@@ -277,18 +305,18 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                           </div>
                         </div>
                         <p class="mt-4 float-end" style="color: gray">view</p>
-                        <h1 class="mt-1 mb-3 ms-3"><?php echo $document_counter ?></h1>
+                        <h1 class="mt-1 mb-3 ms-3"><?php echo $course_counter ?></h1>
                       </div>
                   </div>
                   </a>
                 </div>
                 <div class="col-sm-3">
                   <div class="card">
-                    <a href="admin_archive_view.php">
+                    <a href="admin_document.php">
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Archive</h5>
+                            <h5 class="card-title">Documents</h5>
                           </div>
 
                           <div class="col-auto">
@@ -298,7 +326,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                           </div>
                         </div>
                         <p class="mt-4 float-end" style="color: gray">view</p>
-                        <h1 class="mt-1 mb-3 ms-3"><?php echo $archive_counter ?></h1>
+                        <h1 class="mt-1 mb-3 ms-3"><?php echo $document_counter ?></h1>
                       </div>
                     </a>
                   </div>

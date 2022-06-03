@@ -1,21 +1,5 @@
 <?php
 include 'admin_checker.php';
-$student = "student";
-// date_default_timezone_set("Asia/Manila");
-// session_start();
-// if(!isset($_SESSION['logged'])){
-//   header("location: public.php");
-// }
-// include ('include/connect.php');
-// $id=$_SESSION['id'];
-
-// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-// list($id,$type)=mysqli_fetch_array($query);
-
-// if($type=='student'){
-//   header("location: student.php");
-// }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +33,6 @@ $student = "student";
         <a class="sidebar-brand" href="index.php">
           <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
-
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Pages
@@ -71,7 +54,7 @@ $student = "student";
             </a>
           </li>
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
@@ -79,7 +62,7 @@ $student = "student";
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -106,6 +89,7 @@ $student = "student";
               <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+
           <div id="oras" class="clock-position ms-4 mb-2">
             <div id="clock">
               <div id="dates"></div>
@@ -113,6 +97,7 @@ $student = "student";
             </div>
           </div>
           <script src="js/time_script.js"></script>
+
       </div>
     </nav>
 
@@ -152,7 +137,7 @@ $student = "student";
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Student</strong> List</h1>
+          <h1 class="h3 mb-3"><strong>Course</strong> List</h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
@@ -161,7 +146,7 @@ $student = "student";
                     <div class="col-md-4">
                       <div class="form-group">
                         <div class="input-group ms-2">
-                          <input type="text" name="search_text" id="search_text" placeholder="Search by Student Details"
+                          <input type="text" name="search_text" id="search_text" placeholder="Search by Faculty Details"
                             class="form-control" />
                         </div>
                       </div>
@@ -169,8 +154,8 @@ $student = "student";
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-4">
-                      <a <?php echo "href=\"user_add.php?user=$student\" " ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Student User</a>
+                      <a <?php echo "href=\"course_add.php\" " ?> style="float: right" class="btn btn-success"><span
+                          data-feather="user-plus"></span>&nbsp Add New Course</a>
                     </div>
                   </div>
                 </div>
@@ -182,6 +167,7 @@ $student = "student";
           </div>
         </div>
       </main>
+
       <footer class="footer">
         <div class="container-fluid">
           <div class="row text-muted">
@@ -209,7 +195,7 @@ $(document).ready(function() {
 
   function load_data(query) {
     $.ajax({
-      url: "fetch_student.php",
+      url: "fetch_courses.php",
       method: "POST",
       data: {
         query: query

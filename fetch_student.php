@@ -43,8 +43,8 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result)) {
       $output .= '
    <tr>
-    <td class="d-none d-xl-table-cell"><a href="admin_student_view.php?ID= ' . $row["student_id"] . ' " class="user-clicker">' . $row["firstname"] . '</a></td>
-    <td class="d-none d-xl-table-cell"><a href="admin_student_view.php?ID= ' . $row["student_id"] . ' " class="user-clicker">' . $row["lastname"] . '</a></td>
+    <td class="d-none d-xl-table-cell"><a href="admin_student_view.php?ID=' . $row["student_id"] . ' " class="user-clicker">' . $row["firstname"] . '</a></td>
+    <td class="d-none d-xl-table-cell"><a href="admin_student_view.php?ID=' . $row["student_id"] . ' " class="user-clicker">' . $row["lastname"] . '</a></td>
     <td class="d-none d-xl-table-cell">' . $row["status"] . '</td>
     <td class="d-none d-xl-table-cell">
     <a href=archive/admin_student_archive.php?ID=' . $row["student_id"] . ' onclick="return confirm(\'Are you sure you want this user go to archive?\');" class="btn btn-warning btn-md float-end"><span><img src="img/icons/archive.png" style="width:15px"></span>&nbsp Archive</a>
