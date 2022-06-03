@@ -139,7 +139,7 @@ include 'admin_checker.php';
         </div>
       </nav>
 
-      <main class="content">
+      <!-- <main class="content">
         <div class="container-fluid p-0">
           <h1 class="h3 mb-3"><strong>Document</strong> List</h1>
           <div class="row">
@@ -166,7 +166,8 @@ include 'admin_checker.php';
                       </div>
 
                       <div class="row">
-                        <?php $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, description, file_uploader_id, file_uploader, date, date_created from document WHERE status!='archive' ORDER BY doc_id") or die("Query for document is incorrect....");
+                        <?php
+                        $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, description, file_uploader_id, file_uploader, date, date_created from document WHERE status!='archive' ORDER BY doc_id") or die("Query for document is incorrect....");
                         while (list($doc_id, $title, $file_size, $file_type, $description, $file_uploader_id, $file_uploader, $date, $date_created) = mysqli_fetch_array($result)) {
                           $size       = formatSizeUnits2($file_size);
                           $icon_img   = '';
@@ -222,22 +223,14 @@ include 'admin_checker.php';
                         }
                         ?>
                       </div>
-                      <!-- <div class="text-center mt-3">
-                            <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light"><i
-                                class="mdi mdi-refresh"></i> Load More Files</button>
-                          </div> -->
                     </div>
                   </div>
-                  <!-- end col -->
                 </div>
-                <!-- end row -->
-                <!-- container -->
               </div>
             </div>
           </div>
-
         </div>
-      </main>
+      </main> -->
 
       <main class="content">
         <div class="container-fluid p-0">
@@ -271,9 +264,7 @@ include 'admin_checker.php';
                           <h1 class="header-title m-b-30">Language and Literature Files</h1>
                         </div>
                       </div>
-                      <div class="row" style="background-color: pink">
-                        <div id="result"></div>
-                      </div>
+                      <div id="result"></div>
                     </div>
                   </div> <!-- end col -->
                 </div> <!-- end row -->
@@ -293,22 +284,6 @@ include 'admin_checker.php';
                 powered by
                 <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
-            </div>
-            <div class="col-6 text-end">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
@@ -352,10 +327,14 @@ $(document).ready(function() {
 </script>
 <!-- This is for fetch document  -->
 
-<!-- <div class="file-man-box"><a href="archive/admin_document_archive.php?ID=' . $row["doc_id"] . '" onclick="return confirm(\'are you sure you want this user go to archive?\');" class="file-close"><i class="fa fa-times-circle"></i></a>
-<div class="file-img-box"><img src="img/photos/' . $icon_img  . '.svg" alt="icon"></div><a href="uploads/' . $row["title"] . '.' . $row["file_type"] . '" target="_blank" class="file-download"><i class="fa fa-download"></i></a>
+<!-- <div class="file-man-box"><a href="archive/admin_document_archive.php?ID=' . $row[" doc_id"]
+    . '" onclick="return confirm(\' are you sure you want this user go to archive?\');" class="file-close"><i
+      class="fa fa-times-circle"></i></a>
+  <div class="file-img-box"><img src="img/photos/' . $icon_img  . '.svg" alt="icon"></div><a href="uploads/' . $row["
+    title"] . '.' . $row["file_type"] . '" target="_blank" class="file-download"><i class="fa fa-download"></i></a>
   <div class="file-man-title">
-    <h5 class="mb-1"><a href="admin_document_view.php?ID= ' . $row["doc_id"] . ' " class="document-clicker">' . $row["title"] . '</a></h5>
+    <h5 class="mb-1"><a href="admin_document_view.php?ID= ' . $row["doc_id"] . ' " class="document-clicker">' .
+    $row["title"] . '</a></h5>
     <p class="mb-0"><small>' . $size . ' </small></p>
     <small>Added: <span class="date text-muted">$date</span></small>
   </div>

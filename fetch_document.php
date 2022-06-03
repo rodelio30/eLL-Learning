@@ -24,14 +24,23 @@ if (isset($_POST["query"])) {
  ";
 } else {
   $query = "
-  SELECT * FROM document WHERE status = 'active' ORDER BY doc_id
+  SELECT * FROM document WHERE status = 'active' ORDER BY date_modified
  ";
 }
 $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) > 0) {
   if ($document_counter > 0) {
-    echo "<div class='col'>";
     $output .= '
+      <table class="table table-hover my-0"> <thead>
+        <tr>
+        <th class="d-none d-xl-table-cell">Title</th>
+        <th class="d-none d-xl-table-cell">File Size</th>
+        <th class="d-none d-xl-table-cell">Date Modified</th>
+        <th class="d-none d-xl-table-cell">Status</th>
+        <th class="d-none d-xl-table-cell float-start ms-5">Action</th>
+        </tr>
+      </thead>
+      <tbody>
     ';
     while ($row = mysqli_fetch_array($result)) {
       $size       = formatSizeUnits2($row["file_size"]);
@@ -47,10 +56,17 @@ if (mysqli_num_rows($result) > 0) {
         $icon_img   = 'txt';
       }
       $output .= '
-      1 of 2
-    </div>
-      2 of 2
-    </div>
+   <tr>
+    <td class="d-none d-xl-table-cell"><a href="admin_document_view.php?ID=26 " class="user-clicker">' . $row["title"] . '.' . $row["file_type"] . ' </a></td>
+    <td class="d-none d-xl-table-cell">' . $size . '</td>
+    <td class="d-none d-xl-table-cell">' . $row["date_modified"] . '</td>
+    <td class="d-none d-xl-table-cell">' . $row["status"] . '</td>
+    <td class="d-none d-xl-table-cell">
+    <a href=archive/admin_document_archive.php?ID=' . $row["doc_id"] . ' onclick="return confirm(\'are you sure you want this document go to archive?\');" class="btn btn-warning btn-md float-end"><span><img src="img/icons/archive.png" style="width:15px"></span>&nbsp Archive</a>
+    
+    <a href=uploads/' . $row["title"] . '.' . $row["file_type"] . ' target="_blank" class="btn btn-primary btn-md float-end me-1"><span><img src="img/icons/archive.png" style="width:15px"></span>&nbsp Download</a>
+    </td>
+   </tr>
       ';
     }
   } else {
