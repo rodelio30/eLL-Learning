@@ -178,19 +178,19 @@ if ($status == "active") {
                     <div class="form-group">
                       <label for="exampleInputEmail1">ID No</label>
                       <input type="text" class="form-control" id="firstname" name="firstname"
-                        value="<?php echo $id_no ?>" placeholder="Enter email">
+                        value="<?php echo $id_no ?>" placeholder="Enter ID No">
                     </div>
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Firstname</label>
                       <input type="text" class="form-control" id="firstname" name="firstname"
-                        value="<?php echo $firstname ?>" placeholder="Enter email">
+                        value="<?php echo $firstname ?>" placeholder="Enter Firstname">
                     </div>
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Lastname</label>
                       <input type="text" class="form-control" id="lastname" name="lastname"
-                        value="<?php echo $lastname ?>" placeholder="Enter email">
+                        value="<?php echo $lastname ?>" placeholder="Enter Lastname">
                     </div>
                     <br>
                     <div class="form-group">
