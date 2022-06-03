@@ -183,7 +183,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
-              <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
+              <img src="../assets/img/course-1.jpg" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   <h4>Web Development</h4>
@@ -195,7 +195,7 @@
                   tempore.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+                    <img src="../assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
                     <span>Antonio</span>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
@@ -210,7 +210,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="course-item">
-              <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
+              <img src="../assets/img/course-2.jpg" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   <h4>Marketing</h4>
@@ -222,7 +222,7 @@
                   tempore.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+                    <img src="../assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
                     <span>Lana</span>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
@@ -237,7 +237,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
             <div class="course-item">
-              <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
+              <img src="../assets/img/course-3.jpg" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   <h4>Content</h4>
@@ -249,7 +249,7 @@
                   tempore.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
+                    <img src="../assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
                     <span>Brandon</span>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
@@ -271,10 +271,15 @@
     <section id="trainers" class="trainers">
       <div class="container" data-aos="fade-up">
 
+        <div class="section-title">
+          <h2>Faculty</h2>
+          <p>Faculty List</p>
+        </div>
+
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+              <img src="../assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>Walter White</h4>
                 <span>Web Development</span>
@@ -294,7 +299,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+              <img src="../assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>Sarah Jhinson</h4>
                 <span>Marketing</span>
@@ -314,7 +319,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
+              <img src="../assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>William Anderson</h4>
                 <span>Content</span>
