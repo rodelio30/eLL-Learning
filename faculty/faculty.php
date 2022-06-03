@@ -1,5 +1,5 @@
 <?php
-include 'admin_checker.php';
+include '../admin_checker.php';
 
 // date_default_timezone_set("Asia/Manila");
 // session_start();
@@ -113,11 +113,11 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
   <link rel="shortcut icon" href="img/icons/clsu-logo.png" />
 
   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
-  <link rel="icon" href="img/icons/clsu-logo.png">
+  <link rel="icon" href="../img/icons/clsu-logo.png">
 
   <title>Language and Literature</title>
 
-  <link href="css/app.css" rel="stylesheet">
+  <link href="../css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -126,7 +126,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
     <nav id="sidebar" class="sidebar js-sidebar">
       <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="index.php">
-          <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
+          <img src="../img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
         <ul class="sidebar-nav">
           <li class="sidebar-header">
@@ -136,7 +136,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
           <hr class="hr-size">
 
           <li class="sidebar-item active">
-            <a class="sidebar-link" href="index.php">
+            <a class="sidebar-link" href="faculty.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
@@ -144,21 +144,15 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_student.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
+            <a class="sidebar-link" href="#">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
             </a>
           </li>
 
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+            <a class="sidebar-link" href="#">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
@@ -166,7 +160,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_archive_view.php">
+            <a class="sidebar-link" href="#">
               <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
@@ -177,7 +171,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
               <div id="current-time"></div>
             </div>
           </div>
-          <script src="js/time_script.js"></script>
+          <script src="../js/time_script.js"></script>
 
       </div>
     </nav>
@@ -197,7 +191,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
               </a>
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <?php include 'greet.php' ?>
+                <?php include '../greet.php' ?>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
@@ -209,7 +203,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                     data-feather="archive"></i>
                   Archive</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="include/sign-out.php">Log out</a>
+                <a class="dropdown-item" href="../include/sign-out.php">Log out</a>
               </div>
             </li>
           </ul>
@@ -223,28 +217,9 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
           <div class="row">
             <div class="w-100">
               <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="card">
-                    <a href="admin_faculty.php">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col mt-0">
-                            <h5 class="card-title">Faculty</h5>
-                          </div>
-                          <div class="col-auto">
-                            <div class="stat text-primary">
-                              <i class="align-middle" data-feather="users"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="mt-4 float-end" style="color: gray">view</p>
-                        <h1 class="mt-1 mb-3 ms-3"><?php echo $faculty_counter ?></h1>
-                      </div>
-                  </div></a>
-                </div>
-                <div class="col-sm-3">
-                  <div class="card">
-                    <a href="admin_student.php">
+                    <a href="#">
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
@@ -261,9 +236,9 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                       </div>
                   </div></a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="card">
-                    <a href="admin_document.php">
+                    <a href="#">
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
@@ -282,9 +257,9 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                   </div>
                   </a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="card">
-                    <a href="admin_archive_view.php">
+                    <a href="#">
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
@@ -324,7 +299,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
     </div>
   </div>
 
-  <script src="js/app.js"></script>
+  <script src="../js/app.js"></script>
 </body>
 
 </html>

@@ -58,17 +58,22 @@ while ($res   = mysqli_fetch_array($result)) {
     <nav id="sidebar" class="sidebar js-sidebar">
       <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="index.php">
-          <span class="align-middle">Language and Literature e-Learning</span>
+          <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Pages
           </li>
+
+          <hr class="hr-size">
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
+
+          <hr class="hr-size">
 
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_faculty.php">
@@ -82,15 +87,19 @@ while ($res   = mysqli_fetch_array($result)) {
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
+            <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
           </li>
 
+          <hr class="hr-size">
+
           <li class="sidebar-item">
-            <a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+            <a class="sidebar-link" href="admin_archive_view.php">
+              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
       </div>
@@ -103,6 +112,7 @@ while ($res   = mysqli_fetch_array($result)) {
         </a>
 
         <div class="navbar-collapse collapse">
+          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
           <ul class="navbar-nav navbar-align">
             <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
@@ -165,7 +175,7 @@ while ($res   = mysqli_fetch_array($result)) {
                       <div class="card mb-3">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-3" style="float: left;">
                               <h6 class="mb-0"><strong>Full Name</strong></h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
@@ -253,24 +263,10 @@ while ($res   = mysqli_fetch_array($result)) {
           <div class="row text-muted">
             <div class="col-6 text-start">
               <p class="mb-0">
-                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>CLSU</strong></a> &copy;
+                <a class="text-muted" href="https://clsu.edu.ph/" target="_blank"><strong>CLSU</strong></a>
+                powered by
+                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
-            </div>
-            <div class="col-6 text-end">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

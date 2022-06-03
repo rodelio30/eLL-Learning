@@ -1,21 +1,41 @@
 <?php
+include 'admin_checker.php';
 
-date_default_timezone_set("Asia/Manila");
-session_start();
-if (!isset($_SESSION['logged'])) {
-  header("location: public.php");
+$doc_id = $_GET['ID'];
+
+$result     = mysqli_query($conn, "SELECT * FROM document WHERE doc_id='$doc_id'");
+while ($res = mysqli_fetch_array($result)) {
+  $doc_id           = $res['doc_id'];
+  $title            = $res['title'];
+  $file_size        = $res['file_size'];
+  $file_type        = $res['file_type'];
+  $description      = $res['description'];
+  $file_uploader_id = $res['file_uploader_id'];
+  $file_uploader    = $res['file_uploader'];
+  $date_created     = $res['date_created'];
+  $date_modified    = $res['date_modified'];
+  $status           = $res['status'];
 }
-include('include/connect.php');
-$id = $_SESSION['id'];
 
-$query = mysqli_query($conn, "select id,type from users where id='$id'") or die("query 1 incorrect.......");
-list($id, $type) = mysqli_fetch_array($query);
-
-if ($type == 'student') {
-  header("location: student.php");
+$uploader   = mysqli_query($conn, "SELECT firstname, lastname FROM faculty WHERE faculty_id='$file_uploader_id'");
+while ($res = mysqli_fetch_array($uploader)) {
+  $firstname = $res['firstname'];
+  $lastname   = $res['lastname'];
 }
 
+$icon_img   = '';
+
+if ($file_type === "pdf") {
+  $icon_img   = 'pdf';
+} else if ($file_type === "doc" || $file_type === "docs") {
+  $icon_img   = 'doc';
+} else if ($file_type === "xls" || $file_type === "xlsx" || $file_type === "xlc") {
+  $icon_img   = 'xls';
+} else if ($file_type === "txt") {
+  $icon_img   = 'txt';
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,9 +51,10 @@ if ($type == 'student') {
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="shortcut icon" href="img/icons/clsu-logo.png" />
 
-  <link rel="canonical" href="https://demo-basic.adminkit.io/pages-profile.php" />
+  <link rel="canonical" href="https://demo-basic.adminkit.io/" />
+  <link rel="icon" href="img/icons/clsu-logo.png">
 
-  <title>Profile | AdminKit Demo</title>
+  <title>Language and Literature</title>
 
   <link href="css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -46,7 +67,6 @@ if ($type == 'student') {
         <a class="sidebar-brand" href="index.php">
           <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
-
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Pages
@@ -76,7 +96,7 @@ if ($type == 'student') {
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
@@ -96,7 +116,6 @@ if ($type == 'student') {
             </div>
           </div>
           <script src="js/time_script.js"></script>
-
       </div>
     </nav>
 
@@ -137,170 +156,97 @@ if ($type == 'student') {
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3">Document </h1>
+          <h1 class="h3 mb-3"><a href="admin_document.php" class="user-clicker"><strong>Document </strong> </a> \
+            <?php echo $title ?>
+          </h1>
 
           <div class="row">
             <div class="col-12">
               <div class="card">
                 <div class="emp-profile">
-                  <form method="post">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="profile-img">
-                          <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                            alt="" />
-                          <div class="file btn btn-lg btn-primary">
-                            Change Photo
-                            <input type="file" name="file" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="profile-head">
-                          <h5>
-                            Kshiti Ghelani
-                          </h5>
-                          <h6>
-                            Web Developer and Designer
-                          </h6>
-                          <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                          <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                aria-controls="home" aria-selected="true">About</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                aria-controls="profile" aria-selected="false">Timeline</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="profile-img">
+                        <img src='img/photos/<?php echo $icon_img ?>.svg' alt='icon'>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="profile-work">
-                          <p>WORK LINK</p>
-                          <a href="">Website Link</a><br />
-                          <a href="">Bootsnipp Profile</a><br />
-                          <a href="">Bootply Profile</a>
-                          <p>SKILLS</p>
-                          <a href="">Web Designer</a><br />
-                          <a href="">Web Developer</a><br />
-                          <a href="">WordPress</a><br />
-                          <a href="">WooCommerce</a><br />
-                          <a href="">PHP, .Net</a><br />
-                        </div>
+                    <div class="col-md-6 m-2">
+                      <div class="profile-head">
+                        <h5>
+                          <span>Description: </span>
+                          <?php echo $description ?>
+                        </h5>
+                        <hr>
+                        <h5>About</h5>
+                        <hr>
                       </div>
-                      <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="tab-content profile-tab" id="myTabContent">
                             <div class="row">
-                              <div class="col-md-6">
-                                <label>User Id</label>
+                              <div class="col-md-5">
+                                <label>Document Id</label>
                               </div>
-                              <div class="col-md-6">
-                                <p>Kshiti123</p>
+                              <div class="col-md-7">
+                                <p class="text-black"><?php echo $doc_id ?></p>
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col-md-6">
-                                <label>Name</label>
+                              <div class="col-md-5">
+                                <label>Uploader</label>
                               </div>
-                              <div class="col-md-6">
-                                <p>Kshiti Ghelani</p>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6">
-                                <label>Email</label>
-                              </div>
-                              <div class="col-md-6">
-                                <p>kshitighelani@gmail.com</p>
+                              <div class="col-md-7">
+                                <p><a href="admin_faculty_view.php?ID=<?php echo $file_uploader_id ?>"
+                                    class="user-clicker">
+                                    <?php echo $firstname . " " . $lastname ?></a></p>
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col-md-6">
-                                <label>Phone</label>
+                              <div class="col-md-5">
+                                <label>Date Created</label>
                               </div>
-                              <div class="col-md-6">
-                                <p>123 456 7890</p>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6">
-                                <label>Profession</label>
-                              </div>
-                              <div class="col-md-6">
-                                <p>Web Developer and Designer</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                              <div class="col-md-6">
-                                <label>Experience</label>
-                              </div>
-                              <div class="col-md-6">
-                                <p>Expert</p>
+                              <div class="col-md-7">
+                                <p class="text-black"><?php echo $date_created ?></p>
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col-md-6">
-                                <label>Hourly Rate</label>
+                              <div class="col-md-5">
+                                <label>Date Modified</label>
                               </div>
-                              <div class="col-md-6">
-                                <p>10$/hr</p>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6">
-                                <label>Total Projects</label>
-                              </div>
-                              <div class="col-md-6">
-                                <p>230</p>
+                              <div class="col-md-7">
+                                <p class="text-black"><?php echo $date_modified ?></p>
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col-md-6">
-                                <label>English Level</label>
+                              <div class="col-md-5">
+                                <label>Status</label>
                               </div>
-                              <div class="col-md-6">
-                                <p>Expert</p>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6">
-                                <label>Availability</label>
-                              </div>
-                              <div class="col-md-6">
-                                <p>6 months</p>
+                              <div class="col-md-7">
+                                <p class="text-black"><?php echo $status ?></p>
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col-md-12">
-                                <label>Your Bio</label><br />
-                                <p>Your detail description</p>
+                              <div class="col-md-5">
+                                <label>Total Downloads</label>
+                              </div>
+                              <div class="col-md-7">
+                                <p class="text-black">230</p>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </form>
-                </div>
-                <!-- End of content -->
-                <div class="card-body">
+                    <div class="col-md-2">
+                      <a <?php echo "href=\"admin_document_edit.php?ID=$doc_id\"" ?> style="float: right"
+                        class="btn btn-info"><span data-feather="file"></span>&nbsp Edit Document</a>
+                    </div>
+                  </div>
+                  <!-- End of content -->
                 </div>
               </div>
             </div>
           </div>
-
-        </div>
       </main>
 
       <footer class="footer">
@@ -308,7 +254,9 @@ if ($type == 'student') {
           <div class="row text-muted">
             <div class="col-6 text-start">
               <p class="mb-0">
-                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>CLSU</strong></a> &copy;
+                <a class="text-muted" href="https://clsu.edu.ph/" target="_blank"><strong>CLSU</strong></a>
+                powered by
+                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
               </p>
             </div>
             <div class="col-6 text-end">
@@ -334,7 +282,6 @@ if ($type == 'student') {
   </div>
 
   <script src="js/app.js"></script>
-
 </body>
 
 </html>

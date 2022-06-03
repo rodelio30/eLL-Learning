@@ -3156,7 +3156,7 @@ textarea.form-control-lg {
 .btn {
   background-color: transparent;
   border: 1px solid transparent;
-  border-radius: 0.2rem;
+  border-radius: 1rem;
   color: #495057;
   cursor: pointer;
   display: inline-block;
@@ -13328,6 +13328,10 @@ fieldset:disabled .btn {
   margin-bottom: 24px;
 }
 
+.card a {
+  text-decoration: none;
+}
+
 .card-header {
   border-bottom-width: 1px;
 }
@@ -13793,7 +13797,7 @@ screen and (-ms-high-contrast: active) {
 a.sidebar-link {
   background: #076120;
   border-left: 3px solid transparent;
-  color: rgba(233, 236, 239, 0.5);
+  color: #f5f7fb;
   cursor: pointer;
   display: block;
   font-weight: 400;
@@ -13889,7 +13893,7 @@ a.sidebar-link svg {
   background: transparent;
   color: #ced4da;
   font-size: 0.75rem;
-  padding: 1.5rem 1.5rem 0.375rem;
+  padding: 0 1.5rem;
 }
 
 .sidebar-badge {
@@ -15256,7 +15260,7 @@ span.flatpickr-weekday {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  width: 260px;
+  width: 261px;
 }
 
 /*# sourceMappingURL=app.css.map*/
@@ -15327,6 +15331,15 @@ span.flatpickr-weekday {
   text-decoration: none;
 }
 
+.document-clicker {
+  color: black;
+}
+
+.document-clicker:hover {
+  color: green;
+  text-decoration: none;
+}
+
 .dash-item {
   color: black;
 }
@@ -15336,6 +15349,539 @@ span.flatpickr-weekday {
   text-decoration: none;
 }
 
-.user-fleft {
-  float: left
+.text-right {
+  color: black;
 }
+
+.user-left {
+  float: left;
+}
+
+.right-color {
+  /* background-color: #DEF8D6; */
+  background-color: #F6EDD9;
+}
+
+.right-side-content {
+  margin-top: 4rem;
+}
+
+.right-side-content h1 {
+  font-weight: 900;
+  font-size: 5rem;
+  color: rgb(58, 107, 78);
+  float: left;
+}
+
+.right-side-content h2 {
+  font-weight: 1000;
+  font-size: 5rem;
+  text-transform: uppercase;
+  float: left;
+  /* color: #BF9270;  */
+  color: rgb(58, 107, 78);
+}
+
+.clsu {
+  float: left;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: green;
+}
+
+.clsu span {
+  float: left;
+}
+
+.page-content {
+  background-color: #f9f9fa;
+}
+
+.black-color {
+  color: black;
+}
+
+.archive-faculty {
+  background-color: green;
+  margin: 5px;
+  padding: 5.1px;
+  width: 4rem;
+  text-align: center;
+  color: white;
+  /* border-radius: 10px; */
+  border-radius: 25px;
+}
+
+.archive-student {
+  background-color: #565837;
+  margin: 5px;
+  padding: 5.1px;
+  width: 4rem;
+  text-align: center;
+  color: white;
+  /* border-radius: 10px; */
+  border-radius: 25px;
+}
+
+.archive-document {
+  background-color: #3E4A3D;
+  margin: 5px;
+  padding: 5.1px;
+  width: 5.4rem;
+  text-align: center;
+  color: white;
+  /* border-radius: 10px; */
+  border-radius: 25px;
+}
+
+/* This line is for viewing a document for admin */
+
+.file_manager .file a:hover .hover,
+.file_manager .file .file-name small {
+  display: block
+}
+
+.file_manager .file {
+  padding: 0 !important
+}
+
+.file_manager .file .icon {
+  text-align: center
+}
+
+
+.file_manager .file {
+  position: relative;
+  border-radius: .55rem;
+  overflow: hidden
+}
+
+.file_manager .file .image,
+.file_manager .file .icon {
+  max-height: 180px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: top
+}
+
+.file_manager .file .hover {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: none;
+  transition: all 0.2s ease-in-out
+}
+
+.file_manager .file a:hover .hover {
+  transition: all 0.2s ease-in-out
+}
+
+.file_manager .file .icon {
+  padding: 15px 10px;
+  display: table;
+  width: 100%
+}
+
+.file_manager .file .icon i {
+  display: table-cell;
+  font-size: 30px;
+  vertical-align: middle;
+  color: #777;
+  line-height: 100px
+}
+
+.file_manager .file .file-name {
+  padding: 10px;
+  border-top: 1px solid #f7f7f7
+}
+
+.file_manager .file .file-name small .date {
+  float: right
+}
+
+.folder {
+  padding: 20px;
+  display: block;
+  color: #777
+}
+
+@media only screen and (max-width: 992px) {
+  .file_manager .nav-tabs {
+    padding-left: 0;
+    padding-right: 0
+  }
+
+  .file_manager .nav-tabs .nav-item {
+    display: inline-block
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* This line is for the document */
+.card-box {
+  padding: 20px;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  background-color: #fff;
+}
+
+.file-man-box {
+  padding: 20px;
+  border: 1px solid #e3eaef;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 20px
+}
+
+.file-man-box .file-close {
+  color: #f1556c;
+  position: absolute;
+  line-height: 24px;
+  font-size: 24px;
+  right: 10px;
+  top: 10px;
+  visibility: hidden
+}
+
+.file-man-box .file-img-box {
+  line-height: 120px;
+  text-align: center
+}
+
+.file-man-box .file-img-box img {
+  height: 64px
+}
+
+.file-man-box .file-download {
+  font-size: 32px;
+  color: #98a6ad;
+  position: absolute;
+  right: 10px
+}
+
+.file-man-box .file-download:hover {
+  color: #313a46
+}
+
+.file-man-box .file-man-title {
+  padding-right: 25px
+}
+
+.file-man-box:hover {
+  -webkit-box-shadow: 0 0 24px 0 rgba(0, 0, 0, .06), 0 1px 0 0 rgba(0, 0, 0, .02);
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, .06), 0 1px 0 0 rgba(0, 0, 0, .02)
+}
+
+.file-man-box:hover .file-close {
+  visibility: visible
+}
+
+.text-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+h5 {
+  font-size: 15px;
+}
+
+/* This line is for alert csss */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px
+}
+
+.alert h4 {
+  margin-top: 0;
+  color: inherit
+}
+
+.alert .alert-link {
+  font-weight: 700
+}
+
+.alert>p,
+.alert>ul {
+  margin-bottom: 0
+}
+
+.alert>p+p {
+  margin-top: 5px
+}
+
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 35px
+}
+
+.alert-dismissable .close,
+.alert-dismissible .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit
+}
+
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6
+}
+
+.alert-success hr {
+  border-top-color: #c9e2b3
+}
+
+.alert-success .alert-link {
+  color: #2b542c
+}
+
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1
+}
+
+.alert-info hr {
+  border-top-color: #a6e1ec
+}
+
+.alert-info .alert-link {
+  color: #245269
+}
+
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc
+}
+
+.alert-warning hr {
+  border-top-color: #f7e1b5
+}
+
+.alert-warning .alert-link {
+  color: #66512c
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1
+}
+
+.alert-danger hr {
+  border-top-color: #e4b9c0
+}
+
+.alert-danger .alert-link {
+  color: #843534
+}
+
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0
+  }
+
+  to {
+    background-position: 0 0
+  }
+}
+
+@-o-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0
+  }
+
+  to {
+    background-position: 0 0
+  }
+}
+
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0
+  }
+
+  to {
+    background-position: 0 0
+  }
+}
+
+/* This line is for the document viewer */
+
+.emp-profile {
+  padding: 1%;
+  margin-top: 1%;
+  margin-bottom: 3%;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.profile-img {
+  text-align: center;
+}
+
+.profile-img img {
+  width: 30%;
+  height: 50%;
+}
+
+.profile-img .file {
+  position: relative;
+  overflow: hidden;
+  margin-top: -20%;
+  width: 70%;
+  border: none;
+  border-radius: 0;
+  font-size: 15px;
+  background: #212529b8;
+}
+
+.profile-img .file input {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+.profile-head h5 {
+  color: #333;
+  font-weight: bold;
+}
+
+.profile-head span {
+  color: #333;
+  font-weight: normal;
+}
+
+.profile-head h6 {
+  color: #9B6F1D;
+}
+
+.profile-head span {
+  color: black;
+}
+
+.profile-edit-btn {
+  border: none;
+  background-color: #BEBEAB;
+  border-radius: 1.5rem;
+  width: 70%;
+  padding: 2%;
+  font-weight: 600;
+  color: #565837;
+  cursor: pointer;
+}
+
+.profile-edit-btn:hover {
+  border: none;
+  background-color: #888B55;
+  border-radius: 1.5rem;
+  width: 70%;
+  padding: 2%;
+  font-weight: 600;
+  color: #008020;
+  cursor: pointer;
+}
+
+.proile-rating {
+  font-size: 12px;
+  color: #818182;
+  margin-top: 5%;
+}
+
+.proile-rating span {
+  color: #495057;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.profile-head .nav-tabs {
+  margin-bottom: 5%;
+}
+
+.profile-head .nav-tabs .nav-link {
+  font-weight: 600;
+  border: none;
+}
+
+.profile-head .nav-tabs .nav-link.active {
+  border: none;
+  border-bottom: 2px solid #0062cc;
+}
+
+.profile-work {
+  padding: 14%;
+  margin-top: -15%;
+}
+
+.profile-work p {
+  font-size: 12px;
+  color: #818182;
+  font-weight: 600;
+  margin-top: 10%;
+}
+
+.profile-work a {
+  text-decoration: none;
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.profile-work ul {
+  list-style: none;
+}
+
+.profile-tab label {
+  font-weight: 600;
+}
+
+.profile-tab p {
+  font-weight: 600;
+  color: #0062cc;
+}
+
+/* This line if for Clock position */
+.clock-position {
+  position: absolute;
+  bottom: 0;
+  color: #f5f7fb;
+  border: 1px solid white;
+  padding: 0.2rem 1rem;
+}
+
+/* This line is for the image of archive */
+.archive_photo_size {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 7rem;
+  height: 7rem;
+}
+
+/* hr */
+.hr-size {
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+/* Button info color */
+.btn-back {
+  margin: auto;
+  display: block;
+  float: left;
+  margin-left: 3rem;
+  margin-top: 3rem;
+}
+
+/* css for quick search */
