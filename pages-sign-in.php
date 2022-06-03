@@ -22,11 +22,11 @@ if (isset($_POST['submit_admin'])) {
     }
     if ($res[0]->type === 'faculty') {
       echo "<script type='text/javascript'>alert('Hello Faculty');
-            document.location='faculty/faculty.php' </script>";
+            document.location='faculty/index.php' </script>";
     }
     if ($res[0]->type === 'student') {
       echo "<script type='text/javascript'>alert('Hello Student');
-            document.location='index.php' </script>";
+            document.location='public/index.php' </script>";
     }
   } else {
     echo "<script type='text/javascript'>alert('Username or Password was incorrect.');
@@ -63,7 +63,7 @@ if (isset($_POST['submit_admin'])) {
   <main class="d-flex w-100">
     <div class="row">
       <div class="col-12 col-md-6 vh-100">
-        <button onclick="location.href='public.php'" class="btn btn-md btn-warning btn-back">Back to
+        <button onclick="location.href='public/index.php'" class="btn btn-md btn-warning btn-back">Back to
           home</button>
         <div class="container d-flex flex-column pt-3">
           <div class="text-center mt-6">
