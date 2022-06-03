@@ -102,6 +102,8 @@
         <h1>
           <center>Department of English and Humanities</center>
         </h1>
+        <br>
+        <br>
 
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2 content" data-aos="fade-left" data-aos-delay="100">

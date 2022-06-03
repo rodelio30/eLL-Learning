@@ -22,7 +22,7 @@ if (isset($_POST['submit_admin'])) {
     }
     if ($res[0]->type === 'faculty') {
       echo "<script type='text/javascript'>alert('Hello Faculty');
-            document.location='faculty/index.php' </script>";
+            document.location='public/faculty/index.php' </script>";
     }
     if ($res[0]->type === 'student') {
       echo "<script type='text/javascript'>alert('Hello Student');
