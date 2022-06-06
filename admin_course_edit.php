@@ -10,7 +10,7 @@ if (isset($_POST['update'])) {
   $date_modified = date("Y-m-d h:i:s");
 
   // echo "<script>console.log('" . $email . "');</script>";
-  mysqli_query($conn, "update courses set name = '$name', description = '$description', date_modified = '$date_modified' where course_id = '$course_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update courses set name = '$name', description = '$description', status= '$status', date_modified = '$date_modified' where course_id = '$course_id'") or die("Query 4 is incorrect....");
   echo '<script type="text/javascript"> alert("' . $name . ' Course updated!.")</script>';
   header('Refresh: 0; url=admin_course_view.php?ID=' . $_GET['ID'] . '');
 }
@@ -29,7 +29,7 @@ $sel_archive = "";
 
 if ($status == "active") {
   $sel_active  = "selected";
-} else if ($status == "archive") {
+} else if ($status != "active") {
   $sel_archive = "selected";
 }
 
@@ -173,7 +173,7 @@ if ($status == "active") {
 
           <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course
               </a> /
-              <?php echo $name ?>
+              <a href="admin_course_view.php?ID=<?php echo $course_id ?>" class="dash-item"> <?php echo $name ?> </a>
               /
               Edit Course Info</strong></h1>
           </h1>
@@ -202,7 +202,7 @@ if ($status == "active") {
                         <label>User Type</label>
                         <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
                           <option value="active" <?php echo $sel_active ?>>Active</option>
-                          <option value="archive" <?php echo $sel_archive ?>>Inactive</option>
+                          <option value="inactive" <?php echo $sel_archive ?>>Inactive</option>
                         </select>
                       </div>
                       <br>

@@ -180,7 +180,11 @@ if ($status == "active") {
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong>Edit User Account</strong></h1>
+          <h1 class="h3 mb-3"><strong><a href="admin_faculty.php" class="dash-item">Faculty List</a> /
+              <a href="admin_faculty_view.php?ID=<?php echo $faculty_id ?>" class="dashboard">
+                <?php echo $firstname ?>'s
+                Account</a> / Edit User
+              Account</strong></h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
@@ -221,7 +225,7 @@ if ($status == "active") {
                     <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>"
+                      <input type="text" class="form-control" id="email" name="email" value="<?php echo $email ?>"
                         placeholder="Enter Email Address">
                     </div>
                     <br>
@@ -229,7 +233,7 @@ if ($status == "active") {
                       <label>User Type</label>
                       <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
                         <option value="active" <?php echo $sel_active ?>>Active</option>
-                        <option value="archive" <?php echo $sel_archive ?>>Inactive</option>
+                        <option value="inactive" <?php echo $sel_archive ?>>Inactive</option>
                       </select>
                     </div>
                     <br>
