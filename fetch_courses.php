@@ -4,7 +4,7 @@ include 'admin_checker.php';
 $output = '';
 $courses_counter = 0;
 
-$sql_faculty = "SELECT course_id FROM courses WHERE status = 'active' ";
+$sql_faculty = "SELECT course_id FROM courses WHERE status != 'archive' ";
 $result_courses = $conn->query($sql_faculty);
 
 if ($result_courses->num_rows > 0) {
@@ -22,7 +22,7 @@ if (isset($_POST["query"])) {
  ";
 } else {
   $query = "
-  SELECT * FROM courses WHERE status = 'active' ORDER BY course_id
+  SELECT * FROM courses WHERE status != 'archive' ORDER BY course_id
  ";
 }
 $result = mysqli_query($conn, $query);

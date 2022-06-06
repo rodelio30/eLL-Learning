@@ -149,7 +149,7 @@ while ($res   = mysqli_fetch_array($result)) {
       </nav>
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong><a href="admin_faculty.php" class="dash-item"> Faculty
+          <h1 class="h3 mb-3"><strong><a href="admin_faculty.php" class="dash-item"> Faculty List
               </a> /
               <?php echo $firstname ?>'s
               Account</strong>
