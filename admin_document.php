@@ -28,20 +28,21 @@ include 'admin_checker.php';
   <meta name="keywords"
     content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="shortcut icon" href="img/icons/clsu-logo.png" />
 
+  <!-- Inspired by the admitkit -->
   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
   <link rel="icon" href="img/icons/clsu-logo.png">
 
   <title>Language and Literature</title>
 
   <link href="css/app.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="css/swap.css" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"> -->
 
-  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> -->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <script src="js/jquery.min.js"></script>
+  <!-- This line below is the css for the datatables -->
+  <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -91,7 +92,7 @@ include 'admin_checker.php';
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_materials.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
 
@@ -146,7 +147,9 @@ include 'admin_checker.php';
                     data-feather="archive"></i>
                   Archive</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="include/sign-out.php">Log out</a>
+                <a class="dropdown-item" href="include/sign-out.php">
+                  <i class="align-middle me-1" data-feather="log-out"></i>
+                  Log out</a>
               </div>
             </li>
           </ul>
@@ -213,9 +216,11 @@ include 'admin_checker.php';
   </div>
 
   <script src="js/app.js"></script>
+  <script src="js/jquery.min.js"></script>
 
-  <script src="jquery/jquery.min.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <!-- This line below is the jquery for the datatables -->
+  <script src="js/bb_jquery.dataTables.min.js"></script>
+  <script src="js/1_jquery.dataTables.min.js"></script>
 </body>
 
 </html>

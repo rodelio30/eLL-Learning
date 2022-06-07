@@ -49,16 +49,17 @@ if ($status == "active") {
   <meta name="keywords"
     content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="shortcut icon" href="img/icons/clsu-logo.png" />
 
+  <!-- Inspired by the admitkit -->
   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
   <link rel="icon" href="img/icons/clsu-logo.png">
 
   <title>Language and Literature</title>
 
   <link href="css/app.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="css/swap.css" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -85,7 +86,7 @@ if ($status == "active") {
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">course</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
             </a>
           </li>
 
@@ -107,7 +108,7 @@ if ($status == "active") {
 
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_materials.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
 
@@ -161,7 +162,9 @@ if ($status == "active") {
                     data-feather="archive"></i>
                   Archive</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="include/sign-out.php">Log out</a>
+                <a class="dropdown-item" href="include/sign-out.php">
+                  <i class="align-middle me-1" data-feather="log-out"></i>
+                  Log out</a>
               </div>
             </li>
           </ul>
