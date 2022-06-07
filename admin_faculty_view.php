@@ -29,16 +29,17 @@ while ($res   = mysqli_fetch_array($result)) {
   <meta name="keywords"
     content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="shortcut icon" href="img/icons/clsu-logo.png" />
 
+  <!-- Inspired by the admitkit -->
   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
   <link rel="icon" href="img/icons/clsu-logo.png">
 
   <title>Language and Literature</title>
 
   <link href="css/app.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="css/swap.css" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -87,7 +88,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_materials.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
 
@@ -141,7 +142,9 @@ while ($res   = mysqli_fetch_array($result)) {
                     data-feather="archive"></i>
                   Archive</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="include/sign-out.php">Log out</a>
+                <a class="dropdown-item" href="include/sign-out.php">
+                  <i class="align-middle me-1" data-feather="log-out"></i>
+                  Log out</a>
               </div>
             </li>
           </ul>
@@ -167,7 +170,7 @@ while ($res   = mysqli_fetch_array($result)) {
                           <div class="mt-3">
                             <h4><?php echo $firstname . " " . $lastname ?></h4>
                             <p class="text-secondary mb-1"><?php echo $status ?></p>
-                            <p class="text-muted font-size-sm">course</p>
+                            <p class="text-muted font-size-sm"><?php echo $course ?></p>
                           </div>
                         </div>
                       </div>

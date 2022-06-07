@@ -94,7 +94,7 @@ $user = "faculty"
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_materials.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
 
