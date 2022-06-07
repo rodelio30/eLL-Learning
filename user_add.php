@@ -15,6 +15,12 @@ if (isset($_POST['submit'])) {
   $date_created  = date("Y-m-d h:i:s");
   $date_modified = date("Y-m-d h:i:s");
 
+  if ($user      == "student") {
+    $course_id   = $_POST['course_id'];
+  }
+
+  $course_id = ($user == "student") ? $_POST['course_id'] : '';
+
   mysqli_query($conn, "insert into users(firstname, lastname, email, password, type, status) values('$firstname','$lastname','$email','$password','$type','$status')")  or die("Query 3 is incorrect.....");
 
   $upload_user = mysqli_query($conn, "SELECT id FROM users WHERE email='$email'");
@@ -25,7 +31,7 @@ if (isset($_POST['submit'])) {
   if ($type == 'faculty') {
     mysqli_query($conn, "insert into faculty(user_id, faculty_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified', '$status')")  or die("Query 2 is incorrect.....");
   } elseif ($type == 'student') {
-    mysqli_query($conn, "insert into student(student_id, student_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
+    mysqli_query($conn, "insert into student(student_id, student_id_no, course_id, firstname, lastname, email, password, date_created, date_modified, status) values('$user_id','$id_no','$course_id','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
   }
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' Added!.")</script>';
   if ($user == "admin") {
@@ -40,6 +46,7 @@ if (isset($_POST['submit'])) {
 $sel_faculty = "";
 $sel_student = "";
 $sel_admin   = "";
+$is_Student = false;
 
 
 // active navigation
@@ -52,6 +59,7 @@ if ($user == "faculty") {
 } else if ($user == "student") {
   $sel_student   = "selected";
   $activeStudent = "active";
+  $is_Student = true;
 } else if ($user == "admin") {
   $sel_admin     = "selected";
   $activeAdmin   = "active";
@@ -235,6 +243,23 @@ if ($user == "faculty") {
                       </select>
                     </div>
                     <br>
+                    <?php
+                    if ($is_Student) {
+                    ?><div class="form-group">
+                      <label>Course Enrolled</label>
+                      <select class="form-control" id="course_id" name="course_id">
+                        <?php
+                          $result = mysqli_query($conn, "select course_id, name from courses WHERE status='active' ORDER BY course_id ASC") or die("Query 4 is inncorrect........");
+                          while (list($course_id, $name) = mysqli_fetch_array($result)) {
+                            echo "<option value='$course_id'>$name</option>";
+                          }
+                          ?>
+                      </select>
+                    </div>
+                    <br>
+                    <?php
+                    }
+                    ?>
                     <div class="form-group">
                       <label>Password</label>
                       <input type="password" class="form-control" id="password" name="password" placeholder="Password">

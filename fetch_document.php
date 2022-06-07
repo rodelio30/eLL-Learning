@@ -57,11 +57,11 @@ if (mysqli_num_rows($result) > 0) {
       }
       $output .= '
    <tr>
-    <td class="d-none d-xl-table-cell"><a href="admin_document_view.php?ID=' . $row["doc_id"] . ' " class="user-clicker">' . $row["title"] . '.' . $row["file_type"] . ' </a></td>
-    <td class="d-none d-xl-table-cell">' . $size . '</td>
-    <td class="d-none d-xl-table-cell">' . $row["date_modified"] . '</td>
-    <td class="d-none d-xl-table-cell">' . $row["status"] . '</td>
-    <td class="d-none d-xl-table-cell">
+    <td scope="row"><a href="admin_document_view.php?ID=' . $row["doc_id"] . ' " class="user-clicker">' . $row["title"] . '.' . $row["file_type"] . ' </a></td>
+    <td>' . $size . '</td>
+    <td>' . $row["date_modified"] . '</td>
+    <td>' . $row["status"] . '</td>
+    <td>
     <a href=archive/admin_document_archive.php?ID=' . $row["doc_id"] . ' onclick="return confirm(\'are you sure you want this document go to archive?\');" class="btn btn-warning btn-md float-end"><span><img src="img/icons/archive.png" style="width:15px"></span>&nbsp Archive</a>
     
     <a href=uploads/' . $row["title"] . '.' . $row["file_type"] . ' target="_blank" class="btn btn-primary btn-md float-end me-1"><span><img src="img/icons/archive.png" style="width:15px"></span>&nbsp Download</a>

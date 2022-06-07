@@ -209,67 +209,64 @@ if ($result_material->num_rows > 0) {
 
                     ?>
                   </div>
-                </div>
-                <table class="table table-hover my-0">
-                  <thead>
-                    <?php
-                    if ($faculty_counter || $student_counter > 0) {
-                      echo "
+                  <table class="table table-hover">
+                    <thead>
+                      <?php
+                      if ($faculty_counter || $student_counter > 0) {
+                        echo "
                         <tr>
-                          <th class='d-none d-xl-table-cell' style='width: 18%'>Firstname</th>
-                          <th class='d-none d-xl-table-cell' style='width: 18%'>Lastname</th>
-                          <th class='d-none d-xl-table-cell' style='width: 15%'>Status</th>
-                          <th class='d-none d-xl-table-cell' style='width: 15%'>Date Modified</th>
-                          <th class='d-none d-xl-table-cell' style='width: 10%'>Type</th>
-                          <th class='d-none d-md-table-cell float-end me-3'>Action</th>
+                          <th scope='col' style='width: 15%'>Firstname</th>
+                          <th scope='col' style='width: 15%'>Lastname</th>
+                          <th scope='col' style='width: 20%'>Date Modified</th>
+                          <th scope='col' style='width: 20%'>Type</th>
+                          <th scope='col' style='width: 30%'><span style='margin-left: 7rem;'>Action</span></th>
                         </tr>
                       ";
-                    } else {
-                      echo "<h1 class='m-4'><b><center>There is no Archive User</center></b></h1>";
-                      echo "<img src='img/photos/empty.png' alt='icon' class='mb-4 archive_photo_size'>";
-                    }
+                      } else {
+                        echo "<h1 class='m-4'><b><center>There is no Archive User</center></b></h1>";
+                        echo "<img src='img/photos/empty.png' alt='icon' class='mb-4 archive_photo_size'>";
+                      }
 
-                    ?>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $result = mysqli_query($conn, "select faculty_id, firstname, lastname, status, date_modified from faculty WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                    while (list($faculty_id, $firstname, $lastname, $status, $date_modified) = mysqli_fetch_array($result)) {
-                      echo "
+                      ?>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $result = mysqli_query($conn, "select faculty_id, firstname, lastname, date_modified from faculty WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($faculty_id, $firstname, $lastname, $date_modified) = mysqli_fetch_array($result)) {
+                        echo "
 														<tr>	
-															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$firstname</a></td>
-															<td class='d-none d-xl-table-cell'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$lastname</a></td>
-															<td class='d-none d-xl-table-cell'>$status</td>
-															<td class='d-none d-xl-table-cell'>$date_modified</td>
-															<td class='d-none d-xl-table-cell'><p class='archive-faculty'>Faculty</p></td>
-															<td class='d-none d-xl-table-cell'>
+															<td scope='row'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$firstname</a></td>
+															<td><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$lastname</a></td>
+															<td>$date_modified</td>
+															<td><p class='archive-faculty'>Faculty</p></td>
+															<td>
 															<a href=\"archive/admin_faculty_delete.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_faculty_active.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
-                    }
-                    ?>
-                    <?php
-                    $result = mysqli_query($conn, "select student_id, firstname, lastname, status, date_modified from student WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                    while (list($student_id, $firstname, $lastname, $status, $date_modified) = mysqli_fetch_array($result)) {
-                      echo "
+                      }
+                      ?>
+                      <?php
+                      $result = mysqli_query($conn, "select student_id, firstname, lastname, date_modified from student WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($student_id, $firstname, $lastname, $date_modified) = mysqli_fetch_array($result)) {
+                        echo "
 														<tr>	
-															<td class='d-none d-xl-table-cell'><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$firstname</a></td>
-															<td class='d-none d-xl-table-cell'><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$lastname</a></td>
-															<td class='d-none d-xl-table-cell'>$status</td>
-															<td class='d-none d-xl-table-cell'>$date_modified</td>
-															<td class='d-none d-xl-table-cell'><p class='archive-student'>Student</p></td>
-															<td class='d-none d-xl-table-cell'>
+															<td scope='row'><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$firstname</a></td>
+															<td><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$lastname</a></td>
+															<td>$date_modified</td>
+															<td><p class='archive-student'>Student</p></td>
+															<td>
 															<a href=\"archive/admin_student_delete.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_student_active.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
-                    }
-                    ?>
-                  </tbody>
-                </table>
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
@@ -289,49 +286,45 @@ if ($result_material->num_rows > 0) {
 
                     ?>
                   </div>
-                </div>
-                <table class="table table-hover my-0">
-                  <thead>
-                    <?php
-                    if ($document_counter > 0) {
-                      echo "
+                  <table class="table table-hover">
+                    <thead>
+                      <?php
+                      if ($document_counter > 0) {
+                        echo "
                         <tr>
-                          <th class='d-none d-xl-table-cell' style='width: 30%'>Title</th>
-                          <th class='d-none d-xl-table-cell' style='width: 10%'>File Type</th>
-                          <th class='d-none d-xl-table-cell' style='width: 12%'>Status</th>
-                          <th class='d-none d-xl-table-cell' style='width: 14%'>Date Modified</th>
-                          <th class='d-none d-xl-table-cell' style='width: 10%'>Type</th>
-                          <th class='d-none d-md-table-cell float-end me-3'>Action</th>
+                          <th scope='col' style='width: 25%'>Title</th>
+                          <th scope='col' style='width: 25%'>Type</th>
+                          <th scope='col' style='width: 25%'>Date Modified</th>
+                          <th scope='col' style='width: 30%'><span style='margin-left: 3rem;'>Action</span></th>
                         </tr>
                       ";
-                    } else {
-                      echo "<h1 class='m-4'><b><center>There is no Archive Document</center></b></h1>";
-                      echo "<img src='img/icons/empty-docu.png' alt='icon' class='mb-4 archive_photo_size'>";
-                    }
+                      } else {
+                        echo "<h1 class='m-4'><b><center>There is no Archive Document</center></b></h1>";
+                        echo "<img src='img/icons/empty-docu.png' alt='icon' class='mb-4 archive_photo_size'>";
+                      }
 
-                    ?>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $result = mysqli_query($conn, "select doc_id, title, file_type, status, date_modified from document WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                    while (list($doc_id, $title, $file_type, $status, $date_modified) = mysqli_fetch_array($result)) {
-                      echo "
+                      ?>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $result = mysqli_query($conn, "select doc_id, title, date_modified from document WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($doc_id, $title, $date_modified) = mysqli_fetch_array($result)) {
+                        echo "
 														<tr>	
-															<td class='d-none d-xl-table-cell'>$title</td>
-															<td class='d-none d-xl-table-cell'>$file_type</td>
-															<td class='d-none d-xl-table-cell'>$status</td>
-															<td class='d-none d-xl-table-cell'>$date_modified</td>
-															<td class='d-none d-xl-table-cell'><p class='archive-document'>Document</p></td>
-															<td class='d-none d-xl-table-cell'>
+															<td scope='row'>$title</td>
+															<td>$date_modified</td>
+															<td><p class='archive-document'>Document</p></td>
+															<td>
 															<a href=\"archive/admin_document_delete.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want to Delete this Document permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_document_active.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
-                    }
-                    ?>
-                  </tbody>
-                </table>
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
@@ -351,47 +344,45 @@ if ($result_material->num_rows > 0) {
 
                     ?>
                   </div>
-                </div>
-                <table class="table table-hover my-0">
-                  <thead>
-                    <?php
-                    if ($courses_counter > 0) {
-                      echo "
+                  <table class="table table-hover">
+                    <thead>
+                      <?php
+                      if ($courses_counter > 0) {
+                        echo "
                         <tr>
-                          <th class='d-none d-xl-table-cell' style='width: 20%'>Name</th>
-                          <th class='d-none d-xl-table-cell' style='width: 20%'>Description</th>
-                          <th class='d-none d-xl-table-cell' style='width: 12%'>Status</th>
-                          <th class='d-none d-xl-table-cell' style='width: 24%'>Date Modified</th>
-                          <th class='d-none d-md-table-cell float-end me-3'>Action</th>
+                          <th scope='col' style='width: 25%'>Name</th>
+                          <th scope='col' style='width: 25%'>Description</th>
+                          <th scope='col' style='width: 25%'>Date Modified</th>
+                          <th scope='col' style='width: 30%'><span style='margin-left: 3rem;'>Action</span></th>
                         </tr>
                       ";
-                    } else {
-                      echo "<h1 class='m-4'><b><center>There is no Archive Course</center></b></h1>";
-                      echo "<img src='img/icons/empty-course.png' alt='icon' class='mb-4 archive_photo_size'>";
-                    }
+                      } else {
+                        echo "<h1 class='m-4'><b><center>There is no Archive Course</center></b></h1>";
+                        echo "<img src='img/icons/empty-course.png' alt='icon' class='mb-4 archive_photo_size'>";
+                      }
 
-                    ?>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $result = mysqli_query($conn, "select course_id, name, description, status, date_modified from courses WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                    while (list($course_id, $name, $description, $status, $date_modified) = mysqli_fetch_array($result)) {
-                      echo "
+                      ?>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $result = mysqli_query($conn, "select course_id, name, description, date_modified from courses WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($course_id, $name, $description, $date_modified) = mysqli_fetch_array($result)) {
+                        echo "
 														<tr>	
-															<td class='d-none d-xl-table-cell'>$name</td>
-															<td class='d-none d-xl-table-cell'>$description</td>
-															<td class='d-none d-xl-table-cell'>$status</td>
-															<td class='d-none d-xl-table-cell'>$date_modified</td>
-															<td class='d-none d-xl-table-cell'>
+															<td scope='row'>$name</td>
+															<td>$description</td>
+															<td>$date_modified</td>
+															<td>
 															<a href=\"archive/admin_course_delete.php?ID=$course_id\" onClick=\"return confirm('Are you sure you want to Delete this Course permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_course_active.php?ID=$course_id\" onClick=\"return confirm('Are you sure you want this Course be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
-                    }
-                    ?>
-                  </tbody>
-                </table>
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
@@ -411,47 +402,45 @@ if ($result_material->num_rows > 0) {
 
                     ?>
                   </div>
-                </div>
-                <table class="table table-hover my-0">
-                  <thead>
-                    <?php
-                    if ($materials_counter > 0) {
-                      echo "
+                  <table class="table table-hover">
+                    <thead>
+                      <?php
+                      if ($materials_counter > 0) {
+                        echo "
                         <tr>
-                          <th class='d-none d-xl-table-cell' style='width: 20%'>Name</th>
-                          <th class='d-none d-xl-table-cell' style='width: 20%'>Description</th>
-                          <th class='d-none d-xl-table-cell' style='width: 12%'>Status</th>
-                          <th class='d-none d-xl-table-cell' style='width: 24%'>Date Modified</th>
-                          <th class='d-none d-md-table-cell float-end me-3'>Action</th>
+                          <th scope='col' style='width: 25%'>Name</th>
+                          <th scope='col' style='width: 25%'>Description</th>
+                          <th scope='col' style='width: 25%'>Date Modified</th>
+                          <th scope='col' style='width: 30%'><span style='margin-left: 3rem;'>Action</span></th>
                         </tr>
                       ";
-                    } else {
-                      echo "<h1 class='m-4'><b><center>There is no Archive Learning Material</center></b></h1>";
-                      echo "<img src='img/icons/empty-course.png' alt='icon' class='mb-4 archive_photo_size'>";
-                    }
+                      } else {
+                        echo "<h1 class='m-4'><b><center>There is no Archive Learning Material</center></b></h1>";
+                        echo "<img src='img/icons/empty-course.png' alt='icon' class='mb-4 archive_photo_size'>";
+                      }
 
-                    ?>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $result = mysqli_query($conn, "select material_id, name, description, status, date_modified from materials WHERE status = 'archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                    while (list($material_id, $name, $description, $status, $date_modified) = mysqli_fetch_array($result)) {
-                      echo "
+                      ?>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $result = mysqli_query($conn, "select material_id, name, description, date_modified from materials WHERE status = 'archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($material_id, $name, $description, $date_modified) = mysqli_fetch_array($result)) {
+                        echo "
 														<tr>	
-															<td class='d-none d-xl-table-cell'>$name</td>
-															<td class='d-none d-xl-table-cell'>$description</td>
-															<td class='d-none d-xl-table-cell'>$status</td>
-															<td class='d-none d-xl-table-cell'>$date_modified</td>
-															<td class='d-none d-xl-table-cell'>
+															<td scope='row'>$name</td>
+															<td>$description</td>
+															<td>$date_modified</td>
+															<td>
 															<a href=\"archive/admin_material_delete.php?ID=$material_id\" onClick=\"return confirm('Are you sure you want to Delete this Learning Material permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_material_active.php?ID=$material_id\" onClick=\"return confirm('Are you sure you want this Learning Material be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
-                    }
-                    ?>
-                  </tbody>
-                </table>
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div> <!-- End of Row -->
