@@ -9,12 +9,17 @@ while ($res   = mysqli_fetch_array($result)) {
   $student_id_no = $res['student_id_no'];
   $firstname     = $res['firstname'];
   $lastname      = $res['lastname'];
-  $course        = $res['course'];
+  $course_id     = $res['course_id'];
   $description   = $res['description'];
   $email         = $res['email'];
   $date_created  = $res['date_modified'];
   $date_modified = $res['date_modified'];
   $status        = $res['status'];
+}
+
+$select_course_name = mysqli_query($conn, "SELECT name FROM courses WHERE course_id = '$course_id'");
+while ($res = mysqli_fetch_array($select_course_name)) {
+  $course_name = $res['name'];
 }
 ?>
 
@@ -192,7 +197,7 @@ while ($res   = mysqli_fetch_array($result)) {
                               </div>
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
-                                  <?php echo $course ?>
+                                  <?php echo $course_name ?>
                                 </div>
                               </div>
                             </div>

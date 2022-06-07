@@ -29,13 +29,13 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) > 0) {
   if ($student_counter > 0) {
     $output .= '
-  <table class="table table-hover my-0">
+  <table  class="table table-hover">
   <thead>
     <tr>
-     <th class="d-none d-xl-table-cell">Firstname</th>
-     <th class="d-none d-xl-table-cell">Lastname</th>
-     <th class="d-none d-xl-table-cell">Status</th>
-     <th class="d-none d-xl-table-cell float-end me-3">Action</th>
+     <th scope="col" style="width: 30%">Firstname</th>
+     <th scope="col" style="width: 30%">Lastname</th>
+     <th scope="col" style="width: 30%">Status</th>
+     <th scope="col" style="width: 35%"><span class="float-end me-5">Action</span></th>
     </tr>
   </thead>
   <tbody>
@@ -43,11 +43,11 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result)) {
       $output .= '
    <tr>
-    <td class="d-none d-xl-table-cell"><a href="admin_student_view.php?ID=' . $row["student_id"] . ' " class="user-clicker">' . $row["firstname"] . '</a></td>
-    <td class="d-none d-xl-table-cell"><a href="admin_student_view.php?ID=' . $row["student_id"] . ' " class="user-clicker">' . $row["lastname"] . '</a></td>
-    <td class="d-none d-xl-table-cell">' . $row["status"] . '</td>
-    <td class="d-none d-xl-table-cell">
-    <a href=archive/admin_student_archive.php?ID=' . $row["student_id"] . ' onclick="return confirm(\'Are you sure you want this user go to archive?\');" class="btn btn-warning btn-md float-end"><span><img src="img/icons/archive.png" style="width:15px"></span>&nbsp Archive</a>
+    <td scope="row"><a href="admin_student_view.php?ID=' . $row["student_id"] . ' " class="user-clicker">' . $row["firstname"] . '</a></td>
+    <td><a href="admin_student_view.php?ID=' . $row["student_id"] . ' " class="user-clicker">' . $row["lastname"] . '</a></td>
+    <td>' . $row["status"] . '</td>
+    <td>
+    <span><a href=archive/admin_student_archive.php?ID=' . $row["student_id"] . ' onclick="return confirm(\'Are you sure you want this user go to archive?\');" class="btn btn-warning btn-md float-end"><span><img src="img/icons/archive.png" style="width:1rem"></span>&nbsp Archive</a>
     </td>
    </tr>
   ';
