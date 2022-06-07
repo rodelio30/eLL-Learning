@@ -2,21 +2,6 @@
 include 'admin_checker.php';
 $user = "faculty";
 
-// date_default_timezone_set("Asia/Manila");
-// session_start();
-// if(!isset($_SESSION['logged'])){
-//   header("location: public.php");
-// }
-// include ('include/connect.php');
-// $id=$_SESSION['id'];
-
-// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-// list($id,$type)=mysqli_fetch_array($query);
-
-// if($type=='student'){
-//   header("location: student.php");
-// }
-
 $faculty_counter = 0;
 $student_counter = 0;
 $sql_faculty     = "SELECT faculty_id FROM faculty WHERE status = 'archive' ";
@@ -59,6 +44,16 @@ if ($result_course->num_rows > 0) {
 }
 
 
+$materials_counter = 0;
+
+$sql_material    = "SELECT material_id FROM materials WHERE status = 'archive' ";
+$result_material = $conn->query($sql_material);
+
+if ($result_material->num_rows > 0) {
+  while ($row = $result_material->fetch_assoc()) {
+    $materials_counter++;
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,7 +125,7 @@ if ($result_course->num_rows > 0) {
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+            <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
@@ -344,10 +339,10 @@ if ($result_course->num_rows > 0) {
                 <div class="card-header">
                   <div class="row">
                     <?php
-                    if ($document_counter > 0) {
+                    if ($courses_counter > 0) {
                       echo "
                     <div class='col-md-4'>
-                      <h5 class='card-title mb-0'>Archive Documents</h5>
+                      <h5 class='card-title mb-0'>Archive Course</h5>
                   </div>
                       ";
                     } else {
@@ -390,6 +385,66 @@ if ($result_course->num_rows > 0) {
 															<td class='d-none d-xl-table-cell'>
 															<a href=\"archive/admin_course_delete.php?ID=$course_id\" onClick=\"return confirm('Are you sure you want to Delete this Course permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_course_active.php?ID=$course_id\" onClick=\"return confirm('Are you sure you want this Course be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
+															</td>
+														</tr>	
+													";
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <div class="row">
+                    <?php
+                    if ($materials_counter > 0) {
+                      echo "
+                    <div class='col-md-4'>
+                      <h5 class='card-title mb-0'>Archive Learning Material</h5>
+                  </div>
+                      ";
+                    } else {
+                      echo "";
+                    }
+
+                    ?>
+                  </div>
+                </div>
+                <table class="table table-hover my-0">
+                  <thead>
+                    <?php
+                    if ($materials_counter > 0) {
+                      echo "
+                        <tr>
+                          <th class='d-none d-xl-table-cell' style='width: 20%'>Name</th>
+                          <th class='d-none d-xl-table-cell' style='width: 20%'>Description</th>
+                          <th class='d-none d-xl-table-cell' style='width: 12%'>Status</th>
+                          <th class='d-none d-xl-table-cell' style='width: 24%'>Date Modified</th>
+                          <th class='d-none d-md-table-cell float-end me-3'>Action</th>
+                        </tr>
+                      ";
+                    } else {
+                      echo "<h1 class='m-4'><b><center>There is no Archive Learning Material</center></b></h1>";
+                      echo "<img src='img/icons/empty-course.png' alt='icon' class='mb-4 archive_photo_size'>";
+                    }
+
+                    ?>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $result = mysqli_query($conn, "select material_id, name, description, status, date_modified from materials WHERE status = 'archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                    while (list($material_id, $name, $description, $status, $date_modified) = mysqli_fetch_array($result)) {
+                      echo "
+														<tr>	
+															<td class='d-none d-xl-table-cell'>$name</td>
+															<td class='d-none d-xl-table-cell'>$description</td>
+															<td class='d-none d-xl-table-cell'>$status</td>
+															<td class='d-none d-xl-table-cell'>$date_modified</td>
+															<td class='d-none d-xl-table-cell'>
+															<a href=\"archive/admin_material_delete.php?ID=$material_id\" onClick=\"return confirm('Are you sure you want to Delete this Learning Material permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
+															<a href=\"archive/admin_material_active.php?ID=$material_id\" onClick=\"return confirm('Are you sure you want this Learning Material be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";

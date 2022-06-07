@@ -1,17 +1,40 @@
 <?php
 include 'admin_checker.php';
+date_default_timezone_set("Asia/Manila");
 
-$course_id = $_GET['ID'];
+if (isset($_POST['update'])) {
+  $material_id   = $_POST['material_id'];
+  $name        = $_POST['name'];
+  $description = $_POST['description'];
+  $status      = $_POST['status'];
+  $date_modified = date("Y-m-d h:i:s");
 
-$result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
-while ($res   = mysqli_fetch_array($result)) {
-  $course_id     = $res['course_id'];
-  $name          = $res['name'];
-  $description   = $res['description'];
-  $date_created  = $res['date_created'];
-  $date_modified = $res['date_modified'];
-  $status        = $res['status'];
+  // echo "<script>console.log('" . $email . "');</script>";
+  mysqli_query($conn, "update materials set name = '$name', description = '$description', status= '$status', date_modified = '$date_modified' where material_id = '$material_id'") or die("Query 4 is incorrect....");
+  echo '<script type="text/javascript"> alert("' . $name . ' Learning Material updated!.")</script>';
+  header('Refresh: 0; url=admin_material_view.php?ID=' . $_GET['ID'] . '');
 }
+
+$material_id = $_GET['ID'];
+
+$result = mysqli_query($conn, "SELECT * FROM materials WHERE material_id='$material_id'");
+while ($res   = mysqli_fetch_array($result)) {
+  $name        = $res['name'];
+  $description = $res['description'];
+  $status      = $res['status'];
+}
+
+$sel_active  = "";
+$sel_archive = "";
+
+if ($status == "active") {
+  $sel_active  = "selected";
+} else if ($status != "active") {
+  $sel_archive = "selected";
+}
+
+// $message = "Today is " . date("Y-m-d h:i:s");
+// echo "<script>console.log('" . $message . "');</script>";
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +85,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">course</span>
             </a>
           </li>
 
@@ -74,7 +97,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <hr class="hr-size">
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -82,7 +105,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
@@ -144,103 +167,56 @@ while ($res   = mysqli_fetch_array($result)) {
           </ul>
         </div>
       </nav>
+
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course
-              </a> /
-              <?php echo $name ?>
-            </strong>
-          </h1>
-          <div class="page-content">
 
+          <h1 class="h3 mb-3"><strong><a href="admin_materials.php" class="dash-item"> Learning Material
+              </a> /
+              <a href="admin_material_view.php?ID=<?php echo $material_id ?>" class="dash-item"> <?php echo $name ?>
+              </a>
+              /
+              Edit Course Info</strong></h1>
+          </h1>
+          <h1 class="h3 mb-3">
             <div class="row">
               <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-                <div class="card-view flex-fill">
-                  <div class="main-body">
-                    <div class="row gutters-sm">
-                      <div class="col-md-12">
-                        <div class="card m-4 mt-2">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Full Name</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $name ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Description</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $description ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $status ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                          </div>
-                        </div>
-
-                        <div class="row gutters-sm">
-                          <div class="col-sm-12">
-                            <div class="card h-100 mt-0 mb-0 m-4">
-                              <div class="card-body">
-                                <h5 class="d-flex align-items-center mb-3"><b>About Course</b></h5>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <p class="flatpickr-weekwrapper">Date Created</p>
-                                  </div>
-                                  <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_created ?></p>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <p class="flatpickr-weekwrapper">Date Modified</p>
-                                  </div>
-                                  <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_modified ?></p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <a class="btn btn-info ms-4 mb-2"
-                              <?php echo "href=\"admin_course_edit.php?ID=$course_id\" " ?>
-                              style="float: left;">Edit</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
+                <div class="card flex-fill">
+                  <div class="card-header">
+                    <h5 class="card-title mb-0">User Form</h5>
                   </div>
-                  <!-- </div> -->
-                  <!-- </div> -->
+                  <div class="card-body">
+                    <form method="post">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Firstname</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>"
+                          placeholder="Enter Name">
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Description</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                          value="<?php echo $description ?>" placeholder="Description">
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label>User Type</label>
+                        <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
+                          <option value="active" <?php echo $sel_active ?>>Active</option>
+                          <option value="inactive" <?php echo $sel_archive ?>>Inactive</option>
+                        </select>
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <input type="hidden" name="material_id" value="<?php echo $_GET['ID']; ?>">
+                        <button type="submit" class="btn btn-success" name="update">Update</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- end of row -->
-          </div>
+
         </div>
       </main>
 

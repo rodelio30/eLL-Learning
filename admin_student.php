@@ -88,7 +88,7 @@ $student = "student";
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+            <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
           </li>

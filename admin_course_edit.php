@@ -85,7 +85,7 @@ if ($status == "active") {
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">course</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
             </a>
           </li>
 
@@ -106,7 +106,7 @@ if ($status == "active") {
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+            <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
