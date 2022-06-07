@@ -30,18 +30,21 @@ $user = "faculty"
   <meta name="keywords"
     content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="shortcut icon" href="img/icons/clsu-logo.png" />
 
+  <!-- Inspired by the admitkit -->
   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
   <link rel="icon" href="img/icons/clsu-logo.png">
 
   <title>Language and Literature</title>
 
   <link href="css/app.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <script src="js/jquery.min.js"></script>
+  <link href="css/swap.css" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"> -->
 
+  <!-- This line below is the css for the datatables -->
+  <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -145,7 +148,9 @@ $user = "faculty"
                     data-feather="archive"></i>
                   Archive</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="include/sign-out.php">Log out</a>
+                <a class="dropdown-item" href="include/sign-out.php">
+                  <i class="align-middle me-1" data-feather="log-out"></i>
+                  Log out</a>
               </div>
             </li>
           </ul>
@@ -154,30 +159,50 @@ $user = "faculty"
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Faculty</strong> List</h1>
+          <div class="row">
+            <div class="col-md-4">
+              <h1 class="h3 mb-3"><strong>Faculty List</strong></h1>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+              <a <?php echo "href=\"user_add.php?user=$user\" " ?> style="float: right" class="btn btn-success"><span
+                  data-feather="user-plus"></span>&nbsp add faculty user</a>
+            </div>
+          </div>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <div class="input-group ms-2">
-                          <input type="text" name="search_text" id="search_text" placeholder="Search by Faculty Details"
-                            class="form-control" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
-                      <a <?php echo "href=\"user_add.php?user=$user\" " ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add Faculty User</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-header">
-                  <div id="result"></div>
+                  <table id="example" class="display" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th style="width: 25%">Firstname</th>
+                        <th style="width: 25%">Lastname</th>
+                        <th style="width: 20%">Date Modified</th>
+                        <th style="width: 20%">Status</th>
+                        <th style="width: 30%"><span class="float-end me-5">Action</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $result = mysqli_query($conn, "select faculty_id, firstname, lastname, date_modified, status from faculty WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($faculty_id, $firstname, $lastname, $date_modified, $status) = mysqli_fetch_array($result)) {
+                        echo "
+														<tr>	
+															<td scope='row'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$firstname</a></td>
+															<td><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$lastname</a></td>
+															<td>$date_modified</td>
+															<td>$status</td>
+															<td>
+															<a href=\"archive/admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															</td>
+														</tr>	
+													";
+                      }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -202,33 +227,27 @@ $user = "faculty"
   </div>
 
   <script src="js/app.js"></script>
+  <script src="js/jquery.min.js"></script>
+
+  <!-- This line below is the jquery for the datatables -->
+  <script src="js/bb_jquery.dataTables.min.js"></script>
+  <script src="js/1_jquery.dataTables.min.js"></script>
 
 </body>
 
 </html>
 <script>
 $(document).ready(function() {
-
-  load_data();
-
-  function load_data(query) {
-    $.ajax({
-      url: "fetch_faculty.php",
-      method: "POST",
-      data: {
-        query: query
-      },
-      success: function(data) {
-        $('#result').html(data);
-      }
-    });
-  }
-  $('#search_text').keyup(function() {
-    var search = $(this).val();
-    if (search != '') {
-      load_data(search);
-    } else {
-      load_data();
+  $('#example').DataTable({
+    "pagingType": "full_numbers",
+    "lengthMenu": [
+      [10, 25, 50, -1],
+      [10, 25, 50, "All"]
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search Faculty records",
     }
   });
 });
