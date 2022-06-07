@@ -6,28 +6,35 @@ $doc_id = $_GET['ID'];
 $result     = mysqli_query($conn, "SELECT * FROM document WHERE doc_id='$doc_id'");
 while ($res = mysqli_fetch_array($result)) {
   $doc_id           = $res['doc_id'];
+  $material_id      = $res['material_id'];
   $title            = $res['title'];
   $file_size        = $res['file_size'];
   $file_type        = $res['file_type'];
   $description      = $res['description'];
   $file_uploader_id = $res['file_uploader_id'];
-  $file_uploader    = $res['file_uploader'];
   $date_created     = $res['date_created'];
   $date_modified    = $res['date_modified'];
   $status           = $res['status'];
 }
 
-$uploader   = mysqli_query($conn, "SELECT firstname, lastname FROM users WHERE id='$file_uploader_id'");
+// Get the name of the uploader
+$uploader   = mysqli_query($conn, "SELECT firstname, lastname FROM faculty WHERE faculty_id='$file_uploader_id'");
 while ($res = mysqli_fetch_array($uploader)) {
   $firstname = $res['firstname'];
   $lastname   = $res['lastname'];
+}
+
+// Get the name of the Material type 
+$material_type = mysqli_query($conn, "SELECT name FROM materials WHERE material_id = '$material_id'");
+while ($res = mysqli_fetch_array($material_type)) {
+  $learning_material_type = $res['name'];
 }
 
 $icon_img   = '';
 
 if ($file_type === "pdf") {
   $icon_img   = 'pdf';
-} else if ($file_type === "doc" || $file_type === "docs") {
+} else if ($file_type === "doc" || $file_type === "docs" || $file_type === "docx") {
   $icon_img   = 'doc';
 } else if ($file_type === "xls" || $file_type === "xlsx" || $file_type === "xlc") {
   $icon_img   = 'xls';
@@ -105,12 +112,12 @@ if ($file_type === "pdf") {
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+            <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
@@ -187,22 +194,24 @@ if ($file_type === "pdf") {
                     <div class="col-md-6 m-2">
                       <div class="profile-head">
                         <h5>
-                          <span>Description: </span>
-                          <?php echo $description ?>
+                          <span>Title: </span>
+                          <?php echo $title ?>
                         </h5>
                         <hr>
-                        <h5>About</h5>
-                        <hr>
+                        <h5>
+                          <span>Description: </span>
+                          <?php echo $description ?>
+                          <hr>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
                           <div class="tab-content profile-tab" id="myTabContent">
                             <div class="row">
                               <div class="col-md-5">
-                                <label>Document Id</label>
+                                <label>Learning Material Type</label>
                               </div>
                               <div class="col-md-7">
-                                <p class="text-black"><?php echo $doc_id ?></p>
+                                <p class="text-black"><?php echo $learning_material_type ?></p>
                               </div>
                             </div>
                             <div class="row">

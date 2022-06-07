@@ -1,19 +1,6 @@
 <?php
 include 'admin_checker.php';
-
-$course_id = $_GET['ID'];
-
-$result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
-while ($res   = mysqli_fetch_array($result)) {
-  $course_id     = $res['course_id'];
-  $name          = $res['name'];
-  $description   = $res['description'];
-  $date_created  = $res['date_created'];
-  $date_modified = $res['date_modified'];
-  $status        = $res['status'];
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +23,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
   <link href="css/app.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -74,7 +62,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <hr class="hr-size">
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -82,7 +70,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
@@ -101,6 +89,7 @@ while ($res   = mysqli_fetch_array($result)) {
               <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+
           <div id="oras" class="clock-position ms-4 mb-2">
             <div id="clock">
               <div id="dates"></div>
@@ -108,6 +97,7 @@ while ($res   = mysqli_fetch_array($result)) {
             </div>
           </div>
           <script src="js/time_script.js"></script>
+
       </div>
     </nav>
 
@@ -144,102 +134,36 @@ while ($res   = mysqli_fetch_array($result)) {
           </ul>
         </div>
       </nav>
+
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course
-              </a> /
-              <?php echo $name ?>
-            </strong>
-          </h1>
-          <div class="page-content">
-
-            <div class="row">
-              <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-                <div class="card-view flex-fill">
-                  <div class="main-body">
-                    <div class="row gutters-sm">
-                      <div class="col-md-12">
-                        <div class="card m-4 mt-2">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Full Name</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $name ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Description</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $description ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $status ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                          </div>
-                        </div>
-
-                        <div class="row gutters-sm">
-                          <div class="col-sm-12">
-                            <div class="card h-100 mt-0 mb-0 m-4">
-                              <div class="card-body">
-                                <h5 class="d-flex align-items-center mb-3"><b>About Course</b></h5>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <p class="flatpickr-weekwrapper">Date Created</p>
-                                  </div>
-                                  <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_created ?></p>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <p class="flatpickr-weekwrapper">Date Modified</p>
-                                  </div>
-                                  <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_modified ?></p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <a class="btn btn-info ms-4 mb-2"
-                              <?php echo "href=\"admin_course_edit.php?ID=$course_id\" " ?>
-                              style="float: left;">Edit</a>
-                          </div>
+          <h1 class="h3 mb-3"><strong>Learning Material </strong> List</h1>
+          <div class="row">
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <div class="input-group ms-2">
+                          <input type="text" name="search_text" id="search_text" placeholder="Search by Faculty Details"
+                            class="form-control" />
                         </div>
                       </div>
                     </div>
-
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                      <a <?php echo "href=\"admin_material_add.php\" " ?> style="float: right"
+                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add New Course</a>
+                    </div>
                   </div>
-                  <!-- </div> -->
-                  <!-- </div> -->
+                </div>
+                <div class="card-header">
+                  <div id="result"></div>
                 </div>
               </div>
             </div>
-            <!-- end of row -->
           </div>
         </div>
       </main>
@@ -264,3 +188,30 @@ while ($res   = mysqli_fetch_array($result)) {
 </body>
 
 </html>
+<script>
+$(document).ready(function() {
+
+  load_data();
+
+  function load_data(query) {
+    $.ajax({
+      url: "fetch_materials.php",
+      method: "POST",
+      data: {
+        query: query
+      },
+      success: function(data) {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search_text').keyup(function() {
+    var search = $(this).val();
+    if (search != '') {
+      load_data(search);
+    } else {
+      load_data();
+    }
+  });
+});
+</script>

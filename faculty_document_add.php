@@ -58,17 +58,31 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Faculty</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
             </a>
           </li>
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Student</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
           </li>
 
           <hr class="hr-size">
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_courses.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
+            </a>
+          </li>
+
+          <hr class="hr-size">
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_materials.php">
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
+            </a>
+          </li>
 
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_document.php">
@@ -77,6 +91,8 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
           </li>
 
           <hr class="hr-size">
+
+
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="admin_archive_view.php">
@@ -132,7 +148,8 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong><a href="index.php" class="dashboard">Dashboard</a> / New User Account</strong>
+          <h1 class="h3 mb-3"><strong><a href="admin_document.php" class="dashboard">Document</a> / New
+              Documents</strong>
           </h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
@@ -154,6 +171,17 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
                       <strong><?php echo $_GET['error']; ?>!</strong>
                     </div>
                     <?php endif ?>
+                    <div class="form-group mb-4 ">
+                      <label>Learning Material Type</label>
+                      <select name="material_name" class="form-control">
+                        <?php
+                        $result = mysqli_query($conn, "select name from materials") or die("Query 4 is inncorrect........");
+                        while (list($name) = mysqli_fetch_array($result)) {
+                          echo "<option value='$name'>$name</option>";
+                        }
+                        ?>
+                      </select>
+                    </div>
                     <div class="mb-4 me-auto">
                       <label for="formFile" class="form-label">Browse your file</label>
                       <input class="form-control mt-2" type="file" name="my_image" id="file-upload">
@@ -163,8 +191,22 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
                       <textarea id="description" name="description" class="form-control"
                         placeholder="Describe this file here..."></textarea>
                     </div>
-                    <input type="hidden" id="uploader_id" name="uploader_id" value="<?php echo $uploader_id ?>">
-                    <input type="hidden" id="uploader" name="uploader" value="<?php echo $uploader ?>">
+                    <div class="form-group mb-4">
+                      <label>File Uploader</label>
+                      <select name="uploader_id" class="form-control">
+                        <?php
+                        $result = mysqli_query($conn, "select faculty_id, firstname from faculty where status='active'") or die("Query Faculty is inncorrect........");
+                        while (list($faculty_id, $firstname) = mysqli_fetch_array($result)) {
+                          if ($faculty_id == $file_uploader_id) {
+                            echo "<option value='$faculty_id' selected>$firstname</option>";
+                          } else {
+                            echo "<option value='$faculty_id'>$firstname</option>";
+                          }
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <!-- <input type="hidden" id="uploader_id" name="uploader_id" value="<?php echo $uploader_id ?>"> -->
                     <input type="submit" class="btn btn-success" name="submit" value="Upload">
                   </form>
                 </div>

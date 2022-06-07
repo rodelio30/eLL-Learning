@@ -1,11 +1,11 @@
 <?php
 include 'admin_checker.php';
 
-$course_id = $_GET['ID'];
+$material_id = $_GET['ID'];
 
-$result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
+$result = mysqli_query($conn, "SELECT * FROM materials WHERE material_id='$material_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $course_id     = $res['course_id'];
+  $material_id     = $res['material_id'];
   $name          = $res['name'];
   $description   = $res['description'];
   $date_created  = $res['date_created'];
@@ -74,7 +74,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <hr class="hr-size">
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -82,7 +82,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
@@ -146,7 +146,7 @@ while ($res   = mysqli_fetch_array($result)) {
       </nav>
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course
+          <h1 class="h3 mb-3"><strong><a href="admin_materials.php" class="dash-item"> Learning Material
               </a> /
               <?php echo $name ?>
             </strong>
@@ -226,7 +226,7 @@ while ($res   = mysqli_fetch_array($result)) {
                         <div class="row">
                           <div class="col-sm-12">
                             <a class="btn btn-info ms-4 mb-2"
-                              <?php echo "href=\"admin_course_edit.php?ID=$course_id\" " ?>
+                              <?php echo "href=\"admin_material_edit.php?ID=$material_id\" " ?>
                               style="float: left;">Edit</a>
                           </div>
                         </div>

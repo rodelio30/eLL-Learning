@@ -1,16 +1,17 @@
 <?php
 include 'admin_checker.php';
+date_default_timezone_set("Asia/Manila");
 
-$course_id = $_GET['ID'];
+if (isset($_POST['submit'])) {
+  $name          = $_POST['name'];
+  $description   = $_POST['description'];
+  $status        = 'active';
+  $date_created  = date("Y-m-d h:i:s");
+  $date_modified = date("Y-m-d h:i:s");
 
-$result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
-while ($res   = mysqli_fetch_array($result)) {
-  $course_id     = $res['course_id'];
-  $name          = $res['name'];
-  $description   = $res['description'];
-  $date_created  = $res['date_created'];
-  $date_modified = $res['date_modified'];
-  $status        = $res['status'];
+  mysqli_query($conn, "insert into materials(name, description, status, date_created, date_modified) values('$name','$description','$status','$date_created','$date_modified')")  or die("Query 3 is incorrect.....");
+  echo '<script type="text/javascript"> alert("' . $name . ' Learning Material Added!.")</script>';
+  header('Refresh: 0; url=admin_materials.php');
 }
 ?>
 
@@ -74,15 +75,15 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <hr class="hr-size">
 
-          <li class="sidebar-item active">
-            <a class="sidebar-link" href="admin_courses.php">
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
           </li>
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
@@ -101,7 +102,7 @@ while ($res   = mysqli_fetch_array($result)) {
               <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
-          <div id="oras" class="clock-position ms-4 mb-2">
+          <div id="oras" class="clock-position ms-3 mb-2">
             <div id="clock">
               <div id="dates"></div>
               <div id="current-time"></div>
@@ -126,17 +127,19 @@ while ($res   = mysqli_fetch_array($result)) {
               </a>
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
                 <?php include 'greet.php' ?>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
                   Profile</a>
+                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i>
+                  Analytics</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings</a>
-                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
-                    data-feather="archive"></i>
-                  Archive</a>
+                  Settings & Privacy</a>
+                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
+                  Center</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="include/sign-out.php">Log out</a>
               </div>
@@ -144,103 +147,40 @@ while ($res   = mysqli_fetch_array($result)) {
           </ul>
         </div>
       </nav>
+
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course
-              </a> /
-              <?php echo $name ?>
-            </strong>
+
+          <h1 class="h3 mb-3"><strong><a href="admin_materials.php" class="dashboard">Learning Materials</a> / New
+              Learning Material</strong>
           </h1>
-          <div class="page-content">
-
-            <div class="row">
-              <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-                <div class="card-view flex-fill">
-                  <div class="main-body">
-                    <div class="row gutters-sm">
-                      <div class="col-md-12">
-                        <div class="card m-4 mt-2">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Full Name</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $name ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Description</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $description ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $status ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                          </div>
-                        </div>
-
-                        <div class="row gutters-sm">
-                          <div class="col-sm-12">
-                            <div class="card h-100 mt-0 mb-0 m-4">
-                              <div class="card-body">
-                                <h5 class="d-flex align-items-center mb-3"><b>About Course</b></h5>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <p class="flatpickr-weekwrapper">Date Created</p>
-                                  </div>
-                                  <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_created ?></p>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <p class="flatpickr-weekwrapper">Date Modified</p>
-                                  </div>
-                                  <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_modified ?></p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <a class="btn btn-info ms-4 mb-2"
-                              <?php echo "href=\"admin_course_edit.php?ID=$course_id\" " ?>
-                              style="float: left;">Edit</a>
-                          </div>
-                        </div>
-                      </div>
+          <div class="row">
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <h5 class="card-title mb-0">Learning Material Form</h5>
+                </div>
+                <div class="card-body">
+                  <form method="post">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" class="form-control" id="name" name="name"
+                        placeholder="Enter Learning Material Name">
                     </div>
-
-                  </div>
-                  <!-- </div> -->
-                  <!-- </div> -->
+                    <br>
+                    <div class="form-group">
+                      <label>Description</label>
+                      <input type="text" class="form-control" id="description" name="description"
+                        placeholder="Enter Description">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                  </form>
                 </div>
               </div>
             </div>
-            <!-- end of row -->
           </div>
+
         </div>
       </main>
 

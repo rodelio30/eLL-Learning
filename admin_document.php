@@ -90,12 +90,12 @@ include 'admin_checker.php';
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+            <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
@@ -152,99 +152,6 @@ include 'admin_checker.php';
           </ul>
         </div>
       </nav>
-
-      <!-- <main class="content">
-        <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Document</strong> List</h1>
-          <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <h5 class="card-title mb-0">Latest Document</h5>
-                    </div>
-                    <div class="col-md-8">
-                      <a <?php echo "href=\"faculty_document_add.php\"" ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add New Document</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="row m-1">
-                  <div class="col-12">
-                    <div class="card-box">
-                      <div class="row">
-                        <div class="col-lg-6 col-xl-6">
-                          <h1 class="header-title m-b-30">Language and Literature Files</h1>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <?php
-                        $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, description, file_uploader_id, file_uploader, date, date_created from document WHERE status!='archive' ORDER BY doc_id") or die("Query for document is incorrect....");
-                        while (list($doc_id, $title, $file_size, $file_type, $description, $file_uploader_id, $file_uploader, $date, $date_created) = mysqli_fetch_array($result)) {
-                          $size       = formatSizeUnits2($file_size);
-                          $icon_img   = '';
-
-                          if ($file_type === "pdf") {
-                            $icon_img   = 'pdf';
-                          } else if ($file_type === "doc" || $file_type === "docs") {
-                            $icon_img   = 'doc';
-                          } else if ($file_type === "xls" || $file_type === "xlsx" || $file_type === "xlc") {
-                            $icon_img   = 'xls';
-                          } else if ($file_type === "txt") {
-                            $icon_img   = 'txt';
-                          }
-                          echo "
-                            <div class='col-lg-3 col-md-4 col-sm-12'>
-                              <div class='file-man-box'><a href=\"archive/admin_document_archive.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this Document go to archive?')\" class='file-close'><i
-                                    class='fa fa-times-circle'></i></a>
-                                <div class='file-img-box'><img
-                                    src='img/photos/$icon_img.svg'
-                                    alt='icon'></div><a href=\"uploads/$title.$file_type\" target='_blank' class='file-download'><i
-                                    class='fa fa-download'></i></a>
-                                <div class='file-man-title'>
-                                  <h5 class='mb-1'><a href=\"admin_document_view.php?ID=$doc_id\" class='document-clicker'>$title</a></h5>
-                                  <p class='mb-0'><small>$size</small></p>
-                                  <small>Added: <span class='date text-muted'>$date</span></small>
-                                </div>
-                                <hr>
-                                <div class='mt-1'>
-                                  <p class='mb-0'><small>Description</small></p>
-                                  <small><span class='date text-muted'>$description</span></small>
-                                </div>
-                              </div>
-                            </div>
-                       ";
-                        }
-                        function formatSizeUnits2($file_size)
-                        {
-                          if ($file_size >= 1073741824) {
-                            $file_size = number_format($file_size / 1073741824, 2) . ' GB';
-                          } elseif ($file_size >= 1048576) {
-                            $file_size = number_format($file_size / 1048576, 2) . ' MB';
-                          } elseif ($file_size >= 1024) {
-                            $file_size = number_format($file_size / 1024, 2) . ' KB';
-                          } elseif ($file_size > 1) {
-                            $file_size = $file_size . ' bytes';
-                          } elseif ($file_size == 1) {
-                            $file_size = $file_size . ' byte';
-                          } else {
-                            $file_size = '0 bytes';
-                          }
-
-                          return $file_size;
-                        }
-                        ?>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main> -->
 
       <main class="content">
         <div class="container-fluid p-0">

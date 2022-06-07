@@ -7,14 +7,21 @@ if (isset($_POST['update'])) {
   $description      = $_POST['description'];
   $file_uploader_id = $_POST['file_uploader_id'];
 
+  // Get the id for the faculty who uploaded the file
   $result = mysqli_query($conn, "SELECT faculty_id, firstname FROM faculty WHERE faculty_id='$file_uploader_id'");
   while ($res   = mysqli_fetch_array($result)) {
     $faculty_id = $res['faculty_id'];
-    $firstname  = $res['firstname'];
   }
 
-  mysqli_query($conn, "UPDATE document SET description = '$description', file_uploader_id = '$file_uploader_id', file_uploader = '$firstname' WHERE doc_id = '$docu_id'") or die("Query 4 is incorrect....");
-  echo '<script type="text/javascript"> alert("Document ' . $docu_id . ' updated!.")</script>';
+  mysqli_query($conn, "UPDATE document SET description = '$description', file_uploader_id = '$file_uploader_id' WHERE doc_id = '$docu_id'") or die("Query 4 is incorrect....");
+
+  // Get the name of the file that are updated
+  $result_update  = mysqli_query($conn, "SELECT title FROM document WHERE doc_id='$docu_id'");
+  while ($res     = mysqli_fetch_array($result_update)) {
+    $update_title = $res['title'];
+  }
+
+  echo '<script type="text/javascript"> alert("Document ' . $update_title . ' updated!.")</script>';
   header('Refresh: 0; url=admin_document.php');
 }
 
@@ -22,10 +29,10 @@ $doc_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM document WHERE doc_id='$doc_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $title       = $res['title'];
-  $file_type   = $res['file_type'];
-  $description = $res['description'];
-  $file_uploader = $res['file_uploader'];
+  $title            = $res['title'];
+  $file_type        = $res['file_type'];
+  $description      = $res['description'];
+  $file_uploader_id = $res['file_uploader_id'];
 }
 
 ?>
@@ -101,12 +108,12 @@ while ($res   = mysqli_fetch_array($result)) {
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+            <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
             </a>
@@ -201,7 +208,7 @@ while ($res   = mysqli_fetch_array($result)) {
                         <?php
                         $result = mysqli_query($conn, "select faculty_id, firstname from faculty where status='active'") or die("Query Faculty is inncorrect........");
                         while (list($faculty_id, $firstname) = mysqli_fetch_array($result)) {
-                          if ($firstname == $file_uploader) {
+                          if ($faculty_id == $file_uploader_id) {
                             echo "<option value='$faculty_id' selected>$firstname</option>";
                           } else {
                             echo "<option value='$faculty_id'>$firstname</option>";
