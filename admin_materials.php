@@ -233,7 +233,7 @@ $(document).ready(function() {
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Course records",
+      searchPlaceholder: "Search Material records",
     }
   });
 });
