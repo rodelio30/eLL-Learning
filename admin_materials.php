@@ -143,30 +143,50 @@ include 'admin_checker.php';
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Learning Material </strong> List</h1>
+          <div class="row">
+            <div class="col-md-4">
+              <h1 class="h3 mb-3"><strong>Learning Material </strong> List</h1>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+              <a <?php echo "href=\"admin_material_add.php\" " ?> style="float: right" class="btn btn-success"><span
+                  data-feather="user-plus"></span>&nbsp Add New Learning Material</a>
+            </div>
+          </div>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <div class="input-group ms-2">
-                          <input type="text" name="search_text" id="search_text" placeholder="Search by Faculty Details"
-                            class="form-control" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
-                      <a <?php echo "href=\"admin_material_add.php\" " ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add New Course</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-header">
                   <div id="result"></div>
+                  <!-- code below -->
+                  <table id="material_table" class="display" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="width: 30%">Name</th>
+                        <th scope="col" style="width: 30%">Description</th>
+                        <th scope="col" style="width: 30%">Status</th>
+                        <th scope="col" style="width: 35%"><span class="float-end me-5">Action</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $result = mysqli_query($conn, "select material_id, name, description, status from materials WHERE status!='archive'") or die("Query 1 is incorrect....");
+                      while (list($material_id, $name, $description, $status) = mysqli_fetch_array($result)) {
+                        echo "
+														<tr>	
+															<td scope='row'><a href=\"admin_material_view.php?ID=$material_id\" class='user-clicker'>$name</a></td>
+															<td>$description</td>
+															<td>$status</td>
+															<td>
+															<a href=\"archive/admin_material_archive.php?ID=$material_id\" onClick=\"return confirm('Are you sure you want this Learning Material move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															</td>
+														</tr>	
+													";
+                      }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -201,27 +221,19 @@ include 'admin_checker.php';
 </html>
 <script>
 $(document).ready(function() {
-
-  load_data();
-
-  function load_data(query) {
-    $.ajax({
-      url: "fetch_materials.php",
-      method: "POST",
-      data: {
-        query: query
-      },
-      success: function(data) {
-        $('#result').html(data);
-      }
-    });
-  }
-  $('#search_text').keyup(function() {
-    var search = $(this).val();
-    if (search != '') {
-      load_data(search);
-    } else {
-      load_data();
+  $('#material_table').DataTable({
+    order: [
+      [0, 'asc']
+    ],
+    "pagingType": "full_numbers",
+    "lengthMenu": [
+      [5, 10, 25, 50, -1],
+      [5, 10, 25, 50, "All"]
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search Course records",
     }
   });
 });

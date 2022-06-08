@@ -180,44 +180,43 @@ if ($status == "active") {
               /
               Edit Course Info</strong></h1>
           </h1>
-          <h1 class="h3 mb-3">
-            <div class="row">
-              <div class="col-12 col-lg-8 col-xxl-12 d-flex">
-                <div class="card flex-fill">
-                  <div class="card-header">
-                    <h5 class="card-title mb-0">User Form</h5>
-                  </div>
-                  <div class="card-body">
-                    <form method="post">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Firstname</label>
-                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>"
-                          placeholder="Enter Name">
-                      </div>
-                      <br>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Description</label>
-                        <input type="text" class="form-control" id="description" name="description"
-                          value="<?php echo $description ?>" placeholder="Description">
-                      </div>
-                      <br>
-                      <div class="form-group">
-                        <label>User Type</label>
-                        <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
-                          <option value="active" <?php echo $sel_active ?>>Active</option>
-                          <option value="inactive" <?php echo $sel_archive ?>>Inactive</option>
-                        </select>
-                      </div>
-                      <br>
-                      <div class="form-group">
-                        <input type="hidden" name="course_id" value="<?php echo $_GET['ID']; ?>">
-                        <button type="submit" class="btn btn-success" name="update">Update</button>
-                      </div>
-                    </form>
-                  </div>
+          <div class="row">
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <h5 class="card-title mb-0">User Form</h5>
+                </div>
+                <div class="card-body">
+                  <form method="post">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Firstname</label>
+                      <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>"
+                        placeholder="Enter Name">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Description</label>
+                      <input type="text" class="form-control" id="description" name="description"
+                        value="<?php echo $description ?>" placeholder="Description">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label>User Type</label>
+                      <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
+                        <option value="active" <?php echo $sel_active ?>>Active</option>
+                        <option value="inactive" <?php echo $sel_archive ?>>Inactive</option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <input type="hidden" name="course_id" value="<?php echo $_GET['ID']; ?>">
+                      <button type="submit" class="btn btn-success" name="update">Update</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
+          </div>
 
         </div>
       </main>

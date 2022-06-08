@@ -207,7 +207,7 @@ if ($result_material->num_rows > 0) {
                     if ($faculty_counter || $student_counter > 0) {
                       echo "
                     <div class='col-md-4'>
-                      <h5 class='card-title mb-0'>Archive Users</h5>
+                      <h5 class='card-title mb-2'>Archive Users</h5>
                   </div>
                       ";
                     } else {
@@ -216,16 +216,16 @@ if ($result_material->num_rows > 0) {
 
                     ?>
                   </div>
-                  <table class="table table-hover">
+                  <table id="faculty_table" class="display" style="width:100%">
                     <thead>
                       <?php
                       if ($faculty_counter || $student_counter > 0) {
                         echo "
                         <tr>
-                          <th scope='col' style='width: 15%'>Firstname</th>
-                          <th scope='col' style='width: 15%'>Lastname</th>
-                          <th scope='col' style='width: 20%'>Date Modified</th>
-                          <th scope='col' style='width: 20%'>Type</th>
+                          <th scope='col' style='width: 18%'>Firstname</th>
+                          <th scope='col' style='width: 17%'>Lastname</th>
+                          <th scope='col' style='width: 15%'>Type</th>
+                          <th scope='col' style='width: 25%'>Date Modified</th>
                           <th scope='col' style='width: 30%'><span style='margin-left: 7rem;'>Action</span></th>
                         </tr>
                       ";
@@ -244,8 +244,8 @@ if ($result_material->num_rows > 0) {
 														<tr>	
 															<td scope='row'><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$firstname</a></td>
 															<td><a href=\"admin_faculty_view.php?ID=$faculty_id\" class='user-clicker'>$lastname</a></td>
-															<td>$date_modified</td>
 															<td><p class='archive-faculty'>Faculty</p></td>
+															<td>$date_modified</td>
 															<td>
 															<a href=\"archive/admin_faculty_delete.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_faculty_active.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
@@ -261,8 +261,8 @@ if ($result_material->num_rows > 0) {
 														<tr>	
 															<td scope='row'><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$firstname</a></td>
 															<td><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$lastname</a></td>
-															<td>$date_modified</td>
 															<td><p class='archive-student'>Student</p></td>
+															<td>$date_modified</td>
 															<td>
 															<a href=\"archive/admin_student_delete.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='user-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_student_active.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='user-plus'></span>&nbsp Active again?</a>
@@ -284,7 +284,7 @@ if ($result_material->num_rows > 0) {
                     if ($document_counter > 0) {
                       echo "
                     <div class='col-md-4'>
-                      <h5 class='card-title mb-0'>Archive Documents</h5>
+                      <h5 class='card-title mb-2'>Archive Documents</h5>
                   </div>
                       ";
                     } else {
@@ -293,14 +293,14 @@ if ($result_material->num_rows > 0) {
 
                     ?>
                   </div>
-                  <table class="table table-hover">
+                  <table id="document_table" class="display" style="width:100%">
                     <thead>
                       <?php
                       if ($document_counter > 0) {
                         echo "
                         <tr>
-                          <th scope='col' style='width: 25%'>Title</th>
-                          <th scope='col' style='width: 25%'>Type</th>
+                          <th scope='col' style='width: 35%'>Title</th>
+                          <th scope='col' style='width: 15%'>Type</th>
                           <th scope='col' style='width: 25%'>Date Modified</th>
                           <th scope='col' style='width: 30%'><span style='margin-left: 3rem;'>Action</span></th>
                         </tr>
@@ -319,8 +319,8 @@ if ($result_material->num_rows > 0) {
                         echo "
 														<tr>	
 															<td scope='row'>$title</td>
-															<td>$date_modified</td>
 															<td><p class='archive-document'>Document</p></td>
+															<td>$date_modified</td>
 															<td>
 															<a href=\"archive/admin_document_delete.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want to Delete this Document permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_document_active.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
@@ -342,7 +342,7 @@ if ($result_material->num_rows > 0) {
                     if ($courses_counter > 0) {
                       echo "
                     <div class='col-md-4'>
-                      <h5 class='card-title mb-0'>Archive Course</h5>
+                      <h5 class='card-title mb-2'>Archive Course</h5>
                   </div>
                       ";
                     } else {
@@ -351,7 +351,7 @@ if ($result_material->num_rows > 0) {
 
                     ?>
                   </div>
-                  <table class="table table-hover">
+                  <table id="course_table" class="display" style="width:100%">
                     <thead>
                       <?php
                       if ($courses_counter > 0) {
@@ -400,7 +400,7 @@ if ($result_material->num_rows > 0) {
                     if ($materials_counter > 0) {
                       echo "
                     <div class='col-md-4'>
-                      <h5 class='card-title mb-0'>Archive Learning Material</h5>
+                      <h5 class='card-title mb-2'>Archive Learning Material</h5>
                   </div>
                       ";
                     } else {
@@ -409,7 +409,7 @@ if ($result_material->num_rows > 0) {
 
                     ?>
                   </div>
-                  <table class="table table-hover">
+                  <table id="material_table" class="display" style="width:100%">
                     <thead>
                       <?php
                       if ($materials_counter > 0) {
@@ -478,17 +478,76 @@ if ($result_material->num_rows > 0) {
   <script src="js/bb_jquery.dataTables.min.js"></script>
   <script src="js/1_jquery.dataTables.min.js"></script>
   <!-- generate datatable on our table -->
-  <script>
-  $(document).ready(function() {
-    //inialize datatable
-    $('#myTable').DataTable();
-
-    //hide alert
-    $(document).on('click', '.close', function() {
-      $('.alert').hide();
-    })
-  });
-  </script>
 </body>
 
 </html>
+<script>
+$(document).ready(function() {
+  $('#faculty_table').DataTable({
+    order: [
+      [3, 'asc']
+    ],
+    "pagingType": "full_numbers",
+    "lengthMenu": [
+      [5, 10, 25, 50, -1],
+      [5, 10, 25, 50, "All"]
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search Course records",
+    }
+  });
+});
+$(document).ready(function() {
+  $('#document_table').DataTable({
+    order: [
+      [2, 'asc']
+    ],
+    "pagingType": "full_numbers",
+    "lengthMenu": [
+      [5, 10, 25, 50, -1],
+      [5, 10, 25, 50, "All"]
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search Course records",
+    }
+  });
+});
+$(document).ready(function() {
+  $('#course_table').DataTable({
+    order: [
+      [2, 'asc']
+    ],
+    "pagingType": "full_numbers",
+    "lengthMenu": [
+      [5, 10, 25, 50, -1],
+      [5, 10, 25, 50, "All"]
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search Course records",
+    }
+  });
+});
+$(document).ready(function() {
+  $('#material_table').DataTable({
+    order: [
+      [2, 'asc']
+    ],
+    "pagingType": "full_numbers",
+    "lengthMenu": [
+      [5, 10, 25, 50, -1],
+      [5, 10, 25, 50, "All"]
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search Course records",
+    }
+  });
+});
+</script>
