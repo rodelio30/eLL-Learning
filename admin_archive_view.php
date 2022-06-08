@@ -495,7 +495,7 @@ $(document).ready(function() {
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Course records",
+      searchPlaceholder: "Search Faculty and Student records",
     }
   });
 });
@@ -512,7 +512,7 @@ $(document).ready(function() {
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Course records",
+      searchPlaceholder: "Search Document records",
     }
   });
 });
@@ -546,7 +546,7 @@ $(document).ready(function() {
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Course records",
+      searchPlaceholder: "Search Learning Material records",
     }
   });
 });
