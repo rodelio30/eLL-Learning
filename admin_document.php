@@ -158,41 +158,94 @@ include 'admin_checker.php';
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Document</strong> List</h1>
+          <div class="row">
+            <div class="col-md-4">
+              <h1 class="h3 mb-3"><strong>Document</strong> List</h1>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+              <a <?php echo "href=\"faculty_document_add.php\"" ?> style="float: right" class="btn btn-success"><span
+                  data-feather="user-plus"></span>&nbsp Add New Document</a>
+            </div>
+          </div>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <div class="input-group ms-2">
-                          <input type="text" name="search_text" id="search_text"
-                            placeholder="Search by Document Details" class="form-control" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
-                      <a <?php echo "href=\"faculty_document_add.php\"" ?> style="float: right"
-                        class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add New Document</a>
-                    </div>
-                  </div>
+                  <!-- code below -->
+                  <table id="document_table" class="display" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="width: 40%">Title</th>
+                        <th scope="col" style="width: 10%">File Size</th>
+                        <th scope="col" style="width: 20%">Learning Material</th>
+                        <th scope="col" style="width: 10%">Status</th>
+                        <th scope="col" style="width: 35%"><span class="float-end me-5">Action</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, status from document WHERE status!='archive'") or die("Query 1 is incorrect....");
+                      while (list($doc_id, $material_id, $title, $file_size, $file_type, $status) = mysqli_fetch_array($result)) {
+                        $size          = formatSizeUnits2($file_size);
+                        $material_name = materialName($material_id);
+                        $icon_img      = '';
+
+                        if ($file_type === "pdf") {
+                          $icon_img   = 'pdf';
+                        } else if ($file_type === "doc" || $file_type === "docs") {
+                          $icon_img   = 'doc';
+                        } else if ($file_type === "xls" || $file_type === "xlsx" || $file_type === "xlc") {
+                          $icon_img   = 'xls';
+                        } else if ($file_type === "txt") {
+                          $icon_img   = 'txt';
+                        }
+                        echo "
+														<tr>	
+															<td scope='row'><a href=\"admin_document_view.php?ID=$doc_id\" class='user-clicker'>$title.$file_type</a></td>
+															<td>$size</td>
+															<td>$material_name</td>
+															<td>$status</td>
+															<td>
+															<a href=\"archive/admin_document_archive.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this Document move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"uploads/$title.$file_type\"target='_blank' class='btn btn-primary btn-md float-end me-1'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Download</a>
+															</td>
+														</tr>	
+													";
+                      }
+                      // this is for format of size in each document
+                      function formatsizeunits2($file_size)
+                      {
+                        if ($file_size >= 1073741824) {
+                          $file_size = number_format($file_size / 1073741824, 2) . ' gb';
+                        } elseif ($file_size >= 1048576) {
+                          $file_size = number_format($file_size / 1048576, 2) . ' mb';
+                        } elseif ($file_size >= 1024) {
+                          $file_size = number_format($file_size / 1024, 2) . ' kb';
+                        } elseif ($file_size > 1) {
+                          $file_size = $file_size . ' bytes';
+                        } elseif ($file_size == 1) {
+                          $file_size = $file_size . ' byte';
+                        } else {
+                          $file_size = '0 bytes';
+                        }
+
+                        return $file_size;
+                      }
+                      // this function is to return a name for the material 
+                      function materialName($material_id)
+                      {
+                        include 'include/connect.php';
+                        $result = mysqli_query($conn, "select name from materials WHERE material_id='$material_id'") or die("Query 1 is incorrect....");
+                        while (list($name) = mysqli_fetch_array($result)) {
+                          return $name;
+                        }
+                      }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
-                <div class="row m-1">
-                  <div class="col-12">
-                    <div class="card-box">
-                      <div class="row">
-                        <div class="col-lg-6 col-xl-6">
-                          <h1 class="header-title m-b-30">Language and Literature Files</h1>
-                        </div>
-                      </div>
-                      <div id="result"></div>
-                    </div>
-                  </div> <!-- end col -->
-                </div> <!-- end row -->
-                <!-- container -->
               </div>
             </div>
           </div>
@@ -226,48 +279,20 @@ include 'admin_checker.php';
 </html>
 <script>
 $(document).ready(function() {
-
-  load_data();
-
-  function load_data(query) {
-    $.ajax({
-      url: "fetch_document.php",
-      method: "POST",
-      data: {
-        query: query
-      },
-      success: function(data) {
-        $('#result').html(data);
-      }
-    });
-  }
-  $('#search_text').keyup(function() {
-    var search = $(this).val();
-    if (search != '') {
-      load_data(search);
-    } else {
-      load_data();
+  $('#document_table').DataTable({
+    order: [
+      [2, 'asc']
+    ],
+    "pagingType": "full_numbers",
+    "lengthMenu": [
+      [10, 25, 50, -1],
+      [10, 25, 50, "All"]
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search Course records",
     }
   });
 });
 </script>
-<!-- This is for fetch document  -->
-
-<!-- <div class="file-man-box"><a href="archive/admin_document_archive.php?ID=' . $row[" doc_id"]
-    . '" onclick="return confirm(\' are you sure you want this user go to archive?\');" class="file-close"><i
-      class="fa fa-times-circle"></i></a>
-  <div class="file-img-box"><img src="img/photos/' . $icon_img  . '.svg" alt="icon"></div><a href="uploads/' . $row["
-    title"] . '.' . $row["file_type"] . '" target="_blank" class="file-download"><i class="fa fa-download"></i></a>
-  <div class="file-man-title">
-    <h5 class="mb-1"><a href="admin_document_view.php?ID= ' . $row["doc_id"] . ' " class="document-clicker">' .
-    $row["title"] . '</a></h5>
-    <p class="mb-0"><small>' . $size . ' </small></p>
-    <small>Added: <span class="date text-muted">$date</span></small>
-  </div>
-  <hr>
-  <div class="mt-1">
-    <p class="mb-0"><small>Description</small></p>
-    <small><span class="date text-muted">' . $row["description"] . '</span></small>
-  </div>
-</div>
-</div> -->

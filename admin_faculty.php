@@ -167,7 +167,7 @@ $user = "faculty"
             </div>
             <div class="col-md-4">
               <a <?php echo "href=\"user_add.php?user=$user\" " ?> style="float: right" class="btn btn-success"><span
-                  data-feather="user-plus"></span>&nbsp add faculty user</a>
+                  data-feather="user-plus"></span>&nbsp add Faculty user</a>
             </div>
           </div>
           <div class="row">
@@ -195,7 +195,7 @@ $user = "faculty"
 															<td>$date_modified</td>
 															<td>$status</td>
 															<td>
-															<a href=\"archive/admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"archive/admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
 															</td>
 														</tr>	
 													";
@@ -203,7 +203,7 @@ $user = "faculty"
                       ?>
                     </tbody>
                   </table>
-                </div>
+                </div> <!-- end of card header -->
               </div>
             </div>
           </div>
@@ -239,6 +239,9 @@ $user = "faculty"
 <script>
 $(document).ready(function() {
   $('#example').DataTable({
+    order: [
+      [1, 'asc']
+    ],
     "pagingType": "full_numbers",
     "lengthMenu": [
       [10, 25, 50, -1],
