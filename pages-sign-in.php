@@ -16,6 +16,8 @@ if (isset($_POST['submit_admin'])) {
     $_SESSION['logged'] = true;
     $_SESSION['id'] = $res[0]->id;
 
+    include 'include/transaction_login.php';
+
     if ($res[0]->type === 'admin') {
       echo "<script type='text/javascript'>alert('Hello Admin');
             document.location='index.php' </script>";
@@ -48,7 +50,7 @@ if (isset($_POST['submit_admin'])) {
   <meta name="keywords"
     content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
   <link rel="icon" href="img/icons/clsu-logo.png">
 
   <link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.php" />
@@ -56,7 +58,8 @@ if (isset($_POST['submit_admin'])) {
   <title>Language and Literature</title>
 
   <link href="css/app.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="css/swap.css" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"> -->
 </head>
 
 <body>

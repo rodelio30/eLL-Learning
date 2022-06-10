@@ -1,8 +1,10 @@
-<?php 
-  session_start();
+<?php
+session_start();
 
-  session_unset();
-  session_destroy();
+// transaction logout history
+include 'transaction_logout.php';
 
-  header("location: ../pages-sign-in.php");
-?>
+session_unset();
+session_destroy();
+
+header("location: ../pages-sign-in.php");
