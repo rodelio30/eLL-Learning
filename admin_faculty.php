@@ -138,20 +138,7 @@ $user = "faculty"
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                 <?php include 'greet.php' ?>
               </a>
-              <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
-                  Profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings</a>
-                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
-                    data-feather="archive"></i>
-                  Archive</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="include/sign-out.php">
-                  <i class="align-middle me-1" data-feather="log-out"></i>
-                  Log out</a>
-              </div>
+              <?php include 'settings.php' ?>
             </li>
           </ul>
         </div>
@@ -174,7 +161,7 @@ $user = "faculty"
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <table id="example" class="display" style="width:100%">
+                  <table id="faculty_table" class="display" style="width:100%">
                     <thead>
                       <tr>
                         <th style="width: 25%">Firstname</th>
@@ -210,19 +197,7 @@ $user = "faculty"
         </div>
       </main>
 
-      <footer class="footer">
-        <div class="container-fluid">
-          <div class="row text-muted">
-            <div class="col-6 text-start">
-              <p class="mb-0">
-                <a class="text-muted" href="https://clsu.edu.ph/" target="_blank"><strong>CLSU</strong></a>
-                powered by
-                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <?php include 'admin_footer.php'; ?>
     </div>
   </div>
 
@@ -238,7 +213,7 @@ $user = "faculty"
 </html>
 <script>
 $(document).ready(function() {
-  $('#example').DataTable({
+  $('#faculty_table').DataTable({
     order: [
       [1, 'asc']
     ],
