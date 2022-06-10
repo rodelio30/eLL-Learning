@@ -1,5 +1,6 @@
 <?php
 require 'connect.php';
+date_default_timezone_set("Asia/Manila");
 
 function login($conn, $email, $password)
 {
@@ -14,5 +15,6 @@ function login($conn, $email, $password)
   while ($row = $res->fetch_assoc()) {
     array_push($records, $row);
   }
+
   return json_encode($records);
 }
