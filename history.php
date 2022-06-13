@@ -1,5 +1,6 @@
 <?php
 include 'admin_checker.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +38,7 @@ include 'admin_checker.php';
         <a class="sidebar-brand" href="index.php">
           <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
+
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Pages
@@ -74,8 +76,8 @@ include 'admin_checker.php';
 
           <hr class="hr-size">
 
-          <li class="sidebar-item active">
-            <a class="sidebar-link" href="admin_materials.php">
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_document.php">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
@@ -93,7 +95,6 @@ include 'admin_checker.php';
               <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
-
           <div id="oras" class="clock-position ms-4 mb-2">
             <div id="clock">
               <div id="dates"></div>
@@ -120,6 +121,7 @@ include 'admin_checker.php';
               </a>
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
                 <?php include 'greet.php' ?>
               </a>
               <?php include 'settings.php' ?>
@@ -130,51 +132,50 @@ include 'admin_checker.php';
 
       <main class="content">
         <div class="container-fluid p-0">
-          <div class="row">
-            <div class="col-md-4">
-              <h1 class="h3 mb-3"><strong>Learning Material </strong> List</h1>
-            </div>
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-              <a <?php echo "href=\"admin_material_add.php\" " ?> style="float: right" class="btn btn-success"><span
-                  data-feather="user-plus"></span>&nbsp Add New Learning Material</a>
-            </div>
-          </div>
+          <h1 class="h3 mb-3"><strong>History Log</strong></h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <div id="result"></div>
-                  <!-- code below -->
-                  <table id="material_table" class="display" style="width:100%">
+                  <table id="history_table" class="display" style="width:100%">
                     <thead>
                       <tr>
-                        <th scope="col" style="width: 30%">Name</th>
-                        <th scope="col" style="width: 30%">Description</th>
-                        <th scope="col" style="width: 30%">Status</th>
-                        <th scope="col" style="width: 35%"><span class="float-end me-5">Action</span></th>
+                        <th style="width: 25%">Log id</th>
+                        <th style="width: 25%">User</th>
+                        <th style="width: 20%">Transaction Name</th>
+                        <th style="width: 20%">Action</th>
+                        <th style="width: 20%">Status</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $result = mysqli_query($conn, "select material_id, name, description, status from materials WHERE status!='archive'") or die("Query 1 is incorrect....");
-                      while (list($material_id, $name, $description, $status) = mysqli_fetch_array($result)) {
+                      $result = mysqli_query($conn, "select log_id, user_id, transaction_name, log_time, action, status from transaction_log ORDER BY log_id DESC") or die("Query 1 is incorrect....");
+                      while (list($log_id, $user_id, $transaction_name, $log_time, $action, $status) = mysqli_fetch_array($result)) {
+                        $user_name = userName($user_id);
                         echo "
 														<tr>	
-															<td scope='row'><a href=\"admin_material_view.php?ID=$material_id\" class='user-clicker'>$name</a></td>
-															<td>$description</td>
+															<td scope='row'>$log_id</td>
+															<td>$user_name</td>
+															<td>$transaction_name</td>
+															<td>$action</td>
 															<td>$status</td>
-															<td>
-															<a href=\"archive/admin_material_archive.php?ID=$material_id\" onClick=\"return confirm('Are you sure you want this Learning Material move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
-															</td>
 														</tr>	
 													";
+                      }
+                      // this function is to return a name for the material 
+                      function userName($user_id)
+                      {
+                        include 'include/connect.php';
+                        $result = mysqli_query($conn, "select firstname, lastname from users WHERE id = '$user_id'") or die("Query 1 is incorrect.....");
+                        while (list($firstname, $lastname) = mysqli_fetch_array($result)) {
+                          $user_name = $firstname . " " . $lastname;
+                          return $user_name;
+                        }
                       }
                       ?>
                     </tbody>
                   </table>
-                </div>
+                </div> <!-- end of card header -->
               </div>
             </div>
           </div>
@@ -191,24 +192,25 @@ include 'admin_checker.php';
   <!-- This line below is the jquery for the datatables -->
   <script src="js/bb_jquery.dataTables.min.js"></script>
   <script src="js/1_jquery.dataTables.min.js"></script>
+
 </body>
 
 </html>
 <script>
 $(document).ready(function() {
-  $('#material_table').DataTable({
+  $('#history_table').DataTable({
     order: [
-      [0, 'asc']
+      [0, 'desc']
     ],
     "pagingType": "full_numbers",
     "lengthMenu": [
-      [5, 10, 25, 50, -1],
-      [5, 10, 25, 50, "All"]
+      [10, 25, 50, -1],
+      [10, 25, 50, "All"]
     ],
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Material records",
+      searchPlaceholder: "Search History Log Records",
     }
   });
 });

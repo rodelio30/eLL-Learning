@@ -138,20 +138,7 @@ while ($res = mysqli_fetch_array($select_course_name)) {
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                 <?php include 'greet.php' ?>
               </a>
-              <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
-                  Profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings</a>
-                <a class="dropdown-item" href="admin_archive_view.php"><i class="align-middle me-1"
-                    data-feather="archive"></i>
-                  Archive</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="include/sign-out.php">
-                  <i class="align-middle me-1" data-feather="log-out"></i>
-                  Log out</a>
-              </div>
+              <?php include 'settings.php' ?>
             </li>
           </ul>
         </div>
@@ -303,19 +290,7 @@ while ($res = mysqli_fetch_array($select_course_name)) {
         </div>
       </main>
 
-      <footer class="footer">
-        <div class="container-fluid">
-          <div class="row text-muted">
-            <div class="col-6 text-start">
-              <p class="mb-0">
-                <a class="text-muted" href="https://clsu.edu.ph/" target="_blank"><strong>CLSU</strong></a>
-                powered by
-                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <?php include 'admin_footer.php'; ?>
     </div>
   </div>
 

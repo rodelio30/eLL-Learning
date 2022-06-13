@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // transaction logout history
 include 'transaction_logout.php';
