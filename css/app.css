@@ -15884,4 +15884,11 @@ h5 {
   margin-top: 3rem;
 }
 
-/* css for quick search */
+/* css for view all in dashboard */
+.view-dashboard {
+  color: green;
+}
+
+.view-dashboard:hover {
+  color: #90B585;
+}

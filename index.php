@@ -1,6 +1,7 @@
 <?php
 include 'admin_checker.php';
 
+include 'ip-getter.php';
 // date_default_timezone_set("Asia/Manila");
 // session_start();
 // if(!isset($_SESSION['logged'])){
@@ -247,7 +248,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Faculty</h5>
+                            <h5 class="card-title">Active Faculty</h5>
                           </div>
                           <div class="col-auto">
                             <div class="stat text-primary">
@@ -266,7 +267,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Students</h5>
+                            <h5 class="card-title">Active Students</h5>
                           </div>
                           <div class="col-auto">
                             <div class="stat text-primary">
@@ -323,16 +324,24 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                 </div>
               </div>
               <div class="row">
-                <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+                <div class="col-12 col-lg-8 col-xxl-6 d-flex">
                   <div class="card flex-fill">
                     <div class="card-header">
-
-                      <h5 class="card-title mb-0">Latest Document Uploaded</h5>
+                      <div class="row">
+                        <div class="col-4">
+                          <h5 class="card-title mb-0">Latest Document Uploaded</h5>
+                        </div>
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                          <a <?php echo "href=\"admin_document.php\" " ?> style="float: right"
+                            class="view-dashboard">View
+                            All Documents</a>
+                        </div>
+                      </div>
                       <table class="table table-hover">
                         <thead>
                           <tr>
                             <th scope="col" style="width: 40%">Title</th>
-                            <th scope="col" style="width: 10%">File Size</th>
                             <th scope="col" style="width: 20%">Owner</th>
                             <th scope="col" style="width: 10%">Status</th>
                           </tr>
@@ -341,7 +350,6 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                           <?php
                           $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, file_uploader_id, status from document WHERE status!='archive'") or die("Query 1 is incorrect....");
                           while (list($doc_id, $title, $file_size, $file_type, $file_uploader_id, $status) = mysqli_fetch_array($result)) {
-                            $size          = formatSizeUnits2($file_size);
                             $uploader_name = uploaderName($file_uploader_id);
                             $icon_img      = '';
 
@@ -357,30 +365,10 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                             echo "
 														<tr>	
 															<td scope='row'><a href=\"admin_document_view.php?ID=$doc_id\" class='user-clicker'>$title.$file_type</a></td>
-															<td>$size</td>
 															<td>$uploader_name</td>
 															<td>$status</td>
 														</tr>	
 													";
-                          }
-                          // this is for format of size in each document
-                          function formatsizeunits2($file_size)
-                          {
-                            if ($file_size >= 1073741824) {
-                              $file_size = number_format($file_size / 1073741824, 2) . ' gb';
-                            } elseif ($file_size >= 1048576) {
-                              $file_size = number_format($file_size / 1048576, 2) . ' mb';
-                            } elseif ($file_size >= 1024) {
-                              $file_size = number_format($file_size / 1024, 2) . ' kb';
-                            } elseif ($file_size > 1) {
-                              $file_size = $file_size . ' bytes';
-                            } elseif ($file_size == 1) {
-                              $file_size = $file_size . ' byte';
-                            } else {
-                              $file_size = '0 bytes';
-                            }
-
-                            return $file_size;
                           }
                           // this function is to return a name for the material 
                           function uploaderName($file_uploader_id)
@@ -398,26 +386,37 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-lg-4 col-xxl-3 d-flex">
+                <div class="col-12 col-lg-4 col-xxl-6 d-flex">
                   <div class="card flex-fill w-100">
                     <div class="card-header">
-                      <h5 class="card-title mb-0">History Log</h5>
+                      <div class="row">
+                        <div class="col-4">
+                          <h5 class="card-title mb-0">History Log</h5>
+                        </div>
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                          <a <?php echo "href=\"history.php\" " ?> style="float: right" class="view-dashboard">View All
+                            Log</a>
+                        </div>
+                      </div>
                       <table class="table table-hover">
                         <thead>
                           <tr>
-                            <th style="width: 25%">User</th>
-                            <th style="width: 20%">Transaction Name</th>
+                            <th style="width: 35%">User</th>
+                            <th style="width: 30%">Transaction Name</th>
+                            <th style="width: 50%">Time</th>
                           </tr>
                         </thead>
                         <tbody>
                           <?php
-                          $result = mysqli_query($conn, "select log_id, user_id, transaction_name, log_time, action, status from transaction_log WHERE user_id != 0 ORDER BY log_id DESC LIMIT 5") or die("Query 1 is incorrect....");
-                          while (list($log_id, $user_id, $transaction_name, $log_time, $action, $status) = mysqli_fetch_array($result)) {
+                          $result = mysqli_query($conn, "select log_id, user_id, transaction_name, log_time from transaction_log WHERE user_id != 0 ORDER BY log_id DESC LIMIT 5") or die("Query 1 is incorrect....");
+                          while (list($log_id, $user_id, $transaction_name, $log_time) = mysqli_fetch_array($result)) {
                             $user_name = userName($user_id);
                             echo "
                                 <tr>	
                                   <td>$user_name</td>
                                   <td>$transaction_name</td>
+                                  <td>$log_time</td>
                                 </tr>	
                               ";
                           }
@@ -439,97 +438,6 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                 </div>
               </div><!-- End of second content -->
 
-              <div class="row">
-                <div class="col-12 col-lg-8 col-xxl-9 d-flex">
-                  <div class="card flex-fill">
-                    <div class="card-header">
-
-                      <h5 class="card-title mb-0">Latest Projects</h5>
-                    </div>
-                    <table class="table table-hover my-0">
-                      <thead>
-                        <tr>
-                          <th>Name</th>
-                          <th class="d-none d-xl-table-cell">Start Date</th>
-                          <th class="d-none d-xl-table-cell">End Date</th>
-                          <th>Status</th>
-                          <th class="d-none d-md-table-cell">Assignee</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Project Apollo</td>
-                          <td class="d-none d-xl-table-cell">01/01/2021</td>
-                          <td class="d-none d-xl-table-cell">31/06/2021</td>
-                          <td><span class="badge bg-success">Done</span></td>
-                          <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                        </tr>
-                        <tr>
-                          <td>Project Fireball</td>
-                          <td class="d-none d-xl-table-cell">01/01/2021</td>
-                          <td class="d-none d-xl-table-cell">31/06/2021</td>
-                          <td><span class="badge bg-danger">Cancelled</span></td>
-                          <td class="d-none d-md-table-cell">William Harris</td>
-                        </tr>
-                        <tr>
-                          <td>Project Hades</td>
-                          <td class="d-none d-xl-table-cell">01/01/2021</td>
-                          <td class="d-none d-xl-table-cell">31/06/2021</td>
-                          <td><span class="badge bg-success">Done</span></td>
-                          <td class="d-none d-md-table-cell">Sharon Lessman</td>
-                        </tr>
-                        <tr>
-                          <td>Project Nitro</td>
-                          <td class="d-none d-xl-table-cell">01/01/2021</td>
-                          <td class="d-none d-xl-table-cell">31/06/2021</td>
-                          <td><span class="badge bg-warning">In progress</span></td>
-                          <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                        </tr>
-                        <tr>
-                          <td>Project Phoenix</td>
-                          <td class="d-none d-xl-table-cell">01/01/2021</td>
-                          <td class="d-none d-xl-table-cell">31/06/2021</td>
-                          <td><span class="badge bg-success">Done</span></td>
-                          <td class="d-none d-md-table-cell">William Harris</td>
-                        </tr>
-                        <tr>
-                          <td>Project X</td>
-                          <td class="d-none d-xl-table-cell">01/01/2021</td>
-                          <td class="d-none d-xl-table-cell">31/06/2021</td>
-                          <td><span class="badge bg-success">Done</span></td>
-                          <td class="d-none d-md-table-cell">Sharon Lessman</td>
-                        </tr>
-                        <tr>
-                          <td>Project Romeo</td>
-                          <td class="d-none d-xl-table-cell">01/01/2021</td>
-                          <td class="d-none d-xl-table-cell">31/06/2021</td>
-                          <td><span class="badge bg-success">Done</span></td>
-                          <td class="d-none d-md-table-cell">Christina Mason</td>
-                        </tr>
-                        <tr>
-                          <td>Project Wombat</td>
-                          <td class="d-none d-xl-table-cell">01/01/2021</td>
-                          <td class="d-none d-xl-table-cell">31/06/2021</td>
-                          <td><span class="badge bg-warning">In progress</span></td>
-                          <td class="d-none d-md-table-cell">William Harris</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="col-12 col-lg-4 col-xxl-3 d-flex">
-                  <div class="card flex-fill w-100">
-                    <div class="card-header">
-
-                      <h5 class="card-title mb-0"></h5>
-                    </div>
-                    <div class="card-body d-flex w-100">
-                      <div class="align-self-center chart chart-lg">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- End of second content -->
             </div>
           </div>
       </main>
@@ -542,3 +450,16 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
 </body>
 
 </html>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var date = new Date(Date.now());
+  var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
+  document.getElementById("datetimepicker-dashboard").flatpickr({
+    inline: true,
+    prevArrow: "<span title=\"Previous month\">&laquo;</span>",
+    nextArrow: "<span title=\"Next month\">&raquo;</span>",
+    defaultDate: defaultDate
+  });
+});
+</script>
