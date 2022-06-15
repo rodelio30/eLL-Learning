@@ -53,27 +53,52 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a href="about.php">About</a></li>
-          <li><a href="documents.php">Documents</a></li>
-          <li><a href="faculty.php">Faculty</a></li>
-          <li><a href="events.php">Events</a></li>
-
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>e-Resources</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+              <li class="dropdown"><a href="#"><span>Language</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
                   <li><a href="#">Deep Drop Down 1</a></li>
                   <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a href="#"><span>Literature</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
                   <li><a href="#">Deep Drop Down 4</a></li>
                   <li><a href="#">Deep Drop Down 5</a></li>
                 </ul>
               </li>
-              <li><a href="#">Drop Down 2</a></li>
+              <!-- <li><a href="#">Drop Down 2</a></li>
               <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">Drop Down 4</a></li> -->
             </ul>
-          </li> -->
+          </li>
+          <li class="dropdown"><a href="#"><span>Programs</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li class="dropdown"><a href="#"><span>BALIT</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li class="dropdown"><a href="#"><span>Course Subjects</span> <i class="bi bi-chevron-right"></i></a>
+                    <ul>
+                      <li><a href="#">Course Subjects</a></li>
+                      <li><a href="#">Deep Drop Down 2</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a href="#"><span>MALL</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                </ul>
+              </li>
+              <!-- <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li> -->
+            </ul>
+          </li>
+          <li><a href="faculty.php">Faculty</a></li>
+          <li><a href="events.php">Events</a></li>
+
           <li><a href="contact.php">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
