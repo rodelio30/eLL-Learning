@@ -80,15 +80,15 @@ if ($result_document->num_rows > 0) {
 
           <hr class="hr-size"> -->
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+          <!-- <li class="sidebar-item">
+            <a class="sidebar-link" href="faculty_materials.php">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
             </a>
-          </li>
+          </li> -->
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="faculty_document.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Resources</span>
             </a>
           </li>
 
