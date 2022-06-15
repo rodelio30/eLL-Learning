@@ -1,5 +1,24 @@
 <?php
 include 'faculty_checker.php';
+
+$document_counter = 0;
+
+$id = $_SESSION['id'];
+
+$query = mysqli_query($conn, "select faculty_id from faculty where user_id='$id'") or die("query 1 incorrect.......");
+list($faculty_id) = mysqli_fetch_array($query);
+
+// This line is counting for the number of Documents
+$sql_document = "SELECT doc_id FROM document WHERE status !='archive' AND file_uploader_id='$faculty_id'";
+$result_document = $conn->query($sql_document);
+
+if ($result_document->num_rows > 0) {
+  while ($row = $result_document->fetch_assoc()) {
+    $document_counter++;
+  }
+} else {
+  $document_counter = 'Empty Document';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,16 +82,16 @@ include 'faculty_checker.php';
           </li>
 
           <hr class="hr-size"> -->
-
+          <!-- 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+            <a class="sidebar-link" href="faculty_materials.php">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
             </a>
-          </li>
+          </li> -->
 
           <li class="sidebar-item">
             <a class="sidebar-link" href="faculty_document.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Resources</span>
             </a>
           </li>
 
@@ -125,13 +144,13 @@ include 'faculty_checker.php';
           <div class="row">
             <div class="w-100">
               <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                   <div class="card">
                     <a href="#">
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Active Students</h5>
+                            <h5 class="card-title">Students</h5>
                           </div>
                           <div class="col-auto">
                             <div class="stat text-primary">
@@ -144,34 +163,13 @@ include 'faculty_checker.php';
                       </div>
                   </div></a>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                   <div class="card">
-                    <a href="#">
+                    <a href="faculty_document.php">
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Learning Materials</h5>
-                          </div>
-
-                          <div class="col-auto">
-                            <div class="stat text-primary">
-                              <i class="align-middle" data-feather="book"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="mt-4 float-end" style="color: gray">view</p>
-                        <!-- <h1 class="mt-1 mb-3 ms-3"><?php echo $course_counter ?></h1> -->
-                      </div>
-                  </div>
-                  </a>
-                </div>
-                <div class="col-sm-4">
-                  <div class="card">
-                    <a href="#">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col mt-0">
-                            <h5 class="card-title">Documents</h5>
+                            <h5 class="card-title">Resources</h5>
                           </div>
 
                           <div class="col-auto">
@@ -181,7 +179,7 @@ include 'faculty_checker.php';
                           </div>
                         </div>
                         <p class="mt-4 float-end" style="color: gray">view</p>
-                        <!-- <h1 class="mt-1 mb-3 ms-3"><?php echo $document_counter ?></h1> -->
+                        <h1 class="mt-1 mb-3 ms-3"><?php echo $document_counter ?></h1>
                       </div>
                     </a>
                   </div>
