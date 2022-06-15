@@ -1,7 +1,5 @@
 <?php
 include 'admin_checker.php';
-
-include 'ip-getter.php';
 // date_default_timezone_set("Asia/Manila");
 // session_start();
 // if(!isset($_SESSION['logged'])){
@@ -182,7 +180,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
           <hr class="hr-size">
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
+            <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
             </a>
           </li>
@@ -348,7 +346,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                         </thead>
                         <tbody>
                           <?php
-                          $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, file_uploader_id, status from document WHERE status!='archive'") or die("Query 1 is incorrect....");
+                          $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, file_uploader_id, status from document WHERE status!='archive' LIMIT 5") or die("Query 1 is incorrect....");
                           while (list($doc_id, $title, $file_size, $file_type, $file_uploader_id, $status) = mysqli_fetch_array($result)) {
                             $uploader_name = uploaderName($file_uploader_id);
                             $icon_img      = '';

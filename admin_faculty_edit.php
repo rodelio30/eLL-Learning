@@ -3,6 +3,8 @@ include 'admin_checker.php';
 date_default_timezone_set("Asia/Manila");
 
 if (isset($_POST['update'])) {
+  $user_id     = $_POST['user_id'];
+  $id_no       = $_POST['id_no'];
   $faculty_id  = $_POST['faculty_id'];
   $firstname   = $_POST['firstname'];
   $lastname    = $_POST['lastname'];
@@ -14,7 +16,8 @@ if (isset($_POST['update'])) {
   $date_modified = date("Y-m-d h:i:s");
 
   // echo "<script>console.log('" . $email . "');</script>";
-  mysqli_query($conn, "update faculty set firstname = '$firstname', lastname = '$lastname', course = '$course', description = '$description', email = '$email', status = '$status', password = '$password', date_modified = '$date_modified' where faculty_id = '$faculty_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update faculty set faculty_id_no = '$id_no', firstname = '$firstname', lastname = '$lastname', course = '$course', description = '$description', email = '$email', status = '$status', password = '$password', date_modified = '$date_modified' where faculty_id = '$faculty_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', type = '$type' where id = '$user_id'") or die("Query 5 is incorrect....");
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
   header('Refresh: 0; url=admin_faculty.php');
 }
@@ -23,6 +26,7 @@ $faculty_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$faculty_id'");
 while ($res   = mysqli_fetch_array($result)) {
+  $user_id     = $res['user_id'];
   $id_no       = $res['faculty_id_no'];
   $firstname   = $res['firstname'];
   $lastname    = $res['lastname'];
@@ -185,8 +189,8 @@ if ($status == "active") {
                   <form method="post">
                     <div class="form-group">
                       <label for="exampleInputEmail1">ID No</label>
-                      <input type="text" class="form-control" id="firstname" name="firstname"
-                        value="<?php echo $id_no ?>" placeholder="Enter ID No">
+                      <input type="text" class="form-control" id="id_no" name="id_no" value="<?php echo $id_no ?>"
+                        placeholder="Enter ID No">
                     </div>
                     <br>
                     <div class="form-group">
@@ -237,6 +241,7 @@ if ($status == "active") {
                     <br>
                     <br>
                     <div class="form-group">
+                      <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id ?>">
                       <input type="hidden" name="faculty_id" value="<?php echo $_GET['ID']; ?>">
                       <button type="submit" class="btn btn-success" name="update">Update</button>
                     </div>
