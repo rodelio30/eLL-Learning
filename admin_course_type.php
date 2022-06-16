@@ -1,21 +1,5 @@
 <?php
 include 'admin_checker.php';
-$student = "student";
-// date_default_timezone_set("Asia/Manila");
-// session_start();
-// if(!isset($_SESSION['logged'])){
-//   header("location: public.php");
-// }
-// include ('include/connect.php');
-// $id=$_SESSION['id'];
-
-// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-// list($id,$type)=mysqli_fetch_array($query);
-
-// if($type=='student'){
-//   header("location: student.php");
-// }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +37,6 @@ $student = "student";
         <a class="sidebar-brand" href="index.php">
           <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
-
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Pages
@@ -75,7 +58,7 @@ $student = "student";
             </a>
           </li>
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
@@ -83,7 +66,7 @@ $student = "student";
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_course_type.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
             </a>
@@ -116,6 +99,7 @@ $student = "student";
               <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
             </a>
           </li>
+
           <div id="oras" class="clock-position ms-4 mb-2">
             <div id="clock">
               <div id="dates"></div>
@@ -123,6 +107,7 @@ $student = "student";
             </div>
           </div>
           <script src="js/time_script.js"></script>
+
       </div>
     </nav>
 
@@ -133,41 +118,40 @@ $student = "student";
         <div class="container-fluid p-0">
           <div class="row">
             <div class="col-md-4">
-              <h1 class="h3 mb-3"><strong>Student</strong> List</h1>
+              <h1 class="h3 mb-3"><strong>Course Type</strong> List</h1>
             </div>
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-              <a <?php echo "href=\"user_add.php?user=$student\" " ?> style="float: right" class="btn btn-success"><span
-                  data-feather="user-plus"></span>&nbsp Add Student User</a>
+              <a <?php echo "href=\"admin_course_type_add.php\" " ?> style="float: right" class="btn btn-success"><span
+                  data-feather="user-plus"></span>&nbsp Add New Course Type</a>
             </div>
           </div>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <table id="example" class="display" style="width:100%">
+                  <!-- Code Below -->
+                  <table id="courses_table" class="display" style="width:100%">
                     <thead>
                       <tr>
-                        <th style="width: 25%">Firstname</th>
-                        <th style="width: 25%">Lastname</th>
-                        <th style="width: 20%">Date Modified</th>
-                        <th style="width: 20%">Status</th>
-                        <th style="width: 30%"><span class="float-end me-5">Action</span></th>
+                        <th scope="col" style="width: 30%">Name</th>
+                        <th scope="col" style="width: 30%">Status</th>
+                        <th scope="col" style="width: 30%">Date Modified</th>
+                        <th scope="col" style="width: 35%"><span class="float-end me-5">Action</span></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $result = mysqli_query($conn, "select student_id, firstname, lastname, date_modified, status from student WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                      while (list($student_id, $firstname, $lastname, $date_modified, $status) = mysqli_fetch_array($result)) {
+                      $result = mysqli_query($conn, "select ct_id, name, status, date_modified from course_type WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($ct_id, $name, $status, $date_modified) = mysqli_fetch_array($result)) {
                         echo "
 														<tr>	
-															<td scope='row'><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$firstname</a></td>
-															<td><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$lastname</a></td>
-															<td>$date_modified</td>
+															<td scope='row'><a href=\"admin_course_type_view.php?ID=$ct_id\" class='user-clicker'>$name</a></td>
 															<td>$status</td>
+															<td>$date_modified</td>
 															<td>
-															<a href=\"archive/admin_student_archive.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"archive/admin_course_type_archive.php?ID=$ct_id\" onClick=\"return confirm('Are you sure you want this course move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
 															</td>
 														</tr>	
 													";
@@ -197,9 +181,9 @@ $student = "student";
 </html>
 <script>
 $(document).ready(function() {
-  $('#example').DataTable({
+  $('#courses_table').DataTable({
     order: [
-      [1, 'asc']
+      [0, 'asc']
     ],
     "pagingType": "full_numbers",
     "lengthMenu": [
@@ -209,7 +193,7 @@ $(document).ready(function() {
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Student records",
+      searchPlaceholder: "Search Course records",
     }
   });
 });

@@ -172,6 +172,12 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
           <hr class="hr-size">
 
           <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_course_type.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -211,27 +217,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
     </nav>
 
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
-        <a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
-
-        <div class="navbar-collapse collapse">
-          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
-          <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
-              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
-
-              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <?php include 'greet.php' ?>
-              </a>
-              <?php include 'settings.php' ?>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <?php include 'admin_main_nav.php'; ?>
 
       <main class="content">
         <div class="container-fluid p-0">
@@ -284,7 +270,7 @@ $archive_counter = $archive_faculty + $archive_student + $archive_document;
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Course</h5>
+                            <h5 class="card-title">Courses</h5>
                           </div>
 
                           <div class="col-auto">
