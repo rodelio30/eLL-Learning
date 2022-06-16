@@ -77,6 +77,12 @@ if (isset($_POST['submit'])) {
           <hr class="hr-size">
 
           <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_course_type.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -114,28 +120,7 @@ if (isset($_POST['submit'])) {
     </nav>
 
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
-        <a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
-
-        <div class="navbar-collapse collapse">
-          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
-          <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
-              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
-
-              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
-                <?php include 'greet.php' ?>
-              </a>
-              <?php include 'settings.php' ?>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <?php include 'admin_main_nav.php'; ?>
 
       <main class="content">
         <div class="container-fluid p-0">

@@ -1,16 +1,15 @@
 <?php
 include 'admin_checker.php';
 
-$material_id = $_GET['ID'];
+$course_type_id = $_GET['ID'];
 
-$result = mysqli_query($conn, "SELECT * FROM materials WHERE material_id='$material_id'");
+$result = mysqli_query($conn, "SELECT * FROM course_type WHERE ct_id='$course_type_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $material_id     = $res['material_id'];
+  $ct_id     = $res['ct_id'];
   $name          = $res['name'];
-  $description   = $res['description'];
+  $status        = $res['status'];
   $date_created  = $res['date_created'];
   $date_modified = $res['date_modified'];
-  $status        = $res['status'];
 }
 ?>
 
@@ -75,8 +74,8 @@ while ($res   = mysqli_fetch_array($result)) {
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_course_type.php">
+          <li class="sidebar-item active">
+            <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
             </a>
           </li>
@@ -87,9 +86,10 @@ while ($res   = mysqli_fetch_array($result)) {
             </a>
           </li>
 
+
           <hr class="hr-size">
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_materials.php">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
             </a>
@@ -120,9 +120,10 @@ while ($res   = mysqli_fetch_array($result)) {
 
     <div class="main">
       <?php include 'admin_main_nav.php'; ?>
+
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong><a href="admin_materials.php" class="dash-item"> Learning Material
+          <h1 class="h3 mb-3"><strong><a href="admin_course_type.php" class="dash-item"> Course Type
               </a> /
               <?php echo $name ?>
             </strong>
@@ -144,17 +145,6 @@ while ($res   = mysqli_fetch_array($result)) {
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $name ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Description</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $description ?>
                                 </div>
                               </div>
                             </div>
@@ -202,7 +192,7 @@ while ($res   = mysqli_fetch_array($result)) {
                         <div class="row">
                           <div class="col-sm-12">
                             <a class="btn btn-info ms-4 mb-2"
-                              <?php echo "href=\"admin_material_edit.php?ID=$material_id\" " ?>
+                              <?php echo "href=\"admin_course_type_edit.php?ID=$ct_id\" " ?>
                               style="float: left;">Edit</a>
                           </div>
                         </div>

@@ -43,7 +43,7 @@ if ($result_course->num_rows > 0) {
   }
 }
 
-
+// This line is to count the number of Materials 
 $materials_counter = 0;
 
 $sql_material    = "SELECT material_id FROM materials WHERE status = 'archive' ";
@@ -52,6 +52,18 @@ $result_material = $conn->query($sql_material);
 if ($result_material->num_rows > 0) {
   while ($row = $result_material->fetch_assoc()) {
     $materials_counter++;
+  }
+}
+
+// This line is to count the number of course type
+$course_type_counter = 0;
+
+$sql_course_type    = "SELECT ct_id FROM course_type WHERE status = 'archive' ";
+$result_course_type = $conn->query($sql_course_type);
+
+if ($result_course_type->num_rows > 0) {
+  while ($row = $result_course_type->fetch_assoc()) {
+    $course_type_counter++;
   }
 }
 ?>
@@ -122,6 +134,12 @@ if ($result_material->num_rows > 0) {
           <hr class="hr-size">
 
           <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_course_type.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -159,28 +177,7 @@ if ($result_material->num_rows > 0) {
     </nav>
 
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
-        <a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
-
-        <div class="navbar-collapse collapse">
-          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
-          <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
-              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
-
-              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
-                <?php include 'greet.php' ?>
-              </a>
-              <?php include 'settings.php' ?>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <?php include 'admin_main_nav.php'; ?>
 
       <main class="content">
         <div class="container-fluid p-0">
@@ -311,6 +308,62 @@ if ($result_material->num_rows > 0) {
 															<td>
 															<a href=\"archive/admin_document_delete.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want to Delete this Document permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
 															<a href=\"archive/admin_document_active.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this user be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
+															</td>
+														</tr>	
+													";
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <div class="row">
+                    <?php
+                    if ($course_type_counter > 0) {
+                      echo "
+                    <div class='col-md-4'>
+                      <h5 class='card-title mb-2'>Archive Course Type</h5>
+                  </div>
+                      ";
+                    } else {
+                      echo "";
+                    }
+
+                    ?>
+                  </div>
+                  <table id="course_type_table" class="display" style="width:100%">
+                    <thead>
+                      <?php
+                      if ($course_type_counter > 0) {
+                        echo "
+                        <tr>
+                          <th scope='col' style='width: 25%'>Name</th>
+                          <th scope='col' style='width: 25%'>Date Modified</th>
+                          <th scope='col' style='width: 30%'><span style='margin-left: 3rem;'>Action</span></th>
+                        </tr>
+                      ";
+                      } else {
+                        echo "<h1 class='m-4'><b><center>There is no Archive Course Type</center></b></h1>";
+                        echo "<img src='img/icons/empty-course.png' alt='icon' class='mb-4 archive_photo_size'>";
+                      }
+
+                      ?>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $result = mysqli_query($conn, "select ct_id, name, date_modified from course_type WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($ct_id, $name, $date_modified) = mysqli_fetch_array($result)) {
+                        echo "
+														<tr>	
+															<td scope='row'>$name</td>
+															<td>$date_modified</td>
+															<td>
+															<a href=\"archive/admin_course_type_delete.php?ID=$ct_id\" onClick=\"return confirm('Are you sure you want to Delete this Course Type permanent?')\" class='btn btn-danger btn-md float-end ms-2'><span data-feather='file-minus'></span>&nbsp Delete Permanent?</a>
+															<a href=\"archive/admin_course_type_active.php?ID=$ct_id\" onClick=\"return confirm('Are you sure you want this Course Type be active again?')\" class='btn btn-primary btn-md float-end'><span data-feather='file-plus'></span>&nbsp Active again?</a>
 															</td>
 														</tr>	
 													";
@@ -510,6 +563,23 @@ $(document).ready(function() {
 });
 $(document).ready(function() {
   $('#material_table').DataTable({
+    order: [
+      [2, 'asc']
+    ],
+    "pagingType": "full_numbers",
+    "lengthMenu": [
+      [5, 10, 25, 50, -1],
+      [5, 10, 25, 50, "All"]
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search Learning Material records",
+    }
+  });
+});
+$(document).ready(function() {
+  $('#course_type_table').DataTable({
     order: [
       [2, 'asc']
     ],

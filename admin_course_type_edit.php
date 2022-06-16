@@ -1,22 +1,40 @@
 <?php
 include 'admin_checker.php';
-$student = "student";
-// date_default_timezone_set("Asia/Manila");
-// session_start();
-// if(!isset($_SESSION['logged'])){
-//   header("location: public.php");
-// }
-// include ('include/connect.php');
-// $id=$_SESSION['id'];
+date_default_timezone_set("Asia/Manila");
 
-// $query=mysqli_query($conn,"select id,type from users where id='$id'")or die ("query 1 incorrect.......");
-// list($id,$type)=mysqli_fetch_array($query);
+if (isset($_POST['update'])) {
+  $ct_id   = $_POST['ct_id'];
+  $name        = $_POST['name'];
+  $status      = $_POST['status'];
+  $date_modified = date("Y-m-d h:i:s");
 
-// if($type=='student'){
-//   header("location: student.php");
-// }
+  // echo "<script>console.log('" . $email . "');</script>";
+  mysqli_query($conn, "update course_type set name = '$name', status= '$status', date_modified = '$date_modified' where ct_id = '$ct_id'") or die("Query 4 is incorrect....");
+  echo '<script type="text/javascript"> alert("' . $name . ' Course Type updated!.")</script>';
+  header('Refresh: 0; url=admin_course_type_view.php?ID=' . $_GET['ID'] . '');
+}
 
+$ct_id = $_GET['ID'];
+
+$result = mysqli_query($conn, "SELECT * FROM course_type WHERE ct_id='$ct_id'");
+while ($res   = mysqli_fetch_array($result)) {
+  $name        = $res['name'];
+  $status      = $res['status'];
+}
+
+$sel_active  = "";
+$sel_archive = "";
+
+if ($status == "active") {
+  $sel_active  = "selected";
+} else if ($status != "active") {
+  $sel_archive = "selected";
+}
+
+// $message = "Today is " . date("Y-m-d h:i:s");
+// echo "<script>console.log('" . $message . "');</script>";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,10 +58,6 @@ $student = "student";
   <link href="css/app.css" rel="stylesheet">
   <link href="css/swap.css" rel="stylesheet">
   <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"> -->
-
-  <!-- This line below is the css for the datatables -->
-  <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -53,7 +67,6 @@ $student = "student";
         <a class="sidebar-brand" href="index.php">
           <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
-
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Pages
@@ -75,7 +88,7 @@ $student = "student";
             </a>
           </li>
 
-          <li class="sidebar-item active">
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_student.php">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
             </a>
@@ -83,7 +96,7 @@ $student = "student";
 
           <hr class="hr-size">
 
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_course_type.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
             </a>
@@ -131,54 +144,45 @@ $student = "student";
 
       <main class="content">
         <div class="container-fluid p-0">
-          <div class="row">
-            <div class="col-md-4">
-              <h1 class="h3 mb-3"><strong>Student</strong> List</h1>
-            </div>
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-              <a <?php echo "href=\"user_add.php?user=$student\" " ?> style="float: right" class="btn btn-success"><span
-                  data-feather="user-plus"></span>&nbsp Add Student User</a>
-            </div>
-          </div>
+
+          <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course
+              </a> /
+              <a href="admin_course_view.php?ID=<?php echo $course_id ?>" class="dash-item"> <?php echo $name ?> </a>
+              /
+              Edit Course Info</strong></h1>
+          </h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <table id="example" class="display" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th style="width: 25%">Firstname</th>
-                        <th style="width: 25%">Lastname</th>
-                        <th style="width: 20%">Date Modified</th>
-                        <th style="width: 20%">Status</th>
-                        <th style="width: 30%"><span class="float-end me-5">Action</span></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $result = mysqli_query($conn, "select student_id, firstname, lastname, date_modified, status from student WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                      while (list($student_id, $firstname, $lastname, $date_modified, $status) = mysqli_fetch_array($result)) {
-                        echo "
-														<tr>	
-															<td scope='row'><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$firstname</a></td>
-															<td><a href=\"admin_student_view.php?ID=$student_id\" class='user-clicker'>$lastname</a></td>
-															<td>$date_modified</td>
-															<td>$status</td>
-															<td>
-															<a href=\"archive/admin_student_archive.php?ID=$student_id\" onClick=\"return confirm('Are you sure you want this user move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
-															</td>
-														</tr>	
-													";
-                      }
-                      ?>
-                    </tbody>
-                  </table>
+                  <h5 class="card-title mb-0">User Form</h5>
+                </div>
+                <div class="card-body">
+                  <form method="post">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Firstname</label>
+                      <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>"
+                        placeholder="Enter Name">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label>User Type</label>
+                      <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
+                        <option value="active" <?php echo $sel_active ?>>Active</option>
+                        <option value="inactive" <?php echo $sel_archive ?>>Inactive</option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <input type="hidden" name="ct_id" value="<?php echo $_GET['ID']; ?>">
+                      <button type="submit" class="btn btn-success" name="update">Update</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </main>
 
@@ -187,30 +191,6 @@ $student = "student";
   </div>
 
   <script src="js/app.js"></script>
-  <script src="js/jquery.min.js"></script>
-
-  <!-- This line below is the jquery for the datatables -->
-  <script src="js/bb_jquery.dataTables.min.js"></script>
-  <script src="js/1_jquery.dataTables.min.js"></script>
 </body>
 
 </html>
-<script>
-$(document).ready(function() {
-  $('#example').DataTable({
-    order: [
-      [1, 'asc']
-    ],
-    "pagingType": "full_numbers",
-    "lengthMenu": [
-      [10, 25, 50, -1],
-      [10, 25, 50, "All"]
-    ],
-    responsive: true,
-    language: {
-      search: "_INPUT_",
-      searchPlaceholder: "Search Student records",
-    }
-  });
-});
-</script>

@@ -4,13 +4,14 @@ date_default_timezone_set("Asia/Manila");
 
 if (isset($_POST['update'])) {
   $course_id   = $_POST['course_id'];
+  $ct_id   = $_POST['ct_id'];
   $name        = $_POST['name'];
   $description = $_POST['description'];
   $status      = $_POST['status'];
   $date_modified = date("Y-m-d h:i:s");
 
   // echo "<script>console.log('" . $email . "');</script>";
-  mysqli_query($conn, "update courses set name = '$name', description = '$description', status= '$status', date_modified = '$date_modified' where course_id = '$course_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update courses set course_type_id = '$ct_id', name = '$name', description = '$description', status= '$status', date_modified = '$date_modified' where course_id = '$course_id'") or die("Query 4 is incorrect....");
   echo '<script type="text/javascript"> alert("' . $name . ' Course updated!.")</script>';
   header('Refresh: 0; url=admin_course_view.php?ID=' . $_GET['ID'] . '');
 }
@@ -19,10 +20,13 @@ $course_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $name        = $res['name'];
-  $description = $res['description'];
-  $status      = $res['status'];
+  $course_type_id = $res['course_type_id'];
+  $course_name    = $res['name'];
+  $description    = $res['description'];
+  $status         = $res['status'];
 }
+
+$name = $course_name;
 
 $sel_active  = "";
 $sel_archive = "";
@@ -98,6 +102,12 @@ if ($status == "active") {
 
           <hr class="hr-size">
 
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_course_type.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
+            </a>
+          </li>
+
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
@@ -136,27 +146,7 @@ if ($status == "active") {
     </nav>
 
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
-        <a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
-
-        <div class="navbar-collapse collapse">
-          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
-          <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
-              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
-
-              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <?php include 'greet.php' ?>
-              </a>
-              <?php include 'settings.php' ?>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <?php include 'admin_main_nav.php'; ?>
 
       <main class="content">
         <div class="container-fluid p-0">
@@ -176,8 +166,24 @@ if ($status == "active") {
                 <div class="card-body">
                   <form method="post">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Firstname</label>
-                      <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>"
+                      <label>Course Type Name</label>
+                      <select name="ct_id" class="form-control">
+                        <?php
+                        $result = mysqli_query($conn, "select ct_id, name from course_type") or die("Query 4 is inncorrect........");
+                        while (list($ct_id, $name) = mysqli_fetch_array($result)) {
+                          if ($course_type_id == $ct_id) {
+                            echo "<option value='$ct_id' selected>$name</option>";
+                          } else {
+                            echo "<option value='$ct_id'>$name</option>";
+                          }
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Course Name</label>
+                      <input type="text" class="form-control" id="name" name="name" value="<?php echo $course_name ?>"
                         placeholder="Enter Name">
                     </div>
                     <br>

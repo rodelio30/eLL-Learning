@@ -103,6 +103,12 @@ $sel_faculty = "selected";
           <hr class="hr-size">
 
           <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_course_type.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
             </a>
@@ -140,42 +146,7 @@ $sel_faculty = "selected";
     </nav>
 
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
-        <a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
-
-        <div class="navbar-collapse collapse">
-          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
-          <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
-              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
-
-              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
-                <span class="text-dark">Your Email!</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i>
-                  Profile</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i>
-                  Analytics</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-                  Settings & Privacy</a>
-                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help
-                  Center</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="include/sign-out.php">
-                  <i class="align-middle me-1" data-feather="log-out"></i>
-                  Log out</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <?php include 'admin_main_nav.php'; ?>
 
       <main class="content">
         <div class="container-fluid p-0">

@@ -66,6 +66,12 @@ include 'admin_checker.php';
 
           <hr class="hr-size">
 
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="admin_course_type.php">
+              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
+            </a>
+          </li>
+
           <li class="sidebar-item active">
             <a class="sidebar-link" href="admin_courses.php">
               <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
@@ -106,27 +112,7 @@ include 'admin_checker.php';
     </nav>
 
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
-        <a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
-
-        <div class="navbar-collapse collapse">
-          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
-          <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
-              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
-
-              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <?php include 'greet.php' ?>
-              </a>
-              <?php include 'settings.php' ?>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <?php include 'admin_main_nav.php'; ?>
 
       <main class="content">
         <div class="container-fluid p-0">
@@ -149,19 +135,22 @@ include 'admin_checker.php';
                   <table id="courses_table" class="display" style="width:100%">
                     <thead>
                       <tr>
+                        <th scope="col" style="width: 15%">Course Type</th>
                         <th scope="col" style="width: 30%">Name</th>
-                        <th scope="col" style="width: 30%">Description</th>
-                        <th scope="col" style="width: 30%">Status</th>
+                        <th scope="col" style="width: 20%">Description</th>
+                        <th scope="col" style="width: 10%">Status</th>
                         <th scope="col" style="width: 35%"><span class="float-end me-5">Action</span></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $result = mysqli_query($conn, "select course_id, name, description, status from courses WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                      while (list($course_id, $name, $description, $status) = mysqli_fetch_array($result)) {
+                      $result = mysqli_query($conn, "select course_id, course_type_id, name, description, status from courses WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($course_id, $ct_id, $name, $description, $status) = mysqli_fetch_array($result)) {
+                        $course_type = courseNameGetter($ct_id);
                         echo "
 														<tr>	
-															<td scope='row'><a href=\"admin_course_view.php?ID=$course_id\" class='user-clicker'>$name</a></td>
+															<td><a href=\"admin_course_view.php?ID=$course_id\" class='user-clicker'>$course_type</a></td>
+															<td><a href=\"admin_course_view.php?ID=$course_id\" class='user-clicker'>$name</a></td>
 															<td>$description</td>
 															<td>$status</td>
 															<td>
@@ -169,6 +158,15 @@ include 'admin_checker.php';
 															</td>
 														</tr>	
 													";
+                      }
+                      // this function is to return a name for the Course Type 
+                      function courseNameGetter($ct_id)
+                      {
+                        include 'include/connect.php';
+                        $result = mysqli_query($conn, "select name from course_type WHERE ct_id='$ct_id'") or die("Query 1 is incorrect....");
+                        while (list($name) = mysqli_fetch_array($result)) {
+                          return $name;
+                        }
                       }
                       ?>
                     </tbody>
@@ -201,8 +199,8 @@ $(document).ready(function() {
     ],
     "pagingType": "full_numbers",
     "lengthMenu": [
-      [10, 25, 50, -1],
-      [10, 25, 50, "All"]
+      [5, 10, 25, 50, -1],
+      [5, 10, 25, 50, "All"]
     ],
     responsive: true,
     language: {
