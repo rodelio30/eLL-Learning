@@ -41,76 +41,12 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
         </a>
 
         <ul class="sidebar-nav">
-          <li class="sidebar-header">
-            Pages
-          </li>
+          <?php
+          $nav_active = 'document';
+          include 'admin_nav.php';
+          ?>
+        </ul>
 
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="index.php">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_student.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_course_type.php">
-              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_courses.php">
-              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_materials.php">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item active">
-            <a class="sidebar-link" href="admin_document.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
-            </a>
-          </li>
-          <div id="oras" class="clock-position ms-3 mb-2">
-            <div id="clock">
-              <div id="dates"></div>
-              <div id="current-time"></div>
-            </div>
-          </div>
-          <script src="js/time_script.js"></script>
       </div>
     </nav>
 
@@ -120,8 +56,8 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong><a href="admin_document.php" class="dashboard">Document</a> / New
-              Documents</strong>
+          <h1 class="h3 mb-3"><strong><a href="admin_document.php" class="dashboard">Resources List</a> / New
+              Resources</strong>
           </h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
@@ -144,7 +80,7 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
                     </div>
                     <?php endif ?>
                     <div class="form-group mb-4 ">
-                      <label>Learning Material Type</label>
+                      <label>Learning Material Category</label>
                       <select name="material_name" class="form-control">
                         <?php
                         $result = mysqli_query($conn, "select name from materials") or die("Query 4 is inncorrect........");
@@ -159,9 +95,9 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
                       <input class="form-control mt-2" type="file" name="my_image" id="file-upload">
                     </div>
                     <div class="form-group mb-4 ">
-                      <label>Description of the file</label>
+                      <label>Description of the file resources</label>
                       <textarea id="description" name="description" class="form-control"
-                        placeholder="Describe this file here..."></textarea>
+                        placeholder="Describe this file resources ere..."></textarea>
                     </div>
                     <div class="form-group mb-4">
                       <label>File Uploader</label>
@@ -194,7 +130,6 @@ list($uploader_id, $uploader) = mysqli_fetch_array($query);
   </div>
 
   <script src="js/app.js"></script>
-  <script src="js/time_script.js"></script>
 </body>
 
 </html>

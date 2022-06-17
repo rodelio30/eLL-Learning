@@ -70,73 +70,12 @@ while ($res   = mysqli_fetch_array($result)) {
         </a>
 
         <ul class="sidebar-nav">
-          <li class="sidebar-header">
-            Pages
-          </li>
+          <?php
+          $nav_active = 'document';
+          include 'admin_nav.php';
+          ?>
+        </ul>
 
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="index.php">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_student.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_course_type.php">
-              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_courses.php">
-              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_materials.php">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item active">
-            <a class="sidebar-link" href="admin_document.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
-            </a>
-          </li>
-          <div id="oras" class="clock-position ms-4 mb-2">
-            <div id="clock">
-              <div id="dates"></div>
-              <div id="current-time"></div>
-            </div>
-          </div>
       </div>
     </nav>
 
@@ -146,7 +85,7 @@ while ($res   = mysqli_fetch_array($result)) {
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong><a href="admin_document.php" class="dashboard">Document</a></strong> \
+          <h1 class="h3 mb-3"><strong><a href="admin_document.php" class="dashboard">Resources</a> List</strong> \
             <strong><a href="admin_document_view.php?ID=<?php echo $doc_id ?>" class="dashboard"><?php echo $title ?>
               </a></strong>\
             Edit
@@ -208,7 +147,6 @@ while ($res   = mysqli_fetch_array($result)) {
   </div>
 
   <script src="js/app.js"></script>
-  <script src="js/time_script.js"></script>
 </body>
 
 </html>
