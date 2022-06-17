@@ -6,4 +6,4 @@ $query = mysqli_query($conn, "select firstname,lastname from users where id='$id
 list($fname, $lname) = mysqli_fetch_array($query);
 ?>
 
-<span class="text-dark">Good day, <?php echo $fname . ' ' . $lname ?>!</span>
+<span class="text-dark">Blessed day, <?php echo $fname . ' ' . $lname ?>!</span>

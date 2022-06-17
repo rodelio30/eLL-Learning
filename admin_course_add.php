@@ -48,75 +48,14 @@ if (isset($_POST['submit'])) {
         <a class="sidebar-brand" href="index.php">
           <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
         </a>
+
         <ul class="sidebar-nav">
-          <li class="sidebar-header">
-            Pages
-          </li>
+          <?php
+          $nav_active = 'course';
+          include 'admin_nav.php';
+          ?>
+        </ul>
 
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="index.php">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_faculty.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Faculty</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_student.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_courses.php">
-              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Type</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item active">
-            <a class="sidebar-link" href="admin_courses.php">
-              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_materials.php">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_document.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Documents</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_archive_view.php">
-              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
-            </a>
-          </li>
-          <div id="oras" class="clock-position ms-3 mb-2">
-            <div id="clock">
-              <div id="dates"></div>
-              <div id="current-time"></div>
-            </div>
-          </div>
-          <script src="js/time_script.js"></script>
       </div>
     </nav>
 
