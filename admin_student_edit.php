@@ -152,7 +152,7 @@ if ($status == "active") {
                     </div>
                     <br>
                     <div class="form-group">
-                      <label>User Type</label>
+                      <label>User Status</label>
                       <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
                         <option value="active" <?php echo $sel_active ?>>Active</option>
                         <option value="archive" <?php echo $sel_archive ?>>Inactive</option>

@@ -1,11 +1,11 @@
 <?php
 include 'admin_checker.php';
 
-$course_id = $_GET['ID'];
+$program_id = $_GET['ID'];
 
-$result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
+$result = mysqli_query($conn, "SELECT * FROM programs WHERE program_id='$program_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $course_id     = $res['course_id'];
+  $program_id     = $res['program_id'];
   $name          = $res['name'];
   $description   = $res['description'];
   $date_created  = $res['date_created'];
@@ -49,7 +49,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
         <ul class="sidebar-nav">
           <?php
-          $nav_active = 'course';
+          $nav_active = 'program';
           include 'admin_nav.php';
           ?>
         </ul>
@@ -62,7 +62,7 @@ while ($res   = mysqli_fetch_array($result)) {
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course List
+          <h1 class="h3 mb-3"><strong><a href="admin_program.php" class="dash-item"> Program List
               </a> /
               <?php echo $name ?>
             </strong>
@@ -142,7 +142,7 @@ while ($res   = mysqli_fetch_array($result)) {
                         <div class="row">
                           <div class="col-sm-12">
                             <a class="btn btn-info ms-4 mb-2"
-                              <?php echo "href=\"admin_course_edit.php?ID=$course_id\" " ?>
+                              <?php echo "href=\"admin_program_edit.php?ID=$program_id\" " ?>
                               style="float: left;">Edit</a>
                           </div>
                         </div>

@@ -66,7 +66,7 @@ if ($nav_active == 'archive') {
 <hr class="hr-size">
 
 <li class="sidebar-item <?php echo $program_select ?>">
-  <a class="sidebar-link" href="admin_course_type.php">
+  <a class="sidebar-link" href="admin_program.php">
     <i class="align-middle" data-feather="monitor"></i> <span class="align-middle">Programs</span>
   </a>
 </li>

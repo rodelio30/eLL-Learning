@@ -2,37 +2,17 @@
 include 'admin_checker.php';
 date_default_timezone_set("Asia/Manila");
 
-if (isset($_POST['update'])) {
-  $ct_id   = $_POST['ct_id'];
-  $name        = $_POST['name'];
-  $status      = $_POST['status'];
+if (isset($_POST['submit'])) {
+  $name          = $_POST['name'];
+  $description   = $_POST['description'];
+  $status        = 'active';
+  $date_created  = date("Y-m-d h:i:s");
   $date_modified = date("Y-m-d h:i:s");
 
-  // echo "<script>console.log('" . $email . "');</script>";
-  mysqli_query($conn, "update course_type set name = '$name', status= '$status', date_modified = '$date_modified' where ct_id = '$ct_id'") or die("Query 4 is incorrect....");
-  echo '<script type="text/javascript"> alert("' . $name . ' Course Type updated!.")</script>';
-  header('Refresh: 0; url=admin_course_type_view.php?ID=' . $_GET['ID'] . '');
+  mysqli_query($conn, "insert into programs(name, description, status, date_created, date_modified) values('$name','$description','$status','$date_created','$date_modified')")  or die("Query 3 is incorrect.....");
+  echo '<script type="text/javascript"> alert("' . $name . ' Program Added!.")</script>';
+  header('Refresh: 0; url=admin_program.php');
 }
-
-$ct_id = $_GET['ID'];
-
-$result = mysqli_query($conn, "SELECT * FROM course_type WHERE ct_id='$ct_id'");
-while ($res   = mysqli_fetch_array($result)) {
-  $name        = $res['name'];
-  $status      = $res['status'];
-}
-
-$sel_active  = "";
-$sel_archive = "";
-
-if ($status == "active") {
-  $sel_active  = "selected";
-} else if ($status != "active") {
-  $sel_archive = "selected";
-}
-
-// $message = "Today is " . date("Y-m-d h:i:s");
-// echo "<script>console.log('" . $message . "');</script>";
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +50,7 @@ if ($status == "active") {
 
         <ul class="sidebar-nav">
           <?php
-          $nav_active = 'course_type';
+          $nav_active = 'program';
           include 'admin_nav.php';
           ?>
         </ul>
@@ -84,39 +64,28 @@ if ($status == "active") {
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong><a href="admin_course_type.php" class="dash-item"> Course Type
-              </a> /
-              <a href="admin_course_type_view.php?ID=<?php echo $ct_id ?>" class="dash-item"> <?php echo $name ?>
-              </a>
-              /
-              Edit Course Info</strong></h1>
-          </h1>
+          <h1 class="h3 mb-3"><strong><a href="admin_program.php" class="dashboard">Program List</a> </strong>/ New
+            Program </h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">User Form</h5>
+                  <h5 class="card-title mb-0">Program Form</h5>
                 </div>
                 <div class="card-body">
                   <form method="post">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Firstname</label>
-                      <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>"
-                        placeholder="Enter Name">
+                      <label>Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Program Name">
                     </div>
                     <br>
                     <div class="form-group">
-                      <label>Course Type Status</label>
-                      <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
-                        <option value="active" <?php echo $sel_active ?>>Active</option>
-                        <option value="inactive" <?php echo $sel_archive ?>>Inactive</option>
-                      </select>
+                      <label>Description</label>
+                      <input type="text" class="form-control" id="description" name="description"
+                        placeholder="Enter Description Name">
                     </div>
                     <br>
-                    <div class="form-group">
-                      <input type="hidden" name="ct_id" value="<?php echo $_GET['ID']; ?>">
-                      <button type="submit" class="btn btn-success" name="update">Update</button>
-                    </div>
+                    <button type="submit" class="btn btn-success" name="submit">Submit</button>
                   </form>
                 </div>
               </div>
