@@ -4,10 +4,11 @@ date_default_timezone_set("Asia/Manila");
 
 if (isset($_POST['update'])) {
   $student_id    = $_POST['student_id'];
+  $user_id       = $_POST['user_id'];
   $student_id_no = $_POST['student_id_no'];
   $firstname     = $_POST['firstname'];
   $lastname      = $_POST['lastname'];
-  $course_id        = $_POST['course_id'];
+  $course_id     = $_POST['course_id'];
   $description   = $_POST['description'];
   $email         = $_POST['email'];
   $password      = $_POST['password'];
@@ -15,6 +16,8 @@ if (isset($_POST['update'])) {
   $date_modified = date("Y-m-d h:i:s");
 
   mysqli_query($conn, "update student set student_id_no = '$student_id_no', course_id = '$course_id', firstname = '$firstname', lastname = '$lastname', description = '$description', email = '$email', password = '$password', status = '$status', date_modified = '$date_modified' where student_id = '$student_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$user_id'") or die("Query 5 is incorrect....");
+
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
   header('Refresh: 0; url=admin_student.php');
 }
@@ -24,6 +27,7 @@ $student_id = $_GET['ID'];
 $result = mysqli_query($conn, "SELECT * FROM student WHERE student_id='$student_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $student_id_no  = $res['student_id_no'];
+  $user_id_no     = $res['user_id'];
   $firstname      = $res['firstname'];
   $lastname       = $res['lastname'];
   $email          = $res['email'];
@@ -41,7 +45,6 @@ if ($status == "active") {
 } else if ($status == "archive") {
   $sel_archive = "selected";
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -152,6 +155,7 @@ include 'admin_header.php';
                     <br>
                     <br>
                     <div class="form-group">
+                      <input type="hidden" name="user_id" value="<?php echo $user_id_no; ?>">
                       <input type="hidden" name="student_id" value="<?php echo $_GET['ID']; ?>">
                       <button type="submit" class="btn btn-success" name="update">Update</button>
                     </div>

@@ -16,8 +16,10 @@ if (isset($_POST['update'])) {
   $date_modified = date("Y-m-d h:i:s");
 
   // echo "<script>console.log('" . $email . "');</script>";
+  // This line below is to update a specific faculty user
   mysqli_query($conn, "update faculty set faculty_id_no = '$id_no', firstname = '$firstname', lastname = '$lastname', course = '$course', description = '$description', email = '$email', status = '$status', password = '$password', date_modified = '$date_modified' where faculty_id = '$faculty_id'") or die("Query 4 is incorrect....");
-  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', type = '$type' where id = '$user_id'") or die("Query 5 is incorrect....");
+  // This line below is to update the user 
+  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', type = '$user_type' where id = '$user_id'") or die("Query 5 is incorrect....");
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
   header('Refresh: 0; url=admin_faculty.php');
 }

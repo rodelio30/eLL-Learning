@@ -1,20 +1,27 @@
 <?php
+include 'admin_checker.php';
 
-date_default_timezone_set("Asia/Manila");
-session_start();
-if (!isset($_SESSION['logged'])) {
-  header("location: public.php");
+$user_id = $id;
+$query = mysqli_query($conn, "select type from users where id='$id'") or die("query 1 incorrect.......");
+list($type) = mysqli_fetch_array($query);
+
+if ($type == 'faculty') {
 }
-include('include/connect.php');
-$id = $_SESSION['id'];
-
-$query = mysqli_query($conn, "select id,type from users where id='$id'") or die("query 1 incorrect.......");
-list($id, $type) = mysqli_fetch_array($query);
-
 if ($type == 'student') {
-  header("location: student.php");
 }
-
+// echo "<script>console.log('High this is your id no: " . $id . "');</script>";
+// $result = mysqli_query($conn, "SELECT * FROM users WHERE Vfaculty_id='$id'");
+// while ($res   = mysqli_fetch_array($result)) {
+//   $user_id       = $res['id'];
+//   $firstname     = $res['firstname'];
+//   $lastname      = $res['lastname'];
+//   $course        = $res['course'];
+//   $description   = $res['description'];
+//   $email         = $res['email'];
+//   $date_created  = $res['date_created'];
+//   $date_modified = $res['date_modified'];
+//   $status        = $res['status'];
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
