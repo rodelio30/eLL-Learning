@@ -427,7 +427,7 @@ include 'admin_header.php';
                     if ($program_counter > 0) {
                       echo "
                     <div class='col-md-4'>
-                      <h5 class='card-title mb-2'>Archive Learning Material</h5>
+                      <h5 class='card-title mb-2'>Archive Program</h5>
                   </div>
                       ";
                     } else {
@@ -449,7 +449,7 @@ include 'admin_header.php';
                         </tr>
                       ";
                       } else {
-                        echo "<h1 class='m-4'><b><center>There is no Archive Learning Material</center></b></h1>";
+                        echo "<h1 class='m-4'><b><center>There is no Archive Program</center></b></h1>";
                         echo "<img src='img/icons/empty-course.png' alt='icon' class='mb-4 archive_photo_size'>";
                       }
 
@@ -527,7 +527,7 @@ $(document).ready(function() {
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Document records",
+      searchPlaceholder: "Search Resources records",
     }
   });
 });
@@ -578,7 +578,7 @@ $(document).ready(function() {
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Learning Material records",
+      searchPlaceholder: "Search Course Type records",
     }
   });
 });
@@ -595,7 +595,7 @@ $(document).ready(function() {
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Document records",
+      searchPlaceholder: "Search Program records",
     }
   });
 });
