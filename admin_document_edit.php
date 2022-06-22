@@ -6,6 +6,7 @@ if (isset($_POST['update'])) {
   $docu_id          = $_POST['doc_id'];
   $description      = $_POST['description'];
   $file_uploader_id = $_POST['file_uploader_id'];
+  $status           = $_POST['status'];
 
   // Get the id for the faculty who uploaded the file
   $result = mysqli_query($conn, "SELECT faculty_id, firstname FROM faculty WHERE faculty_id='$file_uploader_id'");
@@ -13,7 +14,7 @@ if (isset($_POST['update'])) {
     $faculty_id = $res['faculty_id'];
   }
 
-  mysqli_query($conn, "UPDATE document SET description = '$description', file_uploader_id = '$file_uploader_id' WHERE doc_id = '$docu_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "UPDATE document SET description = '$description', file_uploader_id = '$file_uploader_id', status = '$status' WHERE doc_id = '$docu_id'") or die("Query 4 is incorrect....");
 
   // Get the name of the file that are updated
   $result_update  = mysqli_query($conn, "SELECT title FROM document WHERE doc_id='$docu_id'");
@@ -33,6 +34,16 @@ while ($res   = mysqli_fetch_array($result)) {
   $file_type        = $res['file_type'];
   $description      = $res['description'];
   $file_uploader_id = $res['file_uploader_id'];
+  $status           = $res['status'];
+}
+
+$sel_active  = "";
+$sel_archive = "";
+
+if ($status == "active") {
+  $sel_active  = "selected";
+} else if ($status != "active") {
+  $sel_archive = "selected";
 }
 
 ?>
@@ -94,7 +105,7 @@ while ($res   = mysqli_fetch_array($result)) {
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">Document Edit Form</h5>
+                  <h5 class="card-title mb-0">Resources Edit Form</h5>
                 </div>
                 <div class="card-body">
                   <form method="post">
@@ -129,6 +140,14 @@ while ($res   = mysqli_fetch_array($result)) {
                         ?>
                       </select>
                     </div>
+                    <div class="form-group">
+                      <label>Resources Status</label>
+                      <select class="form-control" id="type" value="<?php echo $status ?>" name="status">
+                        <option value="active" <?php echo $sel_active ?>>Active</option>
+                        <option value="inactive" <?php echo $sel_archive ?>>Inactive</option>
+                      </select>
+                    </div>
+                    <br>
                     <div class="form-group">
                       <input type="hidden" name="doc_id" value="<?php echo $_GET['ID']; ?>">
                       <button type="submit" class="btn btn-success" name="update">Update</button>

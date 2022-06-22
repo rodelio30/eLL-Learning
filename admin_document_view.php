@@ -105,7 +105,7 @@ if ($file_type === "pdf") {
                         <img src='img/photos/<?php echo $icon_img ?>.svg' alt='icon'>
                       </div>
                     </div>
-                    <div class="col-md-6 m-2">
+                    <div class="col-md-8 m-2">
                       <div class="profile-head">
                         <h5>
                           <span>Title: </span>
@@ -173,9 +173,8 @@ if ($file_type === "pdf") {
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-2">
-                      <a <?php echo "href=\"admin_document_edit.php?ID=$doc_id\"" ?> style="float: right"
+                      <hr>
+                      <a <?php echo "href=\"admin_document_edit.php?ID=$doc_id\"" ?> style="float: left"
                         class="btn btn-info"><span data-feather="file"></span>&nbsp Edit Document</a>
                     </div>
                   </div>
