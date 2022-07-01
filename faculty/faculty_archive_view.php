@@ -44,96 +44,15 @@ if ($result_document->num_rows > 0) {
 
 <body>
   <div class="wrapper">
-    <nav id="sidebar" class="sidebar js-sidebar">
-      <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="index.php">
-          <img src="../img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
-        </a>
-        <ul class="sidebar-nav">
-          <li class="sidebar-header">
-            Pages
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="index.php">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <!-- <li class="sidebar-item">
-            <a class="sidebar-link" href="faculty_student.php">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Students</span>
-            </a>
-          </li>
-
-          <hr class="hr-size"> -->
-          <!-- 
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="admin_courses.php">
-              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
-            </a>
-          </li>
-
-          <hr class="hr-size"> -->
-
-          <!-- <li class="sidebar-item">
-            <a class="sidebar-link" href="faculty_materials.php">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Materials</span>
-            </a>
-          </li> -->
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="faculty_document.php">
-              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Resources</span>
-            </a>
-          </li>
-
-          <hr class="hr-size">
-
-          <li class="sidebar-item active">
-            <a class="sidebar-link" href="faculty_archive_view.php">
-              <i class="align-middle" data-feather="archive"></i> <span class="align-middle">Archive</span>
-            </a>
-          </li>
-
-          <div id="oras" class="clock-position ms-4 mb-2">
-            <div id="clock">
-              <div id="dates"></div>
-              <div id="current-time"></div>
-            </div>
-          </div>
-          <script src="../js/time_script.js"></script>
-
-      </div>
-    </nav>
-
+    <?php
+    $nav_active = 'archive';
+    include 'faculty_nav.php';
+    ?>
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
-        <a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
 
-        <div class="navbar-collapse collapse">
-          <h3 class="align-middle mt-1"><strong>Language and Literature e-Learning Hub</strong></h3>
-          <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
-              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
-
-              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
-                <?php include 'greet.php' ?>
-              </a>
-              <?php include 'settings.php' ?>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <?php
+      include 'faculty_main_nav.php';
+      ?>
 
       <main class="content">
         <div class="container-fluid p-0">
@@ -169,7 +88,7 @@ if ($result_document->num_rows > 0) {
                         </tr>
                       ";
                       } else {
-                        echo "<h1 class='m-4'><b><center>There is no Archive Document</center></b></h1>";
+                        echo "<h1 class='m-4'><b><center>There is no Archive Resources</center></b></h1>";
                         echo "<img src='../img/icons/empty-docu.png' alt='icon' class='mb-4 archive_photo_size'>";
                       }
 

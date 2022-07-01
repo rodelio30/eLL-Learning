@@ -1,5 +1,5 @@
 <?php
-include 'admin_checker.php';
+include 'faculty_checker.php';
 
 if (isset($_POST['update'])) {
   $id        = $_POST['id'];
@@ -9,7 +9,7 @@ if (isset($_POST['update'])) {
   $password  = $_POST['password'];
   $status    = $_POST['status'];
 
-  mysqli_query($conn, "update admin set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', status = '$status' where user_id = '$id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update faculty set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', status = '$status' where user_id = '$id'") or die("Query 4 is incorrect....");
   mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$id'") or die("Query 4 is incorrect....");
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
   header('Refresh: 0; url=index.php');
@@ -17,7 +17,7 @@ if (isset($_POST['update'])) {
 
 $user_id = $_GET['ID'];
 
-$result = mysqli_query($conn, "SELECT * FROM admin WHERE user_id='$user_id'");
+$result = mysqli_query($conn, "SELECT * FROM faculty WHERE user_id='$user_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $firstname = $res['firstname'];
   $lastname  = $res['lastname'];
@@ -35,39 +35,27 @@ if ($status == "active") {
   $sel_archive = "selected";
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
-include 'admin_header.php';
+include 'faculty_header.php';
 ?>
 
 <body>
   <div class="wrapper">
-    <nav id="sidebar" class="sidebar js-sidebar">
-      <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="index.php">
-          <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
-        </a>
-
-        <ul class="sidebar-nav">
-          <?php
-          $nav_active = 'profile';
-          include 'admin_nav.php';
-          ?>
-        </ul>
-
-      </div>
-    </nav>
+    <?php
+    $nav_active = 'none';
+    include 'faculty_nav.php';
+    ?>
 
     <div class="main">
-      <?php include 'admin_main_nav.php'; ?>
+      <?php include 'faculty_main_nav.php'; ?>
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong><a href="index.php" class="dash-item">Dashboard</a> / <a href="pages-profile.php"
-                class="dash-item">Admin Profile </a>/ Edit My
+          <h1 class="h3 mb-3"><strong><a href="index.php" class="dash-item">Dashboard</a> / <a
+                href="faculty_profile.php" class="dash-item">Faculty Profile </a>/ Edit My
               Account</strong>
           </h1>
           <div class="row">
@@ -126,21 +114,24 @@ include 'admin_header.php';
         </div>
       </main>
 
-      <?php include 'admin_footer.php'; ?>
+      <?php include 'faculty_footer.php'; ?>
     </div>
   </div>
 
-  <script src="js/app.js"></script>
-  <script>
-  function myFunction() {
-    var pw_ele = document.getElementById("password");
-    if (pw_ele.type === "password") {
-      pw_ele.type = "text";
-    } else {
-      pw_ele.type = "password";
-    }
-  }
-  </script>
+  <script src="../js/app.js"></script>
+  <script src="../js/jquery.min.js"></script>
+
+
 </body>
 
 </html>
+<script>
+function myFunction() {
+  var pw_ele = document.getElementById("password");
+  if (pw_ele.type === "password") {
+    pw_ele.type = "text";
+  } else {
+    pw_ele.type = "password";
+  }
+}
+</script>
