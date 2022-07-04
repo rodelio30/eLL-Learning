@@ -14,5 +14,5 @@ if ($type == 'faculty') {
   header("location: faculty/index.php");
 }
 if ($type == 'student') {
-  header("location: student.php");
+  header("location: student/index.php");
 }
