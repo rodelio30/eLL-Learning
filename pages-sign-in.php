@@ -28,7 +28,7 @@ if (isset($_POST['submit_admin'])) {
     }
     if ($res[0]->type === 'student') {
       echo "<script type='text/javascript'>alert('Hello Student');
-            document.location='public/index.php' </script>";
+            document.location='student/index.php' </script>";
     }
   } else {
     echo "<script type='text/javascript'>alert('Username or Password was incorrect.');

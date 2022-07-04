@@ -9,8 +9,8 @@ if (isset($_POST['update'])) {
   $password  = $_POST['password'];
   $status    = $_POST['status'];
 
-  mysqli_query($conn, "update admin set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', status = '$status' where id = '$id'") or die("Query 4 is incorrect....");
-  // mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', type = '$type' where id = '$id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update admin set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', status = '$status' where user_id = '$id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$id'") or die("Query 4 is incorrect....");
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
   header('Refresh: 0; url=index.php');
 }

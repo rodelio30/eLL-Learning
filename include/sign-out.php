@@ -1,6 +1,7 @@
 <?php
 
 // transaction logout history
+
 include 'transaction_logout.php';
 
 session_unset();
