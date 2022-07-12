@@ -14,101 +14,7 @@ include 'admin_checker.php';
 // if($type=='student'){
 // 	header("location: student.php");
 // }
-
-$faculty_counter  = 0;
-$student_counter  = 0;
-$document_counter = 0;
-$course_counter   = 0;
-
-$archive_faculty  = 0;
-$archive_student  = 0;
-$archive_document = 0;
-$archive_counter  = 0;
-
-// This line is Counting for the number of Faculty User 
-$sql = "SELECT faculty_id FROM faculty WHERE status != 'archive' ";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $faculty_counter++;
-  }
-} else {
-  $faculty_counter = 'Empty Faculty';
-}
-
-// This line is Counting for the number of Student User 
-$sql_student = "SELECT student_id FROM student WHERE status != 'archive' ";
-$result_student = $conn->query($sql_student);
-
-if ($result_student->num_rows > 0) {
-  while ($row = $result_student->fetch_assoc()) {
-    $student_counter++;
-  }
-} else {
-  $student_counter = 'Empty Student';
-}
-
-// This line is counting for the number of Documents
-$sql_document = "SELECT doc_id FROM document WHERE status !='archive'";
-$result_document = $conn->query($sql_document);
-
-if ($result_document->num_rows > 0) {
-  while ($row = $result_document->fetch_assoc()) {
-    $document_counter++;
-  }
-} else {
-  $document_counter = 'Empty Document';
-}
-
-
-// This line is counting for the number of Courses 
-$sql_course    = "SELECT course_id FROM courses WHERE status !='archive'";
-$result_course = $conn->query($sql_course);
-
-if ($result_course->num_rows > 0) {
-  while ($row = $result_course->fetch_assoc()) {
-    $course_counter++;
-  }
-} else {
-  $course_counter = 'Empty Courses';
-}
-
-// This line is Counting for the number of Archive User it's either Faculty or Student
-$sql_archive = "SELECT faculty_id FROM faculty WHERE status = 'archive'";
-$result_archive = $conn->query($sql_archive);
-
-if ($result_archive->num_rows > 0) {
-  while ($row = $result_archive->fetch_assoc()) {
-    $archive_faculty++;
-  }
-} else {
-  $archive_faculty = 0;
-}
-
-$sql_archive_student = "SELECT student_id FROM student WHERE status = 'archive'";
-$result_archive_student = $conn->query($sql_archive_student);
-
-if ($result_archive_student->num_rows > 0) {
-  while ($row = $result_archive_student->fetch_assoc()) {
-    $archive_student++;
-  }
-} else {
-  $archive_student = 0;
-}
-
-$sql_archive_document = "SELECT doc_id FROM document WHERE status = 'archive'";
-$result_archive_document = $conn->query($sql_archive_document);
-
-if ($result_archive_document->num_rows > 0) {
-  while ($row = $result_archive_document->fetch_assoc()) {
-    $archive_document++;
-  }
-} else {
-  $archive_document = 0;
-}
-
-$archive_counter = $archive_faculty + $archive_student + $archive_document;
+include 'counter/counter.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -210,7 +116,7 @@ include 'admin_header.php';
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Documents</h5>
+                            <h5 class="card-title">Resources</h5>
                           </div>
 
                           <div class="col-auto">
@@ -220,7 +126,7 @@ include 'admin_header.php';
                           </div>
                         </div>
                         <p class="mt-4 float-end" style="color: gray">view</p>
-                        <h1 class="mt-1 mb-3 ms-3"><?php echo $document_counter ?></h1>
+                        <h1 class="mt-1 mb-3 ms-3"><?php echo $resources_counter ?></h1>
                       </div>
                     </a>
                   </div>
