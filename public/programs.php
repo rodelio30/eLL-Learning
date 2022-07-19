@@ -30,38 +30,13 @@ include 'public_head.php';
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <h6>Editable</h6>
-          <div class="col-md-6 d-flex align-items-stretch">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/programs/balit.jpeg" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href="">BALIT</a></h5>
-                <p class="fst-italic text-center">Bachelor of Science in Literature</p>
-                <p class="card-text text-center">Active</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/programs/master.jpg" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href="">MALL</a></h5>
-                <p class="fst-italic text-center">Master of Language and Literature</p>
-                <p class="card-text text-center">Active</p>
-              </div>
-            </div>
-          </div>
           <?php
           $result = mysqli_query($conn, "select program_id, img, name, description, status, date_created from programs WHERE status!='archive' ORDER BY program_id DESC") or die("Query 1 is incorrect....");
           while (list($program_id, $img, $name, $description, $status, $date_created) = mysqli_fetch_array($result)) {
             echo "
                 <div class='col-md-6 d-flex align-items-stretch'>
                   <div class='card'>
-                  <a href='programs/balit.php' alt='Linked '>
+                  <a href='#' alt='Linked '>
                     <div class='card-img'>
                       <img src='assets/img/programs/$img' alt='...'>
                     </div>

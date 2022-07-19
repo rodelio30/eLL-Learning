@@ -3,6 +3,10 @@ include 'admin_checker.php';
 date_default_timezone_set("Asia/Manila");
 
 if (isset($_POST['update'])) {
+  $filename = $_FILES["uploadfile"]["name"];
+  $tempname = $_FILES["uploadfile"]["tmp_name"];
+  $folder = "uploads/student_image/" . $filename;
+
   $student_id    = $_POST['student_id'];
   $user_id       = $_POST['user_id'];
   $student_id_no = $_POST['student_id_no'];
@@ -15,11 +19,17 @@ if (isset($_POST['update'])) {
   $status        = $_POST['status'];
   $date_modified = date("Y-m-d h:i:s");
 
-  mysqli_query($conn, "update student set student_id_no = '$student_id_no', course_id = '$course_id', firstname = '$firstname', lastname = '$lastname', description = '$description', email = '$email', password = '$password', status = '$status', date_modified = '$date_modified' where student_id = '$student_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update student set student_id_no = '$student_id_no', img= '$filename', course_id = '$course_id', firstname = '$firstname', lastname = '$lastname', description = '$description', email = '$email', password = '$password', status = '$status', date_modified = '$date_modified' where student_id = '$student_id'") or die("Query 4 is incorrect....");
   mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$user_id'") or die("Query 5 is incorrect....");
 
+  if (move_uploaded_file($tempname, $folder)) {
+    echo "<script>console.log('Image uploaded successfully!');</script>";
+  } else {
+    echo "<script>console.log(' Failed to upload image!!');</script>";
+  }
+
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
-  header('Refresh: 0; url=admin_student.php');
+  // header('Refresh: 0; url=admin_student.php');
 }
 
 $student_id = $_GET['ID'];
@@ -90,7 +100,11 @@ include 'admin_header.php';
                   <h5 class="card-title mb-0">User Form</h5>
                 </div>
                 <div class="card-body">
-                  <form method="post">
+                  <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <input class="form-control" type="file" name="uploadfile" />
+                    </div>
+                    <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">ID Number</label>
                       <input type="text" class="form-control" id="student_id_no" name="student_id_no"
