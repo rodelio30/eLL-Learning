@@ -38,10 +38,13 @@ include 'public_head.php';
             <div class="content">
               <h3>Why Choose LL e-Learning?</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad
-                corporis.
+                The Department of English and Humanities strengthens the general education of students through the
+                development of a deepened understanding of the English language and increases appreciation of the
+                richness of literature and the wealth of the humanities thereby fostering knowledge and appreciation of
+                <!-- language, literature and artistic expressions. It envisions itself in becoming an international center
+                for English language education and humanities, grounded on research, by providing students in all core
+                areas with a coherent curricular framework and relevant, well-structured courses for a comprehensive
+                study of language, literature and humanities. -->
               </p>
               <div class="text-center">
                 <a href="about.php" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
@@ -109,14 +112,15 @@ include 'public_head.php';
                 $icon_img   = 'txt';
               }
               echo "
-                  <div class='col-lg-4 col-md-6 d-flex align-items-stretch'>
-                    <div class='member'>
-                        <img src='../img/photos/$icon_img.svg' class='img-fluid' alt='...' style='padding: 2rem;'>
-                      <div class='member-content'>
-                      <hr>
-                        <h4>$title</h4>
-                        <span>$material_name</span>
-                        <p> $description </p>
+                  <div class='col-lg-4 col-md-6 mb-5 d-flex icon-boxes align-items-stretch'>
+                    <div class='course-item'>
+                      <img src='assets/img/icons/$icon_img.png' class='img-fluid' alt='...'>
+                      <div class='course-content'>
+                        <h5><a href='#'>$title</a></h5>
+                        <br>
+                            <span>$material_name</span>
+                           <hr>
+                        <p>$description</p>
                       </div>
                     </div>
                   </div>
@@ -159,12 +163,15 @@ include 'public_head.php';
       <div class="container" data-aos="fade-up">
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          <div class="section-title">
+            <h2>Faculty</h2>
+          </div>
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+              <img src="assets/img/faculty/reyes.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>Walter White</h4>
-                <span>Web Development</span>
+                <h4>Mercedita M. Reyes</h4>
+                <span>Department Head, English and Humanities</span>
                 <p>
                   Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut
                   aut aut
@@ -181,10 +188,10 @@ include 'public_head.php';
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+              <img src="assets/img/faculty/casipit.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>Sarah Jhinson</h4>
-                <span>Marketing</span>
+                <h4>Daisy O. Casipit</h4>
+                <span>Secretary</span>
                 <p>
                   Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum
                   temporibus
@@ -201,10 +208,10 @@ include 'public_head.php';
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
+              <img src="assets/img/faculty/ravago.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>William Anderson</h4>
-                <span>Content</span>
+                <h4>Joan C. Ravago</h4>
+                <span>UGADO</span>
                 <p>
                   Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
                 </p>

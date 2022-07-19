@@ -28,20 +28,18 @@
               <li><a href="#">Drop Down 4</a></li> -->
           </ul>
         </li>
-        <li class="dropdown"><a href="#"><span>Programs</span> <i class="bi bi-chevron-down"></i></a>
+        <li class="dropdown"><a href="programs.php"><span>Programs</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
-            <li class="dropdown"><a href="#"><span>BALIT</span> <i class="bi bi-chevron-right"></i></a>
+            <li class="dropdown"><a href="program_balit.php"><span>BALIT</span> <i class="bi bi-chevron-right"></i></a>
               <ul>
                 <li class="dropdown"><a href="#"><span>Course Subjects</span> <i class="bi bi-chevron-right"></i></a>
                   <ul>
-                    <li><a href="#">Course Subjects</a></li>
-                    <li><a href="#">Deep Drop Down 2</a></li>
+                    <li><a href="#">Subject1</a></li>
                   </ul>
                 </li>
-                <li><a href="#">Deep Drop Down 2</a></li>
               </ul>
             </li>
-            <li class="dropdown"><a href="#"><span>MALL</span> <i class="bi bi-chevron-right"></i></a>
+            <li class="dropdown"><a href="program_mall.php"><span>MALL</span> <i class="bi bi-chevron-right"></i></a>
               <ul>
                 <li><a href="#">Deep Drop Down 1</a></li>
                 <li><a href="#">Deep Drop Down 2</a></li>

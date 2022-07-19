@@ -19,6 +19,15 @@ include 'public_head.php';
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
         <h2>About Us</h2>
+        <p class="text-justify">
+          The Department of English and Humanities strengthens the general education of students through the
+          development of a deepened understanding of the English language and increases appreciation of the
+          richness of literature and the wealth of the humanities thereby fostering knowledge and appreciation of
+          language, literature and artistic expressions. It envisions itself in becoming an international center
+          for English language education and humanities, grounded on research, by providing students in all core
+          areas with a coherent curricular framework and relevant, well-structured courses for a comprehensive
+          study of language, literature and humanities.
+        </p>
       </div>
     </div><!-- End Breadcrumbs -->
 
