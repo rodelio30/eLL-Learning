@@ -1,3 +1,6 @@
+<?php
+include 'public_checker.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,9 +28,35 @@ include 'public_head.php';
     <!-- ======= Trainers Section ======= -->
     <section id="trainers" class="trainers">
       <div class="container" data-aos="fade-up">
-
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <?php include 'faculty_header.php' ?>
+          <div class="section-title">
+            <br>
+            <h2>Faculty Member</h2>
+          </div>
+          <?php
+          $result = mysqli_query($conn, "select img, firstname, middle_initial, lastname, research, position, description from faculty WHERE status!='archive' AND firstname!='Mercedita' AND firstname!='Daisy' AND firstname!='Joan' ORDER BY faculty_id DESC") or die("Query 1 is incorrect....");
+          while (list($img, $firstname, $middle_initial, $lastname, $research, $position, $description) = mysqli_fetch_array($result)) {
+            echo "
+                <div class='col-lg-4 col-md-6 d-flex align-items-stretch'>
+                  <div class='member'>
+                    <img src='../uploads/faculty_image/$img' class='img-fluid' alt=''>
+                    <div class='member-content'>
+                      <h4>$firstname $middle_initial $lastname</h4>
+                      <span>$position</span>
+                      <p>
+                       $research
+                      </p>
+                      <div class='social'>
+                        <a href='#'><i class='bi bi-facebook'></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ";
+          }
+          ?>
+          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
               <img src="assets/img/faculty/reyes.jpg" class="img-fluid" alt="">
               <div class="member-content">
@@ -44,48 +73,9 @@ include 'public_head.php';
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="assets/img/faculty/casipit.jpg" class="img-fluid" alt="">
-              <div class="member-content">
-                <h4>Daisy O. Casipit</h4>
-                <span>Secretary</span>
-                <p>
-                  Assistant Professor
-                </p>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="assets/img/faculty/ravago.jpg" class="img-fluid" alt="">
-              <div class="member-content">
-                <h4>Joan C. Ravago</h4>
-                <span>UGADO</span>
-                <p>
-                  Associate Professor
-                </p>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-
-      </div>
     </section><!-- End Trainers Section -->
 
   </main><!-- End #main -->
