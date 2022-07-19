@@ -6,6 +6,7 @@ $id_faculty = $_GET['ID'];
 $result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$id_faculty'");
 while ($res   = mysqli_fetch_array($result)) {
   $faculty_id    = $res['faculty_id'];
+  $img           = $res['img'];
   $firstname     = $res['firstname'];
   $lastname      = $res['lastname'];
   $course        = $res['course'];
@@ -61,7 +62,8 @@ include 'admin_header.php';
                     <div class="row gutters-sm">
                       <div class="col-md-3 mb-3 mt-4 border-end">
                         <div class="d-flex flex-column align-items-center text-center">
-                          <img src="img/icons/user.png" alt="Admin" class="rounded-circle" width="150">
+                          <img src="uploads/faculty_image/<?php echo $img ? $img : 'empty_user.png' ?>" alt="Admin"
+                            class="rounded-circle" width="150" height="150">
                           <div class="mt-3">
                             <h4><?php echo $firstname . " " . $lastname ?></h4>
                             <p class="text-secondary mb-1"><?php echo $status ?></p>
