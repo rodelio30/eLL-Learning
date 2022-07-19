@@ -9,7 +9,8 @@ while ($res   = mysqli_fetch_array($result)) {
   $img           = $res['img'];
   $firstname     = $res['firstname'];
   $lastname      = $res['lastname'];
-  $course        = $res['course'];
+  $research        = $res['research'];
+  $position      = $res['position'];
   $description   = $res['description'];
   $email         = $res['email'];
   $date_created  = $res['date_created'];
@@ -67,7 +68,7 @@ include 'admin_header.php';
                           <div class="mt-3">
                             <h4><?php echo $firstname . " " . $lastname ?></h4>
                             <p class="text-secondary mb-1"><?php echo $status ?></p>
-                            <p class="text-muted font-size-sm"><?php echo $course ?></p>
+                            <p class="text-muted font-size-sm"><?php echo $position ?></p>
                           </div>
                         </div>
                       </div>
@@ -87,11 +88,22 @@ include 'admin_header.php';
                             <hr>
                             <div class="row">
                               <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course</strong></h6>
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Position</strong></h6>
                               </div>
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
-                                  <?php echo $course ?>
+                                  <?php echo $position ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Research</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $research ?>
                                 </div>
                               </div>
                             </div>
