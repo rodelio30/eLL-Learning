@@ -25,8 +25,8 @@ include 'public_head.php';
       </div>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Events Section ======= -->
-    <section id="events" class="events">
+    <!-- ======= Program Section ======= -->
+    <section id="program" class="program">
       <div class="container" data-aos="fade-up">
 
         <div class="row">
@@ -35,19 +35,19 @@ include 'public_head.php';
           while (list($program_id, $img, $name, $description, $status, $date_created) = mysqli_fetch_array($result)) {
             echo "
                 <div class='col-md-6 d-flex align-items-stretch'>
+                  <a href='program_view.php?ID=$program_id' alt='Linked '>
                   <div class='card'>
-                  <a href='#' alt='Linked '>
                     <div class='card-img'>
                       <img src='assets/img/programs/$img' alt='...'>
                     </div>
                     <div class='card-body'>
-                      <h5 class='card-title'><a href=''>$name</a></h5>
+                      <h5 class='card-title'>$name</h5>
                       <p class='fst-italic text-center'>$description</p>
                       <p class='card-text text-center'>$status</p>
                     </div>
+                  </div>
                     </a>
                   </div>
-                </div>
               ";
           }
           ?>
