@@ -30,21 +30,23 @@
         </li>
         <li class="dropdown"><a href="programs.php"><span>Programs</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
-            <li class="dropdown"><a href="program_balit.php"><span>BALIT</span> <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li class="dropdown"><a href="#"><span>Course Subjects</span> <i class="bi bi-chevron-right"></i></a>
-                  <ul>
-                    <li><a href="#">Subject1</a></li>
-                  </ul>
-                </li>
-              </ul>
+            <?php
+
+            include('../include/connect.php');
+            $result = mysqli_query($conn, "select program_id, name from programs WHERE status!='archive' ORDER BY program_id DESC") or die("Query 1 is incorrect....");
+            while (list($program_id, $name) = mysqli_fetch_array($result)) {
+              echo "
+            <li class='dropdown'><a href='program_view.php?ID=$program_id'><span>$name</span></a>
             </li>
-            <li class="dropdown"><a href="program_mall.php"><span>MALL</span> <i class="bi bi-chevron-right"></i></a>
+              ";
+            }
+            ?>
+            <!-- <li class="dropdown"><a href="program_mall.php"><span>MALL</span> <i class="bi bi-chevron-right"></i></a>
               <ul>
                 <li><a href="#">Deep Drop Down 1</a></li>
                 <li><a href="#">Deep Drop Down 2</a></li>
               </ul>
-            </li>
+            </li> -->
             <!-- <li><a href="#">Drop Down 2</a></li>
               <li><a href="#">Drop Down 3</a></li>
               <li><a href="#">Drop Down 4</a></li> -->
