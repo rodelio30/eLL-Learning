@@ -83,147 +83,21 @@ include 'public_head.php';
       </div>
     </section><!-- End Why Us Section -->
 
-    <!-- ======= Popular Courses Section ======= -->
-    <section id="trainers" class="trainers">
-      <div class="container" data-aos="fade-up">
-
-        <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          <div class="section-title">
-            <h2>Resources</h2>
-            <p>Popular Resources</p>
-          </div>
-
-          <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
-            <?php
-            $result = mysqli_query($conn, "select doc_id, material_id, title, description, file_size, file_type, status from document WHERE status!='archive' LIMIT 6") or die("Query 1 is incorrect....");
-            while (list($doc_id, $material_id, $title, $description, $file_size, $file_type, $status) = mysqli_fetch_array($result)) {
-              $size          = sizeUnit($file_size);
-              $material_name = nameMaterial($material_id);
-              $icon_img      = '';
-
-              if ($file_type === "pdf") {
-                $icon_img   = 'pdf';
-              } else if ($file_type === "doc" || $file_type === "docs" || $file_type === "docx") {
-                $icon_img   = 'doc';
-              } else if ($file_type === "xls" || $file_type === "xlsx" || $file_type === "xlc") {
-                $icon_img   = 'xls';
-              } else if ($file_type === "txt") {
-                $icon_img   = 'txt';
-              }
-              echo "
-                  <div class='col-lg-4 col-md-6 mb-5 d-flex icon-boxes align-items-stretch'>
-                    <div class='course-item'>
-                      <img src='assets/img/icons/$icon_img.png' class='img-fluid' alt='...'>
-                      <div class='course-content'>
-                        <h5><a href='#'>$title</a></h5>
-                        <br>
-                            <span>$material_name</span>
-                           <hr>
-                        <p>$description</p>
-                      </div>
-                    </div>
-                  </div>
-              ";
-            }
-            function sizeUnit($file_size)
-            {
-              if ($file_size >= 1073741824) {
-                $file_size = number_format($file_size / 1073741824, 2) . ' gb';
-              } elseif ($file_size >= 1048576) {
-                $file_size = number_format($file_size / 1048576, 2) . ' mb';
-              } elseif ($file_size >= 1024) {
-                $file_size = number_format($file_size / 1024, 2) . ' kb';
-              } elseif ($file_size > 1) {
-                $file_size = $file_size . ' bytes';
-              } elseif ($file_size == 1) {
-                $file_size = $file_size . ' byte';
-              } else {
-                $file_size = '0 bytes';
-              }
-
-              return $file_size;
-            }
-            function nameMaterial($material_id)
-            {
-              include '../include/connect.php';
-              $result = mysqli_query($conn, "select name from materials WHERE material_id='$material_id'") or die("Query 1 is incorrect....");
-              while (list($name) = mysqli_fetch_array($result)) {
-                return $name;
-              }
-            }
-            ?>
-          </div>
-
-        </div>
-    </section><!-- End Popular Courses Section -->
-
+    <?php
+    include 'event_section.php';
+    include 'popular_section.php';
+    ?>
     <!-- ======= Trainers Section ======= -->
     <section id="trainers" class="trainers">
       <div class="container" data-aos="fade-up">
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          <div class="section-title">
+          <!-- <div class="section-title">
             <h2>Faculty</h2>
-          </div>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="assets/img/faculty/reyes.jpg" class="img-fluid" alt="">
-              <div class="member-content">
-                <h4>Mercedita M. Reyes</h4>
-                <span>Department Head, English and Humanities</span>
-                <p>
-                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut
-                  aut aut
-                </p>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div> -->
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="assets/img/faculty/casipit.jpg" class="img-fluid" alt="">
-              <div class="member-content">
-                <h4>Daisy O. Casipit</h4>
-                <span>Secretary</span>
-                <p>
-                  Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum
-                  temporibus
-                </p>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php include 'faculty_header.php' ?>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="assets/img/faculty/ravago.jpg" class="img-fluid" alt="">
-              <div class="member-content">
-                <h4>Joan C. Ravago</h4>
-                <span>UGADO</span>
-                <p>
-                  Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
-                </p>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
 
