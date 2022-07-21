@@ -25,7 +25,7 @@
             <li><i class="bx bx-chevron-right"></i> <a href="http://cass.clsu-ovpaa.edu.ph/index.html"
                 target="_blank">CASS</a>
             </li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">DEH</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="about.php">DEH</a></li>
           </ul>
         </div>
 
@@ -52,22 +52,16 @@
 
   <!-- <div class="container d-md-flex footer-bot"> -->
   <div class="footer-bot">
-    <div class="container d-md-flex">
-
-      <div class="me-md-auto text-center text-md-start">
-        <div class="credits mt-2">
-          Inspired by <strong><span><a href="https://clsu.edu.ph/" target="_blank">CLSU</a></span></strong>.
-          <br>
-          Copyright © 2022 All Rights Reserved
-        </div>
-        <br>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
-          Designed by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
-        </div>
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Inspired by <strong><span>CLSU</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license-->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+        Designed by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
       </div>
     </div>
 
