@@ -15,7 +15,6 @@ include 'public_head.php';
   ?>
 
   <main id="main" data-aos="fade-in">
-
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="container">
@@ -28,7 +27,7 @@ include 'public_head.php';
     <!-- ======= Program Section ======= -->
     <section id="program" class="program">
       <div class="container" data-aos="fade-up">
-
+        <hr>
         <div class="row">
           <?php
           $result = mysqli_query($conn, "select program_id, img, name, description, status, date_created from programs WHERE status!='archive' ORDER BY program_id DESC") or die("Query 1 is incorrect....");
@@ -53,6 +52,7 @@ include 'public_head.php';
           ?>
 
         </div>
+
       </div>
 
       </div>
