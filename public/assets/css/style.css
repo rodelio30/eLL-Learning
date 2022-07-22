@@ -150,7 +150,7 @@ h6 {
 }
 
 #header .logo img {
-  max-height: 40px;
+  max-height: 60px;
 }
 
 /**
@@ -542,7 +542,7 @@ section {
 }
 
 .breadcrumbs {
-  margin-top: 73px;
+  margin-top: 93px;
   text-align: center;
   background: #005537;
   padding: 30px 0;
@@ -729,6 +729,27 @@ section {
 
 .program .card-text {
   color: #5e5e5e;
+}
+
+.program .content .nav-link {
+  border: 0;
+  padding: 12px 15px;
+  transition: 0.3s;
+  color: #37423b;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.program .content .nav-link:hover {
+  color: #005537;
+}
+
+.program .content .nav-link.active {
+  color: #005537;
+  border-radius: 0.3rem;
+  border: 2px solid #e2e7e4;
+  border-bottom: 0;
+  border-color: #005537;
 }
 
 .program .read-more a {
@@ -1770,7 +1791,7 @@ section {
   color: #00C67D;
 
   width: 100%;
-  height: 30vh;
+  height: 35vh;
   background: url("../img/bg-footer3.png");
   /* background-color: #005537; */
   background-size: cover;
