@@ -4,13 +4,18 @@ date_default_timezone_set("Asia/Manila");
 
 if (isset($_POST['submit'])) {
   $ct_id         = $_POST['ct_id'];
+  $cat_no        = $_POST['cat_no'];
   $name          = $_POST['name'];
   $description   = $_POST['description'];
+  $no_of_units   = $_POST['no_of_units'];
+  $hours         = $_POST['hours'];
+  $preq          = $_POST['preq'];
+  $lab_equipment = $_POST['lab_equipment'];
   $status        = 'active';
   $date_created  = date("Y-m-d h:i:s");
   $date_modified = date("Y-m-d h:i:s");
 
-  mysqli_query($conn, "insert into courses(course_type_id, name, description, status, date_created, date_modified) values('$ct_id','$name','$description','$status','$date_created','$date_modified')")  or die("Query 3 is incorrect.....");
+  mysqli_query($conn, "insert into courses(course_type_id, cat_no, name, description, no_of_units, hours, preq, lab_equipment, status, date_created, date_modified) values('$ct_id','$cat_no', '$name','$description','$no_of_units','$hours','$preq','$lab_equipment','$status','$date_created','$date_modified')")  or die("Query 3 is incorrect.....");
   echo '<script type="text/javascript"> alert("' . $name . ' Course Added!.")</script>';
   header('Refresh: 0; url=admin_courses.php');
 }
@@ -71,14 +76,43 @@ include 'admin_header.php';
                     </div>
                     <br>
                     <div class="form-group">
-                      <label>Name</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Course Name">
+                      <label for="exampleInputEmail1">Catalogue Number</label>
+                      <input type="text" class="form-control" id="cat_no" name="cat_no"
+                        placeholder="Enter Catalogue Number">
                     </div>
                     <br>
                     <div class="form-group">
-                      <label>Description</label>
+                      <label for="exampleInputEmail1">Course Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Description</label>
                       <input type="text" class="form-control" id="description" name="description"
-                        placeholder="Enter Description">
+                        placeholder="Description">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Number of Units</label>
+                      <input type="text" class="form-control" id="no_of_units" name="no_of_units"
+                        placeholder="Enter Number of Units">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Hours</label>
+                      <input type="text" class="form-control" id="hours" name="hours"
+                        placeholder="Enter Number of Contract Hours/Week">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Prerequisites</label>
+                      <input type="text" class="form-control" id="preq" name="preq" placeholder="Enter Prerequesites">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Lab Equipment</label>
+                      <input type="text" class="form-control" id="lab_equipment" name="lab_equipment"
+                        placeholder="Enter Lab Equipment">
                     </div>
                     <br>
                     <button type="submit" class="btn btn-success" name="submit">Submit</button>

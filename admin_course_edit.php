@@ -20,10 +20,21 @@ $course_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $course_type_id = $res['course_type_id'];
-  $course_name    = $res['name'];
-  $description    = $res['description'];
-  $status         = $res['status'];
+  $course_type_id       = $res['course_type_id'];
+  $course_id            = $res['course_id'];
+  $cat_no               = $res['cat_no'];
+  $course_name          = $res['name'];
+  $description          = $res['description'];
+  $course_outcomes_id   = $res['course_outcomes_id'];
+  $no_of_units          = $res['no_of_units'];
+  $hours                = $res['hours'];
+  $preq                 = $res['preq'];
+  $course_outline_id    = $res['course_outline_id'];
+  $lab_equipment        = $res['lab_equipment'];
+  $suggested_reading_id = $res['suggested_reading_id'];
+  $date_created         = $res['date_created'];
+  $date_modified        = $res['date_modified'];
+  $status               = $res['status'];
 }
 
 $name = $course_name;
@@ -104,6 +115,12 @@ include 'admin_header.php';
                     </div>
                     <br>
                     <div class="form-group">
+                      <label for="exampleInputEmail1">Catalogue Number</label>
+                      <input type="text" class="form-control" id="cat_no" name="cat_no" value="<?php echo $cat_no ?>"
+                        placeholder="Enter Catalogue Number">
+                    </div>
+                    <br>
+                    <div class="form-group">
                       <label for="exampleInputEmail1">Course Name</label>
                       <input type="text" class="form-control" id="name" name="name" value="<?php echo $course_name ?>"
                         placeholder="Enter Name">
@@ -113,6 +130,30 @@ include 'admin_header.php';
                       <label for="exampleInputEmail1">Description</label>
                       <input type="text" class="form-control" id="description" name="description"
                         value="<?php echo $description ?>" placeholder="Description">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Number of Units</label>
+                      <input type="text" class="form-control" id="no_of_units" name="no_of_units"
+                        value="<?php echo $no_of_units ?>" placeholder="Enter Name">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Hours</label>
+                      <input type="text" class="form-control" id="hours" name="hours" value="<?php echo $hours ?>"
+                        placeholder="Enter Name">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Prerequisites</label>
+                      <input type="text" class="form-control" id="preq" name="preq" value="<?php echo $preq ?>"
+                        placeholder="Enter Name">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Lab Equipment</label>
+                      <input type="text" class="form-control" id="lab_equipment" name="lab_equipment"
+                        value="<?php echo $lab_equipment ?>" placeholder="Enter Name">
                     </div>
                     <br>
                     <div class="form-group">
