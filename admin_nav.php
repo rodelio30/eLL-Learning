@@ -5,6 +5,9 @@ $student_select  = '';
 $program_select  = '';
 $ct_select       = '';
 $course_select   = '';
+$c_outcome_select       = '';
+$c_outline_select       = '';
+$sr_select       = '';
 $material_select = '';
 $docu_select     = '';
 $archive_select  = '';
@@ -26,6 +29,15 @@ if ($nav_active == 'course_type') {
 }
 if ($nav_active == 'course') {
   $course_select = 'active';
+}
+if ($nav_active == 'outcome') {
+  $c_outcome_select = 'active';
+}
+if ($nav_active == 'outline') {
+  $c_outline_select = 'active';
+}
+if ($nav_active == 'suggested_reading') {
+  $sr_select = 'active';
 }
 if ($nav_active == 'material') {
   $material_select = 'active';
@@ -73,15 +85,33 @@ if ($nav_active == 'archive') {
 
 <hr class="hr-size">
 
+<li class="sidebar-item <?php echo $course_select ?>">
+  <a class="sidebar-link" href="admin_courses.php">
+    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
+  </a>
+</li>
+
 <li class="sidebar-item <?php echo $ct_select ?>">
   <a class="sidebar-link" href="admin_course_type.php">
     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Caterory</span>
   </a>
 </li>
 
-<li class="sidebar-item <?php echo $course_select ?>">
-  <a class="sidebar-link" href="admin_courses.php">
-    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
+<li class="sidebar-item <?php echo $c_outcome_select ?>">
+  <a class="sidebar-link" href="admin_course_outcome.php">
+    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Outcomes</span>
+  </a>
+</li>
+
+<li class="sidebar-item <?php echo $c_outline_select ?>">
+  <a class="sidebar-link" href="admin_course_type.php">
+    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Outline</span>
+  </a>
+</li>
+
+<li class="sidebar-item <?php echo $sr_select ?>">
+  <a class="sidebar-link" href="admin_course_type.php">
+    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Suggested Reading</span>
   </a>
 </li>
 

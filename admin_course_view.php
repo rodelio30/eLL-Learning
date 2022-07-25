@@ -1,16 +1,22 @@
-<?php
-include 'admin_checker.php';
-
+<?php include 'admin_checker.php';
 $course_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM courses WHERE course_id='$course_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $course_id     = $res['course_id'];
-  $name          = $res['name'];
-  $description   = $res['description'];
-  $date_created  = $res['date_created'];
-  $date_modified = $res['date_modified'];
-  $status        = $res['status'];
+  $course_id            = $res['course_id'];
+  $cat_no               = $res['cat_no'];
+  $name                 = $res['name'];
+  $description          = $res['description'];
+  $course_outcomes_id   = $res['course_outcomes_id'];
+  $no_of_units          = $res['no_of_units'];
+  $hours                = $res['hours'];
+  $preq                 = $res['preq'];
+  $course_outline_id    = $res['course_outline_id'];
+  $lab_equipment        = $res['lab_equipment'];
+  $suggested_reading_id = $res['suggested_reading_id'];
+  $date_created         = $res['date_created'];
+  $date_modified        = $res['date_modified'];
+  $status               = $res['status'];
 }
 ?>
 
@@ -62,7 +68,18 @@ include 'admin_header.php';
                           <div class="card-body">
                             <div class="row">
                               <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Full Name</strong></h6>
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Catalogue Number</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $cat_no ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course Name</strong></h6>
                               </div>
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
@@ -84,11 +101,77 @@ include 'admin_header.php';
                             <hr>
                             <div class="row">
                               <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Status</strong></h6>
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course Outcome</strong></h6>
                               </div>
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
-                                  <?php echo $status ?>
+                                  <?php echo $course_outcomes_id ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Number of Units</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $no_of_units ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Number of Contract hrs/week</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $hours ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Prerequesites</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $preq ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course Outline</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $course_outline_id ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Laboratory Equipment</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $lab_equipment ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Suggested Reading</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $suggested_reading_id ?>
                                 </div>
                               </div>
                             </div>
@@ -101,6 +184,14 @@ include 'admin_header.php';
                             <div class="card h-100 mt-0 mb-0 m-4">
                               <div class="card-body">
                                 <h5 class="d-flex align-items-center mb-3"><b>About Course</b></h5>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="flatpickr-weekwrapper">Status</p>
+                                  </div>
+                                  <div class="col-sm-7">
+                                    <p class="flatpickr-weekwrapper"><?php echo $status ?></p>
+                                  </div>
+                                </div>
                                 <div class="row">
                                   <div class="col-sm-3">
                                     <p class="flatpickr-weekwrapper">Date Created</p>
