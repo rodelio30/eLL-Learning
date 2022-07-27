@@ -7,6 +7,7 @@ if (isset($_POST['submit'])) {
   $cat_no        = $_POST['cat_no'];
   $name          = $_POST['name'];
   $description   = $_POST['description'];
+  $objectives    = $_POST['objectives'];
   $no_of_units   = $_POST['no_of_units'];
   $hours         = $_POST['hours'];
   $preq          = $_POST['preq'];
@@ -15,7 +16,7 @@ if (isset($_POST['submit'])) {
   $date_created  = date("Y-m-d h:i:s");
   $date_modified = date("Y-m-d h:i:s");
 
-  mysqli_query($conn, "insert into courses(course_type_id, cat_no, name, description, no_of_units, hours, preq, lab_equipment, status, date_created, date_modified) values('$ct_id','$cat_no', '$name','$description','$no_of_units','$hours','$preq','$lab_equipment','$status','$date_created','$date_modified')")  or die("Query 3 is incorrect.....");
+  mysqli_query($conn, "insert into courses(course_type_id, cat_no, name, description, objectives, no_of_units, hours, preq, lab_equipment, status, date_created, date_modified) values('$ct_id','$cat_no', '$name','$description','$objectives','$no_of_units','$hours','$preq','$lab_equipment','$status','$date_created','$date_modified')")  or die("Query 3 is incorrect.....");
   echo '<script type="text/javascript"> alert("' . $name . ' Course Added!.")</script>';
   header('Refresh: 0; url=admin_courses.php');
 }
@@ -90,6 +91,12 @@ include 'admin_header.php';
                       <label for="exampleInputEmail1">Description</label>
                       <input type="text" class="form-control" id="description" name="description"
                         placeholder="Description">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Objectives</label>
+                      <input type="text" class="form-control" id="objectives" name="objectives"
+                        placeholder="Objectives">
                     </div>
                     <br>
                     <div class="form-group">

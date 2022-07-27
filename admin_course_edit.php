@@ -7,11 +7,12 @@ if (isset($_POST['update'])) {
   $ct_id   = $_POST['ct_id'];
   $name        = $_POST['name'];
   $description = $_POST['description'];
+  $objectives  = $_POST['objectives'];
   $status      = $_POST['status'];
   $date_modified = date("Y-m-d h:i:s");
 
   // echo "<script>console.log('" . $email . "');</script>";
-  mysqli_query($conn, "update courses set course_type_id = '$ct_id', name = '$name', description = '$description', status= '$status', date_modified = '$date_modified' where course_id = '$course_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update courses set course_type_id = '$ct_id', name = '$name', description = '$description', objectives = '$objectives', status= '$status', date_modified = '$date_modified' where course_id = '$course_id'") or die("Query 4 is incorrect....");
   echo '<script type="text/javascript"> alert("' . $name . ' Course updated!.")</script>';
   header('Refresh: 0; url=admin_course_view.php?ID=' . $_GET['ID'] . '');
 }
@@ -25,6 +26,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $cat_no               = $res['cat_no'];
   $course_name          = $res['name'];
   $description          = $res['description'];
+  $objectives           = $res['objectives'];
   $course_outcomes_id   = $res['course_outcomes_id'];
   $no_of_units          = $res['no_of_units'];
   $hours                = $res['hours'];
@@ -130,6 +132,12 @@ include 'admin_header.php';
                       <label for="exampleInputEmail1">Description</label>
                       <input type="text" class="form-control" id="description" name="description"
                         value="<?php echo $description ?>" placeholder="Description">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Objectives</label>
+                      <input type="text" class="form-control" id="objectives" name="objectives"
+                        value="<?php echo $objectives ?>" placeholder="Objectives">
                     </div>
                     <br>
                     <div class="form-group">

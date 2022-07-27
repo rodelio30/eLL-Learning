@@ -7,6 +7,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $cat_no               = $res['cat_no'];
   $name                 = $res['name'];
   $description          = $res['description'];
+  $objectives           = $res['objectives'];
   $course_outcomes_id   = $res['course_outcomes_id'];
   $no_of_units          = $res['no_of_units'];
   $hours                = $res['hours'];
@@ -98,6 +99,17 @@ include 'admin_header.php';
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $description ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Objectives</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo $objectives ?>
                                 </div>
                               </div>
                             </div>
