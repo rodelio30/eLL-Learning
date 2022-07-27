@@ -51,6 +51,7 @@ include 'admin_header.php';
                   <table id="courses_table" class="display" style="width:100%">
                     <thead>
                       <tr>
+                        <th scope="col" style="width: 10%">Catalogue Number</th>
                         <th scope="col" style="width: 10%">Number</th>
                         <th scope="col" style="width: 50%">Description</th>
                         <th scope="col" style="width: 10%">Status</th>
@@ -59,11 +60,12 @@ include 'admin_header.php';
                     </thead>
                     <tbody>
                       <?php
-                      $result = mysqli_query($conn, "select c_outcome_id, number, description, date_modified, status from course_outcomes WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                      while (list($c_outcome_id, $number, $description, $date_modified, $status) = mysqli_fetch_array($result)) {
-                        // $course_type = courseNameGetter($ct_id);
+                      $result = mysqli_query($conn, "select c_outcome_id, course_id, number, description, date_modified, status from course_outcomes WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($c_outcome_id, $course_id, $number, $description, $date_modified, $status) = mysqli_fetch_array($result)) {
+                        $cat_no = courseNameGetter($course_id);
                         echo "
 														<tr>	
+															<td><a href=\"admin_course_view.php?ID=$course_id\" class='user-clicker'>$cat_no</a></td>
 															<td>$number</td>
 															<td><a href=\"admin_course_outcome_view.php?ID=$c_outcome_id\" class='user-clicker'>$description</a></td>
 															<td>$status</td>
@@ -74,14 +76,14 @@ include 'admin_header.php';
 													";
                       }
                       // this function is to return a name for the Course Type 
-                      // function courseNameGetter($ct_id)
-                      // {
-                      //   include 'include/connect.php';
-                      //   $result = mysqli_query($conn, "select name from courses WHERE course_id='$course_id'") or die("Query 1 is incorrect....");
-                      //   while (list($name) = mysqli_fetch_array($result)) {
-                      //     return $name;
-                      //   }
-                      // }
+                      function courseNameGetter($course_id)
+                      {
+                        include 'include/connect.php';
+                        $result = mysqli_query($conn, "select cat_no from courses WHERE course_id='$course_id'") or die("Query 1 is incorrect....");
+                        while (list($name) = mysqli_fetch_array($result)) {
+                          return $name;
+                        }
+                      }
                       ?>
                     </tbody>
                   </table>
@@ -109,7 +111,7 @@ include 'admin_header.php';
 $(document).ready(function() {
   $('#courses_table').DataTable({
     order: [
-      [0, 'asc']
+      [1, 'asc']
     ],
     "pagingType": "full_numbers",
     "lengthMenu": [
