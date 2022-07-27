@@ -7,7 +7,7 @@ $ct_select       = '';
 $course_select   = '';
 $c_outcome_select       = '';
 $c_outline_select       = '';
-$sr_select       = '';
+$suggested_select       = '';
 $material_select = '';
 $docu_select     = '';
 $archive_select  = '';
@@ -36,8 +36,8 @@ if ($nav_active == 'outcome') {
 if ($nav_active == 'outline') {
   $c_outline_select = 'active';
 }
-if ($nav_active == 'suggested_reading') {
-  $sr_select = 'active';
+if ($nav_active == 'suggested') {
+  $suggested_select = 'active';
 }
 if ($nav_active == 'material') {
   $material_select = 'active';
@@ -104,13 +104,13 @@ if ($nav_active == 'archive') {
 </li>
 
 <li class="sidebar-item <?php echo $c_outline_select ?>">
-  <a class="sidebar-link" href="admin_course_type.php">
+  <a class="sidebar-link" href="admin_course_outline.php">
     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Outline</span>
   </a>
 </li>
 
-<li class="sidebar-item <?php echo $sr_select ?>">
-  <a class="sidebar-link" href="admin_course_type.php">
+<li class="sidebar-item <?php echo $suggested_select ?>">
+  <a class="sidebar-link" href="admin_course_suggested.php">
     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Suggested Reading</span>
   </a>
 </li>

@@ -10,9 +10,9 @@ if (isset($_POST['submit'])) {
   $date_created  = date("Y-m-d h:i:s");
   $date_modified = date("Y-m-d h:i:s");
 
-  mysqli_query($conn, "insert into course_outcomes(course_id, number, description, status, date_created, date_modified) values('$course_id','$number','$description','$status','$date_created','$date_modified')")  or die("Query 3 is incorrect.....");
-  echo '<script type="text/javascript"> alert("' . $description . ' Course Outcome Added!.")</script>';
-  header('Refresh: 0; url=admin_course_outcome.php');
+  mysqli_query($conn, "insert into course_outline(course_id, number, description, status, date_created, date_modified) values('$course_id','$number','$description','$status','$date_created','$date_modified')")  or die("Query 3 is incorrect.....");
+  echo '<script type="text/javascript"> alert("' . $description . ' Course Outline Added!.")</script>';
+  header('Refresh: 0; url=admin_course_outline.php');
 }
 ?>
 
@@ -34,7 +34,7 @@ include 'admin_header.php';
 
         <ul class="sidebar-nav">
           <?php
-          $nav_active = 'outcome';
+          $nav_active = 'outline';
           include 'admin_nav.php';
           ?>
         </ul>
@@ -48,8 +48,8 @@ include 'admin_header.php';
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong><a href="admin_course_outcome.php" class="dashboard">Course Outcome</a> / New
-              Course Outcome</strong>
+          <h1 class="h3 mb-3"><strong><a href="admin_course_outcome.php" class="dashboard">Course Outline</a> / New
+              Course Outline</strong>
           </h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">

@@ -8,7 +8,9 @@
 
     <nav id="navbar" class="navbar order-last order-lg-0">
       <ul>
-        <li><a href="about.php">About</a></li>
+        <li>
+          <a href="about.php">About</a>
+        </li>
         <li class="dropdown"><a href="resources.php"><span>e-Resources</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li class="dropdown"><a href="#"><span>Language</span> <i class="bi bi-chevron-right"></i></a>

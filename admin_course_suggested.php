@@ -19,7 +19,7 @@ include 'admin_header.php';
 
         <ul class="sidebar-nav">
           <?php
-          $nav_active = 'course';
+          $nav_active = 'suggested';
           include 'admin_nav.php';
           ?>
         </ul>
@@ -34,13 +34,13 @@ include 'admin_header.php';
         <div class="container-fluid p-0">
           <div class="row">
             <div class="col-md-4">
-              <h1 class="h3 mb-3"><strong>Course</strong> List</h1>
+              <h1 class="h3 mb-3"><strong>Course Suggested</strong> List</h1>
             </div>
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-              <a <?php echo "href=\"admin_course_add.php\" " ?> style="float: right" class="btn btn-success"><span
-                  data-feather="user-plus"></span>&nbsp Add New Course</a>
+              <a <?php echo "href=\"admin_course_suggested_add.php\" " ?> style="float: right"
+                class="btn btn-success"><span data-feather="user-plus"></span>&nbsp Add New Course Suggested</a>
             </div>
           </div>
           <div class="row">
@@ -51,37 +51,38 @@ include 'admin_header.php';
                   <table id="courses_table" class="display" style="width:100%">
                     <thead>
                       <tr>
-                        <th scope="col" style="width: 15%">Course Type</th>
-                        <th scope="col" style="width: 15%">Catalogue Number</th>
-                        <th scope="col" style="width: 35%">Course Name</th>
+                        <th scope="col" style="width: 10%">Catalogue Number</th>
+                        <th scope="col" style="width: 20%">Name</th>
+                        <th scope="col" style="width: 40%">Description</th>
                         <th scope="col" style="width: 10%">Status</th>
                         <th scope="col" style="width: 35%"><span class="float-end me-5">Action</span></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $result = mysqli_query($conn, "select course_id, course_type_id, cat_no, name, status from courses WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
-                      while (list($course_id, $ct_id, $cat_no, $name, $status) = mysqli_fetch_array($result)) {
-                        list($ct_id, $course_type) = courseNameGetter($ct_id);
+                      $result = mysqli_query($conn, "select sr_id, course_id, name, description, date_modified, status from suggested_reading WHERE status!='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+                      while (list($c_suggested_id, $course_id, $name, $description, $date_modified, $status) = mysqli_fetch_array($result)) {
+                        // $course_type = courseNameGetter($ct_id);
+                        $cat_no = courseNameGetter($course_id);
                         echo "
 														<tr>	
-															<td><a href=\"admin_course_type_view.php?ID=$ct_id\" class='user-clicker'>$course_type</a></td>
-															<td><a href=\"admin_course_view.php?ID=$course_id&suggested=5\" class='user-clicker'>$cat_no</a></td>
-															<td><a href=\"admin_course_view.php?ID=$course_id\" class='user-clicker'>$name</a></td>
+															<td><a href=\"admin_course_view.php?ID=$course_id\" class='user-clicker'>$cat_no</a></td>
+															<td>$name</td>
+															<td><a href=\"admin_course_suggested_view.php?ID=$c_suggested_id\" class='user-clicker'>$description</a></td>
 															<td>$status</td>
 															<td>
-															<a href=\"archive/admin_course_archive.php?ID=$course_id\" onClick=\"return confirm('Are you sure you want this course move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"archive/admin_course_suggested_archive.php?ID=$c_suggested_id\" onClick=\"return confirm('Are you sure you want this course move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
 															</td>
 														</tr>	
 													";
                       }
                       // this function is to return a name for the Course Type 
-                      function courseNameGetter($ct_id)
+                      function courseNameGetter($course_id)
                       {
                         include 'include/connect.php';
-                        $result = mysqli_query($conn, "select ct_id, name from course_type WHERE ct_id='$ct_id'") or die("Query 1 is incorrect....");
-                        while (list($ct_id, $name) = mysqli_fetch_array($result)) {
-                          return array($ct_id, $name);
+                        $result = mysqli_query($conn, "select cat_no from courses WHERE course_id='$course_id'") or die("Query 1 is incorrect....");
+                        while (list($name) = mysqli_fetch_array($result)) {
+                          return $name;
                         }
                       }
                       ?>

@@ -18,6 +18,9 @@ while ($res   = mysqli_fetch_array($result)) {
   $date_modified        = $res['date_modified'];
   $status               = $res['status'];
 }
+
+// $suggest = $_GET['suggested'];
+// echo "<script>console.log('" . $suggest . "');</script>";
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +108,18 @@ include 'admin_header.php';
                               </div>
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
-                                  <?php echo $course_outcomes_id ?>
+                                  <?php
+                                  // echo $course_outcomes_id
+                                  ?>
+                                  <div class="list-group">
+                                    <?php
+                                    $result = mysqli_query($conn, "select c_outcome_id, number, description from course_outcomes WHERE course_id ='$course_id'") or die("Query 4 is inncorrect........");
+                                    while (list($c_outcome_id, $number, $description) = mysqli_fetch_array($result)) {
+
+                                      echo '<a href="admin_course_outcome_view.php?ID=' . $c_outcome_id . '" class="list-group-item list-group-item-action text-left"><span style="float: left">' . $number . '. </span> ' . $description . '</a>';
+                                    }
+                                    ?>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -147,9 +161,20 @@ include 'admin_header.php';
                               <div class="col-sm-3">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course Outline</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
+                              <div class="col-sm-9">
                                 <div class="flatpickr-weekwrapper">
-                                  <?php echo $course_outline_id ?>
+                                  <?php
+                                  // echo $course_outline_id
+                                  ?>
+                                  <div class="list-group">
+                                    <?php
+                                    $result = mysqli_query($conn, "select c_outline_id, number, description from course_outline WHERE course_id ='$course_id'") or die("Query 4 is inncorrect........");
+                                    while (list($c_outline_id, $number, $description) = mysqli_fetch_array($result)) {
+
+                                      echo '<a href="admin_course_outline_view.php?ID=' . $c_outline_id . '" class="list-group-item list-group-item-action"><span style="float: left">' . $number . '. </span> ' . $description . '</a>';
+                                    }
+                                    ?>
+                                  </div>
                                 </div>
                               </div>
                             </div>
