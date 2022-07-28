@@ -115,8 +115,8 @@ $(document).ready(function() {
     ],
     "pagingType": "full_numbers",
     "lengthMenu": [
-      [5, 10, 25, 50, -1],
-      [5, 10, 25, 50, "All"]
+      [10, 25, 50, -1],
+      [10, 25, 50, "All"]
     ],
     responsive: true,
     language: {

@@ -57,7 +57,7 @@ include 'admin_header.php';
         <div class="container-fluid p-0">
           <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course List
               </a> /
-              <?php echo $name ?>
+              <?php echo $cat_no ?>
             </strong>
           </h1>
           <div class="page-content">
@@ -68,13 +68,14 @@ include 'admin_header.php';
                   <div class="main-body">
                     <div class="row gutters-sm">
                       <div class="col-md-12">
+                        <h1 class="text-center">Course Specification</h1>
                         <div class="card m-4 mt-2">
                           <div class="card-body">
                             <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Catalogue Number</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
+                              <div class="col-sm-10 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $cat_no ?>
                                 </div>
@@ -82,10 +83,10 @@ include 'admin_header.php';
                             </div>
                             <hr>
                             <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course Name</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
+                              <div class="col-sm-10 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $name ?>
                                 </div>
@@ -93,10 +94,10 @@ include 'admin_header.php';
                             </div>
                             <hr>
                             <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Description</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
+                              <div class="col-sm-10 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $description ?>
                                 </div>
@@ -104,43 +105,56 @@ include 'admin_header.php';
                             </div>
                             <hr>
                             <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Objectives</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $objectives ?>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course Outcome</strong></h6>
-                              </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php
-                                  // echo $course_outcomes_id
-                                  ?>
-                                  <div class="list-group">
-                                    <?php
-                                    $result = mysqli_query($conn, "select c_outcome_id, number, description from course_outcomes WHERE course_id ='$course_id'") or die("Query 4 is inncorrect........");
-                                    while (list($c_outcome_id, $number, $description) = mysqli_fetch_array($result)) {
-
-                                      echo '<a href="admin_course_outcome_view.php?ID=' . $c_outcome_id . '" class="list-group-item list-group-item-action text-left"><span style="float: left">' . $number . '. </span> ' . $description . '</a>';
-                                    }
-                                    ?>
+                              <div class="col-sm-10 text-secondary">
+                                <div class="row">
+                                  <div class="col-11">
+                                    <?php echo $objectives ?>
+                                  </div>
+                                  <div class="col-1">
+                                    <a class="btn btn-info mb-2"
+                                      <?php echo "href=\"admin_course_objective_update.php?ID=$course_id\" " ?>
+                                      style="float: right;">Edit</a>
                                   </div>
                                 </div>
                               </div>
                             </div>
                             <hr>
                             <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course Outcome</strong></h6>
+                              </div>
+                              <div class="col-sm-10 text-secondary">
+                                <div class="row">
+                                  <div class="col-11">
+                                    <?php
+                                    // echo $course_outcomes_id
+                                    ?>
+                                    <div class="list-group">
+                                      <?php
+                                      $result = mysqli_query($conn, "select c_outcome_id, description from course_outcomes WHERE status!='archive' AND course_id ='$course_id'") or die("Query 4 is inncorrect........");
+                                      while (list($c_outcome_id, $description) = mysqli_fetch_array($result)) {
+                                        echo "<div class='list-group-item list-group-item-action'><span class='flatpickr-weekwrapper' style='font-size:12px'>$description</span></div>";
+                                      }
+                                      ?>
+                                    </div>
+                                  </div>
+                                  <div class="col-1">
+                                    <a class="btn btn-info mb-2"
+                                      <?php echo "href=\"admin_course_outcome_edit_test.php?ID=$course_id\" " ?>
+                                      style="float: right;">Edit</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-2">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Number of Units</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
+                              <div class="col-sm-10 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $no_of_units ?>
                                 </div>
@@ -148,10 +162,10 @@ include 'admin_header.php';
                             </div>
                             <hr>
                             <div class="row">
-                              <div class="col-sm-3">
-                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Number of Contract hrs/week</strong></h6>
+                              <div class="col-sm-2">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Number of hrs/week</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
+                              <div class="col-sm-10 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $hours ?>
                                 </div>
@@ -159,10 +173,10 @@ include 'admin_header.php';
                             </div>
                             <hr>
                             <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Prerequesites</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
+                              <div class="col-sm-10 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $preq ?>
                                 </div>
@@ -170,32 +184,38 @@ include 'admin_header.php';
                             </div>
                             <hr>
                             <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course Outline</strong></h6>
                               </div>
-                              <div class="col-sm-9">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php
-                                  // echo $course_outline_id
-                                  ?>
-                                  <div class="list-group">
+                              <div class="col-sm-10">
+                                <div class="row">
+                                  <div class="col-11">
                                     <?php
-                                    $result = mysqli_query($conn, "select c_outline_id, number, description from course_outline WHERE course_id ='$course_id'") or die("Query 4 is inncorrect........");
-                                    while (list($c_outline_id, $number, $description) = mysqli_fetch_array($result)) {
-
-                                      echo '<a href="admin_course_outline_view.php?ID=' . $c_outline_id . '" class="list-group-item list-group-item-action"><span style="float: left">' . $number . '. </span> ' . $description . '</a>';
-                                    }
+                                    // echo $course_outcomes_id
                                     ?>
+                                    <div class="list-group">
+                                      <?php
+                                      $result = mysqli_query($conn, "select c_outline_id, description from course_outline WHERE status!='archive' AND course_id ='$course_id'") or die("Query 4 is inncorrect........");
+                                      while (list($c_outline_id, $description) = mysqli_fetch_array($result)) {
+                                        echo "<div class='list-group-item list-group-item-action'><span class='flatpickr-weekwrapper' style='font-size:12px'>$description</span></div>";
+                                      }
+                                      ?>
+                                    </div>
+                                  </div>
+                                  <div class="col-1">
+                                    <a class="btn btn-info mb-2"
+                                      <?php echo "href=\"admin_course_outline_edit_test.php?ID=$course_id\" " ?>
+                                      style="float: right;">Edit</a>
                                   </div>
                                 </div>
                               </div>
                             </div>
                             <hr>
                             <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Laboratory Equipment</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
+                              <div class="col-sm-10 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $lab_equipment ?>
                                 </div>
@@ -203,72 +223,89 @@ include 'admin_header.php';
                             </div>
                             <hr>
                             <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Suggested Reading</strong></h6>
                               </div>
-                              <div class="col-sm-9 text-secondary">
-                                <div class="flatpickr-weekwrapper">
-                                  <?php echo $suggested_reading_id ?>
+                              <div class="col-sm-10 text-secondary">
+                                <div class="row">
+                                  <div class="col-11">
+                                    <?php
+                                    // echo $course_outcomes_id
+                                    ?>
+                                    <div class="list-group">
+                                      <?php
+                                      $result = mysqli_query($conn, "select sr_id, name, description from suggested_reading WHERE status!='archive' AND course_id ='$course_id'") or die("Query 4 is inncorrect........");
+                                      while (list($c_outline_id, $name, $description) = mysqli_fetch_array($result)) {
+                                        echo "<div class='list-group-item list-group-item-action'><span class='flatpickr-weekwrapper' style='font-size:12px'>$name  $description</span></div>";
+                                      }
+                                      ?>
+                                    </div>
+                                  </div>
+                                  <div class="col-1">
+                                    <a class="btn btn-info mb-2"
+                                      <?php echo "href=\"admin_course_suggested_edit_test.php?ID=$course_id\" " ?>
+                                      style="float: right;">Edit</a>
+                                  </div>
                                 </div>
+                                <br>
                               </div>
+                              <hr>
                             </div>
-                            <hr>
                           </div>
-                        </div>
 
-                        <div class="row gutters-sm">
-                          <div class="col-sm-12">
-                            <div class="card h-100 mt-0 mb-0 m-4">
-                              <div class="card-body">
-                                <h5 class="d-flex align-items-center mb-3"><b>About Course</b></h5>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <p class="flatpickr-weekwrapper">Status</p>
+                          <div class="row gutters-sm">
+                            <div class="col-sm-12">
+                              <div class="card h-100 mt-0 mb-0 m-4">
+                                <div class="card-body">
+                                  <h5 class="d-flex align-items-center mb-3"><b>About Course</b></h5>
+                                  <div class="row">
+                                    <div class="col-sm-2">
+                                      <p class="flatpickr-weekwrapper">Status</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <p class="flatpickr-weekwrapper"><?php echo $status ?></p>
+                                    </div>
                                   </div>
-                                  <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $status ?></p>
+                                  <div class="row">
+                                    <div class="col-sm-2">
+                                      <p class="flatpickr-weekwrapper">Date Created</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <p class="flatpickr-weekwrapper"><?php echo $date_created ?></p>
+                                    </div>
                                   </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <p class="flatpickr-weekwrapper">Date Created</p>
-                                  </div>
-                                  <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_created ?></p>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <p class="flatpickr-weekwrapper">Date Modified</p>
-                                  </div>
-                                  <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_modified ?></p>
+                                  <div class="row">
+                                    <div class="col-sm-2">
+                                      <p class="flatpickr-weekwrapper">Date Modified</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <p class="flatpickr-weekwrapper"><?php echo $date_modified ?></p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <a class="btn btn-info ms-4 mb-2"
-                              <?php echo "href=\"admin_course_edit.php?ID=$course_id\" " ?>
-                              style="float: left;">Edit</a>
+                          <br>
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <a class="btn btn-info me-5 mb-2"
+                                <?php echo "href=\"admin_course_edit.php?ID=$course_id\" " ?>
+                                style="float: right;">Edit</a>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
+                    </div>
+                    <!-- </div> -->
+                    <!-- </div> -->
                   </div>
-                  <!-- </div> -->
-                  <!-- </div> -->
                 </div>
               </div>
+              <!-- end of row -->
             </div>
-            <!-- end of row -->
           </div>
-        </div>
       </main>
 
       <?php include 'admin_footer.php'; ?>
