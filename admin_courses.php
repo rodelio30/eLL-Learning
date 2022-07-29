@@ -51,11 +51,11 @@ include 'admin_header.php';
                   <table id="courses_table" class="display" style="width:100%">
                     <thead>
                       <tr>
-                        <th scope="col" style="width: 15%">Course Type</th>
                         <th scope="col" style="width: 15%">Catalogue Number</th>
                         <th scope="col" style="width: 35%">Course Name</th>
+                        <th scope="col" style="width: 25%">Course Type</th>
                         <th scope="col" style="width: 10%">Status</th>
-                        <th scope="col" style="width: 35%"><span class="float-end me-5">Action</span></th>
+                        <th scope="col" style="width: 25%"><span class="float-end me-5">Action</span></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -65,12 +65,12 @@ include 'admin_header.php';
                         list($ct_id, $course_type) = courseNameGetter($ct_id);
                         echo "
 														<tr>	
-															<td><a href=\"admin_course_type_view.php?ID=$ct_id\" class='user-clicker'>$course_type</a></td>
 															<td><a href=\"admin_course_view.php?ID=$course_id&suggested=5\" class='user-clicker'>$cat_no</a></td>
 															<td><a href=\"admin_course_view.php?ID=$course_id\" class='user-clicker'>$name</a></td>
+															<td><a href=\"admin_course_type_view.php?ID=$ct_id\" class='user-clicker'>$course_type</a></td>
 															<td>$status</td>
 															<td>
-															<a href=\"archive/admin_course_archive.php?ID=$course_id\" onClick=\"return confirm('Are you sure you want this course move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"archive/courses/admin_course_archive.php?ID=$course_id\" onClick=\"return confirm('Are you sure you want this course move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
 															</td>
 														</tr>	
 													";
@@ -111,7 +111,7 @@ include 'admin_header.php';
 $(document).ready(function() {
   $('#courses_table').DataTable({
     order: [
-      [0, 'asc']
+      [1, 'asc']
     ],
     "pagingType": "full_numbers",
     "lengthMenu": [

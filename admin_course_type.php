@@ -67,7 +67,7 @@ include 'admin_header.php';
 															<td>$status</td>
 															<td>$date_modified</td>
 															<td>
-															<a href=\"archive/admin_course_type_archive.php?ID=$ct_id\" onClick=\"return confirm('Are you sure you want this course move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"archive/course_category/admin_course_type_archive.php?ID=$ct_id\" onClick=\"return confirm('Are you sure you want this course move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
 															</td>
 														</tr>	
 													";

@@ -84,7 +84,7 @@ include 'admin_header.php';
 															<td>$date_modified</td>
 															<td>$status</td>
 															<td>
-															<a href=\"archive/admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"archive/faculty/admin_faculty_archive.php?ID=$faculty_id\" onClick=\"return confirm('Are you sure you want this user move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
 															</td>
 														</tr>	
 													";
