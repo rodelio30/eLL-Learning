@@ -96,7 +96,7 @@ include 'admin_header.php';
 															<td>$material_name</td>
 															<td>$status</td>
 															<td>
-															<a href=\"archive/admin_document_archive.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this Document move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"archive/resources/admin_document_archive.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this Document move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
 															<a href=\"uploads/$title.$file_type\"target='_blank' class='btn btn-primary btn-md float-end me-1'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Download</a>
 															</td>
 														</tr>	

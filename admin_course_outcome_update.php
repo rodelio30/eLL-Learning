@@ -103,7 +103,7 @@ include 'admin_header.php';
                           <input type='hidden' name='course_id' value='$get_course_id'>
                           <input type='hidden' name='c_outcome_id' value='$c_outcome_id'>
                           <button class='btn btn-primary' type='submit' name='update'>Update</button>
-                          <a href=\"archive/admin_course_outcome_archive.php?ID=$c_outcome_id&course_id=$get_course_id\" onClick=\"return confirm('Are you sure you want this course outcome move to archive?')\" class='btn btn-warning btn-md float-end ms-1'><span><img src='img/icons/archive.png' style='width:15px'></span> Archive</a>
+                          <a href=\"archive/course_outcome/admin_course_outcome_archive.php?ID=$c_outcome_id&course_id=$get_course_id\" onClick=\"return confirm('Are you sure you want this course outcome move to archive?')\" class='btn btn-warning btn-md float-end ms-1'><span><img src='img/icons/archive.png' style='width:15px'></span> Archive</a>
                         </div>
                       </form>
                       ";
@@ -124,7 +124,7 @@ include 'admin_header.php';
                     <div class="form-group">
                       <label>Description</label>
                       <input type="text" class="form-control" id="description" name="description"
-                        placeholder="Enter Description" autofocus>
+                        placeholder="Enter Description" autofocus required>
                     </div>
                     <br>
                     <input type="hidden" name="course_id" value="<?php echo $get_course_id ?>">

@@ -111,7 +111,14 @@ include 'admin_header.php';
                               <div class="col-sm-10 text-secondary">
                                 <div class="row">
                                   <div class="col-11">
-                                    <?php echo $objectives ?>
+                                    <div class="list-group">
+                                      <?php
+                                      $result = mysqli_query($conn, "select c_objective_id, description from course_objectives WHERE status!='archive' AND course_id ='$course_id'") or die("Query 4 is inncorrect........");
+                                      while (list($c_objective_id, $description) = mysqli_fetch_array($result)) {
+                                        echo "<div class='list-group-item list-group-item-action'><span class='flatpickr-weekwrapper' style='font-size:12px'>$description</span></div>";
+                                      }
+                                      ?>
+                                    </div>
                                   </div>
                                   <div class="col-1">
                                     <a class="btn btn-info mb-2"
@@ -129,9 +136,6 @@ include 'admin_header.php';
                               <div class="col-sm-10 text-secondary">
                                 <div class="row">
                                   <div class="col-11">
-                                    <?php
-                                    // echo $course_outcomes_id
-                                    ?>
                                     <div class="list-group">
                                       <?php
                                       $result = mysqli_query($conn, "select c_outcome_id, description from course_outcomes WHERE status!='archive' AND course_id ='$course_id'") or die("Query 4 is inncorrect........");
@@ -143,7 +147,7 @@ include 'admin_header.php';
                                   </div>
                                   <div class="col-1">
                                     <a class="btn btn-info mb-2"
-                                      <?php echo "href=\"admin_course_outcome_edit_test.php?ID=$course_id\" " ?>
+                                      <?php echo "href=\"admin_course_outcome_update.php?ID=$course_id\" " ?>
                                       style="float: right;">Edit</a>
                                   </div>
                                 </div>
@@ -204,7 +208,7 @@ include 'admin_header.php';
                                   </div>
                                   <div class="col-1">
                                     <a class="btn btn-info mb-2"
-                                      <?php echo "href=\"admin_course_outline_edit_test.php?ID=$course_id\" " ?>
+                                      <?php echo "href=\"admin_course_outline_update.php?ID=$course_id\" " ?>
                                       style="float: right;">Edit</a>
                                   </div>
                                 </div>
@@ -229,12 +233,9 @@ include 'admin_header.php';
                               <div class="col-sm-10 text-secondary">
                                 <div class="row">
                                   <div class="col-11">
-                                    <?php
-                                    // echo $course_outcomes_id
-                                    ?>
                                     <div class="list-group">
                                       <?php
-                                      $result = mysqli_query($conn, "select sr_id, name, description from suggested_reading WHERE status!='archive' AND course_id ='$course_id'") or die("Query 4 is inncorrect........");
+                                      $result = mysqli_query($conn, "select sr_id, name, description from suggested_reading where status!='archive' and course_id ='$course_id'") or die("query 4 is inncorrect........");
                                       while (list($c_outline_id, $name, $description) = mysqli_fetch_array($result)) {
                                         echo "<div class='list-group-item list-group-item-action'><span class='flatpickr-weekwrapper' style='font-size:12px'>$name  $description</span></div>";
                                       }
@@ -243,8 +244,8 @@ include 'admin_header.php';
                                   </div>
                                   <div class="col-1">
                                     <a class="btn btn-info mb-2"
-                                      <?php echo "href=\"admin_course_suggested_edit_test.php?ID=$course_id\" " ?>
-                                      style="float: right;">Edit</a>
+                                      <?php echo "href=\"admin_course_suggested_update.php?ID=$course_id\" " ?>
+                                      style="float: right;">edit</a>
                                   </div>
                                 </div>
                                 <br>

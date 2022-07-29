@@ -153,9 +153,9 @@ include 'admin_header.php';
                       <label>Course Enrolled</label>
                       <select class="form-control" id="course_id" name="course_id">
                         <?php
-                          $result = mysqli_query($conn, "select course_id, name from courses WHERE status='active' ORDER BY course_id ASC") or die("Query 4 is inncorrect........");
-                          while (list($course_id, $name) = mysqli_fetch_array($result)) {
-                            echo "<option value='$course_id'>$name</option>";
+                          $result = mysqli_query($conn, "select course_id, cat_no from courses WHERE status='active' ORDER BY course_id ASC") or die("Query 4 is inncorrect........");
+                          while (list($course_id, $cat_no) = mysqli_fetch_array($result)) {
+                            echo "<option value='$course_id'>$cat_no</option>";
                           }
                           ?>
                       </select>

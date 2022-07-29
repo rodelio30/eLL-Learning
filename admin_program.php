@@ -69,7 +69,7 @@ include 'admin_header.php';
 															<td>$status</td>
 															<td>$date_modified</td>
 															<td>
-															<a href=\"archive/admin_program_archive.php?ID=$program_id\" onClick=\"return confirm('Are you sure you want this program move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"archive/programs/admin_program_archive.php?ID=$program_id\" onClick=\"return confirm('Are you sure you want this program move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
 															</td>
 														</tr>	
 													";

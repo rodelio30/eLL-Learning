@@ -107,7 +107,7 @@ include 'admin_header.php';
                           <input type='hidden' name='course_id' value='$get_course_id'>
                           <input type='hidden' name='sr_id' value='$sr_id'>
                           <button class='btn btn-primary' type='submit' name='update'>Update</button>
-                          <a href=\"archive/admin_course_suggested_archive.php?ID=$sr_id&course_id=$get_course_id\" onClick=\"return confirm('Are you sure you want this course outline move to archive?')\" class='btn btn-warning btn-md float-end ms-1'><span><img src='img/icons/archive.png' style='width:15px'></span> Archive</a>
+                          <a href=\"archive/course_suggested_reading/admin_course_suggested_archive.php?ID=$sr_id&course_id=$get_course_id\" onClick=\"return confirm('Are you sure you want this course outline move to archive?')\" class='btn btn-warning btn-md float-end ms-1'><span><img src='img/icons/archive.png' style='width:15px'></span> Archive</a>
                         </div>
                       </form>
                       ";
@@ -127,13 +127,14 @@ include 'admin_header.php';
                   <form method="post">
                     <div class="form-group">
                       <label>Name</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" autofocus>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" autofocus
+                        required>
                     </div>
                     <br>
                     <div class="form-group">
                       <label>Description</label>
                       <input type="text" class="form-control" id="description" name="description"
-                        placeholder="Enter Description" autofocus>
+                        placeholder="Enter Description" required>
                     </div>
                     <br>
                     <input type="hidden" name="course_id" value="<?php echo $get_course_id ?>">

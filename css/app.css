@@ -4413,7 +4413,7 @@ fieldset:disabled .btn {
 }
 
 .nav-link {
-  color: #3b7ddd;
+  color: #000000;
   display: block;
   padding: 0.5rem 1rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
