@@ -19,15 +19,6 @@ include 'public_head.php';
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
         <h2>About Us</h2>
-        <p class="text-justify">
-          The Department of English and Humanities strengthens the general education of students through the
-          development of a deepened understanding of the English language and increases appreciation of the
-          richness of literature and the wealth of the humanities thereby fostering knowledge and appreciation of
-          language, literature and artistic expressions. It envisions itself in becoming an international center
-          for English language education and humanities, grounded on research, by providing students in all core
-          areas with a coherent curricular framework and relevant, well-structured courses for a comprehensive
-          study of language, literature and humanities.
-        </p>
       </div>
     </div><!-- End Breadcrumbs -->
 
@@ -36,6 +27,27 @@ include 'public_head.php';
       <div class="container">
 
         <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-left" data-aos-delay="100">
+            <img src="assets/img/alma.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-2 content">
+            <h3 style="color:#005537;">Department of English and Humanities</h3>
+            <p class="fst-italic text-justify">
+              The Department of English and Humanities strengthens the general education of students through the
+              development of a deepened understanding of the English language and increases appreciation of the
+              richness of literature and the wealth of the humanities thereby fostering knowledge and appreciation of
+              language, literature and artistic expressions. It envisions itself in becoming an international center
+              for English language education and humanities, grounded on research, by providing students in all core
+              areas with a coherent curricular framework and relevant, well-structured courses for a comprehensive
+              study of language, literature and humanities.
+            </p>
+          </div>
+        </div>
+
+        <br>
+        <hr><br>
+        <div class="row">
+
           <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
             <div class="card">
               <div class="card-img">

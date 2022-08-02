@@ -20,6 +20,20 @@ while ($res   = mysqli_fetch_array($result)) {
   $status               = $res['status'];
 }
 
+$result_objectives = mysqli_query($conn, "SELECT * FROM course_objectives WHERE course_id = '$course_id' AND status != 'archive'");
+while ($res = mysqli_fetch_array($result_objectives)) {
+  $c_objectives = $res['description'];
+}
+$button_text  = '';
+$button_color = '';
+if (empty($c_objectives)) {
+  $button_text  = 'Add New';
+  $button_color = 'success';
+} else {
+  $button_text  = 'Edit';
+  $button_color = 'info';
+}
+
 // $suggest = $_GET['suggested'];
 // echo "<script>console.log('" . $suggest . "');</script>";
 ?>
@@ -110,7 +124,7 @@ include 'admin_header.php';
                               </div>
                               <div class="col-sm-10 text-secondary">
                                 <div class="row">
-                                  <div class="col-11">
+                                  <div class="col-10">
                                     <div class="list-group">
                                       <?php
                                       $result = mysqli_query($conn, "select c_objective_id, description from course_objectives WHERE status!='archive' AND course_id ='$course_id'") or die("Query 4 is inncorrect........");
@@ -120,10 +134,10 @@ include 'admin_header.php';
                                       ?>
                                     </div>
                                   </div>
-                                  <div class="col-1">
-                                    <a class="btn btn-info mb-2"
+                                  <div class="col-2">
+                                    <a class="btn btn-<?php echo $button_color ?> mb-2"
                                       <?php echo "href=\"admin_course_objective_update.php?ID=$course_id\" " ?>
-                                      style="float: right;">Edit</a>
+                                      style="float: right;"><?php echo $button_text ?></a>
                                   </div>
                                 </div>
                               </div>
@@ -135,7 +149,7 @@ include 'admin_header.php';
                               </div>
                               <div class="col-sm-10 text-secondary">
                                 <div class="row">
-                                  <div class="col-11">
+                                  <div class="col-10">
                                     <div class="list-group">
                                       <?php
                                       $result = mysqli_query($conn, "select c_outcome_id, description from course_outcomes WHERE status!='archive' AND course_id ='$course_id'") or die("Query 4 is inncorrect........");
@@ -145,7 +159,7 @@ include 'admin_header.php';
                                       ?>
                                     </div>
                                   </div>
-                                  <div class="col-1">
+                                  <div class="col-2">
                                     <a class="btn btn-info mb-2"
                                       <?php echo "href=\"admin_course_outcome_update.php?ID=$course_id\" " ?>
                                       style="float: right;">Edit</a>
@@ -193,7 +207,7 @@ include 'admin_header.php';
                               </div>
                               <div class="col-sm-10">
                                 <div class="row">
-                                  <div class="col-11">
+                                  <div class="col-10">
                                     <?php
                                     // echo $course_outcomes_id
                                     ?>
@@ -206,7 +220,7 @@ include 'admin_header.php';
                                       ?>
                                     </div>
                                   </div>
-                                  <div class="col-1">
+                                  <div class="col-2">
                                     <a class="btn btn-info mb-2"
                                       <?php echo "href=\"admin_course_outline_update.php?ID=$course_id\" " ?>
                                       style="float: right;">Edit</a>
@@ -232,7 +246,7 @@ include 'admin_header.php';
                               </div>
                               <div class="col-sm-10 text-secondary">
                                 <div class="row">
-                                  <div class="col-11">
+                                  <div class="col-10">
                                     <div class="list-group">
                                       <?php
                                       $result = mysqli_query($conn, "select sr_id, name, description from suggested_reading where status!='archive' and course_id ='$course_id'") or die("query 4 is inncorrect........");
@@ -242,7 +256,7 @@ include 'admin_header.php';
                                       ?>
                                     </div>
                                   </div>
-                                  <div class="col-1">
+                                  <div class="col-2">
                                     <a class="btn btn-info mb-2"
                                       <?php echo "href=\"admin_course_suggested_update.php?ID=$course_id\" " ?>
                                       style="float: right;">edit</a>

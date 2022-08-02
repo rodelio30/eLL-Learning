@@ -20,7 +20,7 @@ if ($result->num_rows > 0) {
     $faculty_counter++;
   }
 } else {
-  $faculty_counter = 'Empty Faculty';
+  $faculty_counter = 0;
 }
 
 // This line is Counting for the number of Student User
@@ -32,7 +32,7 @@ if ($result_student->num_rows > 0) {
     $student_counter++;
   }
 } else {
-  $student_counter = 'Empty Student';
+  $student_counter = 0;
 }
 
 // This line is counting for the number of Documents
@@ -44,7 +44,7 @@ if ($result_resources->num_rows > 0) {
     $resources_counter++;
   }
 } else {
-  $resources_counter = 'Empty Document';
+  $resources_counter = 0;
 }
 
 
@@ -57,7 +57,7 @@ if ($result_course->num_rows > 0) {
     $course_counter++;
   }
 } else {
-  $course_counter = 'Empty Courses';
+  $course_counter = 0;
 }
 
 // This line is counting for the number of Courses
@@ -69,7 +69,7 @@ if ($result_program->num_rows > 0) {
     $program_counter++;
   }
 } else {
-  $program_counter = 'Empty Program';
+  $program_counter = 0;
 }
 
 // This line is Counting for the number of Archive User it's either Faculty or Student
