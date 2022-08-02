@@ -111,7 +111,7 @@ include 'admin_header.php';
 $(document).ready(function() {
   $('#courses_table').DataTable({
     order: [
-      [1, 'asc']
+      [0, 'asc']
     ],
     "pagingType": "full_numbers",
     "lengthMenu": [
