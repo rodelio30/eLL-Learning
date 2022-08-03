@@ -70,7 +70,17 @@ include 'public_head.php';
             </div>
             <div id="register-contents" class="tab-pane fade">
               <!-- THis line below -->
-              <h1>Lower</h1>
+              <?php
+              // include 'course_specification/course_specification.php';
+              include 'course_specification/litt1101.php';
+              include 'course_specification/litt1102.php';
+              include 'course_specification/litt2103.php';
+              include 'course_specification/litt2104.php';
+              include 'course_specification/litt2105.php';
+              include 'course_specification/litt2106.php';
+              include 'course_specification/litt2107.php';
+              include 'course_specification/litt2108.php';
+              ?>
             </div>
           </div>
         </div>
