@@ -1,3 +1,4 @@
+<hr>
 <br>
 <h4 class="ms-5">F. Foreign Language</h4>
 <div class="row justify-content-md-center">
@@ -45,7 +46,6 @@
               taken in this subject to advance the students'
               proficiency.
             </p>
-            <br> <br>
             (Pre-req: Foreign Language 1 / Regional Language
             1)
           </td>

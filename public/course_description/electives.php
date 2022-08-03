@@ -1,3 +1,4 @@
+<hr>
 <br>
 <h4 class="ms-5">H. Electives</h4>
 <div class="row justify-content-md-center">
