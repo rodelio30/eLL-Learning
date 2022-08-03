@@ -1,5 +1,5 @@
 <hr>
-<h6><b>Forth Year</b></h6>
+<h4 class="text-center"><b>Forth Year</b></h4>
 <div class="row">
   <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-right" data-aos-delay="100">
     <table class="table table-bordered">
