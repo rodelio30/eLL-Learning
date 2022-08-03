@@ -1,4 +1,3 @@
-<br>
 <div class="row justify-content-md-center">
   <div class="col-lg-8 order-1 order-lg-2" data-aos="fade-right" data-aos-delay="100">
     <table class="table table-bordered">

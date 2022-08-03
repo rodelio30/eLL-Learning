@@ -1,3 +1,4 @@
+<hr>
 <br>
 <h4 class="ms-5">D. Major Core Courses</h4>
 <div class="row justify-content-md-center">

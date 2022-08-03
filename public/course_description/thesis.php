@@ -1,3 +1,4 @@
+<hr>
 <br>
 <h4 class="ms-5">I. Thesis</h4>
 <div class="row justify-content-md-center">
@@ -46,7 +47,6 @@
               which should have undergone careful review and
               revision.
             </p>
-            <br> <br>
             <i><b>Prerequisite: LITT 3400</b></i>
           </td>
           <th class="text-center">3</th>

@@ -1,3 +1,4 @@
+<hr>
 <br>
 <h4 class="ms-5">J. Internship</h4>
 <div class="row justify-content-md-center">
@@ -23,7 +24,6 @@
               in the student's chosen area of
               concentration/specialization.
             </p>
-            <br> <br>
             <b>Pre-requisite: All subjects</b>
           </td>
           <th class="text-center">3</th>
