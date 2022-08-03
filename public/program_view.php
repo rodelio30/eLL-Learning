@@ -53,6 +53,10 @@ include 'public_head.php';
               <a class="nav-link" href="#register-contents" id="register-tab" data-bs-toggle="tab">Course
                 Specification</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#description-contents" id="register-tab" data-bs-toggle="tab">Course
+                Description</a>
+            </li>
           </ul>
           <div class="tab-content">
             <div id="program-contents" class="tab-pane active">
@@ -80,6 +84,20 @@ include 'public_head.php';
               include 'course_specification/litt2106.php';
               include 'course_specification/litt2107.php';
               include 'course_specification/litt2108.php';
+              ?>
+            </div>
+            <div id="description-contents" class="tab-pane fade">
+              <!-- THis line below -->
+              <?php
+              include 'course_description/new_general_education_core_courses.php';
+              include 'course_description/general_elective_courses.php';
+              include 'course_description/mandated_course.php';
+              include 'course_description/major_core_courses.php';
+              include 'course_description/area_of_concentration.php';
+              include 'course_description/foreign_language.php';
+              include 'course_description/electives.php';
+              include 'course_description/thesis.php';
+              include 'course_description/internship.php';
               ?>
             </div>
           </div>
