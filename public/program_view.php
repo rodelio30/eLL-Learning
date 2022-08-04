@@ -5,14 +5,10 @@ $id_program = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM programs WHERE program_id='$id_program'");
 while ($res   = mysqli_fetch_array($result)) {
-  $program_id = $res['program_id'];
-  $title      = $res['name'];
+  $program_id  = $res['program_id'];
+  $title       = $res['name'];
+  $description = $res['description'];
 }
-
-$header = '';
-$title == "BALITT" ?
-  $header = "Bachelor of Arts in Literature" :
-  $header = "Master of Language and Literature";
 ?>
 <!DOCTYPE html>
 <html lang="en">
