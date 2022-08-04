@@ -11,8 +11,8 @@
 
   <!-- ======= Programs Section ======= -->
   <section id="program" class="program">
-    <div class="container content" data-aos="fade-up">
-      <h4><?php echo $header ?></h4>
+    <div class="container content noselect" data-aos="fade-up">
+      <h2 class="text-center"><b><?php echo $description ?></b></h2>
       <br>
       <div class="container">
         <ul class="nav nav-tabs">
@@ -75,9 +75,6 @@
           </div>
         </div>
       </div>
-
-
-
     </div>
   </section><!-- End Courses Section -->
 

@@ -12,8 +12,13 @@
   <!-- ======= Programs Section ======= -->
   <section id="program" class="program">
     <div class="container content" data-aos="fade-up">
-      <h4><?php echo $header ?></h4>
-      <h1>High!!</h1>
+      <h2 class="text-center"><b><?php echo $description ?></b></h2>
+      <br>
+      <!-- Content start here -->
+      <?php
+      include 'mall/ll702.php';
+      ?>
+      <!-- Content end here -->
     </div>
   </section><!-- End Courses Section -->
 

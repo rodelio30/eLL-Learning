@@ -1,5 +1,5 @@
 <br>
-<h4 class="ms-5">A. New General Education Core Courses</h4>
+<h4 class="text-center">A. New General Education Core Courses</h4>
 <div class="row justify-content-md-center">
   <div class="col-lg-8 order-1 order-lg-2" data-aos="fade-right" data-aos-delay="100">
     <table class="table table-bordered">
