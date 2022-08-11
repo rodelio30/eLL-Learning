@@ -32,8 +32,8 @@
         <div class="col-lg-3 col-md-6 footer-links">
           <h4>Our Programs</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">MALL</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">BALIT</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="program_view.php?ID=1">MALL</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="program_view.php?ID=2">BALITT</a></li>
           </ul>
         </div>
 

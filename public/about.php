@@ -30,7 +30,7 @@ include 'public_head.php';
           <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-left" data-aos-delay="100">
             <img src="assets/img/alma.jpg" class="img-fluid" alt="">
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-2 content">
+          <div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-2 content" data-aos="fade-up" data-aos-delay="100">
             <h3 style="color:#005537;">Department of English and Humanities</h3>
             <p class="fst-italic text-justify">
               The Department of English and Humanities strengthens the general education of students through the
