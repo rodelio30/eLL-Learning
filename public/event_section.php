@@ -1,7 +1,7 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
-        <h3>Events</h3>
+        <h1>Events</h1>
         <hr>
 
         <div class="row">
