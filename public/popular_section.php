@@ -27,8 +27,7 @@
           }
           echo "
             <ul>
-              <li><i class='bi bi-circle'></i> $title</li>
-              <hr>
+              <li><i class='bi bi-circle'></i> $title.$file_type</li>
             </ul>
 
               ";

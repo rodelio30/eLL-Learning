@@ -24,12 +24,12 @@ include 'public_head.php';
 
     <!-- ======= Cource Details Section ======= -->
     <section id="course-details" class="course-details">
-      <div class="container" data-aos="fade-up">
-
+      <div class="container" style="background-color: pink;" data-aos="fade-up">
         <div class="row">
-          <div class="col-lg-8">
-            <img src="assets/img/course-details.jpg" class="img-fluid" alt="">
+          <div class="col-lg-8 mt-0">
+            <p>Boom</p>
             <h3>Et enim incidunt fuga tempora</h3>
+            <!-- <img src="assets/img/course-details.jpg" class="img-fluid" alt=""> -->
             <p>
               Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem. Atque
               nostrum voluptatum laudantium a doloremque enim et ut dicta. Nostrum ducimus est iure minima totam
@@ -41,26 +41,25 @@ include 'public_head.php';
             </p>
           </div>
           <div class="col-lg-4">
-
-            <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Trainer</h5>
+            <div class="mt-5 course-info d-flex justify-content-between align-items-center">
+              <h5>Uploader</h5>
               <p><a href="#">Walter White</a></p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Course Fee</h5>
+              <h5>Course Category</h5>
               <p>$165</p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Available Seats</h5>
+              <h5>Promram contained</h5>
               <p>30</p>
             </div>
 
-            <div class="course-info d-flex justify-content-between align-items-center">
+            <!-- <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Schedule</h5>
               <p>5.00 pm - 7.00 pm</p>
-            </div>
+            </div> -->
 
           </div>
         </div>
