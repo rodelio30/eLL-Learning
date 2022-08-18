@@ -50,7 +50,6 @@ include 'public_head.php';
 
       </div>
     </section><!-- End Faculty Section -->
-
     <!-- ======= Start Why Us Section ======= -->
     <?php
     include 'why_choose.php';

@@ -1,10 +1,10 @@
 <!-- ======= Resources Section ======= -->
-<section id="resources" class="resources">
+<section id="resources" class="resources-home">
   <div class="container content" data-aos="fade-up">
     <div class="row" data-aos="zoom-in" data-aos-delay="100">
       <div class="section-title">
         <h2>Resources</h2>
-        <p>Popular Resources</p>
+        <p>Latest Resources</p>
       </div>
 
       <div class="row" data-aos="zoom-in" data-aos-delay="100">

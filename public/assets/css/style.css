@@ -833,8 +833,52 @@ section {
 /*--------------------------------------------------------------
 # Resources 
 --------------------------------------------------------------*/
-.resources {
+
+.resources-home {
   background-color: #F0EFDB;
+}
+
+.resources .resources-item {
+  border-radius: 5px;
+  border: 1px solid #eef0ef;
+}
+
+.resources .resources-content {
+  padding: 15px;
+}
+
+.resources .resources-content h3 {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.resources .resources-content h3 a {
+  color: #37423b;
+  transition: 0.3s;
+}
+
+.resources .resources-content h3 a:hover {
+  color: #005537;
+}
+
+.resources .resources-content p {
+  font-size: 14px;
+  color: #777777;
+}
+
+.resources .resources-content h4 {
+  font-size: 14px;
+  background: #005537;
+  padding: 7px 14px;
+  color: #fff;
+  margin: 0;
+}
+
+.resources .resources-content .price {
+  margin: 0;
+  font-weight: 700;
+  font-size: 18px;
+  color: #37423b;
 }
 
 .resources .content h3 {
@@ -864,20 +908,19 @@ section {
   color: #005537;
 }
 
-.resources .content .learn-more-btn {
-  background: #005537;
-  color: #fff;
-  border-radius: 50px;
-  padding: 8px 25px 9px 25px;
-  white-space: nowrap;
-  transition: 0.3s;
-  font-size: 14px;
-  display: inline-block;
+.resources-home .content ul {
+  list-style: none;
+  padding: 0;
 }
 
-.resources .content .learn-more-btn:hover {
-  background: #3ac162;
-  color: #fff;
+.resources-home .content ul li {
+  padding-bottom: 10px;
+}
+
+.resources-home .content ul i {
+  font-size: 20px;
+  padding-right: 4px;
+  color: #005537;
 }
 
 @media (max-width: 768px) {
@@ -886,7 +929,6 @@ section {
     padding: 6px 18px;
   }
 }
-
 
 /*--------------------------------------------------------------
 # Counts
@@ -914,6 +956,10 @@ section {
 /*--------------------------------------------------------------
 # Why Us
 --------------------------------------------------------------*/
+.why-us {
+  background-color: #DADDE2;
+}
+
 .why-us .content {
   padding: 30px;
   background: #005537;
@@ -1973,4 +2019,27 @@ section {
   user-select: none;
   /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+.course-category {
+  font-size: 25px;
+  background: #005537;
+  height: 55px;
+  width: 100%;
+  padding: 7px 14px;
+  color: #fff;
+  margin: 0;
+}
+
+.resources-category-subheader {
+  font-size: 20px;
+  width: 100%;
+  padding: 7px 0px;
+  color: #fff;
+  margin: 0;
+}
+
+.resource-svg {
+  width: 100%;
+  padding: 10px 50px;
 }
