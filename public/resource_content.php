@@ -1,25 +1,34 @@
 <?php
-// $search_material_id = $_GET['ID'];
 if (isset($_GET['ID'])) {
   $search_material_id = $_GET['ID'];
 }
+
+if (isset($_GET['search_resources'])) {
+  $search_resource_file = $_GET['search_resources'];
+  // $search_resource_file = $_GET['search_resources'] ? $_GET['search_resources'] : '';
+}
+
+$search_value = !empty($search_resource_file) ? $search_resource_file : '';
 // echo "<script>console.log(' This is boom : " . $search_material_id . "');</script>";
 ?>
 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-  <form action="" class="">
+  <form class="">
     <div class="input-group mb-3">
-      <input type="text" class="form-control form-control-lg" placeholder="Search Here">
-      <button type="submit" class="input-group-text btn-success"><i class="bi bi-search me-2"></i>
-        Search</button>
+      <span class="fa fa-search"></span>
+      <input type="text" name="search_resources" class="form-control form-control-lg" placeholder="Search Here"
+        value="<?php echo $search_value ?>">
     </div>
   </form>
   <?php
-  if (!empty($search_material_id)) {
+  if (!empty($search_resource_file)) {
+    echo "<script>console.log(' This is boom : " . $search_resource_file . "');</script>";
+    $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from document WHERE status!='archive' AND (`title` LIKE '%" . $search_resource_file . "%') OR (`file_type` LIKE '%" . $search_resource_file . "%') ORDER BY title ASC") or die("Query 1 is incorrect....");
+  } else if (!empty($search_material_id)) {
     $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from document WHERE status!='archive' AND material_id = '$search_material_id' ORDER BY title ASC") or die("Query 1 is incorrect....");
   } else {
     $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from document WHERE status!='archive'ORDER BY title ASC") or die("Query 1 is incorrect....");
   }
-  echo "<script>console.log(' This is boom : " . mysqli_num_rows($result) . "');</script>";
+  // echo "<script>console.log(' This is boom : " . mysqli_num_rows($result) . "');</script>";
   if (mysqli_num_rows($result) != 0) {
     echo "
       <table class='table'>
@@ -53,7 +62,7 @@ if (isset($_GET['ID'])) {
       }
       echo "
             <tr>
-              <th> <img src='../img/photos/$icon_img.svg' class='me-2 img-fluid' style='height:20px' alt='...'> $title</th>
+              <th> <img src='../img/photos/$icon_img.svg' class='me-2 img-fluid' style='height:20px' alt='...'> $title.$file_type</th>
               <td>$material_name</td>
               <td>$size</td>
             </tr>
