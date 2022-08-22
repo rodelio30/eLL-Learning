@@ -30,7 +30,7 @@ include 'public_head.php';
       <div class="container" data-aos="fade-up">
 
 
-        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+        <div class="row" data-aos="zoom-in">
 
           <div class="col-lg-3 col-md-6">
             <?php
