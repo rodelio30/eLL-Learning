@@ -74,7 +74,7 @@ $search_value = !empty($search_resource_file) ? $search_resource_file : '';
         </table>
     ";
     } else {
-      echo "<h1> Wala Na </h1>";
+      echo "<h1>Empty Learnning Resources</h1>";
     }
     // this is for format of size in each document
     function formatsizeunits2($file_size)

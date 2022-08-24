@@ -169,7 +169,27 @@ h6 {
 }
 
 .get-started-btn:hover {
-  background: #3ac162;
+  background: #2c9e4e;
+  color: #fff;
+}
+
+/**
+* Sign out Button 
+*/
+.sign-out-btn {
+  margin-left: 22px;
+  background: #C04600;
+  color: #fff;
+  border-radius: 50px;
+  padding: 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.sign-out-btn:hover {
+  background: #8d502d;
   color: #fff;
 }
 
