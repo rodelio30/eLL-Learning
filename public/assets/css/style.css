@@ -928,6 +928,14 @@ section {
   color: #005537;
 }
 
+.resources th a {
+  color: rgb(0, 48, 11);
+}
+
+.resources th a:hover {
+  color: rgb(9, 163, 45);
+}
+
 .resources-home .content ul {
   list-style: none;
   padding: 0;
