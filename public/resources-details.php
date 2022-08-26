@@ -67,10 +67,10 @@ include 'public_head.php';
             <br> <br> <br>
             <p>Click the file below to download.</p>
 
-            <a href="#" onClick="alert('Hello World!')">The Link</a>
+            <a href="#" onClick="alert('Log in first!')"><?php echo $title . '.' . $file_type ?></a>
             <br>
-            <a href="../uploads/<?php echo $title . '.' . $file_type ?>"
-              target='_blank'><?php echo $title . '.' . $file_type ?></a>
+            <!-- <a href="../uploads/<?php echo $title . '.' . $file_type ?>"
+              target='_blank'><?php echo $title . '.' . $file_type ?></a> -->
           </div>
           <div class="col-lg-4">
             <div class="mt-5 course-info d-flex justify-content-between align-items-center">

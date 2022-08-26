@@ -58,23 +58,26 @@
         <li><a href="events.php">Events</a></li>
 
         <li><a href="contact.php">Contact</a></li>
-        <li class="dropdown"><a href="resources.php"><span>Settings</span> <i class="bi bi-chevron-down"></i></a>
+        <li class="dropdown">
+          <?php
+          include 'profile_name_getter.php'
+          ?>
           <ul>
-            <li><a href="#"><span>Settings and Privacy</span></i></a>
+            <li><a href="#"><span>Profile</span></i></a>
             </li>
             <li><a href="#"><span>Activity Log</span></a> </li>
             <!-- <li><a href="#">Drop Down 2</a></li> -->
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a href="#">Log Out</a></li>
+            <li><a href="../include/sign-out.php">Log Out</a></li>
           </ul>
         </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
 
-    <a href="../include/sign-out.php" class="sign-out-btn">Log out</a>
+
 
   </div>
 </header><!-- End Header -->

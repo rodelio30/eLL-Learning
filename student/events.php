@@ -1,3 +1,6 @@
+<?php
+include 'student_checker.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
