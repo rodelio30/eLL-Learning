@@ -279,11 +279,10 @@
     <br>
 
     <?php
-    $sample = true;
     $dont = '<a href="../pages-sign-in.php">Log in first!</a>';
     $click = '<a href="../uploads/program/Verified_MA-Language-Lit-2021.xlsx" target="_blank">Click me!</a>';
     ?>
-    <p style="float: right">Learn more about MALL Program? <?php echo !$sample ? $dont : $click; ?>
+    <p style="float: right">Learn more about MALL Program? <?php echo $mall_clicker ? $click : $dont; ?>
     </p>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <?php
-include 'public_checker.php';
+include 'student_checker.php';
 $resource_id = $_GET['ID'];
 // echo "<script>console.log(' This is boom : " . $resource_id . "');</script>";
 $result     = mysqli_query($conn, "SELECT * FROM document WHERE doc_id = '$resource_id'");
@@ -34,7 +34,7 @@ while ($res = mysqli_fetch_array($result_material)) {
 
 <?php
 $head_title = 'Resources - LL e-Learning';
-include 'public_head.php';
+include 'student_head.php';
 ?>
 
 <body>
@@ -47,8 +47,7 @@ include 'public_head.php';
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="container">
-        <h2><a href="resources.php">Resources </a> / Details </h2>
-
+        <h2><a href="resources.php">Resources </a> / Details</h2>
         <!-- <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit
           quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p> -->
       </div>
@@ -65,12 +64,11 @@ include 'public_head.php';
               <?php echo $description ?>
             </p>
             <br> <br> <br>
-            <p>Click the file below to download.</p>
-
-            <a href="#" onClick="alert('Log in first!')"><?php echo $title . '.' . $file_type ?></a>
             <br>
-            <!-- <a href="../uploads/<?php echo $title . '.' . $file_type ?>"
-              target='_blank'><?php echo $title . '.' . $file_type ?></a> -->
+            <p>Click the file below to download.</p>
+            <!-- <a href="#" onClick="alert('Hello World!')">The Link</a> -->
+            <a href="../uploads/<?php echo $title . '.' . $file_type ?>"
+              target='_blank'><?php echo $title . '.' . $file_type ?></a>
           </div>
           <div class="col-lg-4">
             <div class="mt-5 course-info d-flex justify-content-between align-items-center">
@@ -104,24 +102,16 @@ include 'public_head.php';
     </section><!-- End Cource Details Section -->
   </main><!-- End #main -->
 
+
   <!-- ======= Footer ======= -->
   <?php
-  include 'footer.php';
+  include '../public/footer.php';
   ?>
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <!-- ======= Preloader Script ======= -->
+  <?php
+  include 'preloader_script.php';
+  ?>
 
 </body>
 

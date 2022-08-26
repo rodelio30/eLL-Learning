@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set("Asia/Manila");
 include('../include/connect.php');
+$mall_clicker = false;
 session_start();
 if (isset($_SESSION['logged'])) {
   $id = $_SESSION['id'];

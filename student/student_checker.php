@@ -4,9 +4,10 @@ include('../include/connect.php');
 session_start();
 if (isset($_SESSION['logged'])) {
   $id = $_SESSION['id'];
+  $mall_clicker = true;
 
-  $query = mysqli_query($conn, "select type from users where id='$id'") or die("query 1 incorrect.......");
-  list($type) = mysqli_fetch_array($query);
+  $query = mysqli_query($conn, "select firstname, lastname, type from users where id='$id'") or die("query 1 incorrect.......");
+  list($firstname, $lastname, $type) = mysqli_fetch_array($query);
 
   if ($type == 'admin') {
     header("location: ../index.php");
