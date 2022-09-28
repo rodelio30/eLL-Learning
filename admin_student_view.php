@@ -74,6 +74,9 @@ include 'admin_header.php';
                             <h4><?php echo $firstname . " " . $lastname ?></h4>
                             <p class="text-secondary mb-1"><?php echo $status ?></p>
                           </div>
+                          <a class="btn btn-info mt-4 mb-2"
+                            <?php echo "href=\"admin_student_edit_image.php?ID=$student_id\" " ?>
+                            style="float: left;">Change Photo</a>
                         </div>
                       </div>
                       <div class="col-md-9">
