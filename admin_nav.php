@@ -7,6 +7,7 @@ $ct_select       = '';
 $course_select   = '';
 $material_select = '';
 $docu_select     = '';
+$event_select     = '';
 $archive_select  = '';
 
 if ($nav_active == 'dashboard') {
@@ -32,6 +33,9 @@ if ($nav_active == 'material') {
 }
 if ($nav_active == 'document') {
   $docu_select = 'active';
+}
+if ($nav_active == 'event') {
+  $event_select = 'active';
 }
 if ($nav_active == 'archive') {
   $archive_select = 'active';
@@ -96,6 +100,14 @@ if ($nav_active == 'archive') {
 <li class="sidebar-item <?php echo $docu_select ?>">
   <a class="sidebar-link" href="admin_document.php">
     <i class="align-middle" data-feather="file"></i> <span class="align-middle">Resources</span>
+  </a>
+</li>
+
+<hr class="hr-size">
+
+<li class="sidebar-item <?php echo $event_select ?>">
+  <a class="sidebar-link" href="admin_event.php">
+    <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Events</span>
   </a>
 </li>
 
