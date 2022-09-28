@@ -70,6 +70,9 @@ include 'admin_header.php';
                             <p class="text-secondary mb-1"><?php echo $status ?></p>
                             <p class="text-muted font-size-sm"><?php echo $position ?></p>
                           </div>
+                          <a class="btn btn-info mt-4 mb-2"
+                            <?php echo "href=\"admin_faculty_edit_image.php?ID=$id_faculty\" " ?>
+                            style="float: left;">Change Photo</a>
                         </div>
                       </div>
                       <div class="col-md-9">
