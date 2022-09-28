@@ -123,3 +123,15 @@ if ($result_reading->num_rows > 0) {
     $reading_counter++;
   }
 }
+
+// This line below is the counter of events 
+$event_counter = 0;
+
+$sql_event = "SELECT event_id FROM events WHERE status = 'archive' ";
+$result_event = $conn->query($sql_event);
+
+if ($result_event->num_rows > 0) {
+  while ($row = $result_event->fetch_assoc()) {
+    $event_counter++;
+  }
+}

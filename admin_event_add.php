@@ -21,33 +21,9 @@ if (isset($_POST['submit'])) {
   } else {
     echo "<h3>  Failed to upload image!</h3>";
   }
-  // $extension = array('jpeg', 'jpg', 'png', 'gif');
-  // foreach ($_FILES['image']['tmp_name'] as $key => $value) {
-  //   $filename = $_FILES['image']['name'][$key];
-  //   $filename_tmp = $_FILES['image']['tmp_name'][$key];
-  //   $ext = pathinfo($filename, PATHINFO_EXTENSION);
-
-  //   $finalimg = '';
-  //   if (in_array($ext, $extension)) {
-  //     if (!file_exists('uploads/event_image/' . $filename)) {
-  //       move_uploaded_file($filename_tmp, 'uploads/event_image/' . $filename);
-  //       $finalimg = $filename;
-  //     } else {
-  //       $filename = str_replace('.', '-', basename($filename, $ext));
-  //       $newfilename = $filename . time() . "." . $ext;
-  //       move_uploaded_file($filename_tmp, 'uploads/event_image/' . $newfilename);
-  //       $finalimg = $newfilename;
-  //     }
-  //     $creattime = date('Y-m-d h:i:s');
-  //     $insertqry = "INSERT INTO `event_photo`(`image_name`, `date_created`, `date_modified`) VALUES ('$finalimg','$creattime','$creattime')";
-  //     mysqli_query($conn, $insertqry);
-
-  //   } else {
-  //   }
-  // }
 
   echo '<script type="text/javascript"> alert("' . $title . ' Program Added!.")</script>';
-  // header('Refresh: 0; url=admin_event.php');
+  header('Refresh: 0; url=admin_event.php');
 }
 ?>
 

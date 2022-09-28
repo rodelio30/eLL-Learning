@@ -190,3 +190,22 @@ $(document).ready(function() {
     }
   });
 });
+// Event 
+$(document).ready(function() {
+  $('#event_table').DataTable({
+    order: [
+      [2, 'asc']
+    ],
+    "pagingType": "full_numbers",
+    "lengthMenu": [
+      [5, 10, 25, 50, -1],
+      [5, 10, 25, 50, "All"]
+    ],
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search Event records",
+    }
+  });
+});
+// new table below

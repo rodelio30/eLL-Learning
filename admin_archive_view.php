@@ -1,8 +1,6 @@
 <?php
 include 'admin_checker.php';
 include 'counter/archive_counter.php';
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
