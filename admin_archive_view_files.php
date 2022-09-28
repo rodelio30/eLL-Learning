@@ -20,6 +20,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#program-contents" id="program-tab" data-bs-toggle="tab">Programs</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#event-contents" id="event-tab" data-bs-toggle="tab">Events</a>
+          </li>
         </ul>
         <div class="tab-content">
           <div id="faculty-contents" class="tab-pane active">
@@ -45,9 +48,12 @@
           <div id="program-contents" class="tab-pane fade">
             <br>
             <!-- THis line below -->
-            <?php
-            include 'archive/list/program.php';
-            ?>
+            <?php include 'archive/list/program.php'; ?>
+          </div>
+          <div id="event-contents" class="tab-pane fade">
+            <br>
+            <!-- THis line below -->
+            <?php include 'archive/list/admin_event.php'; ?>
           </div>
         </div>
       </div>

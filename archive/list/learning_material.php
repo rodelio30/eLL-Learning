@@ -29,7 +29,7 @@
                       ";
           } else {
             echo "<h1 class='m-4'><b><center>There is no Archive Learning Material</center></b></h1>";
-            echo "<img src='img/icons/empty-course.png' alt='icon' class='mb-4 archive_photo_size'>";
+            echo "<img src='img/icons/empty-box.png' alt='icon' class='mb-4 archive_photo_size'>";
           }
 
           ?>

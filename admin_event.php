@@ -74,7 +74,7 @@ include 'admin_header.php';
                           <td>$status</td>
                           <td>$date_modified</td>
                           <td>
-                          <a href=\"archive/events/admin_event_archive.php?ID=$event_id\" onClick=\"return confirm('Are
+                          <a href=\"archive/admin_event/admin_event_archive.php?ID=$event_id\" onClick=\"return confirm('Are
                           you sure you want this Event move to archive?')\"
                           class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png'
                               style='width:15px'></span>&nbsp Archive</a>
