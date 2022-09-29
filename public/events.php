@@ -26,8 +26,10 @@ include 'public_head.php';
     <!-- ======= Events Section ======= -->
     <section id="events" class="events">
       <div class="container" data-aos="fade-up">
+        <!-- This line below show the list of all events -->
+        <?php include 'event_list.php' ?>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="card">
               <div class="card-img">
@@ -57,7 +59,8 @@ include 'public_head.php';
             </div>
 
           </div>
-        </div>
+        </div>  -->
+        <!-- end of row -->
 
       </div>
     </section><!-- End Events Section -->
