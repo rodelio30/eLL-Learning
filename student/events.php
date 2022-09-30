@@ -29,7 +29,8 @@ include 'student_head.php';
     <!-- ======= Events Section ======= -->
     <section id="events" class="events">
       <div class="container" data-aos="fade-up">
-
+        <?php include 'event_list.php' ?>
+        <!-- 
         <div class="row">
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="card">
@@ -57,10 +58,10 @@ include 'student_head.php';
                   laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
                   vitae dicta sunt explicabo</p>
               </div>
-            </div>
+            </div> -->
 
-          </div>
-        </div>
+      </div>
+      </div>
 
       </div>
     </section><!-- End Events Section -->

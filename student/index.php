@@ -33,7 +33,7 @@ include 'student_head.php';
 
 
     <?php
-    include '../public/event_section.php';
+    include '../public/event_latest.php';
     include '../public/popular_section.php';
     ?>
     <!-- ======= Faculty Section ======= -->
