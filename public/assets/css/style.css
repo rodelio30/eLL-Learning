@@ -1546,6 +1546,92 @@ section {
   color: #005537;
 }
 
+.events-homepage .card {
+  border: 0;
+  padding: 0 30px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.events-homepage .card-img {
+  width: calc(100% + 60px);
+  margin-left: -30px;
+  overflow: hidden;
+  z-index: 9;
+  border-radius: 0;
+  min-height: 120px;
+  /* max-height: auto; */
+}
+
+.events-homepage .card-img img {
+  max-width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.events-homepage .card-body {
+  z-index: 10;
+  background: #fff;
+  border-top: 4px solid #fff;
+  padding: 30px;
+  /* padding-bottom: 0; */
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.events-homepage .card-title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.events-homepage .card-title a {
+  /* color: #37423b; */
+  transition: 0.3s;
+  color: green;
+  font-family: Tahoma;
+  font-weight: bold;
+  font-size: 120%;
+  text-shadow: 1px 1px #3d3b3b;
+}
+
+.events-homepage .card-text {
+  color: #5e5e5e;
+}
+
+.events-homepage .read-more a {
+  color: #777777;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+.events-homepage .read-more a:hover {
+  color: #005537;
+}
+
+.events-homepage .card:hover img {
+  transform: scale(1.1);
+}
+
+.events-homepage .card:hover .card-body {
+  border-color: #005537;
+}
+
+.events-homepage .card:hover .card-body .card-title a {
+  color: #005537;
+}
+
+.event-header {
+  /* text-transform: uppercase; */
+  color: green;
+  font-family: Tahoma;
+  font-weight: bold;
+  font-size: 250%;
+  text-shadow: 2px 2px #3d3b3b;
+}
+
 /*--------------------------------------------------------------
 # Pricing
 --------------------------------------------------------------*/

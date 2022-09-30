@@ -14,7 +14,7 @@
               The department strengthens the general education of students <br> through the development of a deepened
               you
             </p>
-            <!-- <ul>
+            <ul>
               <li><i class="bi bi-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
               <li><i class="bi bi-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
               <li><i class="bi bi-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
@@ -24,7 +24,7 @@
             <p>
               Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
               voluptate
-            </p> -->
+            </p>
 
           </div>
         </div>

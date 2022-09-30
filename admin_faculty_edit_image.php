@@ -93,8 +93,8 @@ include 'admin_header.php';
                     <div class="form-group">
                       <label>The current image</label>
                       <br>
-                      <img src=" uploads//<?php echo $img ? $img : 'empty_user.png' ?>" alt="Admin" class="img-fluid"
-                        height="200px" width="200px">
+                      <img src=" uploads/faculty_image/<?php echo $img ? $img : 'empty_user.png' ?>" alt="Admin"
+                        class="img-fluid" height="200px" width="200px">
                     </div>
                     <br>
                     <div class="form-group">

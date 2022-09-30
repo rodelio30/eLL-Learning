@@ -31,7 +31,7 @@ include 'public_head.php';
 
 
     <?php
-    include 'event_section.php';
+    include 'event_latest.php';
     include 'popular_section.php';
     ?>
     <!-- ======= Faculty Section ======= -->

@@ -1,12 +1,4 @@
 <div class="row">
-
-  <?php
-  $result = mysqli_query($conn, "select img, firstname, middle_initial, lastname, research, position, description from faculty WHERE status!='archive' AND firstname!='Mercedita' AND firstname!='Daisy' AND firstname!='Joan' ORDER BY faculty_id DESC") or die("Query 1 is incorrect....");
-  while (list($img, $firstname, $middle_initial, $lastname, $research, $position, $description) = mysqli_fetch_array($result)) {
-    echo "
-              ";
-  }
-  ?>
   <?php
   $result = mysqli_query($conn, "select event_id, img, title, description, date_created, date_modified from events WHERE status != 'archive'");
   while (list($event_id, $img, $title, $description, $date_created, $date_modified) = mysqli_fetch_array($result)) {
