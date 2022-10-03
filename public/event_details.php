@@ -33,10 +33,9 @@ include 'public_head.php';
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
         <h2><a href="events.php">Events </a> / <?php echo $title ?></h2>
-        <!-- <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit
-          quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p> -->
       </div>
-    </div><!-- End Breadcrumbs -->
+    </div>
+    <!-- End Breadcrumbs -->
 
     <!-- ======= Events Section ======= -->
     <section id="event-details" class="event-details">
@@ -50,7 +49,7 @@ include 'public_head.php';
 
             <div class="align-items-center ms-4">
               <h3><?php echo $title ?></h3>
-              <p class="text-justify">
+              <p class="text-justify mt-4">
                 <?php echo $description ?>
               </p>
               <p class="text-justify">
