@@ -31,7 +31,7 @@ if (isset($_POST['update'])) {
     echo "<script>console.log(' Failed to upload image!!');</script>";
   }
   echo '<script type="text/javascript"> alert("' . $filename . ' updated!.")</script>';
-  // header('Refresh: 0; url=admin_faculty.php');
+  header('Refresh: 0; url=admin_faculty.php');
 }
 
 $faculty_id = $_GET['ID'];

@@ -35,7 +35,7 @@ include 'public_head.php';
             <div class="align-items-center ms-4">
               <h3>Our Mission</h3>
               <p class="text-justify">
-                The Department of English and Humanities strengthens general education of students through the...
+                The Department of English and Humanities strengthens general education of students through the
                 department of a deepened understanding of the english languange and increases appreciation of the
                 richness of literature and the wealth of the humanities thereby fostering knowledge and appreciation
                 of language, literature and artistic expressions.
