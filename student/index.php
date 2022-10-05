@@ -46,7 +46,7 @@ include 'student_head.php';
           </div> -->
 
           <?php
-          include 'faculty_header.php'
+          include '../public/faculty_header.php'
           ?>
 
 

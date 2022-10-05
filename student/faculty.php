@@ -29,13 +29,13 @@ include 'student_head.php';
     <section id="trainers" class="trainers">
       <div class="container" data-aos="fade-up">
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          <?php include 'faculty_header.php' ?>
+          <?php include '../public/faculty_header.php' ?>
           <div class="section-title">
             <br>
             <h2>Faculty Member</h2>
           </div>
           <?php
-          $result = mysqli_query($conn, "select img, firstname, middle_initial, lastname, research, position, description from faculty WHERE status!='archive' AND firstname!='Mercedita' AND firstname!='Daisy' AND firstname!='Joan' ORDER BY faculty_id DESC") or die("Query 1 is incorrect....");
+          $result = mysqli_query($conn, "select img, firstname, middle_initial, lastname, research, position, description from faculty WHERE status!='archive' AND firstname!='Mercedita' AND firstname!='Daisy' AND firstname!='Joan' ORDER BY lastname ASC") or die("Query 1 is incorrect....");
           while (list($img, $firstname, $middle_initial, $lastname, $research, $position, $description) = mysqli_fetch_array($result)) {
             echo "
                 <div class='col-lg-4 col-md-6 d-flex align-items-stretch'>

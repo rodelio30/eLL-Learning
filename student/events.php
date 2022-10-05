@@ -29,7 +29,7 @@ include 'student_head.php';
     <!-- ======= Events Section ======= -->
     <section id="events" class="events">
       <div class="container" data-aos="fade-up">
-        <?php include 'event_list.php' ?>
+        <?php include '../public/event_list.php' ?>
         <!-- 
         <div class="row">
           <div class="col-md-6 d-flex align-items-stretch">
