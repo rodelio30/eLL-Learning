@@ -1,5 +1,6 @@
 <?php
 include 'student_checker.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,7 @@ include 'student_head.php';
 <body>
   <?php
   include 'header.php';
+  // echo "<script>console.log('Firstname: " . $student_id . "');</script>";
   ?>
 
 
@@ -67,13 +69,15 @@ include 'student_head.php';
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="../public/contact-form.php" method="post" class="contact-form">
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" id="name"
+                    value="<?php echo $student_firstname . ' ' . $student_lastname ?>" placeholder="Your Name" readonly>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" value="<?php echo $student_email ?>"
+                    placeholder="Your Email" readonly>
                 </div>
               </div>
               <div class="form-group mt-3">
@@ -82,12 +86,13 @@ include 'student_head.php';
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+              <input type="hidden" class="form-control" id="student_id" name="student_id"
+                value="<?php echo $student_id ?>">
+              <br>
+              <div class="text-center">
+                <button type="submit" class="btn btn-success contact-submit" name="submit">Send
+                  Message</button>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
 
           </div>
