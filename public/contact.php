@@ -1,23 +1,5 @@
 <?php
 include 'public_checker.php';
-date_default_timezone_set("Asia/Manila");
-
-// echo "<script>console.log('broom " . $_POST['name'] . "');</script>";
-if (isset($_POST['submit'])) {
-  $name          = $_POST['name'];
-  $email         = $_POST['email'];
-  $subject       = $_POST['subject'];
-  $message       = $_POST['message'];
-  $date_created  = date("Y-m-d h:i:s");
-  $date_modified = date("Y-m-d h:i:s");
-  $status        = 'active';
-  $notif         = 'pending';
-
-  mysqli_query($conn, "insert into contact(name, email, subject, message, date_created, date_modified, status, notif) values('$name','$email','$subject','$message','$date_created','$date_modified', '$status', '$notif')")  or die("Query 3 is incorrect.....");
-
-  echo '<script type="text/javascript"> alert("' . $subject . ' Contact us Added!.")</script>';
-  // header('Refresh: 0; url=admin_event.php');
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,9 +66,7 @@ include 'public_head.php';
           </div>
 
           <div class="col-lg-8 mt-5 mt-lg-0">
-
-            <!-- <form method="post" role="form" class="php-email-form"> -->
-            <form method="post" class="contact-form">
+            <form action="contact-form.php" method="post" class="contact-form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -101,12 +81,6 @@ include 'public_head.php';
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
-              <!-- <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div> -->
-              <!-- <div class="text-center"><button type="submit">Send Message</button></div> -->
               <br>
               <div class="text-center">
                 <button type="submit" class="btn btn-success contact-submit" name="submit">Send
