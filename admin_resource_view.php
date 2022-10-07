@@ -3,10 +3,11 @@ include 'admin_checker.php';
 
 $doc_id = $_GET['ID'];
 
-$result     = mysqli_query($conn, "SELECT * FROM document WHERE doc_id='$doc_id'");
+$result     = mysqli_query($conn, "SELECT * FROM resources WHERE doc_id='$doc_id'");
 while ($res = mysqli_fetch_array($result)) {
   $doc_id           = $res['doc_id'];
   $material_id      = $res['material_id'];
+  $resource_type    = $res['resource_type'];
   $title            = $res['title'];
   $file_size        = $res['file_size'];
   $file_type        = $res['file_type'];
@@ -73,7 +74,7 @@ include 'admin_header.php';
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><a href="admin_document.php" class="user-clicker"><strong>Resources </strong>List </a> \
+          <h1 class="h3 mb-3"><a href="admin_resources.php" class="user-clicker"><strong>Resources </strong>List </a> \
             <?php echo $title ?>
           </h1>
 
@@ -95,9 +96,15 @@ include 'admin_header.php';
                         </h5>
                         <hr>
                         <h5>
+                          <span>Resource Type: </span>
+                          <?php echo $resource_type ?>
+                          <hr>
+                        </h5>
+                        <h5>
                           <span>Description: </span>
                           <?php echo $description ?>
                           <hr>
+                        </h5>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
@@ -156,8 +163,8 @@ include 'admin_header.php';
                         </div>
                       </div>
                       <hr>
-                      <a <?php echo "href=\"admin_document_edit.php?ID=$doc_id\"" ?> style="float: left"
-                        class="btn btn-info"><span data-feather="file"></span>&nbsp Edit Document</a>
+                      <a <?php echo "href=\"admin_resource_edit.php?ID=$doc_id\"" ?> style="float: left"
+                        class="btn btn-info"><span data-feather="file"></span>&nbsp Edit Resources</a>
                     </div>
                   </div>
                   <!-- End of content -->

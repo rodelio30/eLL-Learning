@@ -4,6 +4,8 @@ date_default_timezone_set("Asia/Manila");
 
 if (isset($_POST['update'])) {
   $docu_id          = $_POST['doc_id'];
+  $material_id      = $_POST['material_id'];
+  $resource_type    = $_POST['resource_type'];
   $description      = $_POST['description'];
   $file_uploader_id = $_POST['file_uploader_id'];
   $status           = $_POST['status'];
@@ -14,22 +16,24 @@ if (isset($_POST['update'])) {
     $faculty_id = $res['faculty_id'];
   }
 
-  mysqli_query($conn, "UPDATE document SET description = '$description', file_uploader_id = '$file_uploader_id', status = '$status' WHERE doc_id = '$docu_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "UPDATE resources SET material_id = '$material_id', resource_type = '$resource_type', description = '$description', file_uploader_id = '$file_uploader_id', status = '$status' WHERE doc_id = '$docu_id'") or die("Query 4 is incorrect....");
 
   // Get the name of the file that are updated
-  $result_update  = mysqli_query($conn, "SELECT title FROM document WHERE doc_id='$docu_id'");
+  $result_update  = mysqli_query($conn, "SELECT title FROM resources WHERE doc_id='$docu_id'");
   while ($res     = mysqli_fetch_array($result_update)) {
     $update_title = $res['title'];
   }
 
-  echo '<script type="text/javascript"> alert("Document ' . $update_title . ' updated!.")</script>';
-  header('Refresh: 0; url=admin_document.php');
+  echo '<script type="text/javascript"> alert("Resource ' . $update_title . ' updated!.")</script>';
+  header('Refresh: 0; url=admin_resources.php');
 }
 
 $doc_id = $_GET['ID'];
 
-$result = mysqli_query($conn, "SELECT * FROM document WHERE doc_id='$doc_id'");
+$result = mysqli_query($conn, "SELECT * FROM resources WHERE doc_id='$doc_id'");
 while ($res   = mysqli_fetch_array($result)) {
+  $material_id      = $res['material_id'];
+  $resource_type    = $res['resource_type'];
   $title            = $res['title'];
   $file_type        = $res['file_type'];
   $description      = $res['description'];
@@ -78,8 +82,8 @@ include 'admin_header.php';
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong><a href="admin_document.php" class="dashboard">Resources</a> List</strong> \
-            <strong><a href="admin_document_view.php?ID=<?php echo $doc_id ?>" class="dashboard"><?php echo $title ?>
+          <h1 class="h3 mb-3"><strong><a href="admin_resources.php" class="dashboard">Resources</a> List</strong> \
+            <strong><a href="admin_resource_view.php?ID=<?php echo $doc_id ?>" class="dashboard"><?php echo $title ?>
               </a></strong>\
             Edit
           </h1>
@@ -97,6 +101,37 @@ include 'admin_header.php';
                       <strong><?php echo $_GET['error']; ?>!</strong>
                     </div>
                     <?php endif ?>
+                    <div class="form-group mb-4 ">
+                      <label>Learning Material Category</label>
+                      <select name="material_id" class="form-control">
+                        <?php
+                        $result = mysqli_query($conn, "select material_id, name from materials") or die("Query 4 is inncorrect........");
+                        while (list($mat_id, $name) = mysqli_fetch_array($result)) {
+                          if ($mat_id == $material_id) {
+                            echo "<option value='$mat_id' selected>$name</option>";
+                          } else {
+                            echo "<option value='$mat_id'>$name</option>";
+                          }
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <div class="form-group mb-4 ">
+                      <label>Learning Resource Type</label>
+                      <select name="resource_type" class="form-control">
+                        <?php
+                        $select_lang = '';
+                        $select_lit = '';
+                        if ($resource_type == 'Language') {
+                          $select_lang = 'selected';
+                        } else {
+                          $select_lit = 'selected';
+                        }
+                        ?>
+                        <option value="Language" <?php echo $select_lang ?>>Language</option>
+                        <option value="Literature" <?php echo $select_lit ?>>Literature</option>
+                      </select>
+                    </div>
                     <div class="mb-4 me-auto">
                       <label for="formFile" class="form-label">Title</label>
                       <input class="form-control mt-2" type="text" id="file_name" name="file_name"
