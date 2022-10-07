@@ -53,8 +53,8 @@ include 'admin_header.php';
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-              <a <?php echo "href=\"admin_document_add.php\"" ?> style="float: right" class="btn btn-success"><span
-                  data-feather="user-plus"></span>&nbsp Add New Document</a>
+              <a <?php echo "href=\"admin_resource_add.php\"" ?> style="float: right" class="btn btn-success"><span
+                  data-feather="user-plus"></span>&nbsp Add New Resource</a>
             </div>
           </div>
           <div class="row">
@@ -74,7 +74,7 @@ include 'admin_header.php';
                     </thead>
                     <tbody>
                       <?php
-                      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, status from document WHERE status!='archive'") or die("Query 1 is incorrect....");
+                      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, status from resources WHERE status!='archive'") or die("Query 1 is incorrect....");
                       while (list($doc_id, $material_id, $title, $file_size, $file_type, $status) = mysqli_fetch_array($result)) {
                         $size          = formatSizeUnits2($file_size);
                         $material_name = materialName($material_id);
@@ -91,18 +91,18 @@ include 'admin_header.php';
                         }
                         echo "
 														<tr>	
-															<td scope='row'><a href=\"admin_document_view.php?ID=$doc_id\" class='user-clicker'>$title.$file_type</a></td>
+															<td scope='row'><a href=\"admin_resource_view.php?ID=$doc_id\" class='user-clicker'>$title.$file_type</a></td>
 															<td>$size</td>
 															<td>$material_name</td>
 															<td>$status</td>
 															<td>
-															<a href=\"archive/resources/admin_document_archive.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this Document move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
+															<a href=\"archive/resources/admin_document_archive.php?ID=$doc_id\" onClick=\"return confirm('Are you sure you want this Resources move to archive?')\" class='btn btn-warning btn-md float-end ms-2'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Archive</a>
 															<a href=\"uploads/$title.$file_type\"target='_blank' class='btn btn-primary btn-md float-end me-1'><span><img src='img/icons/archive.png' style='width:15px'></span>&nbsp Download</a>
 															</td>
 														</tr>	
 													";
                       }
-                      // this is for format of size in each document
+                      // this is for format of size in each resources
                       function formatsizeunits2($file_size)
                       {
                         if ($file_size >= 1073741824) {
@@ -167,7 +167,7 @@ $(document).ready(function() {
     responsive: true,
     language: {
       search: "_INPUT_",
-      searchPlaceholder: "Search Document records",
+      searchPlaceholder: "Search Resources records",
     }
   });
 });

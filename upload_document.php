@@ -17,6 +17,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
   $date_created     = date("Y-m-d h:i:s");
   $date_modified    = date("Y-m-d h:i:s");
   $material_name    = $_POST['material_name'];
+  $resource_type    = $_POST['resource_type'];
   $description      = $_POST['description'];
   $file_uploader_id = $_POST['uploader_id'];
   $status           = 'active';
@@ -29,7 +30,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
   if ($error === 0) {
     if ($file_size > 1250000) {
       $em = "Sorry, your file is greater than 1.25 mb.";
-      header("Location: faculty_document_add.php?error=$em");
+      header("Location: admin_resources_add.php?error=$em");
     } else {
       $file_ex = pathinfo($file_name, PATHINFO_EXTENSION);
       $file_ex_lc = strtolower($file_ex);
@@ -44,18 +45,18 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
         $file_name_without_ext = pathinfo($file_name, PATHINFO_FILENAME);
 
         // Insert into Database
-        $sql = "INSERT INTO document(material_id, title, file_size, file_type, description, file_uploader_id,  date, time, date_created, date_modified, status)VALUES('$material_id','$file_name_without_ext', '$file_size', '$file_ex_lc', '$description', '$file_uploader_id', '$date', '$time','$date_created','$date_modified', '$status')";
+        $sql = "INSERT INTO resources(material_id, resource_type, title, file_size, file_type, description, file_uploader_id,  date, time, date_created, date_modified, status)VALUES('$material_id', '$resource_type','$file_name_without_ext', '$file_size', '$file_ex_lc', '$description', '$file_uploader_id', '$date', '$time','$date_created','$date_modified', '$status')";
         mysqli_query($conn, $sql);
-        header('Refresh: 0; url=admin_document.php');
+        header('Refresh: 0; url=admin_resources.php');
       } else {
         $error_message = "You can't upload files of this type";
-        header("Location: admin_document.php?error=$error_message ");
+        header("Location: admin_resource_add.php?error=$error_message ");
       }
     }
   } else {
     $error_message  = "unknown error occured!";
-    header("Location: admin_document.php?error=$error_message  ");
+    header("Location: admin_resource_add.php?error=$error_message  ");
   }
 } else {
-  header("Location: admin_document.php");
+  header("Location: admin_resource_add.php");
 }

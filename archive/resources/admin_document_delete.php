@@ -6,7 +6,7 @@ $ID = $_GET['ID'];
 
 $date_modified = date("Y-m-d h:i:s");
 
-$sql = "DELETE FROM document WHERE doc_id = $ID ";
+$sql = "DELETE FROM resources WHERE doc_id = $ID ";
 
 if ($conn->query($sql) === TRUE) {
   header("Refresh:0.4; url=../../admin_archive_view.php");

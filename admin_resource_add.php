@@ -38,14 +38,14 @@ include 'admin_header.php';
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong><a href="admin_document.php" class="dashboard">Resources List</a> / New
+          <h1 class="h3 mb-3"><strong><a href="admin_resources.php" class="dashboard">Resources List</a> / New
               Resources</strong>
           </h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">Document Form</h5>
+                  <h5 class="card-title mb-0">Resource Form</h5>
                   <div id="oras" class="mt 0" style="float: right">
                     <div id="clock">
                       <div id="dates"></div>
@@ -70,6 +70,13 @@ include 'admin_header.php';
                           echo "<option value='$name'>$name</option>";
                         }
                         ?>
+                      </select>
+                    </div>
+                    <div class="form-group mb-4 ">
+                      <label>Learning Resource Type</label>
+                      <select name="resource_type" class="form-control">
+                        <option value='Language'>Language</option>
+                        <option value='Literature'>Literature</option>
                       </select>
                     </div>
                     <div class="mb-4 me-auto">

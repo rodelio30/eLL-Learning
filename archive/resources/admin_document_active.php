@@ -6,7 +6,7 @@ $ID = $_GET['ID'];
 
 $date_modified = date("Y-m-d h:i:s");
 
-$sql = "UPDATE document SET status='active', date_modified='$date_modified' WHERE doc_id=$ID";
+$sql = "UPDATE resources SET status='active', date_modified='$date_modified' WHERE doc_id=$ID";
 
 if ($conn->query($sql) === TRUE) {
   header("Refresh:0.4; url=../../admin_archive_view.php");

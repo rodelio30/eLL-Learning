@@ -98,7 +98,7 @@ if ($nav_active == 'archive') {
 </li>
 
 <li class="sidebar-item <?php echo $docu_select ?>">
-  <a class="sidebar-link" href="admin_document.php">
+  <a class="sidebar-link" href="admin_resources.php">
     <i class="align-middle" data-feather="file"></i> <span class="align-middle">Resources</span>
   </a>
 </li>
