@@ -2280,3 +2280,14 @@ section {
   width: 100%;
   padding: 10px 50px;
 }
+
+.profile {
+  height: 100%;
+}
+
+.profile .container {
+  /* background-color: #F2F1E7; */
+  /* height: 1000px; */
+  border-radius: 5px;
+  border: 1px solid #eef0ef;
+}

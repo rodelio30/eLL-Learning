@@ -21,8 +21,7 @@ include 'public_head.php';
       <!-- <h1>Learning Today,<br>Leading Tomorrow</h1> -->
       <!-- <h1>Today's learners <br>will be tomorrow's leaders.</h1>
       <h2>"Excellent service to humanity is our commitment."</h2> -->
-      <h1>Shaping the Future
-        <br>
+      <h1>Shaping the Future <br>
         through Language and Literature
       </h1>
       <h2>"Excellent service to humanity is our commitment."</h2>

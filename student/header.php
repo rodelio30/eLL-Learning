@@ -63,9 +63,9 @@
           include 'profile_name_getter.php'
           ?>
           <ul>
-            <li><a href="#"><span>Profile</span></i></a>
+            <li><a href="profile.php"><span>Profile</span></i></a>
             </li>
-            <li><a href="#"><span>Activity Log</span></a> </li>
+            <!-- <li><a href="#"><span>Activity Log</span></a> </li> -->
             <!-- <li><a href="#">Drop Down 2</a></li> -->
             <li>
               <hr class="dropdown-divider">
