@@ -36,7 +36,7 @@ if ($result_student->num_rows > 0) {
 }
 
 // This line is counting for the number of Documents
-$sql_resources = "SELECT doc_id FROM document WHERE status !='archive'";
+$sql_resources = "SELECT doc_id FROM resources WHERE status !='archive'";
 $result_resources = $conn->query($sql_resources);
 
 if ($result_resources->num_rows > 0) {
@@ -95,7 +95,7 @@ if ($result_archive_student->num_rows > 0) {
   $archive_student = 0;
 }
 
-$sql_archive_document = "SELECT doc_id FROM document WHERE status = 'archive'";
+$sql_archive_document = "SELECT doc_id FROM resources WHERE status = 'archive'";
 $result_archive_document = $conn->query($sql_archive_document);
 
 if ($result_archive_document->num_rows > 0) {

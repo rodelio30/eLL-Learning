@@ -28,8 +28,8 @@ include 'faculty_header.php';
       <main class="content">
         <div class="container-fluid p-0">
 
-          <h1 class="h3 mb-3"><strong><a href="faculty_document.php" class="dashboard">Document</a> / New
-              Documents</strong>
+          <h1 class="h3 mb-3"><strong><a href="faculty_document.php" class="dashboard">Resources </a> / New
+              File Resource </strong>
           </h1>
           <div class="row">
             <div class="col-12 col-lg-8 col-xxl-12 d-flex">
@@ -60,6 +60,13 @@ include 'faculty_header.php';
                           echo "<option value='$name'>$name</option>";
                         }
                         ?>
+                      </select>
+                    </div>
+                    <div class="form-group mb-4 ">
+                      <label>Learning Resource Type</label>
+                      <select name="resource_type" class="form-control">
+                        <option value='Language'>Language</option>
+                        <option value='Literature'>Literature</option>
                       </select>
                     </div>
                     <div class="mb-4 me-auto">

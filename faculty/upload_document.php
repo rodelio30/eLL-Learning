@@ -17,6 +17,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
   $date_created     = date("Y-m-d h:i:s");
   $date_modified    = date("Y-m-d h:i:s");
   $material_name    = $_POST['material_name'];
+  $resource_type    = $_POST['resource_type'];
   $description      = $_POST['description'];
   $file_uploader_id = $_POST['uploader_id'];
   $status           = 'active';
@@ -31,6 +32,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
       $em = "Sorry, your file is greater than 10 mb.";
       header("Location: faculty_document_add.php?error=$em");
     } else {
+
       $file_ex = pathinfo($file_name, PATHINFO_EXTENSION);
       $file_ex_lc = strtolower($file_ex);
 
@@ -44,18 +46,18 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
         $file_name_without_ext = pathinfo($file_name, PATHINFO_FILENAME);
 
         // Insert into Database
-        $sql = "INSERT INTO document(material_id, title, file_size, file_type, description, file_uploader_id,  date, time, date_created, date_modified, status)VALUES('$material_id','$file_name_without_ext', '$file_size', '$file_ex_lc', '$description', '$file_uploader_id', '$date', '$time','$date_created','$date_modified', '$status')";
+        $sql = "INSERT INTO resources(material_id, resource_type, title, file_size, file_type, description, file_uploader_id,  date, time, date_created, date_modified, status)VALUES('$material_id', '$resource_type', '$file_name_without_ext', '$file_size', '$file_ex_lc', '$description', '$file_uploader_id', '$date', '$time','$date_created','$date_modified', '$status')";
         mysqli_query($conn, $sql);
         header('Refresh: 0; url=faculty_document.php');
       } else {
         $em = "You can't upload files of this type";
-        header("Location: faculty_document.php?error=$em");
+        header("Location: faculty_document_add.php?error=$em");
       }
     }
   } else {
     $em  = "unknown error occured!";
-    header("Location: faculty_document.php?error=$em");
+    header("Location: faculty_document_add.php?error=$em");
   }
 } else {
-  header("Location: faculty_document.php");
+  header("Location: faculty_document_add.php");
 }
