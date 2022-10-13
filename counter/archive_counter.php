@@ -20,7 +20,7 @@ if ($result_student->num_rows > 0) {
 
 $document_counter = 0;
 
-$sql_document = "SELECT doc_id FROM document WHERE status = 'archive' ";
+$sql_document = "SELECT doc_id FROM resources WHERE status = 'archive' ";
 $result_document = $conn->query($sql_document);
 
 if ($result_document->num_rows > 0) {

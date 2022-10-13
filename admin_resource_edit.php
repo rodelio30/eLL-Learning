@@ -25,7 +25,8 @@ if (isset($_POST['update'])) {
   }
 
   echo '<script type="text/javascript"> alert("Resource ' . $update_title . ' updated!.")</script>';
-  header('Refresh: 0; url=admin_resources.php');
+  // header('Refresh: 0; url=admin_resources.php');
+  header('Refresh: 0; url=admin_document_view.php?ID=' . $docu_id . '');
 }
 
 $doc_id = $_GET['ID'];
@@ -101,36 +102,42 @@ include 'admin_header.php';
                       <strong><?php echo $_GET['error']; ?>!</strong>
                     </div>
                     <?php endif ?>
-                    <div class="form-group mb-4 ">
-                      <label>Learning Material Category</label>
-                      <select name="material_id" class="form-control">
-                        <?php
-                        $result = mysqli_query($conn, "select material_id, name from materials") or die("Query 4 is inncorrect........");
-                        while (list($mat_id, $name) = mysqli_fetch_array($result)) {
-                          if ($mat_id == $material_id) {
-                            echo "<option value='$mat_id' selected>$name</option>";
-                          } else {
-                            echo "<option value='$mat_id'>$name</option>";
-                          }
-                        }
-                        ?>
-                      </select>
-                    </div>
-                    <div class="form-group mb-4 ">
-                      <label>Learning Resource Type</label>
-                      <select name="resource_type" class="form-control">
-                        <?php
-                        $select_lang = '';
-                        $select_lit = '';
-                        if ($resource_type == 'Language') {
-                          $select_lang = 'selected';
-                        } else {
-                          $select_lit = 'selected';
-                        }
-                        ?>
-                        <option value="Language" <?php echo $select_lang ?>>Language</option>
-                        <option value="Literature" <?php echo $select_lit ?>>Literature</option>
-                      </select>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group mb-4 ">
+                          <label>Learning Material Category</label>
+                          <select name="material_id" class="form-control">
+                            <?php
+                            $result = mysqli_query($conn, "select material_id, name from materials") or die("Query 4 is inncorrect........");
+                            while (list($mat_id, $name) = mysqli_fetch_array($result)) {
+                              if ($mat_id == $material_id) {
+                                echo "<option value='$mat_id' selected>$name</option>";
+                              } else {
+                                echo "<option value='$mat_id'>$name</option>";
+                              }
+                            }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group mb-4 ">
+                          <label>Learning Resource Type</label>
+                          <select name="resource_type" class="form-control">
+                            <?php
+                            $select_lang = '';
+                            $select_lit = '';
+                            if ($resource_type == 'Language') {
+                              $select_lang = 'selected';
+                            } else {
+                              $select_lit = 'selected';
+                            }
+                            ?>
+                            <option value="Language" <?php echo $select_lang ?>>Language</option>
+                            <option value="Literature" <?php echo $select_lit ?>>Literature</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                     <div class="mb-4 me-auto">
                       <label for="formFile" class="form-label">Title</label>

@@ -3,10 +3,11 @@ include 'faculty_checker.php';
 
 $doc_id = $_GET['ID'];
 
-$result     = mysqli_query($conn, "SELECT * FROM document WHERE doc_id='$doc_id'");
+$result     = mysqli_query($conn, "SELECT * FROM resources WHERE doc_id='$doc_id'");
 while ($res = mysqli_fetch_array($result)) {
   $doc_id           = $res['doc_id'];
   $material_id      = $res['material_id'];
+  $resource_type    = $res['resource_type'];
   $title            = $res['title'];
   $file_size        = $res['file_size'];
   $file_type        = $res['file_type'];
@@ -64,7 +65,7 @@ include 'faculty_header.php';
 
       <main class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><a href="faculty_document.php" class="user-clicker"><strong>Document </strong> </a> \
+          <h1 class="h3 mb-3"><a href="faculty_document.php" class="user-clicker"><strong>Resources </strong> </a> \
             <?php echo $title ?>
           </h1>
 
@@ -78,13 +79,18 @@ include 'faculty_header.php';
                         <img src='../img/photos/<?php echo $icon_img ?>.svg' alt='icon'>
                       </div>
                     </div>
-                    <div class="col-md-6 m-2">
+                    <div class="col-md-8 m-2">
                       <div class="profile-head">
                         <h5>
                           <span>Title: </span>
                           <?php echo $title ?>
                         </h5>
                         <hr>
+                        <h5>
+                          <span>Resource Type: </span>
+                          <?php echo $resource_type ?>
+                          <hr>
+                        </h5>
                         <h5>
                           <span>Description: </span>
                           <?php echo $description ?>
@@ -146,9 +152,8 @@ include 'faculty_header.php';
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-2">
-                      <a <?php echo "href=\"faculty_document_edit.php?ID=$doc_id\"" ?> style="float: right"
+                      <hr>
+                      <a <?php echo "href=\"faculty_document_edit.php?ID=$doc_id\"" ?> style="float: left"
                         class="btn btn-info"><span data-feather="file"></span>&nbsp Edit Document</a>
                     </div>
                   </div>

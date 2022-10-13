@@ -35,7 +35,7 @@
         </thead>
         <tbody>
           <?php
-          $result = mysqli_query($conn, "select doc_id, title, date_modified from document WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
+          $result = mysqli_query($conn, "select doc_id, title, date_modified from resources WHERE status='archive' ORDER BY date_modified") or die("Query 1 is incorrect....");
           while (list($doc_id, $title, $date_modified) = mysqli_fetch_array($result)) {
             echo "
 														<tr>	

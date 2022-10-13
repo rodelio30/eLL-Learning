@@ -28,8 +28,8 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
   }
 
   if ($error === 0) {
-    if ($file_size > 1250000) {
-      $em = "Sorry, your file is greater than 1.25 mb.";
+    if ($file_size > 1000000) {
+      $em = "Sorry, your file is greater than 10 mb.";
       header("Location: admin_resources_add.php?error=$em");
     } else {
       $file_ex = pathinfo($file_name, PATHINFO_EXTENSION);
