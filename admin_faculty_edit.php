@@ -2,31 +2,6 @@
 include 'admin_checker.php';
 date_default_timezone_set("Asia/Manila");
 
-if (isset($_POST['update'])) {
-  $user_id     = $_POST['user_id'];
-  $id_no       = $_POST['id_no'];
-  $faculty_id  = $_POST['faculty_id'];
-  $firstname   = $_POST['firstname'];
-  $mi          = $_POST['middle_initial'];
-  $lastname    = $_POST['lastname'];
-  $research    = $_POST['research'];
-  $position    = $_POST['position'];
-  $description = $_POST['description'];
-  $email       = $_POST['email'];
-  $status      = $_POST['status'];
-  $password    = $_POST['password'];
-  $date_modified = date("Y-m-d h:i:s");
-
-  // echo "<script>console.log('" . $email . "');</script>";
-  // This line below is to update a specific faculty user
-  mysqli_query($conn, "update faculty set faculty_id_no = '$id_no', firstname = '$firstname', middle_initial = '$mi', lastname = '$lastname', research = '$research', position = '$position', description = '$description', email = '$email', status = '$status', password = '$password', date_modified = '$date_modified' where faculty_id = '$faculty_id'") or die("Query 4 is incorrect....");
-  // This line below is to update the user 
-  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$user_id'") or die("Query 5 is incorrect....");
-
-  echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
-  header('Refresh: 0; url=admin_faculty.php');
-}
-
 $faculty_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$faculty_id'");
@@ -36,13 +11,47 @@ while ($res   = mysqli_fetch_array($result)) {
   $firstname      = $res['firstname'];
   $middle_initial = $res['middle_initial'];
   $lastname       = $res['lastname'];
-  $research         = $res['research'];
+  $research       = $res['research'];
   $position       = $res['position'];
   $description    = $res['description'];
   $email          = $res['email'];
+  $gender         = $res['gender'];
   $password       = $res['password'];
   $status         = $res['status'];
 }
+
+// get the value of gender
+// $result_gender = mysqli_query($conn, "SELECT identity FROM gender_user WHERE user_id = '$user_id'");
+// while ($res = mysqli_fetch_array($result_gender)) {
+//   $gender_checker = $res['identity'];
+// }
+
+if (isset($_POST['update'])) {
+  $user_id       = $_POST['user_id'];
+  $id_no         = $_POST['id_no'];
+  $firstname     = $_POST['firstname'];
+  $mi            = $_POST['middle_initial'];
+  $lastname      = $_POST['lastname'];
+  $research      = $_POST['research'];
+  $position      = $_POST['position'];
+  $description   = $_POST['description'];
+  $gender        = $_POST['gender'];
+  $email         = $_POST['email'];
+  $status        = $_POST['status'];
+  $password      = $_POST['password'];
+  $date_created  = date("Y-m-d h:i:s");
+  $date_modified = date("Y-m-d h:i:s");
+
+  // echo "<script>console.log('" . $email . "');</script>";
+  // This line below is to update a specific faculty user
+  mysqli_query($conn, "update faculty set faculty_id_no = '$id_no', firstname = '$firstname', middle_initial = '$mi', lastname = '$lastname', research = '$research', position = '$position', description = '$description', email = '$email', gender = '$gender', status = '$status', password = '$password', date_modified = '$date_modified' where faculty_id = '$faculty_id'") or die("Query 4 is incorrect....");
+  // This line below is to update the user 
+  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$user_id'") or die("Query 5 is incorrect....");
+
+  echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
+  header('Refresh: 0; url=admin_faculty.php');
+}
+
 
 $sel_active  = "";
 $sel_archive = "";
@@ -145,6 +154,23 @@ include 'admin_header.php';
                     </div>
                     <br>
                     <div class="form-group">
+                      <label>Gender</label>
+                      <select class="form-control" id="gender" name="gender">
+                        <?php
+                        $isSelectM = '';
+                        $isSelectF = '';
+                        if ($gender == 'Male' || $gender == null) {
+                          $isSelectM = 'selected';
+                        } else {
+                          $isSelectF = 'selected';
+                        }
+                        ?>
+                        <option value="Male" <?php echo $isSelectM ?>>Male</option>
+                        <option value="Female" <?php echo $isSelectF ?>>Female</option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
                       <input type="text" class="form-control" id="email" name="email" value="<?php echo $email ?>"
                         placeholder="Enter Email Address">
@@ -169,7 +195,6 @@ include 'admin_header.php';
                     <br>
                     <div class="form-group">
                       <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id ?>">
-                      <input type="hidden" name="faculty_id" value="<?php echo $_GET['ID']; ?>">
                       <button type="submit" class="btn btn-success" name="update">Update</button>
                     </div>
                   </form>

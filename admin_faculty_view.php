@@ -2,21 +2,28 @@
 include 'admin_checker.php';
 
 $id_faculty = $_GET['ID'];
+$gender = '';
 
 $result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$id_faculty'");
 while ($res   = mysqli_fetch_array($result)) {
   $faculty_id    = $res['faculty_id'];
+  $user_id       = $res['user_id'];
   $img           = $res['img'];
   $firstname     = $res['firstname'];
   $lastname      = $res['lastname'];
-  $research        = $res['research'];
+  $research      = $res['research'];
   $position      = $res['position'];
   $description   = $res['description'];
   $email         = $res['email'];
+  $gender        = $res['gender'];
   $date_created  = $res['date_created'];
   $date_modified = $res['date_modified'];
   $status        = $res['status'];
 }
+// $result_gender = mysqli_query($conn, "SELECT identity FROM gender_user WHERE user_id = '$user_id'");
+// while ($res = mysqli_fetch_array($result_gender)) {
+//   $gender = $res['identity'];
+// }
 ?>
 
 <!DOCTYPE html>
@@ -118,6 +125,17 @@ include 'admin_header.php';
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $description ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Gender</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo !$gender ? '' : $gender ?>
                                 </div>
                               </div>
                             </div>

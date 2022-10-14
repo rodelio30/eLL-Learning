@@ -10,6 +10,7 @@ if (isset($_POST['submit'])) {
   $lastname      = $_POST['lastname'];
   $email         = $_POST['email'];
   $password      = $_POST['password'];
+  $gender        = $_POST['gender'];
   $type          = $_POST['type'];
   $status        = 'active';
   $date_created  = date("Y-m-d h:i:s");
@@ -28,10 +29,13 @@ if (isset($_POST['submit'])) {
     $user_id = $res['id'];
   }
 
+  // This line below is to add gender for the user
+  // mysqli_query($conn, "insert into gender_user(user_id, identity, date_created, date_modified, status) values('$user_id','$gender','$date_created','$date_modified','$status')")  or die("Query add gender is incorrect.....");
+
   if ($type == 'faculty') {
-    mysqli_query($conn, "insert into faculty(user_id, faculty_id_no, firstname, lastname, email, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified', '$status')")  or die("Query 2 is incorrect.....");
+    mysqli_query($conn, "insert into faculty(user_id, faculty_id_no, firstname, lastname, email, gender, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified', '$status')")  or die("Query 2 is incorrect.....");
   } elseif ($type == 'student') {
-    mysqli_query($conn, "insert into student(user_id, student_id_no, course_id, firstname, lastname, email, password, date_created, date_modified, status) values('$user_id','$id_no','$course_id','$firstname','$lastname','$email','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
+    mysqli_query($conn, "insert into student(user_id, student_id_no, course_id, firstname, lastname, email, gender, password, date_created, date_modified, status) values('$user_id','$id_no','$course_id','$firstname','$lastname','$email','$gender','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
   }
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' Added!.")</script>';
   if ($user == "admin") {
@@ -136,6 +140,14 @@ include 'admin_header.php';
                     <div class="form-group">
                       <label>Email address</label>
                       <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <select class="form-control" id="gender" name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
                     </div>
                     <br>
                     <div class="form-group">
