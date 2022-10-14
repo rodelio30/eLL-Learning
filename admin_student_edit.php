@@ -2,36 +2,6 @@
 include 'admin_checker.php';
 date_default_timezone_set("Asia/Manila");
 
-if (isset($_POST['update'])) {
-  $filename = $_FILES["uploadfile"]["name"];
-  $tempname = $_FILES["uploadfile"]["tmp_name"];
-  $folder = "uploads/student_image/" . $filename;
-
-  $student_id    = $_POST['student_id'];
-  $user_id       = $_POST['user_id'];
-  $student_id_no = $_POST['student_id_no'];
-  $firstname     = $_POST['firstname'];
-  $lastname      = $_POST['lastname'];
-  $course_id     = $_POST['course_id'];
-  $description   = $_POST['description'];
-  $email         = $_POST['email'];
-  $password      = $_POST['password'];
-  $status        = $_POST['status'];
-  $date_modified = date("Y-m-d h:i:s");
-
-  mysqli_query($conn, "update student set student_id_no = '$student_id_no', img= '$filename', course_id = '$course_id', firstname = '$firstname', lastname = '$lastname', description = '$description', email = '$email', password = '$password', status = '$status', date_modified = '$date_modified' where student_id = '$student_id'") or die("Query 4 is incorrect....");
-  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$user_id'") or die("Query 5 is incorrect....");
-
-  if (move_uploaded_file($tempname, $folder)) {
-    echo "<script>console.log('Image uploaded successfully!');</script>";
-  } else {
-    echo "<script>console.log(' Failed to upload image!!');</script>";
-  }
-
-  echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
-  // header('Refresh: 0; url=admin_student.php');
-}
-
 $student_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM student WHERE student_id='$student_id'");
@@ -41,11 +11,33 @@ while ($res   = mysqli_fetch_array($result)) {
   $firstname      = $res['firstname'];
   $lastname       = $res['lastname'];
   $email          = $res['email'];
+  $gender         = $res['gender'];
   $course_id_user = $res['course_id'];
   $description    = $res['description'];
   $password       = $res['password'];
   $status         = $res['status'];
 }
+
+if (isset($_POST['update'])) {
+  $user_id       = $_POST['user_id'];
+  $student_id_no = $_POST['student_id_no'];
+  $firstname     = $_POST['firstname'];
+  $lastname      = $_POST['lastname'];
+  $course_id     = $_POST['course_id'];
+  $description   = $_POST['description'];
+  $email         = $_POST['email'];
+  $gender        = $_POST['gender'];
+  $password      = $_POST['password'];
+  $status        = $_POST['status'];
+  $date_modified = date("Y-m-d h:i:s");
+
+  mysqli_query($conn, "update student set student_id_no = '$student_id_no', course_id = '$course_id', firstname = '$firstname', lastname = '$lastname', description = '$description', email = '$email', gender = '$gender', password = '$password', status = '$status', date_modified = '$date_modified' where student_id = '$student_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$user_id'") or die("Query 5 is incorrect....");
+
+  echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
+  // header('Refresh: 0; url=admin_student.php');
+}
+
 
 $sel_active  = "";
 $sel_archive = "";
@@ -102,10 +94,6 @@ include 'admin_header.php';
                 <div class="card-body">
                   <form method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                      <input class="form-control" type="file" name="uploadfile" />
-                    </div>
-                    <br>
-                    <div class="form-group">
                       <label for="exampleInputEmail1">ID Number</label>
                       <input type="text" class="form-control" id="student_id_no" name="student_id_no"
                         value="<?php echo $student_id_no ?>" placeholder="ID number">
@@ -146,6 +134,23 @@ include 'admin_header.php';
                     </div>
                     <br>
                     <div class="form-group">
+                      <label>Gender</label>
+                      <select class="form-control" id="gender" name="gender">
+                        <?php
+                        $isSelectM = '';
+                        $isSelectF = '';
+                        if ($gender == 'Male' || $gender == null) {
+                          $isSelectM = 'selected';
+                        } else {
+                          $isSelectF = 'selected';
+                        }
+                        ?>
+                        <option value="Male" <?php echo $isSelectM ?>>Male</option>
+                        <option value="Female" <?php echo $isSelectF ?>>Female</option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
                       <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>"
                         placeholder="Enter Email Address">
@@ -170,7 +175,6 @@ include 'admin_header.php';
                     <br>
                     <div class="form-group">
                       <input type="hidden" name="user_id" value="<?php echo $user_id_no; ?>">
-                      <input type="hidden" name="student_id" value="<?php echo $_GET['ID']; ?>">
                       <button type="submit" class="btn btn-success" name="update">Update</button>
                     </div>
                   </form>

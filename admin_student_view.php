@@ -13,6 +13,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $course_id     = $res['course_id'];
   $description   = $res['description'];
   $email         = $res['email'];
+  $gender        = $res['gender'];
   $date_created  = $res['date_modified'];
   $date_modified = $res['date_modified'];
   $status        = $res['status'];
@@ -114,6 +115,17 @@ include 'admin_header.php';
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo $description ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Gender</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php echo !$gender ? '' : $gender ?>
                                 </div>
                               </div>
                             </div>
