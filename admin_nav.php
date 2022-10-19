@@ -79,7 +79,7 @@ if ($nav_active == 'archive') {
 
 <li class="sidebar-item <?php echo $course_select ?>">
   <a class="sidebar-link" href="admin_courses.php">
-    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses</span>
+    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses Studies</span>
   </a>
 </li>
 
