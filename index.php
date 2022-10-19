@@ -15,6 +15,9 @@ include 'admin_checker.php';
 // 	header("location: student.php");
 // }
 include 'counter/counter.php';
+// echo "<script>console.log('Female Faculty Count is: " . $female_faculty_counter . "');</script>";
+$query_gender = "SELECT gender, count(*) as number FROM faculty where status != 'archive' GROUP BY gender";
+$result_gender = mysqli_query($conn, $query_gender);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +115,7 @@ include 'admin_header.php';
                 </div>
                 <div class="col-sm-3">
                   <div class="card">
-                    <a href="admin_document.php">
+                    <a href="admin_resources.php">
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
@@ -132,120 +135,43 @@ include 'admin_header.php';
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-12 col-lg-8 col-xxl-6 d-flex">
-                  <div class="card flex-fill">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">
-                          <h5 class="card-title mb-0">Latest Document Uploaded</h5>
-                        </div>
-                        <div class="col-4"></div>
-                        <div class="col-4">
-                          <a <?php echo "href=\"admin_document.php\" " ?> style="float: right"
-                            class="view-dashboard">View
-                            All Documents</a>
-                        </div>
-                      </div>
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col" style="width: 40%">Title</th>
-                            <th scope="col" style="width: 20%">Owner</th>
-                            <th scope="col" style="width: 10%">Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, file_uploader_id, status from document WHERE status!='archive' LIMIT 5") or die("Query 1 is incorrect....");
-                          while (list($doc_id, $title, $file_size, $file_type, $file_uploader_id, $status) = mysqli_fetch_array($result)) {
-                            $uploader_name = uploaderName($file_uploader_id);
-                            $icon_img      = '';
+              <div class="col-12 col-md-6 col-xxl-6 d-flex">
+                <div class="card flex-fill w-100">
+                  <div class="card-header">
 
-                            if ($file_type === "pdf") {
-                              $icon_img   = 'pdf';
-                            } else if ($file_type === "doc" || $file_type === "docs") {
-                              $icon_img   = 'doc';
-                            } else if ($file_type === "xls" || $file_type === "xlsx" || $file_type === "xlc") {
-                              $icon_img   = 'xls';
-                            } else if ($file_type === "txt") {
-                              $icon_img   = 'txt';
-                            }
-                            echo "
-														<tr>	
-															<td scope='row'><a href=\"admin_document_view.php?ID=$doc_id\" class='user-clicker'>$title.$file_type</a></td>
-															<td>$uploader_name</td>
-															<td>$status</td>
-														</tr>	
-													";
-                          }
-                          // this function is to return a name for the material 
-                          function uploaderName($file_uploader_id)
-                          {
-                            include 'include/connect.php';
-                            $result = mysqli_query($conn, "select firstname, lastname from faculty WHERE faculty_id='$file_uploader_id'") or die("Query 1 is incorrect....");
-                            while (list($firstname, $lastname) = mysqli_fetch_array($result)) {
-                              $uploader = $firstname . '' . $lastname;
-                              return $uploader;
-                            }
-                          }
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
+                    <h5 class="card-title mb-0">Gender Browser User</h5>
                   </div>
-                </div>
-                <div class="col-12 col-lg-4 col-xxl-6 d-flex">
-                  <div class="card flex-fill w-100">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">
-                          <h5 class="card-title mb-0">History Log</h5>
-                        </div>
-                        <div class="col-4"></div>
-                        <div class="col-4">
-                          <a <?php echo "href=\"history.php\" " ?> style="float: right" class="view-dashboard">View All
-                            Log</a>
+                  <div class="card-body d-flex">
+                    <div class="align-self-center w-100">
+                      <div class="py-3">
+                        <div class="chart chart-xs">
+                          <div id="piechart" style="width: 900px; height: 500px;"></div>
                         </div>
                       </div>
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th style="width: 35%">User</th>
-                            <th style="width: 30%">Transaction Name</th>
-                            <th style="width: 50%">Time</th>
-                          </tr>
-                        </thead>
+
+                      <table class="table mb-0">
                         <tbody>
-                          <?php
-                          $result = mysqli_query($conn, "select log_id, user_id, transaction_name, log_time from transaction_log WHERE user_id != 0 ORDER BY log_id DESC LIMIT 5") or die("Query 1 is incorrect....");
-                          while (list($log_id, $user_id, $transaction_name, $log_time) = mysqli_fetch_array($result)) {
-                            $user_name = userName($user_id);
-                            echo "
-                                <tr>	
-                                  <td>$user_name</td>
-                                  <td>$transaction_name</td>
-                                  <td>$log_time</td>
-                                </tr>	
-                              ";
-                          }
-                          // this function is to return a name for the material 
-                          function userName($user_id)
-                          {
-                            include 'include/connect.php';
-                            $result = mysqli_query($conn, "select firstname, lastname from users WHERE id = '$user_id'") or die("Query 1 is incorrect.....");
-                            while (list($firstname, $lastname) = mysqli_fetch_array($result)) {
-                              $user_name = $firstname . " " . $lastname;
-                              return $user_name;
-                            }
-                          }
-                          ?>
+                          <tr>
+                            <td>Male</td>
+                            <td class="text-end"><?php echo $male_faculty_counter ?></td>
+                          </tr>
+                          <tr>
+                            <td>Female</td>
+                            <td class="text-end"><?php echo $female_faculty_counter ?></td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
-              </div><!-- End of second content -->
+              </div>
+              <?php
+              include 'admin_homepage_charts.php';
+              ?>
+              <?php
+              include 'admin_homepage_latest_resources.php';
+              include 'admin_homepage_latest_log.php';
+              ?>
 
             </div>
           </div>

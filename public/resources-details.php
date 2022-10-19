@@ -2,7 +2,7 @@
 include 'public_checker.php';
 $resource_id = $_GET['ID'];
 // echo "<script>console.log(' This is boom : " . $resource_id . "');</script>";
-$result     = mysqli_query($conn, "SELECT * FROM document WHERE doc_id = '$resource_id'");
+$result     = mysqli_query($conn, "SELECT * FROM resources WHERE doc_id = '$resource_id'");
 while ($res = mysqli_fetch_array($result)) {
   $doc_id           = $res['doc_id'];
   $material_id      = $res['material_id'];
