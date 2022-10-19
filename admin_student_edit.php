@@ -35,7 +35,7 @@ if (isset($_POST['update'])) {
   mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$user_id'") or die("Query 5 is incorrect....");
 
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
-  // header('Refresh: 0; url=admin_student.php');
+  header('Refresh: 0; url=admin_student_view.php?ID=' . $student_id . '');
 }
 
 

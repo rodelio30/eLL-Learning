@@ -26,7 +26,7 @@ if (isset($_POST['update'])) {
 
   echo '<script type="text/javascript"> alert("Resource ' . $update_title . ' updated!.")</script>';
   // header('Refresh: 0; url=admin_resources.php');
-  header('Refresh: 0; url=admin_document_view.php?ID=' . $docu_id . '');
+  header('Refresh: 0; url=admin_resource_view.php?ID=' . $docu_id . '');
 }
 
 $doc_id = $_GET['ID'];
@@ -127,7 +127,7 @@ include 'admin_header.php';
                             <?php
                             $select_lang = '';
                             $select_lit = '';
-                            if ($resource_type == 'Language') {
+                            if ($resource_type == 'Language' || $resource_type == null) {
                               $select_lang = 'selected';
                             } else {
                               $select_lit = 'selected';
