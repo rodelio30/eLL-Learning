@@ -50,10 +50,10 @@ if (isset($_POST['submit_admin'])) {
   <meta name="keywords"
     content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-  <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="icon" href="img/icons/clsu-logo.png">
 
-  <link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.php" />
+  <!-- <link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.php" /> -->
 
   <title>Language and Literature</title>
 
@@ -70,7 +70,7 @@ if (isset($_POST['submit_admin'])) {
           home</button>
         <div class="container d-flex flex-column pt-3">
           <div class="text-center mt-6">
-            <h1 class="h1" style="font-weight: bold; color: white">Welcome back!</h1>
+            <h1 class="h1" style="font-weight: bold; color: white">Welcome!</h1>
             <p class="lead" style="color: white">
               Sign in to your account to continue
             </p>
@@ -116,7 +116,7 @@ if (isset($_POST['submit_admin'])) {
               height="132" style="margin-left: 4%;" />
             <h2 class="h1 pt-4">Language and</h2>
             <h2 class="h1">Literature</h2>
-            <h1 class="h1 pt-3">e-Learning!</h1>
+            <h1 class="h1 pt-3">e-Learning Hub!</h1>
             <p class="clsu pt-3">
               Department of English and Humanities
               <br>

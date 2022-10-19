@@ -6,32 +6,38 @@ $student_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM student WHERE student_id='$student_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $student_id_no  = $res['student_id_no'];
-  $user_id_no     = $res['user_id'];
-  $firstname      = $res['firstname'];
-  $lastname       = $res['lastname'];
-  $email          = $res['email'];
-  $gender         = $res['gender'];
-  $course_id_user = $res['course_id'];
-  $description    = $res['description'];
-  $password       = $res['password'];
-  $status         = $res['status'];
+  $student_id_no   = $res['student_id_no'];
+  $user_id_no      = $res['user_id'];
+  $firstname       = $res['firstname'];
+  $lastname        = $res['lastname'];
+  $email           = $res['email'];
+  $gender          = $res['gender'];
+  $student_course  = $res['student_course'];
+  $student_year    = $res['student_year'];
+  $student_section = $res['student_section'];
+  $course_id_user  = $res['course_id'];
+  $description     = $res['description'];
+  $password        = $res['password'];
+  $status          = $res['status'];
 }
 
 if (isset($_POST['update'])) {
-  $user_id       = $_POST['user_id'];
-  $student_id_no = $_POST['student_id_no'];
-  $firstname     = $_POST['firstname'];
-  $lastname      = $_POST['lastname'];
-  $course_id     = $_POST['course_id'];
-  $description   = $_POST['description'];
-  $email         = $_POST['email'];
-  $gender        = $_POST['gender'];
-  $password      = $_POST['password'];
-  $status        = $_POST['status'];
-  $date_modified = date("Y-m-d h:i:s");
+  $user_id         = $_POST['user_id'];
+  $student_id_no   = $_POST['student_id_no'];
+  $firstname       = $_POST['firstname'];
+  $lastname        = $_POST['lastname'];
+  // $course_id       = $_POST['course_id'];
+  $description     = $_POST['description'];
+  $email           = $_POST['email'];
+  $gender          = $_POST['gender'];
+  $student_course  = $_POST['student_course'];
+  $student_year    = $_POST['student_year'];
+  $student_section = $_POST['student_section'];
+  $password        = $_POST['password'];
+  $status          = $_POST['status'];
+  $date_modified   = date("Y-m-d h:i:s");
 
-  mysqli_query($conn, "update student set student_id_no = '$student_id_no', course_id = '$course_id', firstname = '$firstname', lastname = '$lastname', description = '$description', email = '$email', gender = '$gender', password = '$password', status = '$status', date_modified = '$date_modified' where student_id = '$student_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update student set student_id_no = '$student_id_no', firstname = '$firstname', lastname = '$lastname', description = '$description', email = '$email', gender = '$gender', student_course = '$student_course', student_year = '$student_year', student_section = '$student_section', password = '$password', status = '$status', date_modified = '$date_modified' where student_id = '$student_id'") or die("Query 4 is incorrect....");
   mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$user_id'") or die("Query 5 is incorrect....");
 
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
@@ -112,6 +118,26 @@ include 'admin_header.php';
                     </div>
                     <br>
                     <div class="form-group">
+                      <div class="row">
+                        <div class="col-4">
+                          <label for="exampleInputEmail1">Course</label>
+                          <input type="text" class="form-control" id="student_course" name="student_course"
+                            value="<?php echo $student_course ?>" placeholder="Student Course">
+                        </div>
+                        <div class="col-4">
+                          <label for="exampleInputEmail1">Year</label>
+                          <input type="number" class="form-control" id="student_year" name="student_year"
+                            value="<?php echo $student_year ?>" placeholder="Year" min="1" max="5">
+                        </div>
+                        <div class="col-4">
+                          <label for="exampleInputEmail1">Section </label>
+                          <input type="text" class="form-control" id="student_section" name="student_section"
+                            value="<?php echo $student_section ?>" placeholder="Section">
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <!-- <div class="form-group">
                       <label for="exampleInputEmail1">Course</label>
                       <select class="form-control" id="course_id" name="course_id">
                         <?php
@@ -126,7 +152,7 @@ include 'admin_header.php';
                         ?>
                       </select>
                     </div>
-                    <br>
+                    <br> -->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Description</label>
                       <input type="text" class="form-control" id="description" name="description"

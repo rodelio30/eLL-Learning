@@ -5,24 +5,27 @@ $student_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM student WHERE student_id='$student_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $student_id    = $res['student_id'];
-  $student_id_no = $res['student_id_no'];
-  $img           = $res['img'];
-  $firstname     = $res['firstname'];
-  $lastname      = $res['lastname'];
-  $course_id     = $res['course_id'];
-  $description   = $res['description'];
-  $email         = $res['email'];
-  $gender        = $res['gender'];
-  $date_created  = $res['date_modified'];
-  $date_modified = $res['date_modified'];
-  $status        = $res['status'];
+  $student_id      = $res['student_id'];
+  $student_id_no   = $res['student_id_no'];
+  $img             = $res['img'];
+  $firstname       = $res['firstname'];
+  $lastname        = $res['lastname'];
+  $course_id       = $res['course_id'];
+  $description     = $res['description'];
+  $email           = $res['email'];
+  $gender          = $res['gender'];
+  $student_course  = $res['student_course'];
+  $student_year    = $res['student_year'];
+  $student_section = $res['student_section'];
+  $date_created    = $res['date_modified'];
+  $date_modified   = $res['date_modified'];
+  $status          = $res['status'];
 }
 
-$select_course_name = mysqli_query($conn, "SELECT name FROM courses WHERE course_id = '$course_id'");
-while ($res = mysqli_fetch_array($select_course_name)) {
-  $course_name = $res['name'];
-}
+// $select_course_name = mysqli_query($conn, "SELECT name FROM courses WHERE course_id = '$course_id'");
+// while ($res = mysqli_fetch_array($select_course_name)) {
+//   $course_name = $res['name'];
+// }
 ?>
 
 <!DOCTYPE html>
@@ -97,13 +100,28 @@ include 'admin_header.php';
                               </div>
                             </div>
                             <hr>
-                            <div class="row">
+                            <!-- <div class="row">
                               <div class="col-sm-3">
                                 <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course</strong></h6>
                               </div>
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
                                   <?php echo !empty($course_name) ? $course_name : '' ?>
+                                </div>
+                              </div>
+                            </div>
+                            <hr> -->
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0 flatpickr-weekwrapper"><strong>Course/Year/Section</strong></h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                <div class="flatpickr-weekwrapper">
+                                  <?php
+                                  echo !empty($student_course) ? $student_course . ' ' : '';
+                                  echo !empty($student_year) ? $student_year . ' - ' : '';
+                                  echo !empty($student_section) ? $student_section : '';
+                                  ?>
                                 </div>
                               </div>
                             </div>
