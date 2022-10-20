@@ -22,7 +22,7 @@
           </thead>
           <tbody>
             <?php
-            $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, file_uploader_id, status from document WHERE status!='archive' LIMIT 5") or die("Query 1 is incorrect....");
+            $result = mysqli_query($conn, "select doc_id, title, file_size, file_type, file_uploader_id, status from resources WHERE status!='archive' LIMIT 5") or die("Query 1 is incorrect....");
             while (list($doc_id, $title, $file_size, $file_type, $file_uploader_id, $status) = mysqli_fetch_array($result)) {
               $uploader_name = uploaderName($file_uploader_id);
               $icon_img      = '';
@@ -38,7 +38,7 @@
               }
               echo "
 														<tr>	
-															<td scope='row'><a href=\"admin_document_view.php?ID=$doc_id\" class='user-clicker'>$title.$file_type</a></td>
+															<td scope='row'><a href=\"admin_resource_view.php?ID=$doc_id\" class='user-clicker'>$title.$file_type</a></td>
 															<td>$uploader_name</td>
 															<td>$status</td>
 														</tr>	

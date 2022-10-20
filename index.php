@@ -16,8 +16,10 @@ include 'admin_checker.php';
 // }
 include 'counter/counter.php';
 // echo "<script>console.log('Female Faculty Count is: " . $female_faculty_counter . "');</script>";
-$query_gender = "SELECT gender, count(*) as number FROM faculty where status != 'archive' GROUP BY gender";
-$result_gender = mysqli_query($conn, $query_gender);
+$query_gender_faculty = "SELECT gender, count(*) as number FROM faculty where status != 'archive' GROUP BY gender";
+$result_faculty_gender = mysqli_query($conn, $query_gender_faculty);
+$query_gender_student = "SELECT gender, count(*) as number FROM student where status != 'archive' GROUP BY gender";
+$result_student_gender = mysqli_query($conn, $query_gender_student);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,36 +134,6 @@ include 'admin_header.php';
                         <h1 class="mt-1 mb-3 ms-3"><?php echo $resources_counter ?></h1>
                       </div>
                     </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-xxl-6 d-flex">
-                <div class="card flex-fill w-100">
-                  <div class="card-header">
-
-                    <h5 class="card-title mb-0">Gender Browser User</h5>
-                  </div>
-                  <div class="card-body d-flex">
-                    <div class="align-self-center w-100">
-                      <div class="py-3">
-                        <div class="chart chart-xs">
-                          <div id="piechart" style="width: 900px; height: 500px;"></div>
-                        </div>
-                      </div>
-
-                      <table class="table mb-0">
-                        <tbody>
-                          <tr>
-                            <td>Male</td>
-                            <td class="text-end"><?php echo $male_faculty_counter ?></td>
-                          </tr>
-                          <tr>
-                            <td>Female</td>
-                            <td class="text-end"><?php echo $female_faculty_counter ?></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
                   </div>
                 </div>
               </div>
