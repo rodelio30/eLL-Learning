@@ -120,6 +120,8 @@ if (isset($_POST['submit_admin'])) {
             <p class="clsu pt-3">
               Department of English and Humanities
               <br>
+              College of Arts and Social Sciences
+              <br>
               <span>
                 Central Luzon State University
               </span>
