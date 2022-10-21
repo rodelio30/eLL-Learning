@@ -7,8 +7,8 @@ $course_counter    = 0;
 $program_counter   = 0;
 
 $male_faculty_counter   = 0;
-$female_faculty_counter = 0;
 $male_student_counter   = 0;
+$female_faculty_counter = 0;
 $female_student_counter = 0;
 
 $archive_faculty   = 0;
@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
   $faculty_counter = 0;
 }
 
-// This line is Counting for the number of Faculty Male User
+// This line is to count the number of Faculty Male User
 $result = mysqli_query($conn, "select gender from faculty WHERE status!='archive'") or die("Query 1 is incorrect....");
 while (list($gender) = mysqli_fetch_array($result)) {
   if ($gender == 'Male') {
@@ -36,6 +36,17 @@ while (list($gender) = mysqli_fetch_array($result)) {
   }
   if ($gender == 'Female') {
     $female_faculty_counter++;
+  }
+}
+
+// This line is to count the number of Student Male User
+$result = mysqli_query($conn, "select gender from student WHERE status!='archive'") or die("Query 1 is incorrect....");
+while (list($gender) = mysqli_fetch_array($result)) {
+  if ($gender == 'Male') {
+    $male_student_counter++;
+  }
+  if ($gender == 'Female') {
+    $female_student_counter++;
   }
 }
 

@@ -24,4 +24,7 @@
   <!-- This line below is the css for the datatables -->
   <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+
+  <!-- List below is the js for charts -->
+  <script type="text/javascript" src="css/charts/loader.js"></script>
 </head>

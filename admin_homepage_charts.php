@@ -1,15 +1,16 @@
 <div class="row">
-  <div class="col-12 col-md-6 col-xxl-6 d-flex">
+  <div class="col-12 col-md-4 col-xxl-4 d-flex">
     <div class="card flex-fill w-100">
       <div class="card-header">
 
-        <h5 class="card-title mb-0">Gender Browser User</h5>
+        <h5 class="card-title mb-0">Student Gender</h5>
       </div>
       <div class="card-body d-flex">
         <div class="align-self-center w-100">
           <div class="py-3">
             <div class="chart chart-xs">
-              <canvas id="chartjs-dashboard-pie"></canvas>
+              <!-- <canvas id="chartjs-dashboard-pie"></canvas> -->
+              <div id="piechart-faculty" style="width: 100%; height: 100%;"></div>
             </div>
           </div>
 
@@ -29,12 +30,43 @@
       </div>
     </div>
   </div>
-  <div class="col-12 col-lg-6">
+  <div class="col-11 col-md-4 col-xxl-4 d-flex">
+    <div class="card flex-fill w-100">
+      <div class="card-header">
+
+        <h5 class="card-title mb-0">Faculty Gender</h5>
+      </div>
+      <div class="card-body d-flex">
+        <div class="align-self-center w-100">
+          <div class="py-3">
+            <div class="chart chart-xs">
+              <!-- <canvas id="chartjs-dashboard-pie"></canvas> -->
+              <div id="piechart-student" style="width: 100%; height: 100%;"></div>
+            </div>
+          </div>
+
+          <table class="table mb-0">
+            <tbody>
+              <tr>
+                <td>Male</td>
+                <td class="text-end"><?php echo $male_student_counter ?></td>
+              </tr>
+              <tr>
+                <td>Female</td>
+                <td class="text-end"><?php echo $female_student_counter ?></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-4">
     <div class="card">
       <div class="card-header">
-        <h5 class="card-title">Bar Chart</h5>
+        <h5 class="card-title">Student Active Gender</h5>
         <h6 class="card-subtitle text-muted">A bar chart provides a way of showing data values represented as
-          vertical bars.</h6>
+          vertical bars for the students who have actively using the website.</h6>
       </div>
       <div class="card-body">
         <div class="chart">
@@ -99,30 +131,66 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Pie chart
-  new Chart(document.getElementById("chartjs-dashboard-pie"), {
-    type: "pie",
-    data: {
-      labels: ["Male", "Female"],
-      datasets: [{
-        data: [4306, 3801],
-        backgroundColor: [
-          window.theme.primary,
-          window.theme.warning,
-        ],
-        borderWidth: 2
-      }]
-    },
-    options: {
-      responsive: !window.MSInputMethodContext,
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-      cutoutPercentage: 75
-    }
-  });
+<!-- This line below is the useful chart -->
+<script type="text/javascript">
+google.charts.load('current', {
+  'packages': ['corechart']
 });
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Gender', 'Number'],
+    <?php
+      while ($row = mysqli_fetch_array($result_faculty_gender)) {
+        echo "['" . $row["gender"] . "', " . $row["number"] . "],";
+      }
+      ?>
+  ]);
+  var options = {
+    //is3D:true,  
+    pieHole: 0.15,
+    slices: {
+      0: {
+        color: '#FFD984'
+      },
+      1: {
+        color: '#007848'
+      }
+    }
+  };
+  var chart = new google.visualization.PieChart(document.getElementById('piechart-faculty'));
+  chart.draw(data, options);
+}
+</script>
+<script type="text/javascript">
+google.charts.load('current', {
+  'packages': ['corechart']
+});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Gender', 'Number'],
+    <?php
+      while ($row = mysqli_fetch_array($result_student_gender)) {
+        echo "['" . $row["gender"] . "', " . $row["number"] . "],";
+      }
+      ?>
+  ]);
+  var options = {
+    //is3D:true,  
+    pieHole: 0.15,
+    slices: {
+      0: {
+        color: 'pink'
+      },
+      1: {
+        color: 'blue'
+      }
+    }
+  };
+  var chart = new google.visualization.PieChart(document.getElementById('piechart-student'));
+  chart.draw(data, options);
+}
 </script>
