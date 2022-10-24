@@ -20,6 +20,8 @@ $query_gender_faculty = "SELECT gender, count(*) as number FROM faculty where st
 $result_faculty_gender = mysqli_query($conn, $query_gender_faculty);
 $query_gender_student = "SELECT gender, count(*) as number FROM student where status != 'archive' GROUP BY gender";
 $result_student_gender = mysqli_query($conn, $query_gender_student);
+$query_gender = "SELECT gender, count(*) as number FROM transaction_log where user_type = 'student' && transaction_name='Log in' GROUP BY gender";
+$result_active_gender = mysqli_query($conn, $query_gender);
 ?>
 <!DOCTYPE html>
 <html lang="en">
