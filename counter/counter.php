@@ -8,8 +8,10 @@ $program_counter   = 0;
 
 $male_faculty_counter   = 0;
 $male_student_counter   = 0;
+$male_active_counter   = 0;
 $female_faculty_counter = 0;
 $female_student_counter = 0;
+$female_active_counter = 0;
 
 $archive_faculty   = 0;
 $archive_student   = 0;
@@ -47,6 +49,17 @@ while (list($gender) = mysqli_fetch_array($result)) {
   }
   if ($gender == 'Female') {
     $female_student_counter++;
+  }
+}
+
+// This line is to count the number of Student Male User
+$result_active_gender = mysqli_query($conn, "select gender from transaction_log WHERE user_type='student' && transaction_name='Log in'") or die("Query 1 is incorrect....");
+while (list($gender) = mysqli_fetch_array($result_active_gender)) {
+  if ($gender == 'Male') {
+    $male_active_counter++;
+  }
+  if ($gender == 'Female') {
+    $female_active_counter++;
   }
 }
 
