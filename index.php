@@ -14,7 +14,6 @@ include 'admin_checker.php';
 // if($type=='student'){
 // 	header("location: student.php");
 // }
-include 'counter/counter.php';
 // echo "<script>console.log('Female Faculty Count is: " . $female_faculty_counter . "');</script>";
 $query_gender_faculty = "SELECT gender, count(*) as number FROM faculty where status != 'archive' GROUP BY gender";
 $result_faculty_gender = mysqli_query($conn, $query_gender_faculty);

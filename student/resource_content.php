@@ -1,11 +1,23 @@
 <?php
+// isset is a condition to check if ID and RType are set
 if (isset($_GET['ID'])) {
   $search_material_id = $_GET['ID'];
 }
-
 if (isset($_GET['search_resources'])) {
   $search_resource_file = $_GET['search_resources'];
   // $search_resource_file = $_GET['search_resources'] ? $_GET['search_resources'] : '';
+}
+$resource_filter_type = '';
+if (isset($_GET['RType'])) {
+  $resource_type = $_GET['RType'];
+  // $resource_type == 'Lang' ? $resource_filer_type = 'Language' : $resource_filter_type = 'Literature';
+  if ($resource_type == 'Lang') {
+    $resource_filter_type  = 'Language';
+  }
+  if ($resource_type == 'Lit') {
+    $resource_filter_type = 'Literature';
+  }
+  echo "<script>console.log('San ka punta? : " . $resource_filter_type . "');</script>";
 }
 
 $search_value = !empty($search_resource_file) ? $search_resource_file : '';
@@ -23,11 +35,15 @@ $search_value = !empty($search_resource_file) ? $search_resource_file : '';
     <?php
     if (!empty($search_resource_file)) {
       echo "<script>console.log(' This is boom : " . $search_resource_file . "');</script>";
-      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from document WHERE status!='archive' AND (`title` LIKE '%" . $search_resource_file . "%') OR (`file_type` LIKE '%" . $search_resource_file . "%') ORDER BY title ASC") or die("Query 1 is incorrect....");
+      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from resources WHERE status!='archive' AND (`title` LIKE '%" . $search_resource_file . "%') OR (`file_type` LIKE '%" . $search_resource_file . "%') ORDER BY title ASC") or die("Query 1 is incorrect....");
     } else if (!empty($search_material_id)) {
-      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from document WHERE status!='archive' AND material_id = '$search_material_id' ORDER BY title ASC") or die("Query 1 is incorrect....");
+      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from resources WHERE status!='archive' AND material_id = '$search_material_id' ORDER BY title ASC") or die("Query 1 is incorrect....");
+    } else if (!empty($language)) {
+      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from resources WHERE status!='archive' AND resource_type = '$language' ORDER BY title ASC") or die("Query 1 is incorrect....");
+    } else if (!empty($resource_filter_type)) {
+      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from resources WHERE status!='archive' AND resource_type = '$resource_filter_type' ORDER BY title ASC") or die("Query 1 is incorrect....");
     } else {
-      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from document WHERE status!='archive'ORDER BY title ASC") or die("Query 1 is incorrect....");
+      $result = mysqli_query($conn, "select doc_id, material_id, title, file_size, file_type, description, file_uploader_id, status from resources WHERE status!='archive'ORDER BY title ASC") or die("Query 1 is incorrect....");
     }
     // echo "<script>console.log(' This is boom : " . mysqli_num_rows($result) . "');</script>";
     if (mysqli_num_rows($result) != 0) {
@@ -35,9 +51,9 @@ $search_value = !empty($search_resource_file) ? $search_resource_file : '';
       <table class='table'>
         <thead>
           <tr>
-            <th scope='col'>TItle</th>
-            <th scope='col'>Learning Category</th>
-            <th scope='col'>Size</th>
+            <th scope='col' style='width: 70%;'>TItle</th>
+            <th scope='col' style='width: 20%;'>Learning Category</th>
+            <th scope='col' style='width: 10%;'>Size</th>
           </tr>
         </thead>
           <tbody>
@@ -76,7 +92,7 @@ $search_value = !empty($search_resource_file) ? $search_resource_file : '';
     } else {
       echo "<h1>Empty Learnning Resources</h1>";
     }
-    // this is for format of size in each document
+    // this is for format of size in each resources
     function formatsizeunits2($file_size)
     {
       if ($file_size >= 1073741824) {

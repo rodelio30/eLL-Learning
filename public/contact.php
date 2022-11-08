@@ -1,5 +1,7 @@
 <?php
 include 'public_checker.php';
+// $time = date("h:i:s");
+// echo "<script>console.log('broom " . $time . "');</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">

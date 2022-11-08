@@ -1,5 +1,6 @@
 <?php
 include 'faculty_checker.php';
+include '../counter/counter.php';
 
 $document_counter = 0;
 $id = $_SESSION['id'];

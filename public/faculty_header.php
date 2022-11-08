@@ -1,5 +1,5 @@
 <div class="section-title">
-  <h2>Faculty Head</h2>
+  <h2>faculty head</h2>
 </div>
 <?php
 $result = mysqli_query($conn, "select img, firstname, middle_initial, lastname, research, position, description from faculty WHERE status!='archive' AND ( firstname='Mercedita' OR firstname='Daisy' OR firstname='Joan') ORDER BY faculty_id DESC") or die("Query 1 is incorrect....");

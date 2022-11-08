@@ -6,8 +6,8 @@
     Archive</a>
   <a class="dropdown-item" href="history.php"><i class="align-middle me-1" data-feather="clock"></i>
     History Log</a>
-  <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
-    Settings</a>
+  <!-- <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i>
+    Settings</a> -->
   <div class="dropdown-divider"></div>
   <a class="dropdown-item" href="include/sign-out.php">
     <i class="align-middle me-1" data-feather="log-out"></i>

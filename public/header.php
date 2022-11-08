@@ -15,18 +15,6 @@
           <ul>
             <li><a href="resources.php?RType=Lang">Language</a></li>
             <li><a href="resources.php?RType=Lit">Literature</a></li>
-            <!-- <li class="dropdown"><a href="#"><span>Language</span> <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-              </ul>
-            </li>
-            <li class="dropdown"><a href="#"><span>Literature</span> <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
-              </ul>
-            </li> -->
           </ul>
         </li>
         <li class="dropdown"><a href="programs.php"><span>Programs</span> <i class="bi bi-chevron-down"></i></a>

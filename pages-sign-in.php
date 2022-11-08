@@ -112,7 +112,11 @@ if (isset($_POST['submit_admin'])) {
           <div class="right-side-content">
             <img src="img/icons/clsu-logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132"
               height="132" />
+            <img src="img/icons/gad-logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="133"
+              height="132" style="margin-left: 4%;" />
             <img src="img/icons/CAS logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="133"
+              height="132" style="margin-left: 4%;" />
+            <img src="img/icons/DEH logo.jpg" alt="Charles Hall" class="img-fluid rounded-circle" width="133"
               height="132" style="margin-left: 4%;" />
             <h2 class="h1 pt-4">Language and</h2>
             <h2 class="h1">Literature</h2>

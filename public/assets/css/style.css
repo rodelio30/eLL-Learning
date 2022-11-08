@@ -546,6 +546,7 @@ section {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #aaaaaa;
+  font-weight: bold;
   font-family: "Poppins", sans-serif;
 }
 
@@ -988,6 +989,23 @@ section {
   font-size: 20px;
   padding-right: 4px;
   color: #005537;
+}
+
+.resources-header {
+  /* text-transform: uppercase; */
+  color: #008020;
+  font-family: Tahoma;
+  font-weight: bold;
+  font-size: 50px;
+  text-shadow: 2px 2px #3d3b3b;
+}
+
+.resources a {
+  color: rgb(0, 48, 11);
+}
+
+.resources a:hover {
+  color: rgb(9, 163, 45);
 }
 
 @media (max-width: 768px) {
