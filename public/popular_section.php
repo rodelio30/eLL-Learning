@@ -2,14 +2,12 @@
 <section id="resources" class="resources-home">
   <div class="container content" data-aos="fade-up">
     <div class="row" data-aos="zoom-in" data-aos-delay="100">
-      <div class="section-title">
-        <!-- <p class="resources-header">Latest Resources</p> -->
-        <h2>Latest Resources</h2>
-        <!-- <p>Latest Resources</p> -->
-      </div>
+      <p class="resources-header">Latest Resources</p>
+      <!-- <h2>Latest Resources</h2> -->
+      <!-- <p>Latest Resources</p> -->
       <div class="row" data-aos="zoom-in" data-aos-delay="100">
         <?php
-        $result = mysqli_query($conn, "select doc_id, title from resources WHERE status!='archive'ORDER BY title ASC LIMIT 5") or die("Query 1 is incorrect....");
+        $result = mysqli_query($conn, "select doc_id, title from resources WHERE status!='archive'ORDER BY title ASC LIMIT 10") or die("Query 1 is incorrect....");
         // echo "<script>console.log(' This is boom : " . mysqli_num_rows($result) . "');</script>";
         if (mysqli_num_rows($result) != 0) {
           echo "

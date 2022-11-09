@@ -47,9 +47,6 @@ include 'public_head.php';
                       <p>
                        $research
                       </p>
-                      <div class='social'>
-                        <a href='#'><i class='bi bi-facebook'></i></a>
-                      </div>
                     </div>
                   </div>
                 </div>

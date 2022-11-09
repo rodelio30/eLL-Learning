@@ -996,7 +996,7 @@ section {
   color: #008020;
   font-family: Tahoma;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 35px;
   text-shadow: 2px 2px #3d3b3b;
 }
 
@@ -1005,6 +1005,14 @@ section {
 }
 
 .resources a:hover {
+  color: rgb(9, 163, 45);
+}
+
+.resources th a {
+  color: rgb(0, 48, 11);
+}
+
+.resources th a:hover {
   color: rgb(9, 163, 45);
 }
 
@@ -1651,7 +1659,7 @@ section {
   color: #008020;
   font-family: Tahoma;
   font-weight: bold;
-  font-size: 250%;
+  font-size: 35px;
   text-shadow: 2px 2px #3d3b3b;
 }
 
@@ -2308,4 +2316,9 @@ section {
   /* height: 1000px; */
   border-radius: 5px;
   border: 1px solid #eef0ef;
+}
+
+.why-logo {
+  height: 5rem;
+  width: 5rem;
 }
