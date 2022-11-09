@@ -3,60 +3,35 @@
   <div class="container content" data-aos="fade-up">
     <div class="row" data-aos="zoom-in" data-aos-delay="100">
       <div class="section-title">
-        <h2>Resources</h2>
-        <p>Latest Resources</p>
+        <!-- <p class="resources-header">Latest Resources</p> -->
+        <h2>Latest Resources</h2>
+        <!-- <p>Latest Resources</p> -->
       </div>
-
       <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
         <?php
-        $result = mysqli_query($conn, "select doc_id, material_id, title, description, file_size, file_type, status from document WHERE status!='archive' LIMIT 6") or die("Query 1 is incorrect....");
-        while (list($doc_id, $material_id, $title, $description, $file_size, $file_type, $status) = mysqli_fetch_array($result)) {
-          $size          = sizeUnit($file_size);
-          $material_name = nameMaterial($material_id);
-          $icon_img      = '';
-
-          if ($file_type === "pdf") {
-            $icon_img   = 'pdf';
-          } else if ($file_type === "doc" || $file_type === "docs" || $file_type === "docx") {
-            $icon_img   = 'doc';
-          } else if ($file_type === "xls" || $file_type === "xlsx" || $file_type === "xlc") {
-            $icon_img   = 'xls';
-          } else if ($file_type === "txt") {
-            $icon_img   = 'txt';
+        $result = mysqli_query($conn, "select doc_id, title from resources WHERE status!='archive'ORDER BY title ASC LIMIT 5") or die("Query 1 is incorrect....");
+        // echo "<script>console.log(' This is boom : " . mysqli_num_rows($result) . "');</script>";
+        if (mysqli_num_rows($result) != 0) {
+          echo "
+          <table class='table'>
+            <thead>
+              <tr>
+                <th scope='col' style='width: 70%;'>File Name</th>
+              </tr>
+            </thead>
+              <tbody>
+          ";
+          while (list($doc_id, $title) = mysqli_fetch_array($result)) {
+            echo "
+            <tr>
+              <th><a href='resources-details.php?ID=$doc_id'>$title</a></th>
+            </tr>
+          ";
           }
           echo "
-            <ul>
-              <li><i class='bi bi-circle'></i> $title.$file_type</li>
-            </ul>
-
-              ";
-        }
-        function sizeUnit($file_size)
-        {
-          if ($file_size >= 1073741824) {
-            $file_size = number_format($file_size / 1073741824, 2) . ' gb';
-          } elseif ($file_size >= 1048576) {
-            $file_size = number_format($file_size / 1048576, 2) . ' mb';
-          } elseif ($file_size >= 1024) {
-            $file_size = number_format($file_size / 1024, 2) . ' kb';
-          } elseif ($file_size > 1) {
-            $file_size = $file_size . ' bytes';
-          } elseif ($file_size == 1) {
-            $file_size = $file_size . ' byte';
-          } else {
-            $file_size = '0 bytes';
-          }
-
-          return $file_size;
-        }
-        function nameMaterial($material_id)
-        {
-          include '../include/connect.php';
-          $result = mysqli_query($conn, "select name from materials WHERE material_id='$material_id'") or die("Query 1 is incorrect....");
-          while (list($name) = mysqli_fetch_array($result)) {
-            return $name;
-          }
+          </tbody>
+        </table>
+        ";
         }
         ?>
       </div>

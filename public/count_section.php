@@ -7,7 +7,7 @@
       <div class="col-lg-3 col-6 text-center">
         <span data-purecounter-start="0" data-purecounter-end="<?php echo $resources_counter; ?>"
           data-purecounter-duration="1" class="purecounter"></span>
-        <p>Resources</p>
+        <p>e-Resources</p>
       </div>
 
       <div class="col-lg-3 col-6 text-center">
@@ -25,7 +25,7 @@
       <div class="col-lg-3 col-6 text-center">
         <span data-purecounter-start="0" data-purecounter-end="<?php echo $course_counter; ?>"
           data-purecounter-duration="1" class="purecounter"></span>
-        <p>Courses</p>
+        <p>Subjects</p>
       </div>
 
     </div>

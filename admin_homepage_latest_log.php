@@ -15,18 +15,22 @@
         <thead>
           <tr>
             <th style="width: 35%">User</th>
-            <th style="width: 30%">Transaction Name</th>
-            <th style="width: 50%">Time</th>
+            <th style="width: 20%">User Type</th>
+            <th style="width: 20%">Gender</th>
+            <th style="width: 20%">Transaction Name</th>
+            <th style="width: 10%">Time</th>
           </tr>
         </thead>
         <tbody>
           <?php
-          $result = mysqli_query($conn, "select log_id, user_id, transaction_name, log_time from transaction_log WHERE user_id != 0 ORDER BY log_id DESC LIMIT 5") or die("Query 1 is incorrect....");
-          while (list($log_id, $user_id, $transaction_name, $log_time) = mysqli_fetch_array($result)) {
+          $result = mysqli_query($conn, "select log_id, user_id, transaction_name, gender, user_type, log_time from transaction_log WHERE user_id != 0 ORDER BY log_id DESC LIMIT 5") or die("Query 1 is incorrect....");
+          while (list($log_id, $user_id, $transaction_name, $gender, $user_type, $log_time) = mysqli_fetch_array($result)) {
             $user_name = userName($user_id);
             echo "
                                 <tr>	
                                   <td>$user_name</td>
+                                  <td>$user_type</td>
+                                  <td>$gender</td>
                                   <td>$transaction_name</td>
                                   <td>$log_time</td>
                                 </tr>	

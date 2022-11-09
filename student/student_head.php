@@ -6,6 +6,9 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <!-- This line below is to logout the student automatic -->
+  <meta http-equiv="refresh" content="600;url=../include/log_out_warning.php" />
+
   <!-- Favicons -->
   <link href="../public/assets/img/clsu-logo.png" rel="icon">
   <link href="../public/assets/img/clsu-logo.png" rel="apple-touch-icon">

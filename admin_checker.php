@@ -16,3 +16,4 @@ if ($type == 'faculty') {
 if ($type == 'student') {
   header("location: student/index.php");
 }
+include 'counter/counter.php';

@@ -79,27 +79,27 @@ if ($nav_active == 'archive') {
 
 <li class="sidebar-item <?php echo $course_select ?>">
   <a class="sidebar-link" href="admin_courses.php">
-    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Courses Studies</span>
+    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Subjects</span>
   </a>
 </li>
 
 <li class="sidebar-item <?php echo $ct_select ?>">
   <a class="sidebar-link" href="admin_course_type.php">
-    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Category</span>
+    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Course Subject Type</span>
   </a>
 </li>
 
 <hr class="hr-size">
 
-<li class="sidebar-item <?php echo $material_select ?>">
-  <a class="sidebar-link" href="admin_materials.php">
-    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Material Categories</span>
-  </a>
-</li>
-
 <li class="sidebar-item <?php echo $docu_select ?>">
   <a class="sidebar-link" href="admin_resources.php">
     <i class="align-middle" data-feather="file"></i> <span class="align-middle">Resources</span>
+  </a>
+</li>
+
+<li class="sidebar-item <?php echo $material_select ?>">
+  <a class="sidebar-link" href="admin_materials.php">
+    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Resource Categories</span>
   </a>
 </li>
 
