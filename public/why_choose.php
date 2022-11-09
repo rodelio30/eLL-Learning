@@ -1,8 +1,9 @@
     <section id="why-us" class="why-us">
       <div class="container" data-aos="fade-up">
-        <div class="section-title">
+        <!-- <div class="section-title">
           <h2 style="color: black; font-weight: bold;">Why Choose Us</h2>
-        </div>
+        </div> -->
+        <p class="resources-header">Why Choose Us</p>
 
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
@@ -27,23 +28,26 @@
               <div class="row">
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-receipt"></i>
-                    <h4>Corporis voluptates sit</h4>
-                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    <!-- <i class="bx bx-receipt"></i> -->
+                    <img src="../img/icons/clsu-logo.png" alt="clsu broom" class="mb-4 why-logo">
+                    <h4>CLSU</h4>
+                    <p>is one of the most renowned and prestigious state-institutions of higher learning in the country.
+                    </p>
                   </div>
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-cube-alt"></i>
-                    <h4>Ullamco laboris ladore pan</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                    <img src="../img/icons/CAS logo.png" alt="clsu broom" class="mb-4 why-logo">
+                    <h4>CASS</h4>
+                    <p>shall lead in the scientific and ethical production and dissemination of knowledge in human and
+                      social conditions.</p>
                   </div>
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-images"></i>
-                    <h4>Labore consequatur</h4>
-                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                  <div class="icon-box mt-3 mt-xl-0">
+                    <img src="../img/icons/gad-logo.png" alt="clsu broom" class="mb-4 why-logo">
+                    <h4>UGADO</h4>
+                    <p>envisions the attainment of gender equality and full participation of men and women</p>
                   </div>
                 </div>
               </div>
