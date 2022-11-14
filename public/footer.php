@@ -22,6 +22,8 @@
           <ul>
             <li><i class="bx bx-chevron-right"></i> <a href="https://clsu.edu.ph/" target="_blank">CLSU</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="https://clsu-ovpaa.edu.ph/" target="_blank">OVPAA</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/CLSUGADO"
+                target="_blank">UGADO</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="http://cass.clsu-ovpaa.edu.ph/index.html"
                 target="_blank">CASS</a>
             </li>
