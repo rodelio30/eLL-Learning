@@ -11,13 +11,13 @@
     </div>
     <div class="list-group">
       <?php
-      $query_notif = "select name, message, time from contact where time != '' ORDER BY time ASC";
+      $query_notif = "select contact_id, name, message, time from contact where time != '' ORDER BY time ASC";
       $result = mysqli_query($conn, $query_notif) or die("Notif Query Incorrect");
-      while (list($name, $message, $time) = mysqli_fetch_array($result)) {
+      while (list($contact_id, $name, $message, $time) = mysqli_fetch_array($result)) {
         $my_time = strtotime($time);
         $time_ago = get_time_ago($my_time);
         echo "
-          <a href='#' class='list-group-item'>
+          <a href='admin_notification_view.php?ID=$contact_id' class='list-group-item'>
             <div class='row g-0 align-items-center'>
               <div class='col-2'>
                 <i class='text-danger' data-feather='bell'></i>
@@ -61,7 +61,7 @@
       ?>
     </div>
     <div class="dropdown-menu-footer">
-      <a href="#" class="text-muted">Show all notifications</a>
+      <a href="admin_notification.php" class="text-muted">Show all notifications</a>
     </div>
   </div>
 </li>
