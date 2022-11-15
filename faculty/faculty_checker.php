@@ -6,6 +6,7 @@ if (!isset($_SESSION['logged'])) {
   header("location: ../public/index.php");
 }
 include('../include/connect.php');
+include '../counter/counter.php';
 $id = $_SESSION['id'];
 
 $query = mysqli_query($conn, "select type from users where id='$id'") or die("query 1 incorrect.......");
