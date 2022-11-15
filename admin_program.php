@@ -8,7 +8,6 @@ include 'admin_checker.php';
 include 'admin_header.php';
 ?>
 
-
 <body>
   <div class="wrapper">
     <nav id="sidebar" class="sidebar js-sidebar">
