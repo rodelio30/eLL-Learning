@@ -6,6 +6,7 @@ $result     = mysqli_query($conn, "SELECT * FROM resources WHERE doc_id = '$reso
 while ($res = mysqli_fetch_array($result)) {
   $doc_id           = $res['doc_id'];
   $material_id      = $res['material_id'];
+  $resource_type    = $res['resource_type'];
   $title            = $res['title'];
   $file_size        = $res['file_size'];
   $file_type        = $res['file_type'];
@@ -57,7 +58,32 @@ include 'student_head.php';
     <section id="course-details" class="course-details">
       <div class="container" data-aos="fade-up">
         <div class="row">
-          <div class="col-lg-8 mt-0">
+          <div class="col-lg-3">
+            <div class="mt-0 course-info d-flex justify-content-between align-items-center">
+              <h6>Uploader</h6>
+              <p>
+                <?php echo $firstname . ' ' . $lastname ?>
+              </p>
+            </div>
+
+            <div class="course-info d-flex justify-content-between align-items-center">
+              <h6>Course Type</h6>
+              <p><?php echo $resource_type ?></p>
+            </div>
+
+            <div class="course-info d-flex justify-content-between align-items-center">
+              <h6>Course Category</h6>
+              <p><?php echo $material_name ?></p>
+            </div>
+
+            <div class="course-info d-flex justify-content-between align-items-center">
+              <h6>Date Modified</h6>
+              <p>
+                <?php echo $date_modified ?>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-9 mt-0">
             <h3><?php echo $title ?></h3>
             <!-- <img src="../img/photos/$icon_img.svg" class="img-fluid" alt=""> -->
             <p>
@@ -69,33 +95,6 @@ include 'student_head.php';
             <!-- <a href="#" onClick="alert('Hello World!')">The Link</a> -->
             <a href="../uploads/<?php echo $title . '.' . $file_type ?>"
               target='_blank'><?php echo $title . '.' . $file_type ?></a>
-          </div>
-          <div class="col-lg-4">
-            <div class="mt-5 course-info d-flex justify-content-between align-items-center">
-              <h5>Uploader</h5>
-              <p>
-                <?php echo $firstname . ' ' . $lastname ?>
-              </p>
-            </div>
-
-            <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Course Category</h5>
-              <p><?php echo $material_name ?></p>
-            </div>
-
-            <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Date Created</h5>
-              <p>
-                <?php echo $date_created ?>
-              </p>
-            </div>
-
-            <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Date Modified</h5>
-              <p>
-                <?php echo $date_modified ?>
-              </p>
-            </div>
           </div>
         </div>
       </div>

@@ -51,9 +51,7 @@ $search_value = !empty($search_resource_file) ? $search_resource_file : '';
       <table class='table'>
         <thead>
           <tr>
-            <th scope='col' style='width: 70%;'>TItle</th>
-            <th scope='col' style='width: 20%;'>Learning Category</th>
-            <th scope='col' style='width: 10%;'>Size</th>
+            <th scope='col'>File Name</th>
           </tr>
         </thead>
           <tbody>
@@ -79,9 +77,7 @@ $search_value = !empty($search_resource_file) ? $search_resource_file : '';
         }
         echo "
             <tr>
-              <th><a href='resources-details.php?ID=$doc_id'> <img src='../img/photos/$icon_img.svg' class='me-2 img-fluid' style='height:20px' alt='...'> $title.$file_type</a></th>
-              <td>$material_name</td>
-              <td>$size</td>
+              <th><a href='resources-details.php?ID=$doc_id'>$title</a></th>
             </tr>
       ";
       }
