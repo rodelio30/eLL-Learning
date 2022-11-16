@@ -1,6 +1,10 @@
-
 <?php
-include 'admin_checker.php';
+include 'faculty_checker.php';
+
+$id = $_SESSION['id'];
+
+$query = mysqli_query($conn, "select user_id from faculty where user_id='$id'") or die("query 1 incorrect.......");
+list($user_id) = mysqli_fetch_array($query);
 
 $id_notif = $_GET['ID'];
 
@@ -12,35 +16,24 @@ while ($res   = mysqli_fetch_array($result)) {
   $subject      = $res['subject'];
   $contact_message      = $res['message'];
 }
-// echo "<script>console.log('Geh " . $contact_name . "');</script>";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
-include 'admin_header.php';
+include 'faculty_header.php';
 ?>
 
 <body>
   <div class="wrapper">
-    <nav id="sidebar" class="sidebar js-sidebar">
-      <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="index.php">
-          <img src="img/icons/clsu-logo.png" alt="clsu-logo" class='mt-1 archive_photo_size'>
-        </a>
-
-        <ul class="sidebar-nav">
-          <?php
-          $nav_active = 'none';
-          include 'admin_nav.php';
-          ?>
-        </ul>
-
-      </div>
-    </nav>
+    <?php
+    $nav_active = 'none';
+    include 'faculty_nav.php';
+    ?>
 
     <div class="main">
-      <?php include 'admin_main_nav.php'; ?>
+      <?php include 'faculty_main_nav.php'; ?>
 
       <main class="content">
         <div class="container-fluid p-0">
@@ -70,35 +63,17 @@ include 'admin_header.php';
         </div>
       </main>
 
-      <?php include 'admin_footer.php'; ?>
+      <?php include 'faculty_footer.php'; ?>
     </div>
   </div>
 
-  <script src="js/app.js"></script>
-  <script src="js/jquery.min.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/jquery.min.js"></script>
 
   <!-- This line below is the jquery for the datatables -->
-  <script src="js/bb_jquery.dataTables.min.js"></script>
-  <script src="js/1_jquery.dataTables.min.js"></script>
+  <!-- <script src="../js/bb_jquery.dataTables.min.js"></script>
+  <script src="../js/1_jquery.dataTables.min.js"></script> -->
+
 </body>
 
 </html>
-<script>
-$(document).ready(function() {
-  $('#notif_table').DataTable({
-    order: [
-      [3, 'desc']
-    ],
-    "pagingType": "full_numbers",
-    "lengthMenu": [
-      [10, 25, 50, -1],
-      [10, 25, 50, "All"]
-    ],
-    responsive: true,
-    language: {
-      search: "_INPUT_",
-      searchPlaceholder: "Search Notification records",
-    }
-  });
-});
-</script>
