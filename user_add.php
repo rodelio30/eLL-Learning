@@ -16,26 +16,31 @@ if (isset($_POST['submit'])) {
   $date_created  = date("Y-m-d h:i:s");
   $date_modified = date("Y-m-d h:i:s");
 
-  if ($user      == "student") {
-    $course_id   = $_POST['course_id'];
+  $validEmail = false;
+  // email_checker($email);
+  if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "<script>console.log('" . $email . "');</script>";
+    // exit('Invalid email address'); // Use your own error handling ;)
+  }
+  $select = mysqli_query($conn, "SELECT `email` FROM `users` WHERE `email` = '".$email."'") or exit(mysqli_error($connectionID));
+  if(mysqli_num_rows($select)) {
+    echo "<script type='text/javascript'>alert('This email " . $email . " is already being used');
+          document.location='user_add.php?user=".$type."' </script>";
+    $validEmail = true;
   }
 
-  $course_id = ($user == "student") ? $_POST['course_id'] : '';
-
+  if(!$validEmail){
   mysqli_query($conn, "insert into users(firstname, lastname, email, password, type, status) values('$firstname','$lastname','$email','$password','$type','$status')")  or die("Query 3 is incorrect.....");
 
   $upload_user = mysqli_query($conn, "SELECT id FROM users WHERE email='$email'");
   while ($res = mysqli_fetch_array($upload_user)) {
-    $user_id = $res['id'];
+    $user_id    = $res['id'];
   }
-
-  // This line below is to add gender for the user
-  // mysqli_query($conn, "insert into gender_user(user_id, identity, date_created, date_modified, status) values('$user_id','$gender','$date_created','$date_modified','$status')")  or die("Query add gender is incorrect.....");
 
   if ($type == 'faculty') {
     mysqli_query($conn, "insert into faculty(user_id, faculty_id_no, firstname, lastname, email, gender, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified', '$status')")  or die("Query 2 is incorrect.....");
   } elseif ($type == 'student') {
-    mysqli_query($conn, "insert into student(user_id, student_id_no, course_id, firstname, lastname, email, gender, password, date_created, date_modified, status) values('$user_id','$id_no','$course_id','$firstname','$lastname','$email','$gender','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
+    mysqli_query($conn, "insert into student(user_id, student_id_no, firstname, lastname, email, gender, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$gender','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
   }
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' Added!.")</script>';
   if ($user == "admin") {
@@ -44,6 +49,8 @@ if (isset($_POST['submit'])) {
     header('Refresh: 0; url=admin_faculty.php');
   } else if ($user == "student") {
     header('Refresh: 0; url=admin_student.php');
+  }
+
   }
 }
 
@@ -159,23 +166,6 @@ include 'admin_header.php';
                       </select>
                     </div>
                     <br>
-                    <?php
-                    if ($is_Student) {
-                    ?><div class="form-group">
-                      <label>Course Enrolled</label>
-                      <select class="form-control" id="course_id" name="course_id">
-                        <?php
-                          $result = mysqli_query($conn, "select course_id, cat_no from courses WHERE status='active' ORDER BY course_id ASC") or die("Query 4 is inncorrect........");
-                          while (list($course_id, $cat_no) = mysqli_fetch_array($result)) {
-                            echo "<option value='$course_id'>$cat_no</option>";
-                          }
-                          ?>
-                      </select>
-                    </div>
-                    <br>
-                    <?php
-                    }
-                    ?>
                     <div class="form-group">
                       <label>Password</label>
                       <input type="password" class="form-control" id="password" name="password" placeholder="Password">
