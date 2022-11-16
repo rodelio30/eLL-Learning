@@ -1,4 +1,3 @@
-
 <?php
 include 'admin_checker.php';
 
