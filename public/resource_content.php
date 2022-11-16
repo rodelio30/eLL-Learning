@@ -51,7 +51,7 @@ $search_value = !empty($search_resource_file) ? $search_resource_file : '';
       <table class='table table-stripe'>
         <thead>
           <tr>
-            <th scope='col' style='width: 70%;'>File Name</th>
+            <th scope='col'>File Name</th>
           </tr>
         </thead>
           <tbody>
