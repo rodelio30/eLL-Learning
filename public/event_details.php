@@ -1,5 +1,6 @@
 <?php
 include '../include/connect.php';
+include 'event_short_description.php';
 $event_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM events where event_id = '$event_id'");
@@ -11,7 +12,10 @@ while ($res = mysqli_fetch_array($result)) {
   $date_modified = $res['date_modified'];
 }
 
-echo "<script>console.log('" . $img . "');</script>";
+$new_title      = elipsis($title, 3);
+$date_me        = date_create($date_created);
+$date_formatted = date_format($date_me,"Y/m/d H:i:s a");
+// echo "<script>console.log('" . $img . "');</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +36,7 @@ include 'public_head.php';
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
-        <h2><a href="events.php">Events </a> / <?php echo $title ?></h2>
+        <h2><a href="events.php">Events </a> / <?php echo $new_title ?></h2>
       </div>
     </div>
     <!-- End Breadcrumbs -->
@@ -52,10 +56,10 @@ include 'public_head.php';
               <p class="text-justify mt-4">
                 <?php echo $description ?>
               </p>
-              <p class="text-justify">
+              <p class="text-justify mt-4">
                 Date Created:
                 <b>
-                  <?php echo $date_created ?>
+                  <?php echo $date_formatted ?>
                 </b>
               </p>
               <br>

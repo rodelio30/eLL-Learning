@@ -4,9 +4,12 @@
       <p class="event-header">Latest Events</p>
       <?php
       include 'event_short_description.php';
-      $result = mysqli_query($conn, "select event_id, img, title, description, date_created, date_modified from events WHERE status != 'archive' ORDER BY date_modified DESC");
-      while (list($event_id, $img, $title, $description, $date_created, $date_modified) = mysqli_fetch_array($result)) {
+      $result = mysqli_query($conn, "select event_id, img, title, description, date_created from events WHERE status != 'archive' ORDER BY date_modified DESC");
+      while (list($event_id, $img, $title, $description, $date_created) = mysqli_fetch_array($result)) {
         $new_description = elipsis($description, 15);
+        $date_me         = date_create($date_created);
+        $date_formatted   = date_format($date_me,"Y/m/d H:i:s a");
+
         if (!empty($img)) {
           echo "
             <div class='col-md-6 d-flex align-items-stretch mb-4 '>
@@ -19,7 +22,7 @@
                   </a>
                   <div class='card-body'>
                     <h5 class='card-title'><a href='event_details.php?ID=$event_id'>$title</a></h5>
-                    <p class='fst-italic text-center'>$date_created</p>
+                    <p class='fst-italic text-center'>$date_formatted</p>
                     <p class='card-text'>$new_description</p>
                   </div>
                 </div></span>
