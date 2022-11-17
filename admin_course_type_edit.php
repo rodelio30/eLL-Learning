@@ -4,13 +4,13 @@ date_default_timezone_set("Asia/Manila");
 
 if (isset($_POST['update'])) {
   $ct_id   = $_POST['ct_id'];
-  $name        = $_POST['name'];
+  $ctname        = $_POST['name'];
   $status      = $_POST['status'];
   $date_modified = date("Y-m-d h:i:s");
 
   // echo "<script>console.log('" . $email . "');</script>";
-  mysqli_query($conn, "update course_type set name = '$name', status= '$status', date_modified = '$date_modified' where ct_id = '$ct_id'") or die("Query 4 is incorrect....");
-  echo '<script type="text/javascript"> alert("' . $name . ' Course Type updated!.")</script>';
+  mysqli_query($conn, "update course_type set name = '$ctname', status= '$status', date_modified = '$date_modified' where ct_id = '$ct_id'") or die("Query 4 is incorrect....");
+  echo '<script type="text/javascript"> alert("' . $ctname . ' Course Type updated!.")</script>';
   header('Refresh: 0; url=admin_course_type_view.php?ID=' . $_GET['ID'] . '');
 }
 
@@ -18,7 +18,7 @@ $ct_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM course_type WHERE ct_id='$ct_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $name        = $res['name'];
+  $ctname        = $res['name'];
   $status      = $res['status'];
 }
 
@@ -69,7 +69,7 @@ include 'admin_header.php';
 
           <h1 class="h3 mb-3"><strong><a href="admin_course_type.php" class="dash-item"> Course Type
               </a> /
-              <a href="admin_course_type_view.php?ID=<?php echo $ct_id ?>" class="dash-item"> <?php echo $name ?>
+              <a href="admin_course_type_view.php?ID=<?php echo $ct_id ?>" class="dash-item"> <?php echo $ctname ?>
               </a>
               /
               Edit Course Info</strong></h1>
@@ -84,7 +84,7 @@ include 'admin_header.php';
                   <form method="post">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Firstname</label>
-                      <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>"
+                      <input type="text" class="form-control" id="name" name="name" value="<?php echo $ctname ?>"
                         placeholder="Enter Name">
                     </div>
                     <br>

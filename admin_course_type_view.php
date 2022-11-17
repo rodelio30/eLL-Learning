@@ -6,7 +6,7 @@ $course_type_id = $_GET['ID'];
 $result = mysqli_query($conn, "SELECT * FROM course_type WHERE ct_id='$course_type_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $ct_id     = $res['ct_id'];
-  $name          = $res['name'];
+  $ctname          = $res['name'];
   $status        = $res['status'];
   $date_created  = $res['date_created'];
   $date_modified = $res['date_modified'];
@@ -46,7 +46,7 @@ include 'admin_header.php';
         <div class="container-fluid p-0">
           <h1 class="h3 mb-3"><strong><a href="admin_course_type.php" class="dash-item"> Course Type
               </a> /
-              <?php echo $name ?>
+              <?php echo $ctname ?>
             </strong>
           </h1>
           <div class="page-content">
@@ -65,7 +65,7 @@ include 'admin_header.php';
                               </div>
                               <div class="col-sm-9 text-secondary">
                                 <div class="flatpickr-weekwrapper">
-                                  <?php echo $name ?>
+                                  <?php echo $ctname ?>
                                 </div>
                               </div>
                             </div>
