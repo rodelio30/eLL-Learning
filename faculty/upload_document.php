@@ -4,9 +4,9 @@ date_default_timezone_set("Asia/Manila");
 if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
   include 'faculty_checker.php';
 
-  echo "<pre>";
-  print_r($_FILES['my_image']);
-  echo "</pre>";
+  // echo "<pre>";
+  // print_r($_FILES['my_image']);
+  // echo "</pre>";
 
   $file_name        = $_FILES['my_image']['name'];
   $file_size        = $_FILES['my_image']['size'];
@@ -22,6 +22,12 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
   $file_uploader_id = $_POST['uploader_id'];
   $status           = 'active';
 
+// This comment line check if the file is exist!!
+  $filename = "../uploads/" . $file_name;
+  if (file_exists($filename)) {
+      echo "<script type='text/javascript'>alert('This File is already Exist! " . $file_name . ", '); document.location='faculty_document_add.php' </script>";
+  } else {
+    // This line below is the execution of adding the file
   $material_id_no = mysqli_query($conn, "SELECT material_id FROM materials WHERE name='$material_name'");
   while ($res = mysqli_fetch_array($material_id_no)) {
     $material_id = $res['material_id'];
@@ -58,6 +64,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
     $em  = "unknown error occured!";
     header("Location: faculty_document_add.php?error=$em");
   }
+}
 } else {
   header("Location: faculty_document_add.php");
 }

@@ -122,7 +122,7 @@ include 'admin_header.php';
                       <div class="card-body">
                         <div class="row">
                           <div class="col mt-0">
-                            <h5 class="card-title">Resources</h5>
+                            <h5 class="card-title">e-Resources</h5>
                           </div>
 
                           <div class="col-auto">
