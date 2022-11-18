@@ -47,9 +47,8 @@ include 'faculty_header.php';
                   <div class="card-body">
                     <div class="row">
                       <div class="col mt-0">
-                        <h5 class="card-title">Uploaded Resources</h5>
+                        <h5 class="card-title">My Uploaded Files</h5>
                       </div>
-
                       <div class="col-auto">
                         <div class="stat text-primary">
                           <i class="align-middle" data-feather="file"></i>
