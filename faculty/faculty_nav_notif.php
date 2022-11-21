@@ -7,17 +7,24 @@
   </a>
   <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
     <div class="dropdown-menu-header">
-      <?php echo $notif_counter ?> New Contact Notifications
+      <?php
+       if ($notif_counter != 0) {
+          echo $notif_counter .' New Contact Notification';
+          echo ($notif_counter > 1 ) ? 's' : '';
+        } 
+        else { echo 'Nothing Notification';
+        }
+      ?>
     </div>
     <div class="list-group">
       <?php
-      $query_notif = "select contact_id, name, message, time from contact where time != '' ORDER BY time ASC";
+      $query_notif = "select contact_id, name, message, time, notif from contact where (time != '' AND notif = 'pending') ORDER BY time ASC";
       $result = mysqli_query($conn, $query_notif) or die("Notif Query Incorrect");
-      while (list($contact_id, $name, $message, $time) = mysqli_fetch_array($result)) {
+      while (list($contact_id, $name, $message, $time, $notif) = mysqli_fetch_array($result)) {
         $my_time = strtotime($time);
         $time_ago = get_time_ago($my_time);
         echo "
-          <a href='faculty_notification_view.php?ID=$contact_id' class='list-group-item'>
+          <a href='faculty_notification_view.php?ID=$contact_id&notif=$notif' class='list-group-item'>
             <div class='row g-0 align-items-center'>
               <div class='col-2'>
                 <i class='text-danger' data-feather='bell'></i>
