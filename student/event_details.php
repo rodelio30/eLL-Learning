@@ -1,7 +1,6 @@
 <?php
 include '../include/connect.php';
 include 'student_checker.php';
-include '../public/event_short_description.php';
 $event_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM events where event_id = '$event_id'");
@@ -13,7 +12,6 @@ while ($res = mysqli_fetch_array($result)) {
   $date_modified     = $res['date_modified'];
 }
 
-$new_title      = elipsis($title, 3);
 $date_me        = date_create($date_created);
 $date_formatted = date_format($date_me,"Y/m/d H:i:s a");
 // echo "<script>console.log('" . $img . "');</script>";
@@ -37,7 +35,7 @@ include 'student_head.php';
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
-        <h2><a href="events.php">Events </a> / <?php echo $new_title ?></h2>
+        <h2><a href="events.php">Events </a> </h2>
         <!-- <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit
           quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p> -->
       </div>
@@ -48,13 +46,13 @@ include 'student_head.php';
     <section id="event-details" class="event-details">
       <div class="container" data-aos="fade-up">
         <div class="row">
-          <div class="col-lg-4">
-            <img src="../uploads/event_image/<?php echo $event_img ?>" class="img-fluid" alt="">
+          <div class="col-lg-2">
           </div>
           <div class="col-lg-8">
 
             <div class="align-items-center ms-4">
-              <h3><?php echo $title ?></h3>
+            <img src="../uploads/event_image/<?php echo $event_img ?>" class="img-fluid" alt="" style="width: 100%">
+              <h3 class="mt-4"><?php echo $title ?></h3>
               <p class="text-justify mt-4">
                 <?php echo $event_description ?>
               </p>
@@ -66,7 +64,8 @@ include 'student_head.php';
               </p>
               <br>
             </div>
-
+          </div>
+          <div class="col-lg-2">
           </div>
         </div>
         <!-- End of row -->

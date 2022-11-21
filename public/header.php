@@ -8,9 +8,6 @@
 
     <nav id="navbar" class="navbar order-last order-lg-0">
       <ul>
-        <li>
-          <a href="about.php">About</a>
-        </li>
         <li class="dropdown"><a href="resources.php"><span>e-Resources</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="resources.php?RType=Lang">Language</a></li>
@@ -45,6 +42,9 @@
         <li><a href="events.php">Events</a></li>
 
         <li><a href="contact.php">Contact</a></li>
+        <li>
+          <a href="about.php">About</a>
+        </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->

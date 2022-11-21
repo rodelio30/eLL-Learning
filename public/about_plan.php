@@ -27,12 +27,11 @@ include 'public_head.php';
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="col-lg-4">
-            <img src="assets/img/plan.jpg" class="img-fluid" alt="">
+          <div class="col-lg-2">
           </div>
           <div class="col-lg-8">
-
             <div class="align-items-center ms-4">
+            <img src="assets/img/plan.jpg" class="img-fluid" alt="" style="width: 100%">
               <h3>Our Plan</h3>
               <p class="text-justify">
               <ul>
@@ -59,7 +58,8 @@ include 'public_head.php';
               </p>
               <br>
             </div>
-
+          </div>
+          <div class="col-lg-2">
           </div>
         </div>
 

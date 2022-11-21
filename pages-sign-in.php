@@ -69,20 +69,15 @@ if (isset($_POST['submit_admin'])) {
         <button onclick="location.href='public/index.php'" class="btn btn-md btn-warning btn-back">Back to
           home</button>
         <div class="container d-flex flex-column pt-3">
-          <div class="text-center mt-6">
+          <br> <br>
+          <div class="text-center mt-7">
             <h1 class="h1" style="font-weight: bold; color: white">Welcome!</h1>
-            <p class="lead" style="color: white">
-              Sign in to your account to continue
-            </p>
           </div>
 
-          <div class="card m-3 mt-3">
+          <div class="card m-3 mt-4">
             <div class="card-body card-left">
               <div class="m-sm-2">
                 <div class="text-center">
-                  <h1 class="h2" style="font-weight: bold; color: rgb(58, 107, 78)">Excellent Service to Humanity is
-                    our
-                    Commitment! </h1>
                 </div>
                 <br>
                 <form method="POST">

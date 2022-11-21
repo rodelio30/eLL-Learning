@@ -27,43 +27,46 @@ include 'student_head.php';
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="col-lg-4">
-            <img src="../public/assets/img/goals.jpg" class="img-fluid" alt="">
+          <div class="col-lg-2">
           </div>
           <div class="col-lg-8">
 
             <div class="align-items-center ms-4">
+            <img src="../public/assets/img/goals.jpg" class="img-fluid" alt="" style="width: 100%">
               <h3>Our Goals</h3>
-              <p class="text-justify">
               <h6>
-                <ul>
+                <ul class="text-justify">
                   <li>
                     To strengthen students' competency in the English language as a means of producing graduates with
                     communication competence in different fields of specialization.
                   </li>
+                  <br>
                   <li>
                     To enhance students' capabilities in art appreciation and explore their potentials via visual and
                     performing arts anchored on Philippines heritage and culture.
                   </li>
+                  <br>
                   <li>
                     To provide students with crucial skills in the language and literature in response to contemporary
                     demands for their productive employment in various fields.
                   </li>
+                  <br>
                   <li>
                     To offer students the critical, creative, and analytical thinking skills that enable students to
                     perform efficiently and effectively in all skills areas at all levels of English, in a wide variety
                     of settings, and for various occupational purposes.
                   </li>
+                  <br>
                   <li>
                     To enhance students' exploration of individual, gender, ethnic, and cultural diversity
                     through study of humanities, literature and language.
                   </li>
                 </ul>
               </h6>
-              </p>
               <br>
             </div>
-
+          </div>
+          <div class="col-lg-2">
           </div>
         </div>
 

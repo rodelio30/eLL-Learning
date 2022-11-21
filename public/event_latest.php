@@ -4,7 +4,7 @@
       <p class="event-header">Events</p>
       <?php
       include 'event_short_description.php';
-      $result = mysqli_query($conn, "select event_id, img, title, description, date_created, date_modified from events WHERE status != 'archive' ORDER BY date_modified DESC");
+      $result = mysqli_query($conn, "select event_id, img, title, description, date_created, date_modified from events WHERE status != 'archive' ORDER BY date_modified DESC LIMIT 4");
       while (list($event_id, $img, $title, $description, $date_created, $date_modified) = mysqli_fetch_array($result)) {
         $new_description = elipsis($description, 15);
         $date_me         = date_create($date_created);

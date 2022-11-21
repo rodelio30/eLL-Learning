@@ -27,16 +27,14 @@ include 'student_head.php';
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="col-lg-4">
-            <img src="../public/assets/img/plan.jpg" class="img-fluid" alt="">
+          <div class="col-lg-2">
           </div>
           <div class="col-lg-8">
-
             <div class="align-items-center ms-4">
+            <img src="../public/assets/img/plan.jpg" class="img-fluid" alt="" style="width: 100%">
               <h3>Our Plan</h3>
-              <p class="text-justify">
               <ul>
-                <li>
+                <li class="text-justify">
                   Developed this website that manages the access to reusable learning content, store
                   cataloged learning materials and distribute them, and allow sharing and reusing. Portals contain only
                   the meta-data and allow wider use of learning materials developed and stored in digital repositories.
@@ -45,10 +43,13 @@ include 'student_head.php';
                   IT management tasks such as backing up digital data are so fundamental to the management of data and
                   learning resources.
                 </li>
+                <br>
                 <li>
                   The development of the requirements specification will be undertaken in
                   consultation with the lead programmers in the collaborative agency/office so that the implementation
                   can be undertaken as soon as is practicable.
+                </li>
+                <br>
                 <li>
                   The proposed project should also support equitable access
                   supported by specific design and usability guidelines that facilitate easier, better and cheaper
@@ -56,10 +57,10 @@ include 'student_head.php';
                   with the policy and regulatory frameworks of the respective institution.
                 </li>
               </ul>
-              </p>
               <br>
             </div>
-
+          </div>
+          <div class="col-lg-2">
           </div>
         </div>
 
