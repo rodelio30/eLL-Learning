@@ -46,9 +46,9 @@ include 'public_head.php';
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-2">
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-8">
 
             <div class="align-items-center ms-4">
             <img src="../uploads/event_image/<?php echo $img ?>" class="img-fluid" alt="" style="width: 100%">
@@ -65,7 +65,7 @@ include 'public_head.php';
               <br>
             </div>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-2">
           </div>
         </div>
 
