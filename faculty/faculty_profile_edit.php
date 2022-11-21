@@ -2,28 +2,39 @@
 include 'faculty_checker.php';
 
 if (isset($_POST['update'])) {
-  $id        = $_POST['id'];
-  $firstname = $_POST['firstname'];
-  $lastname  = $_POST['lastname'];
-  $email     = $_POST['email'];
-  $password  = $_POST['password'];
-  $status    = $_POST['status'];
+  $id          = $_POST['id'];
+  $firstname   = $_POST['firstname'];
+  $lastname    = $_POST['lastname'];
+  $email       = $_POST['email'];
+  $gender      = $_POST['gender'];
+  $research    = $_POST['research'];
+  $position    = $_POST['position'];
+  $description = $_POST['description'];
+  $password    = $_POST['password'];
+  $status      = $_POST['status'];
 
-  mysqli_query($conn, "update faculty set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', status = '$status' where user_id = '$id'") or die("Query 4 is incorrect....");
+// This line below is to update data in faculty 
+  mysqli_query($conn, "update faculty set firstname = '$firstname', lastname = '$lastname', email = '$email', gender = '$gender', research = '$research', position = '$position', description = '$description', password = '$password', status = '$status' where user_id = '$id'") or die("Query 4 is incorrect....");
+
+  // This line below is to update data in user
   mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$id'") or die("Query 4 is incorrect....");
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' updated!.")</script>';
-  header('Refresh: 0; url=index.php');
+  header('Refresh: 0; url=faculty_profile.php');
 }
 
 $user_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM faculty WHERE user_id='$user_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $firstname = $res['firstname'];
-  $lastname  = $res['lastname'];
-  $email     = $res['email'];
-  $password  = $res['password'];
-  $status    = $res['status'];
+  $firstname   = $res['firstname'];
+  $lastname    = $res['lastname'];
+  $email       = $res['email'];
+  $gender      = $res['gender'];
+  $research    = $res['research'];
+  $position    = $res['position'];
+  $description = $res['description'];
+  $password    = $res['password'];
+  $status      = $res['status'];
 }
 
 $sel_active  = "";
@@ -79,9 +90,44 @@ include 'faculty_header.php';
                     </div>
                     <br>
                     <div class="form-group">
+                      <label for="exampleInputEmail1">Position</label>
+                      <input type="text" class="form-control" id="position" name="position"
+                        value="<?php echo $position ?>" placeholder="Enter Position">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Research</label>
+                      <input type="text" class="form-control" id="research" name="research"
+                        value="<?php echo $research ?>" placeholder="Enter Research">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Description</label>
+                      <input type="text" class="form-control" id="description" name="description"
+                        value="<?php echo $description ?>" placeholder="Enter Description">
+                    </div>
+                    <br>
+                    <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
                       <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>"
                         placeholder="Enter email">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Gender</label>
+                      <select class="form-control" id="gender" name="gender">
+                        <?php
+                        $isSelectM = '';
+                        $isSelectF = '';
+                        if ($gender == 'Male' || $gender == null) {
+                          $isSelectM = 'selected';
+                        } else {
+                          $isSelectF = 'selected';
+                        }
+                        ?>
+                        <option value="Male" <?php echo $isSelectM ?>>Male</option>
+                        <option value="Female" <?php echo $isSelectF ?>>Female</option>
+                      </select>
                     </div>
                     <br>
                     <div class="form-group">
