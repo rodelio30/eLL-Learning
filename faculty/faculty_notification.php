@@ -44,15 +44,15 @@ include 'faculty_header.php';
                     </thead>
                     <tbody>
                     <?php
-                    $result = mysqli_query($conn, "select contact_id, name, subject, message, date_created, status from contact WHERE status!='archive'") or die("Query 1 is incorrect....");
-                    while (list($contact_id, $name, $subject, $message, $date_created, $status) = mysqli_fetch_array($result)) {
+                    $result = mysqli_query($conn, "select contact_id, name, subject, message, date_created, status, notif from contact WHERE status!='archive'") or die("Query 1 is incorrect....");
+                    while (list($contact_id, $name, $subject, $message, $date_created, $status, $notif) = mysqli_fetch_array($result)) {
                     echo "
                         <tr>	
-                            <td scope='row'><a href=\"faculty_notification_view.php?ID=$contact_id\" class='user-clicker'>$name</a></td>
-                            <td scope='row'><a href=\"faculty_notification_view.php?ID=$contact_id\" class='user-clicker'>$subject</a></td>
-                            <td scope='row'><a href=\"faculty_notification_view.php?ID=$contact_id\" class='user-clicker'>$message</a></td>
+                            <td scope='row'><a href=\"faculty_notification_view.php?ID=$contact_id&notif=$notif\" class='user-clicker'>$name</a></td>
+                            <td scope='row'><a href=\"faculty_notification_view.php?ID=$contact_id&notif=$notif\" class='user-clicker'>$subject</a></td>
+                            <td scope='row'><a href=\"faculty_notification_view.php?ID=$contact_id&notif=$notif\" class='user-clicker'>$message</a></td>
                             <td>$date_created</td>
-                            <td>$status</td>
+                            <td>$notif</td>
                         </tr>	
                         ";
                     }
