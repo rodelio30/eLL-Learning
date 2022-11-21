@@ -36,7 +36,7 @@ include 'public_head.php';
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
-        <h2><a href="events.php">Events </a> / <?php echo $new_title ?></h2>
+        <h2><a href="events.php">Event</a></h2>
       </div>
     </div>
     <!-- End Breadcrumbs -->
@@ -46,13 +46,13 @@ include 'public_head.php';
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="col-lg-4">
-            <img src="../uploads/event_image/<?php echo $img ?>" class="img-fluid" alt="">
+          <div class="col-lg-3">
           </div>
-          <div class="col-lg-8">
+          <div class="col-lg-6">
 
             <div class="align-items-center ms-4">
-              <h3><?php echo $title ?></h3>
+            <img src="../uploads/event_image/<?php echo $img ?>" class="img-fluid" alt="" style="width: 100%">
+              <h3 class="mt-4"><?php echo $title ?></h3>
               <p class="text-justify mt-4">
                 <?php echo $description ?>
               </p>
@@ -64,7 +64,8 @@ include 'public_head.php';
               </p>
               <br>
             </div>
-
+          </div>
+          <div class="col-lg-3">
           </div>
         </div>
 

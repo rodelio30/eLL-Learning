@@ -37,7 +37,7 @@ include 'student_head.php';
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
-        <h2><a href="events.php">Events </a> / <?php echo $new_title ?></h2>
+        <h2><a href="events.php">Events </a> </h2>
         <!-- <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit
           quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p> -->
       </div>
@@ -48,15 +48,15 @@ include 'student_head.php';
     <section id="event-details" class="event-details">
       <div class="container" data-aos="fade-up">
         <div class="row">
-          <div class="col-lg-4">
-            <img src="../uploads/event_image/<?php echo $event_img ?>" class="img-fluid" alt="">
+          <div class="col-lg-3">
           </div>
-          <div class="col-lg-8">
+          <div class="col-lg-6">
 
             <div class="align-items-center ms-4">
-              <h3><?php echo $title ?></h3>
+            <img src="../uploads/event_image/<?php echo $event_img ?>" class="img-fluid" alt="" style="width: 100%">
+              <h3 class="mt-4"><?php echo $title ?></h3>
               <p class="text-justify mt-4">
-                <?php echo $event_description ?>
+                <?php echo $description ?>
               </p>
               <p class="text-justify mt-4">
                 Date Created:
@@ -66,7 +66,8 @@ include 'student_head.php';
               </p>
               <br>
             </div>
-
+          </div>
+          <div class="col-lg-3">
           </div>
         </div>
         <!-- End of row -->

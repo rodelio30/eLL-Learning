@@ -91,7 +91,7 @@ include 'public_head.php';
               <?php echo $description ?>
             </p>
             <br> <br> <br>
-            <p>Click the file below to download.</p>
+            <p>Click the link below to download.</p>
 
             <a href="#" onClick="alert('Log in first!')"><?php echo $title . '.' . $file_type ?></a>
             <br>

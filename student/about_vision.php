@@ -26,12 +26,11 @@ include 'student_head.php';
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="col-lg-4">
-            <img src="../public/assets/img/vision.jpg" class="img-fluid" alt="">
+          <div class="col-lg-2">
           </div>
           <div class="col-lg-8">
-
             <div class="align-items-center ms-4">
+            <img src="../public/assets/img/vision.jpg" class="img-fluid" alt="" style="width: 100%">
               <h3>Our Vision</h3>
               <p class="text-justify">
                 The Department of English and Humanities envisions becoming an international center for English language
@@ -41,7 +40,8 @@ include 'student_head.php';
               </p>
               <br>
             </div>
-
+          </div>
+          <div class="col-lg-2">
           </div>
         </div>
 
