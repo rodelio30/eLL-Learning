@@ -11,21 +11,21 @@
       </div>
 
       <div class="col-lg-3 col-6 text-center">
-        <span data-purecounter-start="0" data-purecounter-end="<?php echo $student_counter; ?>"
-          data-purecounter-duration="1" class="purecounter"></span>
-        <p>Students</p>
-      </div>
-
-      <div class="col-lg-3 col-6 text-center">
         <span data-purecounter-start="0" data-purecounter-end="<?php echo $faculty_counter; ?>"
           data-purecounter-duration="1" class="purecounter"></span>
         <p>Faculty</p>
       </div>
 
       <div class="col-lg-3 col-6 text-center">
-        <span data-purecounter-start="0" data-purecounter-end="<?php echo $course_counter; ?>"
+        <span data-purecounter-start="0" data-purecounter-end="<?php echo $student_counter; ?>"
           data-purecounter-duration="1" class="purecounter"></span>
-        <p>Subjects</p>
+        <p>Students</p>
+      </div>
+
+      <div class="col-lg-3 col-6 text-center">
+        <span data-purecounter-start="0" data-purecounter-end="<?php echo $event_counter; ?>"
+          data-purecounter-duration="1" class="purecounter"></span>
+        <p>Events</p>
       </div>
 
     </div>

@@ -14,6 +14,7 @@ $female_student_counter = 0;
 $female_active_counter  = 0;
 
 $notif_counter     = 0;
+$event_counter     = 0;
 
 $archive_faculty   = 0;
 $archive_student   = 0;
@@ -70,6 +71,13 @@ $query_notif = "select subject from contact where (time != '' AND notif = 'pendi
 $result_notif = mysqli_query($conn, $query_notif) or die("Notif Query is incorrect....");
 while (list($subject) = mysqli_fetch_array($result_notif)) {
   $notif_counter++;
+}
+
+// This line below is to count the number of latest contact notification
+$query_event = "select title from events where status = 'active' ORDER BY time ASC";
+$result_event = mysqli_query($conn, $query_event) or die("Notif Query is incorrect....");
+while (list($title) = mysqli_fetch_array($result_event)) {
+  $event_counter++;
 }
 
 // This line is Counting for the number of Student User
