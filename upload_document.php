@@ -44,7 +44,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
         $allowed_exs = array("pdf", "doc", "docs", "docx", "xls", "xlsx", "xlc", "txt");
 
         if (in_array($file_ex_lc, $allowed_exs)) {
-          $file_upload_path = 'uploads/' . $file_name;
+          $file_upload_path = 'uploads/resources/' . $file_name;
           move_uploaded_file($tmp_name, $file_upload_path);
 
           // Remove Extension name of the file

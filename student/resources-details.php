@@ -93,7 +93,7 @@ include 'student_head.php';
             <br>
             <p>Click the file below to download.</p>
             <!-- <a href="#" onClick="alert('Hello World!')">The Link</a> -->
-            <a href="../uploads/<?php echo $title . '.' . $file_type ?>"
+            <a href="../uploads/resources/<?php echo $title . '.' . $file_type ?>"
               target='_blank'><?php echo $title . '.' . $file_type ?></a>
           </div>
         </div>
