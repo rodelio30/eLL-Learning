@@ -1,5 +1,5 @@
 <?php
-include 'admin_checker.php';
+// include 'admin_checker.php';
 
 if (isset($_POST['update'])) {
   $id        = $_POST['id'];
