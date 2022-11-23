@@ -2102,9 +2102,9 @@ section {
   color: #00C67D;
 
   width: 100%;
-  height: 35vh;
-  background: url("../img/bg-footer3.png");
-  /* background-color: #005537; */
+  height: 100%;
+  /* background: url("../img/bg-footer3.png"); */
+  background-color: #005537;
   background-size: cover;
   position: relative;
 }
