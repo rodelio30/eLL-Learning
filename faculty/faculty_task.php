@@ -14,7 +14,7 @@
                             <p class="text-muted font-size-sm"><?php echo $position ?></p>
                           </div>
                           <a class="btn btn-info mt-4 mb-2"
-                            <?php echo "href=\"admin_faculty_edit_image.php?ID=$user_id\" " ?>
+                            <?php echo "href=\"faculty_profile_edit_image.php?ID=$user_id\" " ?>
                             style="float: left;">Change Photo</a>
                         </div>
                       </div>

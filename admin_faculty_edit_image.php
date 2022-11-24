@@ -34,13 +34,13 @@ if (isset($_POST['update'])) {
   header('Refresh: 0; url=admin_faculty.php');
 }
 
-$faculty_id = $_GET['ID'];
+// $faculty_id = $_GET['ID'];
 
-$result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$faculty_id'");
-while ($res   = mysqli_fetch_array($result)) {
-  $img            = $res['img'];
-  $firstname      = $res['firstname'];
-}
+// $result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$faculty_id'");
+// while ($res   = mysqli_fetch_array($result)) {
+//   $img            = $res['img'];
+//   $firstname      = $res['firstname'];
+// }
 // $message = "Today is " . date("Y-m-d h:i:s");
 // echo "<script>console.log('" . $message . "');</script>";
 ?>
@@ -83,30 +83,12 @@ include 'admin_header.php';
                 Account</a> / Edit User
               Account</strong></h1>
           <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <h5 class="card-title mb-0">User Form</h5>
                 </div>
                 <div class="card-body">
-                  <form method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label>The current image</label>
-                      <br>
-                      <img src=" uploads/faculty_image/<?php echo $img ? $img : 'empty_user.png' ?>" alt="Admin"
-                        class="img-fluid" height="200px" width="200px">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label>New Image</label>
-                      <input class="form-control" type="file" name="uploadfile" value="<?php echo $img ?>" />
-                    </div>
-                    <br>
-                    <br>
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-success" name="update">Update</button>
-                    </div>
-                  </form>
                 </div>
               </div>
             </div>

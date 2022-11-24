@@ -25,7 +25,7 @@ while ($res   = mysqli_fetch_array($result)) {
   $status         = $res['status'];
 }
 
-$name = $program_name;
+// $name = $program_name;
 
 $sel_active  = "";
 $sel_archive = "";
@@ -74,12 +74,12 @@ include 'admin_header.php';
 
           <h1 class="h3 mb-3"><strong><a href="admin_program.php" class="dash-item">Program List
               </a> /
-              <a href="admin_program_view.php?ID=<?php echo $program_id ?>" class="dash-item"> <?php echo $name ?> </a>
+              <a href="admin_program_view.php?ID=<?php echo $program_id ?>" class="dash-item"> <?php echo $program_name ?> </a>
               /
               Edit Program Info</strong></h1>
           </h1>
           <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <h5 class="card-title mb-0">User Form</h5>

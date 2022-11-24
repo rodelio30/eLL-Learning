@@ -1,4 +1,4 @@
-<div class="col-12 col-lg-4 col-xxl-12 d-flex">
+<div class="col-12 col-lg-12 col-xxl-12 d-flex">
   <div class="card flex-fill w-100">
     <div class="card-header">
       <div class="row">
