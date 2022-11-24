@@ -88,12 +88,12 @@ include 'admin_header.php';
 
           <h1 class="h3 mb-3"><strong><a href="admin_courses.php" class="dash-item"> Course List
               </a> /
-              <a href="admin_course_view.php?ID=<?php echo $course_id ?>" class="dash-item"> <?php echo $name ?> </a>
+              <a href="admin_course_view.php?ID=<?php echo $course_id ?>" class="dash-item"> <?php echo $cat_no ?> </a>
               /
               Edit Course Info</strong></h1>
           </h1>
           <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <h5 class="card-title mb-0">User Form</h5>

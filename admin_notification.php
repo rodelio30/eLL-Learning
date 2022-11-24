@@ -35,18 +35,18 @@ include 'admin_header.php';
             <h1 class="h3 mb-3"><strong>All Notification</strong></h1>
           </div>
           <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <!-- Code Below -->
                   <table id="notif_table" class="display" style="width:100%">
                     <thead>
                       <tr>
-                        <th scope="col" style="width: 10%">Name</th>
-                        <th scope="col" style="width: 10%">Subject</th>
-                        <th scope="col" style="width: 30%">Message</th>
-                        <th scope="col" style="width: 15%">Date Created</th>
-                        <th scope="col" style="width: 10%">Status</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Date Created</th>
+                        <th scope="col">Status</th>
                       </tr>
                     </thead>
                     <tbody>

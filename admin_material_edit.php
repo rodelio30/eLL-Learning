@@ -19,7 +19,7 @@ $material_id = $_GET['ID'];
 
 $result = mysqli_query($conn, "SELECT * FROM materials WHERE material_id='$material_id'");
 while ($res   = mysqli_fetch_array($result)) {
-  $name        = $res['name'];
+  $material_name        = $res['name'];
   $description = $res['description'];
   $status      = $res['status'];
 }
@@ -70,7 +70,7 @@ include 'admin_header.php';
 
           <h1 class="h3 mb-3"><strong><a href="admin_materials.php" class="dash-item"> Learning Material
               </a> /
-              <a href="admin_material_view.php?ID=<?php echo $material_id ?>" class="dash-item"> <?php echo $name ?>
+              <a href="admin_material_view.php?ID=<?php echo $material_id ?>" class="dash-item"> <?php echo $material_name ?>
               </a>
               /
               Edit Course Info</strong></h1>
@@ -85,7 +85,7 @@ include 'admin_header.php';
                   <form method="post">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
-                      <input type="text" class="form-control" id="name" name="name" value="<?php echo $name ?>"
+                      <input type="text" class="form-control" id="name" name="name" value="<?php echo $material_name ?>"
                         placeholder="Enter Name">
                     </div>
                     <br>

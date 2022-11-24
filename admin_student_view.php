@@ -66,7 +66,7 @@ include 'admin_header.php';
           <div class="page-content">
 
             <div class="row">
-              <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="col-12 col-lg-12 col-xxl-12 d-flex">
                 <div class="card-view flex-fill">
                   <div class="main-body">
                     <div class="row gutters-sm">

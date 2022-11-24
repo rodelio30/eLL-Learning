@@ -49,7 +49,7 @@ include 'admin_header.php';
           <h1 class="h3 mb-3"><strong><a href="admin_course_type.php" class="dashboard">Course Type</a> </strong>/ New
             Course Type </h1>
           <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <h5 class="card-title mb-0">Course Type Form</h5>

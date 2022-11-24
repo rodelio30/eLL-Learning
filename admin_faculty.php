@@ -60,7 +60,7 @@ include 'admin_header.php';
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
               <div class="card flex-fill">
                 <div class="card-header">
                   <table id="faculty_table" class="display" style="width:100%">
