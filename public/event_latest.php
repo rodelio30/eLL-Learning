@@ -7,7 +7,7 @@
       $result = mysqli_query($conn, "select event_id, img, title, description, date_created, time_created from events WHERE status != 'archive' ORDER BY date_modified DESC LIMIT 4");
       while (list($event_id, $img, $title, $description, $date_created, $time_created) = mysqli_fetch_array($result)) {
         $new_description = elipsis($description, 15);
-        $date_me         = date_create($date_created);
+        // $date_me         = date_create($date_created);
         // $date_formatted  = date_format($date_me,"Y/m/d H:i:s a");
         $time_formatted  = date("g:i a ", strtotime($time_created));
 

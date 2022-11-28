@@ -11,10 +11,13 @@ while ($res = mysqli_fetch_array($result)) {
   $link          = $res['link'];
   $date_created  = $res['date_created'];
   $time_created  = $res['time_created'];
+  $date_modified = $res['date_modified'];
+  $time_modified = $res['time_modified'];
 }
 
 $new_title      = elipsis($title, 3);
 $time_formatted  = date("g:i a ", strtotime($time_created));
+$time_m_formatted  = date("g:i a ", strtotime($time_modified));
 // $date_me        = date_create($date_created);
 // $date_formatted = date_format($date_me,"Y/m/d H:i:s a");
 // echo "<script>console.log('" . $img . "');</script>";
@@ -62,6 +65,12 @@ include 'public_head.php';
                 Date Created:
                 <b>
                   <?php echo $date_created .' '. $time_formatted?>
+                </b>
+              </p>
+              <p class="text-justify mt-4">
+                Date Modified:
+                <b>
+                  <?php echo $date_modified .' '. $time_m_formatted?>
                 </b>
               </p>
               <p class="text-justify mt-4">
