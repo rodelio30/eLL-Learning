@@ -74,7 +74,7 @@ while (list($subject) = mysqli_fetch_array($result_notif)) {
 }
 
 // This line below is to count the number of latest contact notification
-$query_event = "select title from events where status = 'active' ORDER BY time ASC";
+$query_event = "select title from events where status = 'active' ORDER BY time_created ASC";
 $result_event = mysqli_query($conn, $query_event) or die("Notif Query is incorrect....");
 while (list($title) = mysqli_fetch_array($result_event)) {
   $event_counter++;
