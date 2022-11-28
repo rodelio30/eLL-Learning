@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2022 at 08:29 AM
+-- Generation Time: Nov 28, 2022 at 08:32 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -553,24 +553,6 @@ CREATE TABLE `resources` (
   `date_modified` datetime NOT NULL,
   `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `resources`
---
-
-INSERT INTO `resources` (`doc_id`, `doc_img`, `material_id`, `resource_type`, `title`, `file_size`, `file_type`, `description`, `file_uploader_id`, `date`, `time`, `date_created`, `date_modified`, `status`) VALUES
-(3, '', 3, 'Language', 'GAD_Endorsement-letter-for-Student-Congress_etc__-_DSS', 342780, 'pdf', 'Gad Endorsement letter for student congress', 3, 'Jun 06, 2022', '16:50:34', '2022-06-06 04:50:34', '2022-06-06 04:50:34', 'active'),
-(8, '', 3, 'Language', 'CLSU-GRADUATION-PROTOCOL', 18059, 'docx', 'Graduation Protocol Policy', 1, 'Jun 07, 2022', '09:47:06', '2022-06-07 09:47:06', '2022-06-14 03:59:58', 'active'),
-(9, '', 6, 'Language', 'ESTEBAN, A._LITT 2108', 347276, 'pdf', 'Sir Esteban Syllabi', 3, 'Jun 08, 2022', '13:40:50', '2022-06-08 01:40:50', '2022-06-08 01:40:50', 'active'),
-(12, '', 6, 'Literature', 'csc-form-no-48-daily-time-record-dtr', 96455, 'pdf', 'Daily time record', 1, 'Jun 14, 2022', '16:05:06', '2022-06-14 04:05:06', '2022-06-30 11:52:02', 'active'),
-(15, '', 8, 'Language', 'graduate-program_-for-rqat', 165102, 'pdf', 'Graduate Program', 1, 'Jun 14, 2022', '16:10:33', '2022-06-14 04:10:33', '2022-06-14 04:10:33', 'active'),
-(16, '', 1, 'Literature', 'Transcript of records_mclapurga', 1947719, 'pdf', 'Sample life', 3, 'Jun 14, 2022', '16:24:33', '2022-06-14 04:24:33', '2022-06-14 04:24:33', 'active'),
-(17, '', 8, 'Language', 'CALICA_Thesis-Proposal-Defense-Schedule-Form', 242451, 'pdf', 'Thesis Proposal For me', 4, 'Jun 15, 2022', '13:50:16', '2022-06-15 01:50:16', '2022-06-15 01:50:16', 'active'),
-(18, '', 6, 'Literature', 'CULMINATING-ACTIVITY_SCORES', 27515, 'docx', 'sample', 4, 'Jun 15, 2022', '14:24:08', '2022-06-15 02:24:08', '2022-06-15 02:24:08', 'active'),
-(20, '', 3, 'Language', 'Venturina_ERCf10-StudentProposals', 217215, 'pdf', 'This is language type', 1, 'Oct 07, 2022', '14:04:07', '2022-10-07 02:04:07', '2022-10-07 02:04:07', 'active'),
-(24, '', 1, 'Literature', 'CASS_ENGLISH-AND-HUMANITIES_REYES_MERCEDITA-_M_', 1330476, 'pdf', 'asdfasdf', 1, 'Oct 12, 2022', '15:40:54', '2022-10-12 03:40:54', '2022-11-23 08:12:22', 'active'),
-(25, '', 1, 'Language', 'Thesis-Advisory-Committee-Summary-Form-with-IP-3', 123997, 'pdf', 'asdf', 1, 'Nov 17, 2022', '10:57:04', '2022-11-17 10:57:04', '2022-11-18 08:48:17', 'active'),
-(29, '', 8, 'Language', '2022-IT-Caravan_Quirino-N.Vizcaya_Nov-24-25 (2)', 36995, 'xlsx', 'This is the sample', 1, 'Nov 23, 2022', '08:28:12', '2022-11-23 08:28:12', '2022-11-23 08:28:12', 'active');
 
 -- --------------------------------------------------------
 
@@ -1245,7 +1227,7 @@ ALTER TABLE `programs`
 -- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `doc_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `doc_id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `resources_category`
