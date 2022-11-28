@@ -7,10 +7,11 @@ if (isset($_POST['update'])) {
   $title         = $_POST['title'];
   $description   = $_POST['description'];
   $status        = $_POST['status'];
-  $date_modified = date("Y-m-d h:i:s");
+  $date_modified = date("Y-m-d");
+  $time_modified = date("H:i:s");
 
   // echo "<script>console.log('" . $email . "');</script>";
-  mysqli_query($conn, "update events set title = '$title', description = '$description', status= '$status', date_modified = '$date_modified' where event_id = '$event_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update events set title = '$title', description = '$description', status= '$status', date_modified = '$date_modified', time_modified = '$time_modified' where event_id = '$event_id'") or die("Query 4 is incorrect....");
 
   echo '<script type="text/javascript"> alert("' . $title . ' Event updated!.")</script>';
   header('Refresh: 0; url=admin_event_view.php?ID=' . $_GET['ID'] . '');

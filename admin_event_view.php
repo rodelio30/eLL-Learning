@@ -10,9 +10,14 @@ while ($res   = mysqli_fetch_array($result)) {
   $title         = $res['title'];
   $description   = $res['description'];
   $date_created  = $res['date_created'];
+  $time_created  = $res['time_created'];
   $date_modified = $res['date_modified'];
+  $time_modified = $res['time_modified'];
   $status        = $res['status'];
 }
+
+$time_formatted  = date("g:i a ", strtotime($time_created));
+$time_m_formatted  = date("g:i a ", strtotime($time_modified));
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +119,7 @@ include 'admin_header.php';
                                     <p class="flatpickr-weekwrapper">Date Created</p>
                                   </div>
                                   <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_created ?></p>
+                                    <p class="flatpickr-weekwrapper"><?php echo $date_created.' '.$time_formatted?></p>
                                   </div>
                                 </div>
                                 <div class="row">
@@ -122,7 +127,7 @@ include 'admin_header.php';
                                     <p class="flatpickr-weekwrapper">Date Modified</p>
                                   </div>
                                   <div class="col-sm-7">
-                                    <p class="flatpickr-weekwrapper"><?php echo $date_modified ?></p>
+                                    <p class="flatpickr-weekwrapper"><?php echo $date_modified.' '.$time_m_formatted ?></p>
                                   </div>
                                 </div>
                               </div>

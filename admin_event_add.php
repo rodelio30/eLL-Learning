@@ -9,11 +9,12 @@ if (isset($_POST['submit'])) {
 
   $title         = $_POST['title'];
   $description   = $_POST['description'];
+  // $link          = $_POST['link'];
   $status        = 'active';
-  $date_created  = date("Y-m-d h:i:s");
-  $date_modified = date("Y-m-d h:i:s");
+  $date          = date("Y-m-d");
+  $time          = date("H:i:s");;
 
-  mysqli_query($conn, "insert into events(img, title, description, status, date_created, date_modified) values('$filename','$title','$description','$status','$date_created','$date_modified')")  or die("Query 3 is incorrect.....");
+  mysqli_query($conn, "insert into events(img, title, description, status, date_created, time_created, date_modified, time_modified) values('$filename','$title','$description','$status','$date','$time','$date','$time')")  or die("Query 3 is incorrect.....");
 
   // Now let's move the uploaded image into the folder: image
   if (move_uploaded_file($tempname, $folder)) {
@@ -22,7 +23,7 @@ if (isset($_POST['submit'])) {
     echo "<h3>  Failed to upload image!</h3>";
   }
 
-  echo '<script type="text/javascript"> alert("' . $title . ' Program Added!.")</script>';
+  echo '<script type="text/javascript"> alert("' . $title . ' Events Added!.")</script>';
   header('Refresh: 0; url=admin_event.php');
 }
 ?>
@@ -84,6 +85,12 @@ include 'admin_header.php';
                       <input type="text" class="form-control" id="description" name="description"
                         placeholder="Enter Description Name">
                     </div>
+                    <!-- <br>
+                    <div class="form-group">
+                      <label>Link</label>
+                      <input type="text" class="form-control" id="link" name="link"
+                        placeholder="Enter Event Link">
+                    </div> -->
                     <br>
                     <button type="submit" class="btn btn-success" name="submit">Submit</button>
                   </form>

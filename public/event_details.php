@@ -8,13 +8,15 @@ while ($res = mysqli_fetch_array($result)) {
   $img           = $res['img'];
   $title         = $res['title'];
   $description   = $res['description'];
+  $link          = $res['link'];
   $date_created  = $res['date_created'];
-  $date_modified = $res['date_modified'];
+  $time_created  = $res['time_created'];
 }
 
 $new_title      = elipsis($title, 3);
-$date_me        = date_create($date_created);
-$date_formatted = date_format($date_me,"Y/m/d H:i:s a");
+$time_formatted  = date("g:i a ", strtotime($time_created));
+// $date_me        = date_create($date_created);
+// $date_formatted = date_format($date_me,"Y/m/d H:i:s a");
 // echo "<script>console.log('" . $img . "');</script>";
 ?>
 <!DOCTYPE html>
@@ -59,8 +61,12 @@ include 'public_head.php';
               <p class="text-justify mt-4">
                 Date Created:
                 <b>
-                  <?php echo $date_formatted ?>
+                  <?php echo $date_created .' '. $time_formatted?>
                 </b>
+              </p>
+              <p class="text-justify mt-4">
+                Link:
+                <a href="https://www.facebook.com/englishandhumanities" target="_blank">View Events</a>
               </p>
               <br>
             </div>
