@@ -2321,3 +2321,11 @@ section {
   height: 5rem;
   width: 5rem;
 }
+
+.event-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 100%;
+} 

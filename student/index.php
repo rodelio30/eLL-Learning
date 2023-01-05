@@ -35,9 +35,10 @@ include 'student_head.php';
 
 
     <?php
-    include '../public/event_latest.php';
     include '../public/popular_section.php';
+    include '../public/event_latest.php';
     ?>
+    <hr>
     <!-- ======= Faculty Section ======= -->
     <section id="trainers" class="trainers">
       <div class="container" data-aos="fade-up">

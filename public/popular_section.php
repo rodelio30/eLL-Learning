@@ -34,7 +34,7 @@
         ?>
       </div>
       <div class="text-end">
-        <a href="resources.php" class="more-btn">View More <i class="bx bx-chevron-right"></i></a>
+        <a href="resources.php" class="more-btn">View All <i class="bx bx-chevron-right"></i></a>
       </div>
     </div>
 </section><!-- End About Section -->
