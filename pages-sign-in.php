@@ -63,75 +63,19 @@ if (isset($_POST['submit_admin'])) {
 </head>
 
 <body>
-  <main class="d-flex w-100">
+  <main>
     <div class="row">
-      <div class="col-12 col-md-6 vh-100">
-        <button onclick="location.href='public/index.php'" class="btn btn-md btn-warning btn-back">Back to
-          home</button>
-        <div class="container d-flex flex-column pt-3">
-          <br> <br>
-          <div class="text-center mt-7">
-            <h1 class="h1" style="font-weight: bold; color: white">Welcome!</h1>
-          </div>
-
-          <div class="card m-3 mt-4">
-            <div class="card-body card-left">
-              <div class="m-sm-2">
-                <div class="text-center">
-                </div>
-                <br>
-                <form method="POST">
-                  <div class="my-4 mb-3">
-                    <label class="form-label">Email</label>
-                    <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email"
-                      autofocus />
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input class="form-control form-control-lg" type="password" name="password"
-                      placeholder="Enter your password" />
-                    <small>
-                    </small>
-                  </div>
-                  <div class="text-center mt-5">
-                    <button type="submit" name="submit_admin" class="btn btn-md btn-success">Sign in</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> <!-- End of first col -->
-      <div class="col-12 col-md-6 right-color">
-        <div class="container d-flex flex-column m-6 ms-3">
-          <div class="right-side-content">
-            <img src="img/icons/clsu-logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132"
-              height="132" />
-            <img src="img/icons/gad-logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="133"
-              height="132" style="margin-left: 4%;" />
-            <img src="img/icons/CAS logo.png" alt="Charles Hall" class="img-fluid rounded-circle" width="133"
-              height="132" style="margin-left: 4%;" />
-            <img src="img/icons/DEH logo.jpg" alt="Charles Hall" class="img-fluid rounded-circle" width="133"
-              height="132" style="margin-left: 4%;" />
-            <h2 class="h1 pt-4">Language and</h2>
-            <h2 class="h1">Literature</h2>
-            <h1 class="h1 pt-3">e-Learning Hub!</h1>
-            <p class="clsu pt-3">
-              Department of English and Humanities
-              <br>
-              College of Arts and Social Sciences
-              <br>
-              <span>
-                Central Luzon State University
-              </span>
-            </p>
-            <!-- <p class="clsu text-right">
-										</p> -->
-          </div>
-        </div>
+      <div class="col-12 col-md-6 vh-100 ps-3">
+        <?php include 'pages-sign-in-left.php';?>
       </div>
-    </div> <!-- end of Row -->
-    <!-- </div> -->
+      <!-- End of first col -->
+      
+      <div class="col-12 col-md-6 right-color">
+        <?php include 'pages-sign-in-right.php';?>
+      </div>
+    </div>
+     <!-- end of Row -->
+    </div>
   </main>
 
   <script src="js/app.js"></script>

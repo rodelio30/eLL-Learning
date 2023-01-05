@@ -20,7 +20,7 @@ if ($type_logged == 'faculty') {
 
 $transaction_name = 'Log in';
 $date             = date("Y-m-d");
-$log_time         = date("Y-m-d h:i:s");
+$log_time         = date("h:i:s");
 $action           = 'Execute';
 $status           = 'Successful';
 
