@@ -15,11 +15,9 @@ while ($res = mysqli_fetch_array($result)) {
   $time_modified = $res['time_modified'];
 }
 
-$new_title      = elipsis($title, 3);
-$time_formatted  = date("g:i a ", strtotime($time_created));
-$time_m_formatted  = date("g:i a ", strtotime($time_modified));
-// $date_me        = date_create($date_created);
-// $date_formatted = date_format($date_me,"Y/m/d H:i:s a");
+$new_title        = elipsis($title, 3);
+$time_formatted   = date("g:i a ", strtotime($time_created));
+$time_m_formatted = date("g:i a ", strtotime($time_modified));
 // echo "<script>console.log('" . $img . "');</script>";
 ?>
 <!DOCTYPE html>

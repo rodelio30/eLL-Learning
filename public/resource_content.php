@@ -27,7 +27,7 @@ $search_value = !empty($search_resource_file) ? $search_resource_file : '';
   <form class="">
     <div class="input-group mb-3">
       <span class="fa fa-search"></span>
-      <input type="text" name="search_resources" class="form-control form-control-lg" placeholder="Search Here"
+      <input type="text" name="search_resources" class="form-control form-control-lg" placeholder="Search"
         value="<?php echo $search_value ?>">
     </div>
   </form>

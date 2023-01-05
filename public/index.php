@@ -35,9 +35,10 @@ include 'public_head.php';
 
 
     <?php
-    include 'event_latest.php';
     include 'popular_section.php';
+    include 'event_latest.php';
     ?>
+    <hr>
     <!-- ======= Faculty Section ======= -->
     <section id="trainers" class="trainers">
       <div class="container" data-aos="fade-up">

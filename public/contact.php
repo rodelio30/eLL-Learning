@@ -60,7 +60,8 @@ include 'public_head.php';
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
+                <p>N/A</p>
+                <!-- <p>+1 5589 55488 55s</p> -->
               </div>
 
             </div>

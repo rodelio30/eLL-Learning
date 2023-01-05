@@ -18,7 +18,7 @@
                 <div class='card'>
                   <a href='event_details.php?ID=$event_id'>       
                     <div class='card-img'>
-                      <img src='../uploads/event_image/$img' alt='...' style='height: 300px; width: 900px; padding: 5px;'>
+                      <img src='../uploads/event_image/$img' alt='...' class='event-img' style='padding: 5px;'>
                     </div>
                   </a>
                   <div class='card-body'>
