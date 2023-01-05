@@ -117,7 +117,7 @@ if ($result_course->num_rows > 0) {
   $course_counter = 0;
 }
 
-// This line is counting for the number of Courses
+// This line is counting for the number of Program 
 $sql_program    = "SELECT program_id FROM programs WHERE status !='archive'";
 $result_program = $conn->query($sql_program);
 

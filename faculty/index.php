@@ -8,7 +8,7 @@ $query = mysqli_query($conn, "select faculty_id, user_id from faculty where user
 list($faculty_id, $user_id) = mysqli_fetch_array($query);
 
 // This line is counting for the number of Documents
-$sql_document = "SELECT doc_id FROM document WHERE status !='archive' AND file_uploader_id='$faculty_id'";
+$sql_document = "SELECT doc_id FROM resources WHERE status !='archive' AND file_uploader_id='$faculty_id'";
 $result_document = $conn->query($sql_document);
 
 if ($result_document->num_rows > 0) {
