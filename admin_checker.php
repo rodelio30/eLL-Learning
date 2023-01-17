@@ -2,8 +2,8 @@
 date_default_timezone_set("Asia/Manila");
 session_start();
 if (!isset($_SESSION['logged'])) {
-  // header("location: public/index.php");
-  header("location: pages-sign-in.php");
+  header("location: public/index.php");
+  // header("location: pages-sign-in.php");
 }
 include('include/connect.php');
 $id = $_SESSION['id'];
