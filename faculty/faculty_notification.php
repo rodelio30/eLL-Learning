@@ -1,11 +1,5 @@
-
 <?php
 include 'faculty_checker.php';
-
-$id = $_SESSION['id'];
-
-$query = mysqli_query($conn, "select user_id from faculty where user_id='$id'") or die("query 1 incorrect.......");
-list($user_id) = mysqli_fetch_array($query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
