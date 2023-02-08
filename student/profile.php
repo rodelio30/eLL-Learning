@@ -237,6 +237,10 @@ if (isset($_POST['update_student'])) {
 
   // echo "<script>console.log('This is firstname:  " . $description . "');</script>";
 
+  // Query for User
+  mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$id'") or die("Query to update student info in user incorrect ...");
+  
+  // Query for student
   mysqli_query($conn, "update student set firstname = '$firstname', middle_initial = '$middle_initial', lastname = '$lastname', description = '$description', email = '$email', password = '$password', student_course = '$student_course', student_year = '$student_year', student_section = '$student_section', date_modified = '$date_modified' where student_id = '$student_id'") or die("Query to update student info incorrect ...");
 
   echo '<script type="text/javascript">alert("Student ' . $firstname . ' Information Updated")</script>';
