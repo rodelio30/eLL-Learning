@@ -38,7 +38,8 @@ if (isset($_POST['submit'])) {
   }
 
   if ($type == 'faculty') {
-    mysqli_query($conn, "insert into faculty(user_id, faculty_id_no, firstname, lastname, email, gender, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$password','$date_created','$date_modified', '$status')")  or die("Query 2 is incorrect.....");
+    mysqli_query($conn, "insert into faculty(user_id, faculty_id_no, firstname, lastname, email, gender, password, date_created, date_modified, status) 
+                                    values('$user_id','$id_no','$firstname','$lastname','$email','$gender','$password','$date_created','$date_modified', '$status')")  or die("Query for inserting faculty error.....");
   } elseif ($type == 'student') {
     mysqli_query($conn, "insert into student(user_id, student_id_no, firstname, lastname, email, gender, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$gender','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
   }

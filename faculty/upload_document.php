@@ -23,7 +23,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
   $status           = 'active';
 
 // This comment line check if the file is exist!!
-  $filename = "../uploads/" . $file_name;
+  $filename = "../uploads/resources/" . $file_name;
   if (file_exists($filename)) {
       echo "<script type='text/javascript'>alert('This File is already Exist! " . $file_name . ", '); document.location='faculty_document_add.php' </script>";
   } else {
@@ -45,7 +45,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
       $allowed_exs = array("pdf", "doc", "docs", "docx", "xls", "xlsx", "xlc", "txt");
 
       if (in_array($file_ex_lc, $allowed_exs)) {
-        $file_upload_path = '../uploads/' . $file_name;
+        $file_upload_path = '../uploads/resources/' . $file_name;
         move_uploaded_file($tmp_name, $file_upload_path);
 
         // Remove Extension name of the file
