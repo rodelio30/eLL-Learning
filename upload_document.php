@@ -23,7 +23,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
   $status           = 'active';
 
 // This comment line check if the file is exist!!
-  $filename = "uploads/" . $file_name;
+  $filename = "uploads/resources/" . $file_name;
   if (file_exists($filename)) {
       echo "<script type='text/javascript'>alert('This File is already Exist! " . $file_name . "'); document.location='admin_resource_add.php' </script>";
   } else {
