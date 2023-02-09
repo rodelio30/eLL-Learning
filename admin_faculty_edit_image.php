@@ -8,6 +8,7 @@ $faculty_id = $_GET['ID'];
 $result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$faculty_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $faculty_id   = $res['faculty_id'];
+  $firstname    = $res['firstname'];
   $faculty_img  = $res['img'];
 }
 // echo "<script>console.log('High I am good ".$img."');</script>";
@@ -79,11 +80,10 @@ include 'admin_header.php';
 
       <main class="content">
         <div class="container-fluid p-0">
-
-          <h1 class="h3 mb-3"><strong><a href="index.php" class="dash-item">Dashboard</a> / <a
-                href="faculty_profile.php" class="dash-item">Faculty Profile </a>/ Edit My
-              Account</strong>
-          </h1>
+          <h1 class="h3 mb-3"><strong><a href="admin_faculty.php" class="dash-item">Faculty List</a> /
+              <a href="admin_faculty_view.php?ID=<?php echo $faculty_id ?>" class="dashboard">
+                <?php echo $firstname ?>'s
+                Account</a> / Edit User Image</strong></h1>
           <div class="row">
             <div class="col-12 col-lg-12 col-xxl-12 d-flex">
               <div class="card flex-fill">
