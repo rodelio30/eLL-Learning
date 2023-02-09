@@ -27,6 +27,9 @@
             <li><i class="bx bx-chevron-right"></i> <a href="http://cass.clsu-ovpaa.edu.ph/index.html"
                 target="_blank">CASS</a>
             </li>
+            <li><i class="bx bx-chevron-right"></i> <a href="http://122.54.161.144/cataloging/servlet/presentbasicsearchform.do?restoreFromCrumb=1&tm=TopLevelCatalog&l2m=Library+Search&formSignature=Initialize&formName=cataloging_servlet_BasicSearchForm&breadCrumbIndex=22107&stateCrumb=1&tm=TopLevelCatalog"
+                target="_blank">CLSU LIBRARY</a>
+            </li>
             <li><i class="bx bx-chevron-right"></i> <a href="about.php">DEH</a></li>
           </ul>
         </div>

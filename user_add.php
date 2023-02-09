@@ -5,7 +5,6 @@ date_default_timezone_set("Asia/Manila");
 $user = $_GET['user'];
 
 if (isset($_POST['submit'])) {
-  $id_no         = $_POST['id-no'];
   $firstname     = $_POST['firstname'];
   $lastname      = $_POST['lastname'];
   $email         = $_POST['email'];
@@ -38,10 +37,10 @@ if (isset($_POST['submit'])) {
   }
 
   if ($type == 'faculty') {
-    mysqli_query($conn, "insert into faculty(user_id, faculty_id_no, firstname, lastname, email, gender, password, date_created, date_modified, status) 
-                                    values('$user_id','$id_no','$firstname','$lastname','$email','$gender','$password','$date_created','$date_modified', '$status')")  or die("Query for inserting faculty error.....");
+    mysqli_query($conn, "insert into faculty(user_id,firstname, lastname, email, gender, password, date_created, date_modified, status) 
+                                    values('$user_id','$firstname','$lastname','$email','$gender','$password','$date_created','$date_modified', '$status')")  or die("Query for inserting faculty error.....");
   } elseif ($type == 'student') {
-    mysqli_query($conn, "insert into student(user_id, student_id_no, firstname, lastname, email, gender, password, date_created, date_modified, status) values('$user_id','$id_no','$firstname','$lastname','$email','$gender','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
+    mysqli_query($conn, "insert into student(user_id, firstname, lastname, email, gender, password, date_created, date_modified, status) values('$user_id','$firstname','$lastname','$email','$gender','$password','$date_created','$date_modified','$status')")  or die("Query 2 is incorrect.....");
   }
   echo '<script type="text/javascript"> alert("User ' . $firstname . ' Added!.")</script>';
   if ($user == "admin") {
@@ -128,11 +127,6 @@ include 'admin_header.php';
                 </div>
                 <div class="card-body">
                   <form method="post">
-                    <div class="form-group">
-                      <label>ID Number</label>
-                      <input type="text" class="form-control" id="id-no" name="id-no" placeholder="Enter ID number">
-                    </div>
-                    <br>
                     <div class="form-group">
                       <label>Firstname</label>
                       <input type="text" class="form-control" id="firstname" name="firstname"

@@ -2242,7 +2242,7 @@ section {
 }
 
 #footer .social-links a {
-  font-size: 18px;
+  font-size: 22px;
   display: inline-block;
   background: #fff;
   color: #016623;
@@ -2251,8 +2251,8 @@ section {
   margin-right: 4px;
   border-radius: 50%;
   text-align: center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   transition: 0.3s;
 }
 
