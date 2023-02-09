@@ -7,7 +7,6 @@ $faculty_id = $_GET['ID'];
 $result = mysqli_query($conn, "SELECT * FROM faculty WHERE faculty_id='$faculty_id'");
 while ($res   = mysqli_fetch_array($result)) {
   $user_id        = $res['user_id'];
-  $id_no          = $res['faculty_id_no'];
   $firstname      = $res['firstname'];
   $middle_initial = $res['middle_initial'];
   $lastname       = $res['lastname'];
@@ -28,7 +27,6 @@ while ($res   = mysqli_fetch_array($result)) {
 
 if (isset($_POST['update'])) {
   $user_id       = $_POST['user_id'];
-  $id_no         = $_POST['id_no'];
   $firstname     = $_POST['firstname'];
   $mi            = $_POST['middle_initial'];
   $lastname      = $_POST['lastname'];
@@ -44,7 +42,7 @@ if (isset($_POST['update'])) {
 
   // echo "<script>console.log('" . $email . "');</script>";
   // This line below is to update a specific faculty user
-  mysqli_query($conn, "update faculty set faculty_id_no = '$id_no', firstname = '$firstname', middle_initial = '$mi', lastname = '$lastname', research = '$research', position = '$position', description = '$description', email = '$email', gender = '$gender', status = '$status', password = '$password', date_modified = '$date_modified' where faculty_id = '$faculty_id'") or die("Query 4 is incorrect....");
+  mysqli_query($conn, "update faculty set firstname = '$firstname', middle_initial = '$mi', lastname = '$lastname', research = '$research', position = '$position', description = '$description', email = '$email', gender = '$gender', status = '$status', password = '$password', date_modified = '$date_modified' where faculty_id = '$faculty_id'") or die("Query 4 is incorrect....");
   // This line below is to update the user 
   mysqli_query($conn, "update users set firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' where id = '$user_id'") or die("Query 5 is incorrect....");
 
@@ -111,12 +109,6 @@ include 'admin_header.php';
                 </div>
                 <div class="card-body">
                   <form method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">ID No</label>
-                      <input type="text" class="form-control" id="id_no" name="id_no" value="<?php echo $id_no ?>"
-                        placeholder="Enter ID No">
-                    </div>
-                    <br>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Firstname</label>
                       <input type="text" class="form-control" id="firstname" name="firstname"
